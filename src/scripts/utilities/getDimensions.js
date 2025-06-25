@@ -1,6 +1,6 @@
 import { createLogger } from "./logger.js";
 
-const isDebugging = true;
+const isDebugging = false;
 const log = createLogger(import.meta.url, isDebugging);
 
 /**

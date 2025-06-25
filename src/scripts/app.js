@@ -15,8 +15,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-window.MNK = !ScrollTrigger.isTouch;
-window.TOUCH = !!ScrollTrigger.isTouch;
+window.__MNK__ = !ScrollTrigger.isTouch;
+window.__TOUCH__ = !!ScrollTrigger.isTouch;
 
 /* +-----------------------------------------+
 |                IMPORTS AREA                |
