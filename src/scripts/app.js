@@ -80,11 +80,11 @@ function runOnResize() {
 window.addEventListener("resize", debounce(runOnResize, 250), { once: false });
 
 // --- SCROLL ---
-function runOnScroll() {
-    getDimensions("#app-header", "height");
-}
-window.addEventListener(
-    "scroll",
-    throttle(runOnScroll, 1000, { leading: true, trailing: true }),
-    { once: false },
-);
+// function runOnScroll() {
+//     getDimensions("#app-header", "height");
+// }
+// window.addEventListener(
+//     "scroll",
+//     throttle(runOnScroll, 1000, { leading: true, trailing: true }),
+//     { once: false },
+// );

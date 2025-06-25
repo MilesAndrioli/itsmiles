@@ -11,15 +11,16 @@
         pointer-events: none;
 
         &.has-LUT {
-            mix-blend-mode: overlay;
+            mix-blend-mode: soft-light;
             background-color: color-mix(in oklab, black 25%, transparent);
             backdrop-filter: saturate(110%);
         }
 
         &.has-grid {
-            --border-color: #bebebe;
+            --border-color: white;
 
-            background-image: linear-gradient(
+            background-image:
+                linear-gradient(
                     to bottom,
                     var(--border-color) 1px,
                     transparent 0px

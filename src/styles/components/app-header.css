@@ -12,12 +12,13 @@
     --shift-out: translateY(calc(var(--APP_HEADER_HEIGHT) * -1));
     --shift-in: unset;
 
-    transition: padding var(--header-transition),
+    transition:
+        padding var(--header-transition),
         transform var(--header-transition);
 
-    .HAS-REACHED--STEP-1 & {
+    /* .HAS-REACHED--STEP-1 & {
         @apply !py-1;
-    }
+    } */
 
     .HAS-REACHED--STEP-2 & {
         transform: var(--shift-out);

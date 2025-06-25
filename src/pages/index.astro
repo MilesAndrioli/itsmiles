@@ -1,22 +1,83 @@
 ---
 import Skeleton from "../layouts/Skeleton.astro";
+
 import Home_1 from "../sections/Home_1.astro";
+
+import CloneLink from "../components/CloneLink.astro";
+
+import { Picture } from "astro:assets";
+import Image_1 from "../assets/images/Knight in Shadows.webp";
 ---
 
 <Skeleton title="Home" description="This will be the Home page description.">
-    <Home_1 />
-    <Home_1 />
+    <section
+        class="hero"
+        data-aos-group
+        data-aos-delay="200"
+        data-aos-duration="1200"
+        data-aos-stagger-gap="400"
+    >
+        <div
+            class="container grid grid-cols-2 gap-20"
+            data-aos="fade-in"
+            data-aos-after
+            data-aos-scrub
+        >
+            <div
+                class="border-border -scale-x-100 overflow-hidden rounded-2xl border"
+            >
+                <Picture
+                    src={Image_1}
+                    alt=""
+                    formats={["avif", "webp"]}
+                    height={1440}
+                    class="h-11/10 w-full object-cover"
+                    data-speed="auto"
+                    pictureAttributes={{
+                        class: "h-full block overflow-hidden",
+                        "data-aos-child": "elder-scroll",
+                    }}
+                />
+            </div>
+
+            <div class="place-content-end" data-speed="clamp(1.1)">
+                <h1
+                    class="text-4xl"
+                    data-aos-child="split-chromatic-up"
+                    data-aos-split="words"
+                >
+                    Hey, it's <strong>Miles</strong>! Front-end Developer based
+                    in Málaga, Spain, with over 7 years of experience.
+                </h1>
+
+                <p
+                    class="text-xl"
+                    data-aos-child="split-chromatic-up"
+                    data-aos-split="words"
+                >
+                    Eager to keep learning and pushing myself.
+                    <br />
+                    <CloneLink
+                        text="Open"
+                        href="https://www.linkedin.com/in/MilesAndrioliBachini/"
+                        target="_blank"
+                    /> to remote or on-site opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <Home_1 />
 
     <div class="grid gap-5" data-aos-group="fade-in-blur-out">
-        <section class="sticky sticky--top">
+        <section class="sticky--top sticky">
             <div class="container">
                 <div
-                    class="grid grid-cols-5 gap-20 border border-border rounded-xl p-20 bg-void"
+                    class="border-border bg-void grid grid-cols-5 gap-20 rounded-xl border p-20"
                     data-aos-child
                 >
                     <div
-                        class="col-span-2 overflow-hidden border border-border rounded-xl"
+                        class="border-border col-span-2 overflow-hidden rounded-xl border"
                     >
                         <video
                             src="/tifa_lockhart.mp4"
@@ -24,14 +85,14 @@ import Home_1 from "../sections/Home_1.astro";
                             autoplay
                             playsinline
                             loop
-                            class="w-full h-16/10 aspect-square object-cover"
+                            class="aspect-square h-16/10 w-full object-cover"
                             data-speed="auto"
                             data-aos-child></video>
                     </div>
                     <div class="col-span-3">
-                        <div class="sticky sticky--above-center">
+                        <div class="sticky--above-center sticky">
                             <h2
-                                class="text-6xl font-serif strike-around strike-around--right"
+                                class="strike-around strike-around--right font-serif text-6xl"
                                 data-aos-child="split-chromatic"
                                 data-aos-split="chars"
                             >
@@ -59,14 +120,14 @@ import Home_1 from "../sections/Home_1.astro";
                 </div>
             </div>
         </section>
-        <section class="sticky sticky--top">
+        <section class="sticky--top sticky">
             <div class="container">
                 <div
-                    class="grid grid-cols-5 gap-20 border border-border rounded-xl p-20 bg-void"
+                    class="border-border bg-void grid grid-cols-5 gap-20 rounded-xl border p-20"
                     data-aos-child
                 >
                     <div
-                        class="col-span-2 overflow-hidden border border-border rounded-xl"
+                        class="border-border col-span-2 overflow-hidden rounded-xl border"
                     >
                         <video
                             src="/girl_with_a_pearl_earring.mp4"
@@ -74,14 +135,14 @@ import Home_1 from "../sections/Home_1.astro";
                             autoplay
                             playsinline
                             loop
-                            class="w-full h-16/10 aspect-square object-cover"
+                            class="aspect-square h-16/10 w-full object-cover"
                             data-speed="auto"
                             data-aos-child></video>
                     </div>
                     <div class="col-span-3">
-                        <div class="sticky sticky--above-center">
+                        <div class="sticky--above-center sticky">
                             <h2
-                                class="text-6xl font-serif strike-around strike-around--right"
+                                class="strike-around strike-around--right font-serif text-6xl"
                                 data-aos-child="split-chromatic"
                                 data-aos-split="chars"
                             >
@@ -109,14 +170,14 @@ import Home_1 from "../sections/Home_1.astro";
                 </div>
             </div>
         </section>
-        <section class="sticky sticky--top">
+        <section class="sticky--top sticky">
             <div class="container">
                 <div
-                    class="grid grid-cols-5 gap-20 border border-border rounded-xl p-20 bg-void"
+                    class="border-border bg-void grid grid-cols-5 gap-20 rounded-xl border p-20"
                     data-aos-child
                 >
                     <div
-                        class="col-span-2 overflow-hidden border border-border rounded-xl"
+                        class="border-border col-span-2 overflow-hidden rounded-xl border"
                     >
                         <video
                             src="/man_machine_melancholy.mp4"
@@ -124,14 +185,14 @@ import Home_1 from "../sections/Home_1.astro";
                             autoplay
                             playsinline
                             loop
-                            class="w-full h-16/10 aspect-square object-cover"
+                            class="aspect-square h-16/10 w-full object-cover"
                             data-speed="auto"
                             data-aos-child></video>
                     </div>
                     <div class="col-span-3">
-                        <div class="sticky sticky--above-center">
+                        <div class="sticky--above-center sticky">
                             <h2
-                                class="text-6xl font-serif strike-around strike-around--right"
+                                class="strike-around strike-around--right font-serif text-6xl"
                                 data-aos-child="split-chromatic"
                                 data-aos-split="chars"
                             >
@@ -160,7 +221,6 @@ import Home_1 from "../sections/Home_1.astro";
             </div>
         </section>
     </div>
-    <Home_1 />
-    <Home_1 />
+
     <Home_1 />
 </Skeleton>

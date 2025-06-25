@@ -1,1 +1,64 @@
-<header id="app-header"></header>
+---
+import CloneLink from "../components/CloneLink.astro";
+---
+
+<header
+    id="app-header"
+    class="border-border bg-void/85 border-b-1 p-4 backdrop-blur-md backdrop-saturate-150"
+>
+    <div class="container flex items-center justify-between gap-4">
+        <div class="logo relative rotate-90">
+            <div class="text-5xl uppercase">M</div>
+            <div class="absolute top-0 left-[5px] text-5xl uppercase">A</div>
+        </div>
+        <nav>
+            <ul class="flex gap-4">
+                <!-- <li><a href="mailto:hey@itsmil.es">hey@itsmil.es</a></li>
+                <li>
+                    <a
+                        href="https://www.linkedin.com/in/MilesAndrioliBachini/"
+                        target="_blank"
+                        >LinkedIn</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://wa.me/34683347859?text=Hi%20there%20%F0%9F%91%8B,%20I'd%20like%20to%20know..."
+                        target="_blank"
+                        >WhatsApp</a
+                    >
+                </li> -->
+                <li>
+                    <a href="#" class="under-link">under-link</a>
+                </li>
+                <li>
+                    <a href="#" class="cover-link">cover-link</a>
+                </li>
+                <li>
+                    <CloneLink />
+                </li>
+                <li>
+                    <a class="swipe-link">swipe-link</a>
+                </li>
+                <li>
+                    <a href="#" class="swipe-cover-link">swipe-cover-link</a>
+                </li>
+                <li>
+                    <a href="#" class="yoyo-link">yoyo-link</a>
+                </li>
+                <li>
+                    <a href="#" class="yoyo-cover-link">yoyo-cover-link</a>
+                </li>
+                <li>
+                    <a href="/" class="yoyo-cover-link">Home</a>
+                </li>
+                <li>
+                    <a href="/lab/" class="yoyo-cover-link">Lab</a>
+                </li>
+                <li>
+                    <a href="/lab2/" class="yoyo-cover-link">Lab2</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

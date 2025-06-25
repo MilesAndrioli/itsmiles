@@ -5,30 +5,28 @@ import Head from "../components/Head.astro";
 import Smoother from "../components/Smoother.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Aurora from "../components/Aurora.astro";
 import Filter from "../components/Filter.astro";
 import Noise from "../components/Noise.astro";
 import Loader from "../components/Loader.astro";
 
-import SpeedInsights from "@vercel/speed-insights/astro";
+// import SpeedInsights from "@vercel/speed-insights/astro";
 ---
 
 <!doctype html>
 <html lang="en">
     <Head />
-    <body class="antialiased bg-body text-text">
+    <body class="bg-body text-text antialiased">
         <Smoother>
             <Header />
-            <main id="app-main" class="grid gap-50 py-20">
+            <main id="app-main" class="grid gap-100 py-50">
                 <slot />
             </main>
             <Footer />
         </Smoother>
-        <Aurora />
         <Filter />
         <Noise />
         <Loader />
         <script src="/src/scripts/app.js"></script>
-        <SpeedInsights />
+        <!-- <SpeedInsights /> -->
     </body>
 </html>

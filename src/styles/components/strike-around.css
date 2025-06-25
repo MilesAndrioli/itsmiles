@@ -48,7 +48,8 @@
             transform: unset;
             opacity: 1;
 
-            transition: transform var(--in-out--giga-slow) 280ms,
+            transition:
+                transform var(--in-out--giga-slow) 280ms,
                 opacity var(--in-out--giga-slow) 280ms;
         }
     }

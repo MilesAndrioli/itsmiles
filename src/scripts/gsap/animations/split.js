@@ -94,35 +94,36 @@ export default {
     "split-chromatic": {
         origin: {
             opacity: 0,
-            letterSpacing: "0.25em",
             textShadow: `
                 rgb(0 0 255 / 60%) -0.3em 0.3em 2px, 
                 rgb(0 255 255 / 60%) -0.15em 0.15em 2px, 
                 rgb(255 255 0 / 60%) 0.15em -0.15em 2px, 
                 rgb(255 0 0 / 60%) 0.3em -0.3em 2px
             `,
+            filter: "blur(6px)",
         },
         destination: {
             opacity: 1,
-            letterSpacing: "0em",
             textShadow: `
                 transparent 0em 0em 0px, 
                 transparent 0em 0em 0px, 
                 transparent 0em 0em 0px, 
                 transparent 0em 0em 0px
             `,
+            filter: "blur(0px)",
         },
     },
     "split-chromatic-up": {
         origin: {
             opacity: 0,
-            y: "0.5em",
+            y: "0.2em",
             textShadow: `
                 rgb(0 0 255 / 60%) -0.3em 0.3em 2px, 
                 rgb(0 255 255 / 60%) -0.15em 0.15em 2px, 
                 rgb(255 255 0 / 60%) 0.15em -0.15em 2px, 
                 rgb(255 0 0 / 60%) 0.3em -0.3em 2px
             `,
+            filter: "blur(6px)",
         },
         destination: {
             opacity: 1,
@@ -133,6 +134,7 @@ export default {
                 transparent 0em 0em 0px, 
                 transparent 0em 0em 0px
             `,
+            filter: "blur(0px)",
         },
     },
 };

@@ -10,6 +10,10 @@ body::-webkit-scrollbar {
     width: 0;
 }
 
+body {
+    text-wrap-style: pretty;
+}
+
 h1,
 h2,
 h3,
@@ -20,4 +24,11 @@ p {
     &:not(:last-child) {
         @apply mb-[.5em];
     }
+}
+
+p a {
+    /* opacity: 80%; */
+    /* color: color-mix(in oklab, currentColor 80%, transparent); */
+    font-weight: bolder;
+    /* font-style: italic; */
 }

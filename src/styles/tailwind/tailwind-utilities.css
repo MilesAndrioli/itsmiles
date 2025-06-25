@@ -1,12 +1,14 @@
 @utility container {
-    @apply max-w-7xl 3xl:max-w-[50vw] mx-auto px-5;
+    @apply 3xl:max-w-[50vw] mx-auto max-w-7xl px-5;
 }
 
-@layer utilities {
-    .text-stroke {
-        color: transparent;
-        --stroke-width: 2px;
-        --stroke-color: var(--color-text);
-        -webkit-text-stroke: var(--stroke-width) var(--stroke-color);
-    }
+@utility text-stroke {
+    color: transparent;
+    --stroke-width: 2px;
+    --stroke-color: var(--color-text);
+    -webkit-text-stroke: var(--stroke-width) var(--stroke-color);
+}
+
+@utility hero {
+    @apply -mt-50 min-h-[calc(100dvh_-_var(--APP_HEADER_HEIGHT))] place-content-center;
 }

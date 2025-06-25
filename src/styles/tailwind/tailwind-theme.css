@@ -18,7 +18,7 @@
     /* https://tailwindcss.com/docs/colors#using-a-custom-palette */
     /* --color-*: initial; */
 
-    --color-void: #111;
+    --color-void: oklch(12% 0 0);
     --color-void-400: #1a1a1a;
     --color-void-300: #242424;
     --color-void-200: #2e2e2e;
@@ -31,7 +31,7 @@
     --color-sand: #ddcab0;
     --color-biohazard: #b9f553;
 
-    --color-text: var(--color-biohazard);
+    --color-text: oklch(70% 0 0);
     --color-body: var(--color-void);
     --color-border: color-mix(in oklab, var(--color-stone) 10%, transparent);
     /* #endregion */
