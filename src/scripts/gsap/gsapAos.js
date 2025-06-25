@@ -83,72 +83,6 @@ export default function initGsapAos() {
     }
 
     /**
-     * Main function to animate an element or a group of elements.
-     * @param {HTMLElement} el - The DOM element to animate.
-     */
-    function animateElement(el) {
-        const settings = getSettings(el);
-        const isGroup = "aosGroup" in el.dataset;
-        const groupAnimationName = el.dataset.aosGroup;
-
-        // Skip if the element doesn't have a defined animation (unless it's a group)
-        if (!isGroup && !gsapAnimations[el.dataset.aos]) return;
-
-        const elementsToAnimate = isGroup
-            ? el.querySelectorAll("[data-aos-child]").length
-                ? Array.from(el.querySelectorAll("[data-aos-child]"))
-                : Array.from(el.children)
-            : [el];
-
-        const timeline = gsap.timeline({
-            scrollTrigger: createScrollTriggerConfig(
-                elementsToAnimate,
-                el,
-                settings,
-            ),
-        });
-
-        elementsToAnimate.forEach((child, index) => {
-            const animationName = getAnimationKey(child, groupAnimationName);
-            if (!gsapAnimations[animationName]) return;
-
-            // Apply will-change: transform; to avoid visual jitter
-            // @see https://number-flow.barvian.me/vanilla#attributes
-            gsap.set(child, { willChange: "transform" });
-
-            const animationConfig = gsapAnimations[animationName];
-            const playInReverse = child.dataset.aosAfter !== undefined;
-
-            const originProps = playInReverse
-                ? animationConfig.destination
-                : animationConfig.origin;
-            const destinationProps = playInReverse
-                ? animationConfig.origin
-                : animationConfig.destination;
-
-            if (animationName.includes("split")) {
-                animateSplitText(
-                    child,
-                    originProps,
-                    destinationProps,
-                    settings,
-                    timeline,
-                    index,
-                );
-            } else {
-                animateSimple(
-                    child,
-                    originProps,
-                    destinationProps,
-                    settings,
-                    timeline,
-                    index,
-                );
-            }
-        });
-    }
-
-    /**
      * Gets the animation key for an element, considering group or individual settings.
      * @param {HTMLElement} childEl - The child element.
      * @param {string} groupAnimationName - The animation name defined for the group.
@@ -250,6 +184,71 @@ export default function initGsapAos() {
         );
     }
 
+    /**
+     * Main function to animate an element or a group of elements.
+     * @param {HTMLElement} el - The DOM element to animate.
+     */
+    function animateElement(el) {
+        const settings = getSettings(el);
+        const isGroup = "aosGroup" in el.dataset;
+        const groupAnimationName = el.dataset.aosGroup;
+
+        // Skip if the element doesn't have a defined animation (unless it's a group)
+        if (!isGroup && !gsapAnimations[el.dataset.aos]) return;
+
+        const elementsToAnimate = isGroup
+            ? el.querySelectorAll("[data-aos-child]").length
+                ? Array.from(el.querySelectorAll("[data-aos-child]"))
+                : Array.from(el.children)
+            : [el];
+
+        const timeline = gsap.timeline({
+            scrollTrigger: createScrollTriggerConfig(
+                elementsToAnimate,
+                el,
+                settings,
+            ),
+        });
+
+        elementsToAnimate.forEach((child, index) => {
+            const animationName = getAnimationKey(child, groupAnimationName);
+            if (!gsapAnimations[animationName]) return;
+
+            // Apply will-change: transform; to avoid visual jitter
+            // @see https://number-flow.barvian.me/vanilla#attributes
+            gsap.set(child, { willChange: "transform" });
+
+            const animationConfig = gsapAnimations[animationName];
+            const playInReverse = child.dataset.aosAfter !== undefined;
+
+            const originProps = playInReverse
+                ? animationConfig.destination
+                : animationConfig.origin;
+            const destinationProps = playInReverse
+                ? animationConfig.origin
+                : animationConfig.destination;
+
+            if (animationName.includes("split")) {
+                animateSplitText(
+                    child,
+                    originProps,
+                    destinationProps,
+                    settings,
+                    timeline,
+                    index,
+                );
+            } else {
+                animateSimple(
+                    child,
+                    originProps,
+                    destinationProps,
+                    settings,
+                    timeline,
+                    index,
+                );
+            }
+        });
+    }
     // Initialize animations for all relevant elements on the page.
     document
         .querySelectorAll("[data-aos], [data-aos-group]")
