@@ -186,15 +186,110 @@ export default function initGsapAos() {
     }
 
     /**
-     * Sets up debug triggers that allow restarting animations on click.
-     * @param {Map<string, gsap.core.Timeline>} timelines - A map of named timelines.
+     * Determines which elements inside a container should be animated.
+     * @param {HTMLElement} container - The main element (`[data-aos]` or `[data-aos-group]`).
+     * @param {boolean} isGroup - True if the container is a group.
+     * @returns {HTMLElement[]} An array of elements to be animated.
+     */
+    function getAnimationTargets(container, isGroup) {
+        if (!isGroup) {
+            return [container];
+        }
+        const children = container.querySelectorAll("[data-aos-child]");
+        return children.length > 0
+            ? Array.from(children)
+            : Array.from(container.children);
+    }
+
+    /**
+     * Adds a single animation to the timeline for a given child element.
+     * @param {object} context - An object containing all necessary data.
+     */
+    function applyAnimation(context) {
+        const { child, index, timeline, settings, groupAnimationName } =
+            context;
+
+        const animationName = getAnimationKey(child, groupAnimationName);
+        if (!gsapAnimations[animationName]) return;
+
+        gsap.set(child, { willChange: "transform" });
+
+        const animationDef = gsapAnimations[animationName];
+        const isReversed = child.dataset.aosAfter !== undefined;
+
+        const fromVars = isReversed
+            ? animationDef.destination
+            : animationDef.origin;
+        const toVars = isReversed
+            ? animationDef.origin
+            : animationDef.destination;
+
+        if (animationName.includes("split")) {
+            animateSplitText(
+                child,
+                fromVars,
+                toVars,
+                settings,
+                timeline,
+                index,
+            );
+        } else {
+            animateSimple(child, fromVars, toVars, settings, timeline, index);
+        }
+    }
+
+    /**
+     * Processes a single `[data-aos]` or `[data-aos-group]` element,
+     * creates its timeline, and populates it with animations.
+     * @param {HTMLElement} animationContainer - The main element that triggers the animation.
+     */
+    function processAnimationElement(animationContainer) {
+        // 1. Gather information
+        const settings = getSettings(animationContainer);
+        const isGroup = "aosGroup" in animationContainer.dataset;
+        const groupAnimationName = animationContainer.dataset.aosGroup;
+
+        // 2. Validate if we should proceed
+        if (!isGroup && !gsapAnimations[animationContainer.dataset.aos]) return;
+
+        // 3. Find the actual elements to animate
+        const targets = getAnimationTargets(animationContainer, isGroup);
+
+        // 4. Create the master timeline for this container
+        const timeline = gsap.timeline({
+            scrollTrigger: createScrollTriggerConfig(
+                targets,
+                animationContainer,
+                settings,
+            ),
+        });
+
+        // 5. If the animation has a name, save it for the debug triggers.
+        if (animationContainer.dataset.aosName) {
+            namedTimelines.set(animationContainer.dataset.aosName, timeline);
+        }
+
+        // 6. Add each child's animation to the timeline
+        targets.forEach((child, index) => {
+            applyAnimation({
+                child,
+                index,
+                timeline,
+                settings,
+                groupAnimationName,
+            });
+        });
+    }
+
+    /**
+     * Sets up click handlers on `[data-aos-trigger]` elements to restart animations.
+     * @param {Map<string, gsap.core.Timeline>} timelines - The map of named timelines.
      */
     function setupDebugTriggers(timelines) {
         const triggerButtons = document.querySelectorAll("[data-aos-trigger]");
-
         if (triggerButtons.length === 0) return;
 
-        log("Debugging triggers enabled.");
+        log("Animation debugging triggers enabled.");
 
         triggerButtons.forEach((button) => {
             const targetName = button.dataset.aosTrigger;
@@ -208,77 +303,7 @@ export default function initGsapAos() {
                 log(`Button linked to animation: "${targetName}"`);
             } else {
                 log(
-                    `Warning: Button with target "${targetName}" found no matching animation. Did you add data-aos-name="${targetName}"?`,
-                );
-            }
-        });
-    }
-
-    /**
-     * Main function to animate an element or a group of elements.
-     * @param {HTMLElement} el - The DOM element to animate.
-     */
-    function animateElement(el) {
-        const settings = getSettings(el);
-        const isGroup = "aosGroup" in el.dataset;
-        const groupAnimationName = el.dataset.aosGroup;
-
-        // Skip if the element doesn't have a defined animation (unless it's a group)
-        if (!isGroup && !gsapAnimations[el.dataset.aos]) return;
-
-        const elementsToAnimate = isGroup
-            ? el.querySelectorAll("[data-aos-child]").length
-                ? Array.from(el.querySelectorAll("[data-aos-child]"))
-                : Array.from(el.children)
-            : [el];
-
-        const timeline = gsap.timeline({
-            scrollTrigger: createScrollTriggerConfig(
-                elementsToAnimate,
-                el,
-                settings,
-            ),
-        });
-
-        if (el.dataset.aosName) {
-            namedTimelines.set(el.dataset.aosName, timeline);
-        }
-
-        elementsToAnimate.forEach((child, index) => {
-            const animationName = getAnimationKey(child, groupAnimationName);
-            if (!gsapAnimations[animationName]) return;
-
-            // Apply will-change: transform; to avoid visual jitter
-            // @see https://number-flow.barvian.me/vanilla#attributes
-            gsap.set(child, { willChange: "transform" });
-
-            const animationConfig = gsapAnimations[animationName];
-            const playInReverse = child.dataset.aosAfter !== undefined;
-
-            const originProps = playInReverse
-                ? animationConfig.destination
-                : animationConfig.origin;
-            const destinationProps = playInReverse
-                ? animationConfig.origin
-                : animationConfig.destination;
-
-            if (animationName.includes("split")) {
-                animateSplitText(
-                    child,
-                    originProps,
-                    destinationProps,
-                    settings,
-                    timeline,
-                    index,
-                );
-            } else {
-                animateSimple(
-                    child,
-                    originProps,
-                    destinationProps,
-                    settings,
-                    timeline,
-                    index,
+                    `Warning: Trigger button for "${targetName}" found no matching animation. Check data-aos-name.`,
                 );
             }
         });
@@ -287,7 +312,7 @@ export default function initGsapAos() {
     // Initialize animations for all relevant elements on the page.
     document
         .querySelectorAll("[data-aos], [data-aos-group]")
-        .forEach(animateElement);
+        .forEach(processAnimationElement);
 
     if (isDebugging) setupDebugTriggers(namedTimelines);
 }
