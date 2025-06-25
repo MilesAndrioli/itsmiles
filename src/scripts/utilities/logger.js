@@ -1,3 +1,11 @@
+console.log(`
+    \ _   _      _ _         _____ _
+    | | | | ___| | | ___   |_   _| |__   ___ _ __ ___
+    | |_| |/ _ \\ | |/ _ \\    | | | '_ \\ / _ \\ '__/ _ \\
+    |  _  |  __/ | | (_) |   | | | | | |  __/ | |  __/
+    |_| |_|\\___|_|_|\\___/    |_| |_| |_|\\___|_|  \\___|
+    `);
+
 export function createLogger(metaUrl, isDebugging) {
     const isDeveloping = import.meta.env.MODE === "development";
 

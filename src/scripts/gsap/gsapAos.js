@@ -1,3 +1,8 @@
+import { createLogger } from "../utilities/logger";
+
+const isDebugging = true;
+const log = createLogger(import.meta.url, isDebugging);
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
