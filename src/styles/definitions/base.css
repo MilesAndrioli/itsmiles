@@ -32,3 +32,8 @@ p a {
     font-weight: bolder;
     /* font-style: italic; */
 }
+
+mark {
+    background-color: transparent;
+    color: currentColor;
+}

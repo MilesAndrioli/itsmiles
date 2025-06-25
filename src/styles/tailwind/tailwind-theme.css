@@ -33,6 +33,7 @@
     --color-biohazard: #b9f553;
 
     --color-text: oklch(70% 0 0);
+    --color-strong: oklch(85% 0 0);
     --color-body: var(--color-void);
     --color-border: color-mix(in oklab, var(--color-stone) 10%, transparent);
     /* #endregion */
