@@ -8,8 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 export default function initGsapScrollState() {
     const root = document.documentElement;
     const main = document.getElementById("app-main");
+    const footer = document.getElementById("app-footer");
 
-    // Detect Scroll Milestones
+    // --- Milestone 1 ---
     ScrollTrigger.create({
         trigger: main,
         start: "top top",
@@ -20,8 +21,9 @@ export default function initGsapScrollState() {
         markers: false,
     });
 
+    // --- Milestone 2 ---
     ScrollTrigger.create({
-        trigger: main,
+        trigger: root,
         start: `${innerHeight} top`,
         toggleClass: {
             targets: root,
@@ -30,8 +32,10 @@ export default function initGsapScrollState() {
         markers: false,
     });
 
+    // --- Milestone Footer ---
     ScrollTrigger.create({
-        trigger: "#app-footer",
+        trigger: footer,
+        start: "top bottom",
         toggleClass: {
             targets: root,
             className: "HAS-REACHED--FOOTER",
@@ -39,16 +43,20 @@ export default function initGsapScrollState() {
         markers: false,
     });
 
-    // Detect Scroll Direction
+    // --- Scroll Direction ---
+    let lastDirection = 0;
+
     ScrollTrigger.create({
         onUpdate: (self) => {
+            if (self.direction !== lastDirection) {
             root.classList.toggle("SCROLLING--DOWN", self.direction === 1);
             root.classList.toggle("SCROLLING--UP", self.direction === -1);
+                lastDirection = self.direction;
+            }
         },
-        markers: false,
     });
 
-    // Detect Scroll Progress
+    // --- Scroll Progress ---
     ScrollTrigger.create({
         onUpdate: throttle(
             (self) => {
@@ -58,9 +66,8 @@ export default function initGsapScrollState() {
                     `${scrollProgress}`,
                 );
             },
-            100,
+            300,
             { leading: true, trailing: true },
         ),
-        markers: false,
     });
 }
