@@ -49,8 +49,8 @@ export default function initGsapScrollState() {
     ScrollTrigger.create({
         onUpdate: (self) => {
             if (self.direction !== lastDirection) {
-            root.classList.toggle("SCROLLING--DOWN", self.direction === 1);
-            root.classList.toggle("SCROLLING--UP", self.direction === -1);
+                root.classList.toggle("SCROLLING--DOWN", self.direction === 1);
+                root.classList.toggle("SCROLLING--UP", self.direction === -1);
                 lastDirection = self.direction;
             }
         },
