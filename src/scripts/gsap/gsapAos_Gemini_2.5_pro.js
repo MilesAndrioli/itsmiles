@@ -38,7 +38,7 @@ export default function initGsapAos() {
             staggerGap: msToSec(dataset.aosStaggerGap || 280),
 
             splitDuration: msToSec(
-                dataset.aosSplitDuration || dataset.aosStaggerGap || 280
+                dataset.aosSplitDuration || dataset.aosStaggerGap || 280,
             ),
             splitGap: msToSec(dataset.aosSplitGap), // If undefined, amount will be used for stagger
             splitFrom: dataset.aosSplitFrom, // "start", "center", "end", "random"
@@ -99,7 +99,7 @@ export default function initGsapAos() {
             scrollTrigger: createScrollTriggerConfig(
                 elementsToAnimate,
                 el,
-                settings
+                settings,
             ),
         });
 
@@ -128,7 +128,7 @@ export default function initGsapAos() {
                     destinationProps,
                     settings,
                     timeline,
-                    index
+                    index,
                 );
             } else {
                 animateSimple(
@@ -137,7 +137,7 @@ export default function initGsapAos() {
                     destinationProps,
                     settings,
                     timeline,
-                    index
+                    index,
                 );
             }
         });
@@ -172,7 +172,7 @@ export default function initGsapAos() {
         destinationProps,
         settings,
         timeline,
-        indexInTimeline
+        indexInTimeline,
     ) {
         const splitType =
             typeof TOUCH !== "undefined" &&
@@ -192,12 +192,12 @@ export default function initGsapAos() {
 
         if (childEl.dataset.aosSplitGap || settings.splitGap) {
             staggerOptions.each = msToSec(
-                childEl.dataset.aosSplitGap || settings.splitGap * 1000
+                childEl.dataset.aosSplitGap || settings.splitGap * 1000,
             );
         } else {
             staggerOptions.amount = msToSec(
                 childEl.dataset.aosSplitDuration ||
-                    settings.splitDuration * 1000
+                    settings.splitDuration * 1000,
             );
         }
 
@@ -210,7 +210,7 @@ export default function initGsapAos() {
                 ease: settings.ease,
                 stagger: staggerOptions,
             },
-            indexInTimeline * settings.staggerGap
+            indexInTimeline * settings.staggerGap,
         );
     }
 
@@ -229,7 +229,7 @@ export default function initGsapAos() {
         destinationProps,
         settings,
         timeline,
-        indexInTimeline
+        indexInTimeline,
     ) {
         gsap.set(childEl, originProps);
 
@@ -241,7 +241,7 @@ export default function initGsapAos() {
                 delay: settings.delay,
                 ease: settings.ease,
             },
-            indexInTimeline * settings.staggerGap
+            indexInTimeline * settings.staggerGap,
         );
     }
 

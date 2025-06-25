@@ -55,11 +55,11 @@ export default function initGsapScrollState() {
                 const scrollProgress = Math.round(self.progress * 100);
                 root.style.setProperty(
                     "--SCROLL_PROGRESS",
-                    `${scrollProgress}`
+                    `${scrollProgress}`,
                 );
             },
             100,
-            { leading: true, trailing: true }
+            { leading: true, trailing: true },
         ),
         markers: false,
     });
