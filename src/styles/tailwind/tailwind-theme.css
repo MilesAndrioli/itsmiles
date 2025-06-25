@@ -50,7 +50,7 @@
     /* #endregion */
 
     /* #region Layout */
-    --gappers: calc(var(--spacing) * 5);
+    --gappers: calc(var(--spacing) * 10);
     --breakpoint-3xl: 160rem;
     /* #endregion */
 

@@ -37,3 +37,7 @@ mark {
     background-color: transparent;
     color: currentColor;
 }
+
+[data-aos-trigger]::after {
+    content: attr(data-aos-trigger);
+}
