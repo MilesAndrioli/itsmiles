@@ -1,19 +1,49 @@
----
-import Unveil from "./Unveil.astro";
----
-
-<Unveil
-    wrapperTag="footer"
+<footer
     id="app-footer"
-    class="min-h-[50vh] place-content-center border-t-1 border-border"
+    class="border-border min-h-[50vh] place-content-center border-t-1"
+    data-unveil-wrapper
 >
-    <div class="container">
-        <p class="text-5xl">
-            &copy; {new Date().getFullYear()} Mi Portfolio. Todos los derechos reservados.
-            &copy; {new Date().getFullYear()} Mi Portfolio. Todos los derechos reservados.
-            &copy; {new Date().getFullYear()} Mi Portfolio. Todos los derechos reservados.
-            &copy; {new Date().getFullYear()} Mi Portfolio. Todos los derechos reservados.
-            &copy; {new Date().getFullYear()} Mi Portfolio. Todos los derechos reservados.
-        </p>
+    <div data-unveil-target>
+        <div class="container">
+            <p class="text-5xl">
+                Created using
+                <a href="https://vite.dev/" target="_blank" class="yoyo-link">
+                    Vite</a
+                >, <a
+                    href="https://astro.build/"
+                    target="_blank"
+                    class="yoyo-link"
+                >
+                    Astro</a
+                >, <a
+                    href="https://tailwindcss.com/"
+                    target="_blank"
+                    class="yoyo-link"
+                >
+                    Tailwind</a
+                >, <a
+                    href="https://gsap.com/"
+                    target="_blank"
+                    class="yoyo-link"
+                >
+                    GSAP</a
+                >
+                and <a
+                    href="https://lenis.darkroom.engineering/"
+                    target="_blank"
+                    class="yoyo-link"
+                >
+                    Lenis
+                </a>
+                &copy; {new Date().getFullYear()} Mi Portfolio. Todos los derechos
+                reservados. &copy; {new Date().getFullYear()} Mi Portfolio. Todos
+                los derechos reservados. &copy; {new Date().getFullYear()} Mi Portfolio.
+                Todos los derechos reservados. &copy; {new Date().getFullYear()}
+                Mi Portfolio. Todos los derechos reservados. &copy; {
+                    new Date().getFullYear()
+                } Mi Portfolio. Todos los derechos reservados.
+                <a href="/lab/" class="yoyo-link">Lab</a>
+            </p>
+        </div>
     </div>
-</Unveil>
+</footer>
