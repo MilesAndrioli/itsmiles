@@ -7,7 +7,7 @@ console.log(`
     `);
 
 /* +-----------------------------------------+
-|           GLOBALS AREA             		 |
+|                GLOBALS AREA                |
 +-----------------------------------------+ */
 
 import { gsap } from "gsap";
@@ -19,63 +19,72 @@ window.MNK = !ScrollTrigger.isTouch;
 window.TOUCH = !!ScrollTrigger.isTouch;
 
 /* +-----------------------------------------+
-|           IMPORTS AREA             		 |
+|                IMPORTS AREA                |
 +-----------------------------------------+ */
 
-// Utilities
-import throttle from "lodash.throttle";
+// --- Utilities ---
 import getDimensions from "./utilities/getDimensions";
 import getStickyElements from "./utilities/getStickyElements";
+import debounce from "lodash.debounce";
+import throttle from "lodash.throttle";
 
-// GSAP
-import initGsapConfig from "./gsap/initGsapConfig";
-import initGsapAos from "./gsap/initGsapAos_Gemini_2.5_pro";
-import initGsapScrollState from "./gsap/initGsapScrollState";
-import initGsapMouseFollower from "./gsap/initGsapMouseFollower";
+//--- GSAP ---
+import gsapAos from "./gsap/gsapAos";
+import gsapConfig from "./gsap/gsapConfig";
+import gsapLenis from "./gsap/gsapLenis";
+import gsapMouseFollower from "./gsap/gsapMouseFollower";
+import gsapParallax from "./gsap/gsapParallax";
+import gsapScrollState from "./gsap/gsapScrollState";
+import gsapUnveil from "./gsap/gsapUnveil";
 
 /* +-----------------------------------------+
-|           EVENTS AREA             		 |
+|                EVENTS AREA                 |
 +-----------------------------------------+ */
 
-// DOC Ready
-// document.addEventListener("DOMContentLoaded", () => {}, { once: true });
+// --- READY ---
+function runOnReady() {
+    // 1
+    getDimensions("#app-header", "height");
 
-// WINDOW Ready
-window.addEventListener(
-    "load",
-    () => {
-        initGsapConfig();
-        initGsapAos();
-        initGsapScrollState();
-        if (MNK) initGsapMouseFollower();
-        getDimensions("#app-header", "height");
-        getStickyElements();
-    },
-    { once: true }
-);
+    // 2
+    gsapMouseFollower();
 
-// WINDOW Resize
-window.addEventListener(
-    "resize",
-    throttle(
-        () => {
-            getDimensions("#app-header", "height");
-        },
-        300,
-        { leading: true, trailing: true }
-    ),
-    { once: false }
-);
+    // 3
+    gsapLenis();
+}
+document.addEventListener("DOMContentLoaded", runOnReady, { once: true });
 
-// WINDOW Scroll
+// --- LOAD ---
+function runOnLoad() {
+    // 4
+    gsapParallax();
+
+    // 5
+    gsapConfig();
+    gsapAos();
+    gsapUnveil();
+    gsapScrollState();
+
+    // 6
+    getStickyElements();
+
+    // 7
+    // initLoader();
+}
+window.addEventListener("load", runOnLoad, { once: true });
+
+// --- RESIZE ---
+function runOnResize() {
+    getDimensions("#app-header", "height");
+}
+window.addEventListener("resize", debounce(runOnResize, 250), { once: false });
+
+// --- SCROLL ---
+function runOnScroll() {
+    getDimensions("#app-header", "height");
+}
 window.addEventListener(
     "scroll",
-    throttle(
-        () => {
-            getDimensions("#app-header", "height");
-        },
-        1000,
-        { leading: true, trailing: true }
-    ),
-    { once: false }
+    throttle(runOnScroll, 1000, { leading: true, trailing: true }),
+    { once: false },
 );
