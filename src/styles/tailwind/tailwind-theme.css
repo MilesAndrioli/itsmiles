@@ -21,7 +21,7 @@
     /* https://tailwindcss.com/docs/colors#using-a-custom-palette */
     /* --color-*: initial; */
 
-    --color-void: oklch(12% 0 0);
+    --color-void: oklch(13% 0 0);
     --color-void-400: #1a1a1a;
     --color-void-300: #242424;
     --color-void-200: #2e2e2e;

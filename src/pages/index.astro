@@ -7,6 +7,9 @@ import CloneLink from "../components/CloneLink.astro";
 
 import { Picture } from "astro:assets";
 import Image_1 from "../assets/images/Knight in Shadows.webp";
+import Image_2 from "../assets/images/Dark Knight Serenity.webp";
+import Image_3 from "../assets/images/Ethereal Ice Knight.webp";
+import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
 ---
 
 <Skeleton title="Home" description="This will be the Home page description.">
@@ -68,7 +71,6 @@ import Image_1 from "../assets/images/Knight in Shadows.webp";
     </section>
 
     <section
-        class="hero"
         data-aos-group
         data-aos-delay="200"
         data-aos-duration="1200"
@@ -80,11 +82,9 @@ import Image_1 from "../assets/images/Knight in Shadows.webp";
             data-aos-after
             data-aos-scrub
         >
-            <div
-                class="border-border -scale-x-100 overflow-hidden rounded-2xl border"
-            >
+            <div class="border-border overflow-hidden rounded-2xl border">
                 <Picture
-                    src={Image_1}
+                    src={Image_3}
                     alt=""
                     formats={["avif", "webp"]}
                     height={1440}
