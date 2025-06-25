@@ -4,9 +4,8 @@
 
 @utility text-stroke {
     color: transparent;
-    --stroke-width: 2px;
-    --stroke-color: var(--color-text);
-    -webkit-text-stroke: var(--stroke-width) var(--stroke-color);
+    -webkit-text-stroke: var(--stroke-width, 2px)
+        var(--stroke-color, var(--color-text));
 }
 
 @utility hero {
