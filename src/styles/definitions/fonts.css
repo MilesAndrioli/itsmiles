@@ -54,9 +54,9 @@
 @font-face {
     font-family: "Iskry";
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-display: swap;
-    src: url("../../assets/fonts/Iskry-Regular.woff2") format("woff2");
+    src: url("../../assets/fonts/Iskry/Iskry-Regular.woff2") format("woff2");
 }
 
 /* SERIF: PP Gatwick Glider */
