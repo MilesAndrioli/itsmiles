@@ -28,7 +28,7 @@ import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
             data-aos-scrub
         >
             <div
-                class="border-void-400 -scale-x-100 overflow-hidden rounded-2xl border"
+                class="border-void-200 -scale-x-100 overflow-hidden rounded-2xl border"
             >
                 <Picture
                     src={Image_1}
@@ -45,14 +45,27 @@ import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
             </div>
 
             <div>
-                <div class="sticky--below-center sticky">
-                    <h1
-                        class="font-iskry text-4xl text-stone-300"
+                <button data-aos-trigger="heroSection" class="swipe-link">
+                    DEBUG:
+                </button>
+
+                <div class="sticky--below-center sticky grid gap-6">
+                    <p
+                        class="font-iskry mb-0 text-6xl text-stone-300"
                         data-aos-child="split-chromatic-up"
-                        data-aos-split="words"
+                        data-aos-split="chars"
                     >
-                        Hey, <mark>it's Miles</mark>! Front-end Developer based
-                        in Spain, with over 7 years of experience.
+                        Hey, it's Miles!
+                    </p>
+
+                    <h1
+                        class="mb-0 text-4xl"
+                        data-aos-child="split-chromatic-up"
+                        data-aos-split="lines"
+                    >
+                        Creative Front-end Developer crafting seamless
+                        experiences for the web with care, precision, and
+                        curiosity.
                     </h1>
 
                     <p
@@ -60,22 +73,13 @@ import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
                         data-aos-child="split-chromatic-up"
                         data-aos-split="words"
                     >
-                        Eager to keep learning and pushing myself.
-                        <br />
+                        Based in Spain &mdash;
                         <CloneLink
-                            text="Open"
+                            text="open"
                             href="https://www.linkedin.com/in/MilesAndrioliBachini/"
                             target="_blank"
-                        /> to remote or on-site opportunities.
+                        /> to remote or on-site opportunities worldwide.
                     </p>
-
-                    <button
-                        data-aos-child
-                        data-aos-trigger="heroSection"
-                        class="swipe-link"
-                    >
-                        DEBUG:
-                    </button>
                 </div>
             </div>
         </div>
@@ -114,7 +118,7 @@ import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
             data-aos-scrub
         >
             <div
-                class="border-void-400 -scale-x-100 overflow-hidden rounded-2xl border"
+                class="border-void-100 -scale-x-100 overflow-hidden rounded-2xl border"
             >
                 <Picture
                     src={Image_2}
