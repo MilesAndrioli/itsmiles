@@ -7,7 +7,7 @@ import CloneLink from "../components/CloneLink.astro";
 
 import { Picture } from "astro:assets";
 import Image_1 from "../assets/images/Knight in Shadows.webp";
-import Image_2 from "../assets/images/Dark Knight Serenity.webp";
+import Image_2 from "../assets/images/Artorias in the Abyss.webp";
 import Image_3 from "../assets/images/Ethereal Ice Knight.webp";
 import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
 ---
@@ -105,6 +105,82 @@ import Image_4 from "../assets/images/Shadowed Knight Encounter.webp";
                 consequatur id, reprehenderit eius dolor repudiandae quos autem,
                 praesentium deleniti ab explicabo tempora quod obcaecati.
             </p>
+        </div>
+    </section>
+
+    <section
+        class="hero"
+        data-aos-group="fade-in"
+        data-aos-delay="200"
+        data-aos-duration="900"
+        data-aos-stagger-gap="440"
+        data-aos-name="heroSection"
+    >
+        <div
+            class="container grid grid-cols-2 gap-20"
+            data-aos="fade-in"
+            data-aos-after
+            data-aos-scrub
+        >
+            <div
+                class="border-void-200 -scale-x-100 overflow-hidden rounded-2xl border"
+            >
+                <Picture
+                    src={Image_2}
+                    alt=""
+                    formats={["avif", "webp"]}
+                    height={1440}
+                    class="h-13/10 w-full object-cover"
+                    data-speed="auto"
+                    pictureAttributes={{
+                        class: "h-full block overflow-hidden",
+                        "data-aos-child": "elder-scroll",
+                    }}
+                />
+            </div>
+
+            <div>
+                <button
+                    data-aos-trigger="heroSection"
+                    data-cursor-text="heroSection"
+                    class="swipe-link"
+                >
+                    DEBUG
+                </button>
+
+                <div class="sticky--below-center sticky grid gap-6">
+                    <p
+                        class="font-iskry mb-0 text-6xl text-stone-300"
+                        data-aos-child="split-chromatic-up"
+                        data-aos-split="chars"
+                    >
+                        Hey, it's Miles!
+                    </p>
+
+                    <h1
+                        class="font-monument mb-0 text-2xl uppercase"
+                        data-aos-child="split-chromatic-up"
+                        data-aos-split="lines"
+                    >
+                        Creative Front-end Developer crafting seamless
+                        experiences for the web with care, precision, and
+                        curiosity.
+                    </h1>
+
+                    <p
+                        class="text-xl"
+                        data-aos-child="split-chromatic-up"
+                        data-aos-split="words"
+                    >
+                        Based in Spain &mdash;
+                        <CloneLink
+                            text="open"
+                            href="https://www.linkedin.com/in/MilesAndrioliBachini/"
+                            target="_blank"
+                        /> to remote or on-site opportunities worldwide.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
