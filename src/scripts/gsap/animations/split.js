@@ -95,10 +95,10 @@ export default {
         origin: {
             opacity: 0,
             textShadow: `
-                rgb(0 0 255 / 60%) -0.3em 0.3em 2px, 
-                rgb(0 255 255 / 60%) -0.15em 0.15em 2px, 
-                rgb(255 255 0 / 60%) 0.15em -0.15em 2px, 
-                rgb(255 0 0 / 60%) 0.3em -0.3em 2px
+                rgb(0 0 255 / 60%) -0.4em 0.4em 4px, 
+                rgb(0 255 255 / 60%) -0.2em 0.2em 4px, 
+                rgb(255 255 0 / 60%) 0.2em -0.2em 4px, 
+                rgb(255 0 0 / 60%) 0.4em -0.4em 4px
             `,
             filter: "blur(6px)",
         },
@@ -118,10 +118,10 @@ export default {
             opacity: 0,
             y: "0.2em",
             textShadow: `
-                rgb(0 0 255 / 60%) -0.3em 0.3em 2px, 
-                rgb(0 255 255 / 60%) -0.15em 0.15em 2px, 
-                rgb(255 255 0 / 60%) 0.15em -0.15em 2px, 
-                rgb(255 0 0 / 60%) 0.3em -0.3em 2px
+                rgb(0 0 255 / 60%) -0.4em 0.4em 4px, 
+                rgb(0 255 255 / 60%) -0.2em 0.2em 4px, 
+                rgb(255 255 0 / 60%) 0.2em -0.2em 4px, 
+                rgb(255 0 0 / 60%) 0.4em -0.4em 4px
             `,
             filter: "blur(6px)",
         },
