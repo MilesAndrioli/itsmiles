@@ -36,7 +36,7 @@
         transition: transform var(--header-transition);
 
         .HAS-REACHED--STEP-1 & {
-            transform: rotate3d(1, 1, 0, 180deg);
+            transform: rotate3d(0, 1, 0, 180deg);
         }
     }
 }
