@@ -1,21 +1,26 @@
-<div class="liquid-ass_wrapper">
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["liquid-ass_wrapper", className]}>
     <div class="liquid-ass_filter"></div>
-    <div class="liquid-ass_slot">
-        <slot />
-    </div>
+    <slot />
 </div>
 
 <svg style="display: none">
-    <filter id="liquid-aberration" x="-15%" y="-15%" width="130%" height="130%">
+    <filter id="liquid-aberration">
         <feTurbulence
             type="fractalNoise"
             baseFrequency="0.01 0.01"
             numOctaves="1"
             seed="5"
-            result="turbulence"></feTurbulence>
-
-        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap"
-        ></feGaussianBlur>
+            result="turbulence"
+        >
+        </feTurbulence>
 
         <feDisplacementMap
             in="SourceGraphic"
@@ -23,10 +28,13 @@
             scale="65"
             xChannelSelector="R"
             yChannelSelector="G"
-            result="liquidEffect"></feDisplacementMap>
+            result="liquidEffect"
+        >
+        </feDisplacementMap>
 
-        <feOffset in="liquidEffect" dx="-4" dy="-1" result="redChannel"
-        ></feOffset>
+        <feOffset in="liquidEffect" dx="-6" dy="-2" result="redChannel">
+        </feOffset>
+
         <feColorMatrix
             in="redChannel"
             type="matrix"
@@ -34,7 +42,9 @@
                     0 0 0 0 0
                     0 0 0 0 0
                     0 0 0 1 0"
-            result="redOnly"></feColorMatrix>
+            result="redOnly"
+        >
+        </feColorMatrix>
 
         <feColorMatrix
             in="liquidEffect"
@@ -43,10 +53,13 @@
                     0 1 0 0 0
                     0 0 0 0 0
                     0 0 0 1 0"
-            result="greenOnly"></feColorMatrix>
+            result="greenOnly"
+        >
+        </feColorMatrix>
 
-        <feOffset in="liquidEffect" dx="4" dy="1" result="blueChannel"
-        ></feOffset>
+        <feOffset in="liquidEffect" dx="6" dy="2" result="blueChannel">
+        </feOffset>
+
         <feColorMatrix
             in="blueChannel"
             type="matrix"
@@ -54,15 +67,20 @@
                     0 0 0 0 0
                     0 0 1 0 0
                     0 0 0 1 0"
-            result="blueOnly"></feColorMatrix>
+            result="blueOnly"
+        >
+        </feColorMatrix>
 
-        <feBlend in="redOnly" in2="greenOnly" mode="screen" result="redGreen"
-        ></feBlend>
+        <feBlend in="redOnly" in2="greenOnly" mode="screen" result="redGreen">
+        </feBlend>
+
         <feBlend
             in="redGreen"
             in2="blueOnly"
             mode="screen"
-            result="chromaticAberration"></feBlend>
+            result="chromaticAberration"
+        >
+        </feBlend>
     </filter>
 </svg>
 
@@ -71,9 +89,7 @@
         position: relative;
         display: grid;
 
-        border-bottom: 1px solid var(--color-border);
-        padding: 1rem;
-        /* background-color: color-mix(in oklab, black 80%, transparent); */
+        background-color: color-mix(in oklab, black 20%, transparent);
     }
 
     .liquid-ass_filter {
@@ -82,9 +98,9 @@
 
         filter: url(#liquid-aberration);
         backdrop-filter: blur(8px) grayscale(50%);
-    }
 
-    .liquid-ass_slot {
-        z-index: 1;
+        + * {
+            z-index: 1;
+        }
     }
 </style>
