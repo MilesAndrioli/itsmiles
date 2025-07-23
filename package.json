@@ -9,7 +9,7 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.0.14",
+        "@tailwindcss/vite": "^4.1.11",
         "@vercel/speed-insights": "^1.2.0",
         "astro": "^5.5.2",
         "gsap": "^3.13.0",
@@ -17,6 +17,7 @@
         "lodash.debounce": "^4.0.8",
         "lodash.throttle": "^4.1.1",
         "mouse-follower": "^1.1.2",
+        "tailwindcss": "^4.1.11",
         "three": "^0.178.0"
     },
     "devDependencies": {
