@@ -11,76 +11,70 @@ const { class: className } = Astro.props;
     <slot />
 </div>
 
-<svg style="display: none">
-    <filter id="liquid-aberration">
+<!-- TODO: Send this as a component within the skeleton -->
+<svg style="display: none" color-interpolation-filters="sRGB">
+    <filter id="liquid-aberration" x="-15%" y="-15%" width="130%" height="130%">
         <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.01 0.01"
+            baseFrequency="0.02 0.01"
             numOctaves="1"
-            seed="5"
+            seed="666"
+            stitchTiles="stitch"
             result="turbulence"
         >
         </feTurbulence>
 
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap">
+        </feGaussianBlur>
+
         <feDisplacementMap
             in="SourceGraphic"
             in2="softMap"
-            scale="65"
+            scale="70"
             xChannelSelector="R"
             yChannelSelector="G"
             result="liquidEffect"
         >
         </feDisplacementMap>
 
-        <feOffset in="liquidEffect" dx="-6" dy="-2" result="redChannel">
+        <!-- RED -->
+        <feOffset in="liquidEffect" dx="-8" dy="-4" result="redChannel">
         </feOffset>
 
         <feColorMatrix
             in="redChannel"
             type="matrix"
-            values="1 0 0 0 0
-                    0 0 0 0 0
-                    0 0 0 0 0
-                    0 0 0 1 0"
             result="redOnly"
+            values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
         >
         </feColorMatrix>
 
+        <!-- GREEN -->
         <feColorMatrix
             in="liquidEffect"
             type="matrix"
-            values="0 0 0 0 0
-                    0 1 0 0 0
-                    0 0 0 0 0
-                    0 0 0 1 0"
             result="greenOnly"
+            values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
         >
         </feColorMatrix>
 
-        <feOffset in="liquidEffect" dx="6" dy="2" result="blueChannel">
+        <!-- BLUE -->
+        <feOffset in="liquidEffect" dx="8" dy="4" result="blueChannel">
         </feOffset>
 
         <feColorMatrix
             in="blueChannel"
             type="matrix"
-            values="0 0 0 0 0
-                    0 0 0 0 0
-                    0 0 1 0 0
-                    0 0 0 1 0"
             result="blueOnly"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
         >
         </feColorMatrix>
 
+        <!-- BLENDING -->
         <feBlend in="redOnly" in2="greenOnly" mode="screen" result="redGreen">
         </feBlend>
 
-        <feBlend
-            in="redGreen"
-            in2="blueOnly"
-            mode="screen"
-            result="chromaticAberration"
-        >
-        </feBlend>
+        <feBlend in="redGreen" in2="blueOnly" mode="screen"></feBlend>
     </filter>
 </svg>
 
@@ -94,8 +88,7 @@ const { class: className } = Astro.props;
         position: absolute;
         inset: 0;
 
-        filter: url(#liquid-aberration);
-        backdrop-filter: blur(8px) grayscale(50%);
+        backdrop-filter: url(#liquid-aberration) blur(6px) grayscale(30%);
 
         + * {
             z-index: 1;
