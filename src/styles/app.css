@@ -13,4 +13,11 @@
     @import "./components/links/swipe-link.css";
     @import "./components/links/yoyo-link.css";
     @import "./components/strike-around.css";
+canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+
+    border: 2px dotted red;
 }

@@ -17,6 +17,6 @@
         "lodash.debounce": "^4.0.8",
         "lodash.throttle": "^4.1.1",
         "mouse-follower": "^1.1.2",
-        "tailwindcss": "^4.0.14"
+        "three": "^0.178.0"
     }
 }

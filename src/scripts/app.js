@@ -20,7 +20,7 @@ import getStickyElements from "./utilities/getStickyElements";
 import debounce from "lodash.debounce";
 import throttle from "lodash.throttle";
 
-//--- GSAP ---
+// --- GSAP ---
 import gsapAos from "./gsap/gsapAos";
 import gsapConfig from "./gsap/gsapConfig";
 import gsapLenis from "./gsap/gsapLenis";
@@ -28,6 +28,10 @@ import gsapMouseFollower from "./gsap/gsapMouseFollower";
 import gsapParallax from "./gsap/gsapParallax";
 import gsapScrollState from "./gsap/gsapScrollState";
 import gsapUnveil from "./gsap/gsapUnveil";
+
+// --- Three.js ---
+import threeScene from "./three/threeScene";
+threeScene();
 
 /* +-----------------------------------------+
 |                EVENTS AREA                 |
@@ -55,7 +59,7 @@ function runOnLoad() {
     gsapConfig();
     gsapAos();
     gsapUnveil();
-    gsapScrollState();
+    // gsapScrollState();
 
     // 6
     getStickyElements();
