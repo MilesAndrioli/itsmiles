@@ -11,7 +11,7 @@
             <!-- Blue -->
             <feFuncB type="linear" slope="0.46"></feFuncB>
             <!-- Alpha -->
-            <feFuncA type="linear" slope="0.16"></feFuncA>
+            <feFuncA type="linear" slope="0.145"></feFuncA>
         </feComponentTransfer>
         <feComponentTransfer>
             <!-- Contrast -->
