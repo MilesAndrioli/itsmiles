@@ -47,9 +47,9 @@ export default function initThreeCanvas() {
             ease: 0.02,
         },
         scrollEffect: {
-            strength: { start: 0.05, end: 0.0 },
-            frequencyX: { start: 20, end: 0.0 },
-            frequencyY: { start: 0.0, end: 20 },
+            strength: { start: 0.33, end: 0.66 },
+            frequencyX: { start: 15, end: 0.0 },
+            frequencyY: { start: 0.0, end: 15 },
             ease: 0.05,
         },
     };
@@ -118,6 +118,8 @@ export default function initThreeCanvas() {
         wireframe: true,
     });
     const sphere = new Mesh(geometry, material);
+    sphere.position.x = 1;
+    sphere.position.y = 0.5;
     scene.add(sphere);
 
     // --- 5. GUI MONITORS ---
