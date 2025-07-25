@@ -16,14 +16,19 @@
 }
 #three-canvas {
     position: fixed;
-    /* z-index: -1; */
     inset: 0;
+    z-index: -1;
     pointer-events: none;
-    /* mix-blend-mode: screen; */
-    /* mix-blend-mode: color-burn; */
-    /* mix-blend-mode: luminosity; */
-    /* mix-blend-mode: overlay; */
-    /* mix-blend-mode: soft-light; */
 
-    border: 2px dotted red;
+    mix-blend-mode: screen;
+    mix-blend-mode: overlay;
+    mix-blend-mode: soft-light;
+    mix-blend-mode: luminosity;
+
+    /* border: 2px dotted red; */
+}
+
+#app-main {
+    backdrop-filter: url(#liquid-aberration) blur(6px) grayscale(30%)
+        brightness(70%);
 }
