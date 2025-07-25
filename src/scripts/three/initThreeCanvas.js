@@ -10,6 +10,7 @@ import {
     Mesh,
     Vector3,
     MathUtils,
+    BoxGeometry,
 } from "three";
 import GUI from "lil-gui";
 import Stats from "stats.js";
@@ -43,12 +44,12 @@ export default function initThreeCanvas() {
             baseZoom: 3.4,
             zoomIntensity: 0.7,
             peekAmount: 1.5,
-            ease: 0.05,
+            ease: 0.02,
         },
         scrollEffect: {
-            strength: { start: 0.5, end: 0.5 },
-            frequencyX: { start: 10, end: 0.0 },
-            frequencyY: { start: 0.0, end: 10 },
+            strength: { start: 0.05, end: 0.0 },
+            frequencyX: { start: 20, end: 0.0 },
+            frequencyY: { start: 0.0, end: 20 },
             ease: 0.05,
         },
     };
@@ -99,7 +100,8 @@ export default function initThreeCanvas() {
         .name("Uniform Easing");
 
     // --- 4. OBJECTS ---
-    const geometry = new IcosahedronGeometry(1.2, 32);
+    const geometry = new IcosahedronGeometry(1.2, 24);
+    // const geometry = new BoxGeometry(1, 1, 1);
     const material = new ShaderMaterial({
         uniforms: {
             uTime: { value: 0.0 },
