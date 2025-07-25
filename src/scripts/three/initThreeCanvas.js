@@ -1,3 +1,4 @@
+// --- IMPORTS ---
 import {
     Scene,
     PerspectiveCamera,
@@ -10,20 +11,17 @@ import {
     Vector3,
     MathUtils,
 } from "three";
-
 import GUI from "lil-gui";
 import Stats from "stats.js";
-
 import vertexShader from "./shaders/vertex.glsl?raw";
 import fragmentShader from "./shaders/fragment.glsl?raw";
 
 // --- MAIN FUNCTION ---
 export default function initThreeCanvas() {
-    // --- SETUP ---
+    // --- 1. CORE SETUP ---
     const stats = new Stats();
     stats.showPanel(0);
     document.body.appendChild(stats.dom);
-
     const scene = new Scene();
     const camera = new PerspectiveCamera(
         75,
@@ -31,29 +29,51 @@ export default function initThreeCanvas() {
         0.1,
         1000,
     );
-    camera.position.z = 3;
-
     const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.domElement.id = "three-canvas";
     document.body.appendChild(renderer.domElement);
-
     const clock = new Clock();
 
-    // --- SETTINGS & GUI ---
-    // This object holds all the tweakable parameters for our animations.
-    // The GUI will control this object directly.
+    // --- 2. UNIFIED SETTINGS & STATE ---
+    // All tweakable parameters and live state variables are centralized here.
+
     const settings = {
+        camera: {
+            baseZoom: 3.4,
+            zoomIntensity: 0.7,
+            peekAmount: 1.5,
+            ease: 0.05,
+        },
         scrollEffect: {
-            strength: { start: 0.15, end: 0.3 },
-            frequencyX: { start: 4.0, end: 8.0 },
-            frequencyY: { start: 10.0, end: 5.0 },
+            strength: { start: 0.5, end: 0.5 },
+            frequencyX: { start: 10, end: 0.0 },
+            frequencyY: { start: 0.0, end: 10 },
+            ease: 0.05,
         },
     };
 
+    const mouse = new Vector2();
+    const cameraTarget = new Vector3();
+    const liveInputs = { scrollProgress: 0 };
+
+    // --- 3. GUI SETUP ---
     const gui = new GUI({ width: 320, title: "Animation Controls" });
 
-    // Create a folder for the scroll animation parameters.
+    // Camera Controls Folder
+    const cameraFolder = gui.addFolder("Camera Controls");
+    cameraFolder.add(settings.camera, "baseZoom", 1, 10, 0.1).name("Base Zoom");
+    cameraFolder
+        .add(settings.camera, "zoomIntensity", 0, 2, 0.1)
+        .name("Zoom Intensity");
+    cameraFolder
+        .add(settings.camera, "peekAmount", 0, 5, 0.1)
+        .name("Peek Amount");
+    cameraFolder
+        .add(settings.camera, "ease", 0.01, 0.2, 0.001)
+        .name("Camera Easing");
+
+    // Scroll Effect Controls Folder
     const scrollFolder = gui.addFolder("Scroll Effect Parameters");
     scrollFolder
         .add(settings.scrollEffect.strength, "start", 0, 1, 0.01)
@@ -61,6 +81,7 @@ export default function initThreeCanvas() {
     scrollFolder
         .add(settings.scrollEffect.strength, "end", 0, 1, 0.01)
         .name("Strength End");
+    // ** FIX: Re-adding the frequency sliders **
     scrollFolder
         .add(settings.scrollEffect.frequencyX, "start", 0, 20, 0.1)
         .name("Freq X Start");
@@ -73,13 +94,15 @@ export default function initThreeCanvas() {
     scrollFolder
         .add(settings.scrollEffect.frequencyY, "end", 0, 20, 0.1)
         .name("Freq Y End");
+    scrollFolder
+        .add(settings.scrollEffect, "ease", 0.01, 0.2, 0.001)
+        .name("Uniform Easing");
 
-    // --- OBJECTS ---
-    const geometry = new IcosahedronGeometry(1.2, 24);
+    // --- 4. OBJECTS ---
+    const geometry = new IcosahedronGeometry(1.2, 32);
     const material = new ShaderMaterial({
         uniforms: {
             uTime: { value: 0.0 },
-            // These initial values will be quickly overridden by our animation loop.
             uStrength: { value: settings.scrollEffect.strength.start },
             uFrequency: {
                 value: new Vector2(
@@ -95,58 +118,67 @@ export default function initThreeCanvas() {
     const sphere = new Mesh(geometry, material);
     scene.add(sphere);
 
-    // --- GUI MONITORS ---
-    // This folder will DISPLAY the live values of the uniforms, but won't control them.
-    // The `.listen()` method tells the GUI to update these displays on every frame.
-    const monitorFolder = gui.addFolder("Live Uniform Monitors");
+    // --- 5. GUI MONITORS ---
+    // Now that the material and camera exist, we can add the monitors.
+    const monitorFolder = gui.addFolder("Live Monitors");
+    monitorFolder
+        .add(liveInputs, "scrollProgress")
+        .listen()
+        .name("Scroll Progress")
+        .disable();
+    monitorFolder
+        .add(camera.position, "z")
+        .listen()
+        .name("camera.z")
+        .step(0.001)
+        .disable();
     monitorFolder
         .add(material.uniforms.uStrength, "value")
         .listen()
         .name("uStrength")
+        .step(0.001)
         .disable();
+    // ** FIX: Re-adding the frequency monitors **
     monitorFolder
         .add(material.uniforms.uFrequency.value, "x")
         .listen()
         .name("uFrequency.x")
+        .step(0.001)
         .disable();
     monitorFolder
         .add(material.uniforms.uFrequency.value, "y")
         .listen()
         .name("uFrequency.y")
+        .step(0.001)
         .disable();
-    // We can also monitor the camera position!
-    monitorFolder.add(camera.position, "z").listen().name("camera.z").disable();
 
-    // --- INTERACTION & ANIMATION STATE ---
-    const mouse = new Vector2();
-    const cameraTarget = new Vector3();
-    const cameraBaseZoom = 3.0;
-    const cameraZoomIntensity = 0.5;
-    const cameraEasing = 0.05;
-
+    // --- 6. EVENT LISTENERS ---
+    camera.position.z = settings.camera.baseZoom;
     window.addEventListener("mousemove", (event) => {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // --- ANIMATION LOOP ---
+    // --- 7. ANIMATION LOOP ---
     function animate() {
         stats.begin();
         const elapsedTime = clock.getElapsedTime();
 
-        // 1. Update Camera Position (from mouse)
-        cameraTarget.x = mouse.x * 2.0;
-        cameraTarget.y = mouse.y * 2.0;
+        // Update Camera Position
+        cameraTarget.x = mouse.x * settings.camera.peekAmount;
+        cameraTarget.y = mouse.y * settings.camera.peekAmount;
         const mouseDistance = mouse.length();
-        cameraTarget.z = cameraBaseZoom - mouseDistance * cameraZoomIntensity;
-        camera.position.lerp(cameraTarget, cameraEasing);
+        cameraTarget.z =
+            settings.camera.baseZoom -
+            mouseDistance * settings.camera.zoomIntensity;
+        camera.position.lerp(cameraTarget, settings.camera.ease);
         camera.lookAt(scene.position);
 
-        // 2. Update Shader Uniforms (from scroll)
+        // Update Shader Uniforms from Scroll
         if (window.__LENIS__) {
             const scrollProgress = window.__LENIS__.progress;
+            liveInputs.scrollProgress = scrollProgress;
 
-            // ** The `animate` loop now reads from our GUI-controlled `settings` object. **
             const targetStrength = MathUtils.lerp(
                 settings.scrollEffect.strength.start,
                 settings.scrollEffect.strength.end,
@@ -163,30 +195,25 @@ export default function initThreeCanvas() {
                 scrollProgress,
             );
 
-            // Lerp the uniforms towards their calculated targets.
             material.uniforms.uStrength.value = MathUtils.lerp(
                 material.uniforms.uStrength.value,
                 targetStrength,
-                0.07,
+                settings.scrollEffect.ease,
             );
             material.uniforms.uFrequency.value.x = MathUtils.lerp(
                 material.uniforms.uFrequency.value.x,
                 targetFrequencyX,
-                0.07,
+                settings.scrollEffect.ease,
             );
             material.uniforms.uFrequency.value.y = MathUtils.lerp(
                 material.uniforms.uFrequency.value.y,
                 targetFrequencyY,
-                0.07,
+                settings.scrollEffect.ease,
             );
         }
 
-        // Update the time uniform.
         material.uniforms.uTime.value = elapsedTime;
-
-        // Render the scene.
         renderer.render(scene, camera);
-
         stats.end();
         requestAnimationFrame(animate);
     }
