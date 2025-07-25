@@ -29,6 +29,5 @@
 }
 
 #app-main {
-    backdrop-filter: url(#liquid-aberration) blur(6px) grayscale(30%)
-        brightness(70%);
+    backdrop-filter: url(#liquid-aberration) blur(6px) brightness(70%);
 }

@@ -41,15 +41,15 @@ export default function initThreeCanvas() {
 
     const settings = {
         camera: {
-            baseZoom: 3.4,
-            zoomIntensity: 0.7,
-            peekAmount: 1.5,
-            ease: 0.02,
+            baseZoom: 2.6,
+            zoomIntensity: 2,
+            peekAmount: 2,
+            ease: 0.03,
         },
         scrollEffect: {
-            strength: { start: 0.33, end: 0.66 },
-            frequencyX: { start: 15, end: 0.0 },
-            frequencyY: { start: 0.0, end: 15 },
+            strength: { start: 0.1, end: 0.5 },
+            frequencyX: { start: 0, end: 20 },
+            frequencyY: { start: 20, end: 0 },
             ease: 0.05,
         },
     };
@@ -118,8 +118,8 @@ export default function initThreeCanvas() {
         wireframe: true,
     });
     const sphere = new Mesh(geometry, material);
-    sphere.position.x = 1;
-    sphere.position.y = 0.5;
+    // sphere.position.x = 1;
+    // sphere.position.y = 0.5;
     scene.add(sphere);
 
     // --- 5. GUI MONITORS ---
