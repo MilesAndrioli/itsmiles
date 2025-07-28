@@ -51,9 +51,9 @@ export default class ThreeExperience {
                 ease: 0.03,
             },
             scrollEffect: {
-                strength: { start: 0.1, end: 0.5 },
-                frequencyX: { start: 0, end: 20 },
-                frequencyY: { start: 20, end: 0 },
+                strength: { start: 0.43, end: 0.16 },
+                frequencyX: { start: 1.8, end: 5 },
+                frequencyY: { start: 5, end: 1.8 },
                 ease: 0.05,
             },
         };
