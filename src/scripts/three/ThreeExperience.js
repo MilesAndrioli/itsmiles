@@ -16,7 +16,7 @@ import vertexShader from "./shaders/vertex.glsl?raw";
 import fragmentShader from "./shaders/fragment.glsl?raw";
 
 // A self-contained class to manage the entire Three.js experience.
-class ThreeExperience {
+export default class ThreeExperience {
     constructor() {
         // Core components that need to be accessible across methods.
         this.scene = new Scene();
@@ -239,9 +239,4 @@ class ThreeExperience {
         // The .bind(this) is crucial to maintain the correct 'this' context inside the loop.
         requestAnimationFrame(this.update.bind(this));
     }
-}
-
-// The main export is now just a clean entry point.
-export default function initThreeCanvas() {
-    new ThreeExperience();
 }
