@@ -30,8 +30,8 @@ import gsapScrollState from "./gsap/gsapScrollState";
 import gsapUnveil from "./gsap/gsapUnveil";
 
 // --- Three.js ---
-import initThreeCanvas from "./three/initThreeCanvas";
-initThreeCanvas();
+import ThreeExperience from "./three/ThreeExperience";
+new ThreeExperience();
 
 /* +-----------------------------------------+
 |                EVENTS AREA                 |
