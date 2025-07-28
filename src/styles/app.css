@@ -20,14 +20,14 @@
     z-index: -1;
     pointer-events: none;
 
-    mix-blend-mode: screen;
-    mix-blend-mode: overlay;
-    mix-blend-mode: soft-light;
+    /* mix-blend-mode: screen; */
+    /* mix-blend-mode: overlay; */
+    /* mix-blend-mode: soft-light; */
     mix-blend-mode: luminosity;
 
     /* border: 2px dotted red; */
 }
 
-#app-main {
+/* #app-main {
     backdrop-filter: url(#liquid-aberration) blur(6px) brightness(70%);
-}
+} */
