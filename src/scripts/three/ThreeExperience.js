@@ -75,6 +75,7 @@ export default class ThreeExperience {
         document.body.appendChild(renderer.domElement);
         return renderer;
     }
+
     _createSphere() {
         // const geometry = new IcosahedronGeometry(1.2, 0);
         const geometry = new IcosahedronGeometry(1.2, 88);
@@ -233,7 +234,6 @@ export default class ThreeExperience {
             this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
         });
 
-        // It now correctly points to our single source of truth for resizing.
         window.addEventListener("resize", this._onResize.bind(this));
     }
 
