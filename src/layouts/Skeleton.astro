@@ -8,7 +8,8 @@ import Footer from "../components/Footer.astro";
 import Filter from "../components/Filter.astro";
 import Noise from "../components/Noise.astro";
 import Loader from "../components/Loader.astro";
-
+import Cursor from "../components/Cursor.astro";
+import Music from "../components/Music.astro";
 // import SpeedInsights from "@vercel/speed-insights/astro";
 
 const { class: className } = Astro.props;
@@ -27,6 +28,8 @@ const { class: className } = Astro.props;
         </Smoother>
         <Filter />
         <Noise />
+        <Cursor />
+        <Music />
         <Loader />
         <script src="/src/scripts/app.js"></script>
         <!-- <SpeedInsights /> -->
