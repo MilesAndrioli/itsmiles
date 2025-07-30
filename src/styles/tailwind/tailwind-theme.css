@@ -82,7 +82,7 @@
 
     /* #region Layers */
     --loader-layer: 100;
-    --mouse-layer: 90;
+    --cursor-layer: 90;
     --noise-layer: 80;
     --filter-layer: 70;
     --header-layer: 10;
