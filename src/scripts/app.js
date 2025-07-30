@@ -24,7 +24,6 @@ import throttle from "lodash.throttle";
 import gsapAos from "./gsap/gsapAos";
 import gsapConfig from "./gsap/gsapConfig";
 import gsapLenis from "./gsap/gsapLenis";
-import gsapMouseFollower from "./gsap/gsapMouseFollower";
 import gsapParallax from "./gsap/gsapParallax";
 import gsapScrollState from "./gsap/gsapScrollState";
 import gsapUnveil from "./gsap/gsapUnveil";
@@ -41,9 +40,6 @@ new ThreeExperience();
 function runOnReady() {
     // 1
     getDimensions("#app-header", "height");
-
-    // 2
-    gsapMouseFollower();
 
     // 3
     gsapLenis();

@@ -1,3 +1,4 @@
+/* Global Styling */
 .mf-cursor {
     --cmp-trans: var(--out);
     --dot-size: 8px;
@@ -28,6 +29,7 @@
             opacity var(--cmp-trans);
     }
 
+    /* States Styling */
     &.-pointer {
         --dot-scale: 500%;
         --dot-opacity: 20%;
@@ -40,6 +42,7 @@
     }
 }
 
+/* Text Styling */
 .mf-cursor-text {
     position: absolute;
     top: 2em;
