@@ -1,11 +1,58 @@
-/* Global Styling */
 .mf-cursor {
-    z-index: var(--mouse-layer) !important;
-    mix-blend-mode: exclusion;
+    --cmp-trans: var(--out);
+    --dot-size: 8px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--cursor-layer);
+    pointer-events: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: calc(var(--dot-size) / -2);
+        left: calc(var(--dot-size) / -2);
+
+        height: var(--dot-size);
+        width: var(--dot-size);
+
+        background-color: currentColor;
+        border-radius: 50%;
+
+        scale: var(--dot-scale);
+        opacity: var(--dot-opacity);
+
+        transition:
+            scale var(--cmp-trans),
+            opacity var(--cmp-trans);
+    }
+
+    &.-pointer {
+        --dot-scale: 500%;
+        --dot-opacity: 20%;
+    }
+
+    &.-hidden,
+    &.-text {
+        --dot-scale: 0%;
+        --dot-opacity: 0%;
+    }
 }
 
-/* Pointer Styling */
-.mf-cursor.-pointer::before {
-    /* transform: scale(150%) !important; */
-    transform: scale(0%) !important;
+.mf-cursor-text {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+
+    font-size: 0.75rem;
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transition: opacity var(--cmp-trans);
+
+    .mf-cursor.-text & {
+        opacity: 1;
+    }
 }
