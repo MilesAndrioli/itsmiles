@@ -29,8 +29,8 @@ import gsapScrollState from "./gsap/gsapScrollState";
 import gsapUnveil from "./gsap/gsapUnveil";
 
 // --- Three.js ---
-import ThreeExperience from "./three/ThreeExperience";
-new ThreeExperience();
+// import ThreeExperience from "./three/ThreeExperience";
+// new ThreeExperience();
 
 /* +-----------------------------------------+
 |                EVENTS AREA                 |
