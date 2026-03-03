@@ -1,20 +1,55 @@
+---
+import CloneLink from "../components/CloneLink.astro";
+---
+
 <footer
     id="app-footer"
-    class="bg-void-400/90 border-ash/10 relative z-1 min-h-[50vh] place-content-center border-t"
+    class="bg-void-300 border-ash/10 relative z-1 min-h-[50vh] place-content-center border-t py-30"
     data-unveil-wrapper
 >
     <div data-unveil-target>
         <div class="container">
-            <p class="text-xl">
+            <p class="font-iskry text-ash/60 text-5xl">
+                This is a parallax / curtain Section
+            </p>
+            <p class="text-5xl">
                 Created using
-                <a href="https://vite.dev/" target="_blank">Vite</a>,
-                <a href="https://astro.build/" target="_blank">Astro</a>,
-                <a href="https://tailwindcss.com/" target="_blank">Tailwind</a>,
-                <a href="https://gsap.com/" target="_blank">GSAP</a>,
-                <a href="https://lenis.darkroom.engineering/" target="_blank">
-                    Lenis</a
-                > and
-                <a href="https://threejs.org/" target="_blank">Three.js</a>
+                <CloneLink
+                    href="https://vite.dev/"
+                    text="Vite"
+                    target="_blank"
+                />,
+                <CloneLink
+                    href="https://astro.build/"
+                    text="Astro"
+                    target="_blank"
+                />,
+                <CloneLink
+                    href="https://tailwindcss.com/"
+                    text="Tailwind"
+                    target="_blank"
+                />,
+                <CloneLink
+                    href="https://gsap.com/"
+                    text="GSAP"
+                    target="_blank"
+                />,
+                <CloneLink
+                    href="https://lenis.darkroom.engineering/"
+                    text="Lenis"
+                    target="_blank"
+                />,
+                <CloneLink
+                    href="https://threejs.org/"
+                    text="Three.js"
+                    target="_blank"
+                />
+                and the help of
+                <CloneLink
+                    href="https://claude.com/product/claude-code/"
+                    text="Claude Code"
+                    target="_blank"
+                />
             </p>
         </div>
     </div>
