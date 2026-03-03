@@ -41,10 +41,10 @@ export default function initGsapAos() {
             debug: "aosDebug" in dataset,
             debugId: dataset.aosDebug,
 
-            staggerGap: msToSec(dataset.aosStaggerGap || 280),
+            staggerGap: msToSec(dataset.aosStaggerGap || 140),
 
             splitDuration: msToSec(
-                dataset.aosSplitDuration || dataset.aosStaggerGap || 280,
+                dataset.aosSplitDuration || dataset.aosStaggerGap || 140,
             ),
             splitGap: msToSec(dataset.aosSplitGap), // If undefined, amount will be used for stagger
             splitFrom: dataset.aosSplitFrom, // "start", "center", "end", "random"
