@@ -3,8 +3,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../../assets/fonts/PPNeueMontreal/PPNeueMontreal-Regular.woff2")
-        format("woff2");
+    src: url("/src/assets/fonts/PPNeueMontreal-Regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -12,7 +11,7 @@
     font-style: normal;
     font-weight: 200;
     font-display: swap;
-    src: url("../../assets/fonts/PPGatwickGlider/PPGatwickGlider-Extralight.woff2")
+    src: url("/src/assets/fonts/PPGatwickGlider-Extralight.woff2")
         format("woff2");
 }
 @font-face {
@@ -20,8 +19,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url("../../assets/fonts/PPGatwickGlider/PPGatwickGlider-Semibold.woff2")
-        format("woff2");
+    src: url("/src/assets/fonts/PPGatwickGlider-Semibold.woff2") format("woff2");
 }
 
 @font-face {
@@ -29,14 +27,13 @@
     font-style: normal;
     font-weight: 300;
     font-display: swap;
-    src: url("../../assets/fonts/PPMonumentExtended/PPMonumentExtended-Light.woff2")
-        format("woff2");
+    src: url("/src/assets/fonts/PPMonumentExtended-Light.woff2") format("woff2");
 }
 @font-face {
     font-family: "PP Monument Extended";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../../assets/fonts/PPMonumentExtended/PPMonumentExtended-Regular.woff2")
+    src: url("/src/assets/fonts/PPMonumentExtended-Regular.woff2")
         format("woff2");
 }
