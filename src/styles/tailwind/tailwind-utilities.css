@@ -5,7 +5,7 @@
 @utility text-stroke {
     color: transparent;
     -webkit-text-stroke: var(--stroke-width, 2px)
-        var(--stroke-color, var(--color-stone));
+        var(--stroke-color, var(--color-ash));
 }
 
 @utility hero {
