@@ -45,9 +45,6 @@
     --color-sand: #ddcab0;
     --color-biohazard: #b9f553;
 
-    --color-text: var(--color-stone);
-    --color-body: var(--color-void);
-    --color-border: color-mix(in oklab, var(--color-stone) 10%, transparent);
     /* #endregion */
 
     /* #region Layout */
