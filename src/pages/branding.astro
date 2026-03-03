@@ -34,7 +34,12 @@ const colors = [
             >
                 {
                     colors.map((color) => (
-                        <div class="grid gap-3" data-aos-child>
+                        <div
+                            class="ColorSwatch grid cursor-pointer gap-3"
+                            data-aos-child
+                            data-cursor-text="Copy"
+                            data-value={color.value}
+                        >
                             <div
                                 class:list={[
                                     color.class,
@@ -54,3 +59,26 @@ const colors = [
         </div>
     </section>
 </Skeleton>
+
+<script>
+    document.querySelectorAll<HTMLElement>(".ColorSwatch").forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+            const value = swatch.dataset.value;
+            if (!value) return;
+
+            navigator.clipboard.writeText(value);
+
+            swatch.dataset.cursorText = "Copied!";
+            swatch.dispatchEvent(
+                new MouseEvent("mouseover", { bubbles: true }),
+            );
+
+            setTimeout(() => {
+                swatch.dataset.cursorText = "Copy";
+                swatch.dispatchEvent(
+                    new MouseEvent("mouseover", { bubbles: true }),
+                );
+            }, 1000);
+        });
+    });
+</script>

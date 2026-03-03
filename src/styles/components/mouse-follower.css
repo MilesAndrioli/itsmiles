@@ -9,6 +9,9 @@
     z-index: var(--cursor-layer);
     pointer-events: none;
 
+    mix-blend-mode: exclusion;
+    color: white;
+
     &::before {
         content: "";
         position: absolute;
