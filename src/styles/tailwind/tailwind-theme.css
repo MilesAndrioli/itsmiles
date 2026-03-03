@@ -24,8 +24,8 @@
     /* --color-*: initial; */
 
     --color-void: oklch(13% 0 0);
-    --color-void-400: oklch(15% 0 0);
     --color-void-200: oklch(21% 0 0);
+    --color-void-400: oklch(15% 0 0);
 
     --color-stone: oklch(70% 0 0);
     --color-stone-300: oklch(80% 0 0);
@@ -34,7 +34,6 @@
     --color-nude: oklch(98.6% 0.008 56.1);
     --color-sand: oklch(84.8% 0.041 75.7);
     --color-biohazard: oklch(89.9% 0.197 127.5);
-
     /* #endregion */
 
     /* #region Layout */
