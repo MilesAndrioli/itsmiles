@@ -18,7 +18,7 @@
 @font-face {
     font-family: "PP Monument Extended";
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-display: swap;
     src: url("../../assets/fonts/PPMonumentExtended/PPMonumentExtended-Regular.woff2")
         format("woff2");
@@ -26,7 +26,7 @@
 @font-face {
     font-family: "PP Monument Extended";
     font-style: italic;
-    font-weight: normal;
+    font-weight: 400;
     font-display: swap;
     src: url("../../assets/fonts/PPMonumentExtended/PPMonumentExtended-RegularItalic.woff2")
         format("woff2");
@@ -36,7 +36,7 @@
 @font-face {
     font-family: "PP Neue Montreal";
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-display: swap;
     src: url("../../assets/fonts/PPNeueMontreal/PPNeueMontreal-Book.woff2")
         format("woff2");
@@ -44,7 +44,7 @@
 @font-face {
     font-family: "PP Neue Montreal";
     font-style: italic;
-    font-weight: normal;
+    font-weight: 400;
     font-display: swap;
     src: url("../../assets/fonts/PPNeueMontreal/PPNeueMontreal-Italic.woff2")
         format("woff2");
