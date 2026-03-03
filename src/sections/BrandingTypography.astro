@@ -1,33 +1,39 @@
 ---
 const pangram = "Si vis pacem, para bellum.";
 
+const weightLabels: Record<number, string> = {
+    100: "Thin",
+    200: "Extralight",
+    300: "Light",
+    400: "Normal",
+    500: "Medium",
+    600: "Semibold",
+    700: "Bold",
+    800: "Extrabold",
+    900: "Black",
+};
+
 const fonts = [
     {
         name: "PP Monument Extended",
         class: "font-display",
         role: "Display",
         defaultClasses: "uppercase",
-        weights: [
-            { label: "Regular", value: 400 },
-            { label: "Light", value: 300 },
-        ],
+        weights: [400, 300],
     },
     {
         name: "PP Gatwick Glider",
         class: "font-serif",
         role: "Heading",
         defaultClasses: "font-semibold",
-        weights: [
-            { label: "Semibold", value: 600 },
-            { label: "Extralight", value: 200 },
-        ],
+        weights: [600, 200],
     },
     {
         name: "PP Neue Montreal",
         class: "font-sans",
         role: "Body",
         defaultClasses: "",
-        weights: [{ label: "Regular", value: 400 }],
+        weights: [400],
     },
 ];
 
@@ -46,3 +52,65 @@ const typeSizes = [
     "text-xs",
 ];
 ---
+
+<!-- FONT SPECIMENS -->{
+    fonts.map((font) => (
+        <section data-aos-group="fade-in-up">
+            <div class="container grid gap-8">
+                <div class="grid gap-2" data-aos-child>
+                    <p
+                        class:list={[
+                            font.class,
+                            font.defaultClasses,
+                            "mb-0 text-6xl",
+                        ]}
+                    >
+                        {font.name}
+                    </p>
+                    <p class="text-ash/50 font-mono text-xs">{font.role}</p>
+                </div>
+
+                <div data-aos-child>
+                    <p
+                        class:list={[
+                            font.class,
+                            font.defaultClasses,
+                            "mb-0 text-2xl",
+                        ]}
+                    >
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+                    </p>
+                    <p
+                        class:list={[
+                            font.class,
+                            font.defaultClasses,
+                            "text-2xl",
+                        ]}
+                    >
+                        0123456789 !@#$%^&*().,;:?
+                    </p>
+                </div>
+
+                <div class="grid gap-6 md:grid-cols-2">
+                    {font.weights.map((w) => (
+                        <div class="grid gap-2" data-aos-child>
+                            <p class="text-ash/50 mb-0 font-mono text-xs">
+                                {weightLabels[w]}
+                            </p>
+                            <p
+                                class:list={[
+                                    font.class,
+                                    font.defaultClasses,
+                                    "text-2xl",
+                                ]}
+                                style={`font-weight: ${w}`}
+                            >
+                                {pangram}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    ))
+}
