@@ -1,0 +1,14 @@
+---
+const { src, height = "h-12/10" } = Astro.props;
+---
+
+<div class="border-border overflow-hidden rounded-xl border">
+    <video
+        src={src}
+        muted
+        autoplay
+        playsinline
+        loop
+        class={`w-full ${height} object-cover`}
+        data-speed="auto"></video>
+</div>
