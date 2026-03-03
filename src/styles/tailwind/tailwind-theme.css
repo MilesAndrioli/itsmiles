@@ -9,8 +9,8 @@
 
     /* #region Typography */
     --font-sans: "PP Neue Montreal";
-    --font-monument: "PP Monument Extended";
     --font-serif: "PP Gatwick Glider";
+    --font-display: "PP Monument Extended";
 
     --text-xl: 1.125rem;
     --text-4xl: 2.5rem;
