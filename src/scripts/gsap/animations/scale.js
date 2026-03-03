@@ -37,4 +37,14 @@ export default {
             filter: "grayscale(0)",
         },
     },
+    "scale-x": {
+        origin: {
+            scaleX: 0,
+            opacity: 0,
+        },
+        destination: {
+            scaleX: 1,
+            opacity: 1,
+        },
+    },
 };

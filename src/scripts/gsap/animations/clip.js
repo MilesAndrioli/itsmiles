@@ -39,7 +39,7 @@ export default {
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         },
     },
-    "clip-center-x": {
+    "clip-x": {
         origin: {
             opacity: 0,
             clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)",
