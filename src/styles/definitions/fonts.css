@@ -76,12 +76,3 @@
     src: url("../../assets/fonts/PPGatwickGlider/PPGatwickGlider-Semibold.woff2")
         format("woff2");
 }
-
-/* SERIF: Death Mohawk */
-@font-face {
-    font-family: "Death Mohawk";
-    font-style: normal;
-    font-weight: normal;
-    font-display: swap;
-    src: url("../../assets/fonts/DeathMohawk.woff2") format("woff2");
-}
