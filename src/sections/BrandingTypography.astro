@@ -62,36 +62,30 @@ const typeSizes = [
                         class:list={[
                             font.class,
                             font.defaultClasses,
-                            "mb-0 text-6xl",
+                            "mb-0 text-5xl",
                         ]}
                     >
                         {font.name}
                     </p>
-                    <p class="text-ash/50 font-mono text-xs">{font.role}</p>
+                    <p class="text-ash/50 font-mono text-xs">
+                        Role · {font.role}
+                    </p>
                 </div>
 
-                <div data-aos-child>
+                <div data-aos-child class="grid md:grid-cols-2">
                     <p
                         class:list={[
                             font.class,
                             font.defaultClasses,
-                            "mb-0 text-2xl",
+                            "text-lg break-all",
                         ]}
                     >
-                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-                    </p>
-                    <p
-                        class:list={[
-                            font.class,
-                            font.defaultClasses,
-                            "text-2xl",
-                        ]}
-                    >
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,
                         0123456789 !@#$%^&*().,;:?
                     </p>
                 </div>
 
-                <div class="grid gap-6 md:grid-cols-2">
+                <div class="grid gap-8 md:grid-cols-2">
                     {font.weights.map((w) => (
                         <div class="grid gap-2" data-aos-child>
                             <p class="text-ash/50 mb-0 font-mono text-xs">
