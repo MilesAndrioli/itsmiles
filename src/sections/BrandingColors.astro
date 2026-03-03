@@ -1,0 +1,75 @@
+---
+const colors = [
+    { label: "Void", class: "bg-void", value: "oklch(13% 0 0)" },
+    { label: "Void 400", class: "bg-void-400", value: "oklch(15% 0 0)" },
+    { label: "Void 200", class: "bg-void-200", value: "oklch(21% 0 0)" },
+    { label: "Ash", class: "bg-ash", value: "oklch(70% 0 0)" },
+    { label: "Ash 300", class: "bg-ash-300", value: "oklch(80% 0 0)" },
+    { label: "Alabaster", class: "bg-alabaster", value: "oklch(97% 0 0)" },
+    { label: "Nude", class: "bg-nude", value: "oklch(98.6% 0.008 56.1)" },
+    { label: "Sand", class: "bg-sand", value: "oklch(84.8% 0.041 75.7)" },
+];
+---
+
+<section data-aos-group="fade-in-up-blur-out" data-aos-delay="300">
+    <div class="container grid gap-10">
+        <p
+            class="font-monument mb-0 text-6xl"
+            data-aos-child="split-chromatic-up"
+            data-aos-split="chars"
+        >
+            Colors
+        </p>
+
+        <div
+            class="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+        >
+            {
+                colors.map((color) => (
+                    <div
+                        class="ColorSwatch grid cursor-pointer gap-3"
+                        data-aos-child
+                        data-cursor-text="Copy"
+                        data-value={color.value}
+                    >
+                        <div
+                            class:list={[
+                                color.class,
+                                "border-ash/15 aspect-square rounded-xl border",
+                            ]}
+                        />
+                        <div>
+                            <p class="mb-0 text-sm">{color.label}</p>
+                            <p class="text-ash/50 font-mono text-xs">
+                                {color.value}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll<HTMLElement>(".ColorSwatch").forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+            const value = swatch.dataset.value;
+            if (!value) return;
+
+            navigator.clipboard.writeText(value);
+
+            swatch.dataset.cursorText = "Copied!";
+            swatch.dispatchEvent(
+                new MouseEvent("mouseover", { bubbles: true }),
+            );
+
+            setTimeout(() => {
+                swatch.dataset.cursorText = "Copy";
+                swatch.dispatchEvent(
+                    new MouseEvent("mouseover", { bubbles: true }),
+                );
+            }, 1000);
+        });
+    });
+</script>
