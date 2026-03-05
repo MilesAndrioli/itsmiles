@@ -1,43 +1,92 @@
 ---
+import Divider from "../components/Divider.astro";
+
 const colors = [
-    { label: "Void", class: "bg-void", value: "oklch(13% 0 0)" },
-    { label: "Void 400", class: "bg-void-400", value: "oklch(15% 0 0)" },
-    { label: "Void 300", class: "bg-void-300", value: "oklch(18% 0 0)" },
-    { label: "Void 200", class: "bg-void-200", value: "oklch(21% 0 0)" },
-    { label: "Ash", class: "bg-ash", value: "oklch(70% 0 0)" },
-    { label: "Ash 300", class: "bg-ash-300", value: "oklch(80% 0 0)" },
-    { label: "Alabaster", class: "bg-alabaster", value: "oklch(97% 0 0)" },
-    { label: "Nude", class: "bg-nude", value: "oklch(98.6% 0.008 56.1)" },
-    { label: "Sand", class: "bg-sand", value: "oklch(84.8% 0.041 75.7)" },
+    { label: "Iron 400", class: "bg-iron-400", value: "oklch(82% 0.006 70)" },
+    {
+        label: "Iron",
+        class: "bg-iron",
+        value: "oklch(70% 0.005 70)",
+    },
+    {
+        label: "Iron 600",
+        class: "bg-iron-600",
+        value: "oklch(58% 0.005 70)",
+    },
+    {
+        label: "Iron 700",
+        class: "bg-iron-700",
+        value: "oklch(45% 0.004 70)",
+    },
+    {
+        label: "Iron 850",
+        class: "bg-iron-850",
+        value: "oklch(27% 0.0025 70)",
+    },
+    {
+        label: "Iron 950",
+        class: "bg-iron-950",
+        value: "oklch(13% 0.001 70)",
+    },
+    {
+        label: "Jade 100",
+        class: "bg-jade-100",
+        value: "oklch(93% 0.08 150)",
+    },
+    {
+        label: "Jade 300",
+        class: "bg-jade-300",
+        value: "oklch(83% 0.2 150)",
+    },
 ];
 ---
 
-<section data-aos-group="fade-in-up-blur-out">
+<section class="hero">
     <div class="container">
-        <div class="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
-            {
-                colors.map((color) => (
-                    <div
-                        class="ColorSwatch grid cursor-pointer gap-3"
-                        data-aos-child
-                        data-cursor-text="Copy"
-                        data-value={color.value}
+        <div data-aos-group="fade-in-up">
+            <div class="grid gap-6">
+                <div class="grid gap-2" data-aos-child>
+                    <p
+                        class="font-display mb-0 text-sm font-light tracking-wider uppercase"
                     >
-                        <div
-                            class:list={[
-                                color.class,
-                                "border-ash-900 aspect-square rounded-xl border",
-                            ]}
-                        />
-                        <div>
-                            <p class="mb-0 text-sm">{color.label}</p>
-                            <p class="text-ash/50 font-mono text-xs">
-                                {color.value}
-                            </p>
-                        </div>
-                    </div>
-                ))
-            }
+                        Colors
+                    </p>
+                    <p class="text-iron-700 font-mono text-xs">
+                        <span class="text-jade-100">{colors.length}</span> active
+                        tokens
+                    </p>
+                </div>
+
+                <Divider data-aos-child="scale-x" />
+
+                <div
+                    class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4"
+                >
+                    {
+                        colors.map((color) => (
+                            <div
+                                class="ColorSwatch grid cursor-pointer gap-3"
+                                data-aos-child
+                                data-cursor-text="Copy"
+                                data-value={color.value}
+                            >
+                                <div
+                                    class:list={[
+                                        color.class,
+                                        "border-iron-850 aspect-video rounded-xl border",
+                                    ]}
+                                />
+                                <div>
+                                    <p class="mb-0 text-xs">{color.label}</p>
+                                    <p class="text-iron-700 font-mono text-xs">
+                                        {color.value}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </section>
