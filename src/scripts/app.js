@@ -26,7 +26,7 @@ import gsapConfig from "./gsap/gsapConfig";
 import gsapLenis from "./gsap/gsapLenis";
 import gsapParallax from "./gsap/gsapParallax";
 import gsapScrollState from "./gsap/gsapScrollState";
-import gsapUnveil from "./gsap/gsapUnveil";
+import gsapReveal from "./gsap/gsapReveal";
 
 // --- Three.js ---
 // import ThreeExperience from "./three/ThreeExperience";
@@ -54,7 +54,7 @@ function runOnLoad() {
     // 5
     gsapConfig();
     gsapAos();
-    gsapUnveil();
+    gsapReveal();
     // gsapScrollState();
 
     // 6
