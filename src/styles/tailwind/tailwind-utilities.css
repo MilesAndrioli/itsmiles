@@ -1,5 +1,5 @@
 @utility container {
-    @apply 3xl:max-w-[50vw] mx-auto max-w-7xl px-5;
+    @apply mx-auto max-w-6xl px-5;
 }
 
 @utility text-stroke {
