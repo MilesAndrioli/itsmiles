@@ -12,7 +12,7 @@
     @import "./components/links/bg-link.css";
     @import "./components/links/swipe-link.css";
     @import "./components/links/yoyo-link.css";
-    @import "./components/strike-around.css";
+    @import "./components/StrikeAround.css";
 }
 
 #three-canvas {

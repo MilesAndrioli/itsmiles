@@ -1,4 +1,4 @@
-.strike-around {
+.StrikeAround {
     display: flex;
     align-items: center;
     gap: var(--gap, 0.25em);
@@ -32,11 +32,11 @@
         );
     }
 
-    &.strike-around--left::after {
+    &.Left::after {
         display: none;
     }
 
-    &.strike-around--right::before {
+    &.Right::before {
         display: none;
     }
 }
