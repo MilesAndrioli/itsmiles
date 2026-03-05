@@ -1,60 +1,59 @@
 ---
+import Divider from "../components/Divider.astro";
 import CloneLink from "../components/CloneLink.astro";
 ---
 
-<footer
-    id="app-footer"
-    class="bg-void-300 border-ash/10 relative z-1 min-h-[50vh] place-content-center border-t py-30"
-    data-unveil-wrapper
-    data-aos-group="fade-in-blur-out"
->
-    <div data-unveil-target>
-        <div class="container">
-            <p class="text-ash-600 font-serif text-5xl" data-aos-child>
-                This is a parallax / curtain Section
-            </p>
-            <p class="text-5xl" data-aos-child>
-                Created using
-                <CloneLink
-                    href="https://vite.dev/"
-                    text="Vite"
-                    target="_blank"
-                />,
-                <CloneLink
-                    href="https://astro.build/"
-                    text="Astro"
-                    target="_blank"
-                />,
-                <CloneLink
-                    href="https://tailwindcss.com/"
-                    text="Tailwind"
-                    target="_blank"
-                />,
-                <CloneLink
-                    href="https://gsap.com/"
-                    text="GSAP"
-                    target="_blank"
-                />,
-                <CloneLink
-                    href="https://lenis.darkroom.engineering/"
-                    text="Lenis"
-                    target="_blank"
-                />,
-                <CloneLink
-                    href="https://threejs.org/"
-                    text="Three.js"
-                    target="_blank"
-                />
-                and the help of
-                <CloneLink
-                    href="https://claude.com/product/claude-code/"
-                    text="Claude Code"
-                    target="_blank"
-                />
-            </p>
-            <p class="text-ash-600 font-serif text-5xl" data-aos-child>
-                This is a parallax / curtain Section
-            </p>
+<footer id="app-footer">
+    <Divider />
+    <div data-unveil-wrapper class="py-20">
+        <div data-unveil-target>
+            <div class="container">
+                <div class="grid gap-6">
+                    <p class="mb-0 text-5xl">
+                        Created using
+                        <CloneLink
+                            href="https://vite.dev/"
+                            text="Vite"
+                            target="_blank"
+                        />,
+                        <CloneLink
+                            href="https://astro.build/"
+                            text="Astro"
+                            target="_blank"
+                        />,
+                        <CloneLink
+                            href="https://tailwindcss.com/"
+                            text="Tailwind"
+                            target="_blank"
+                        />,
+                        <CloneLink
+                            href="https://gsap.com/"
+                            text="GSAP"
+                            target="_blank"
+                        />,
+                        <CloneLink
+                            href="https://lenis.darkroom.engineering/"
+                            text="Lenis"
+                            target="_blank"
+                        />,
+                        <CloneLink
+                            href="https://threejs.org/"
+                            text="Three.js"
+                            target="_blank"
+                        />
+                        and the help of
+                        <CloneLink
+                            href="https://claude.com/product/claude-code/"
+                            text="Claude Code"
+                            target="_blank"
+                        />
+                    </p>
+                    <p class="text-iron-700 mb-0 font-serif text-5xl">
+                        This is a parallax / curtain Section
+                    </p>
+                    <p>Copy</p>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
