@@ -11,38 +11,39 @@
     --font-sans: "PP Neue Montreal";
     --font-serif: "PP Gatwick Glider";
     --font-display: "PP Monument Extended";
-
     /* #endregion */
 
     /* #region Colors */
     /* https://tailwindcss.com/docs/colors#using-a-custom-palette */
     /* --color-*: initial; */
 
-    --color-void: oklch(13% 0 0);
-    --color-void-400: oklch(15% 0 0);
-    --color-void-300: oklch(18% 0 0);
-    --color-void-200: oklch(21% 0 0);
+    --color-iron-50: oklch(97% 0.008 70);
+    --color-iron-100: oklch(95% 0.007 70);
+    --color-iron-200: oklch(91% 0.007 70);
+    --color-iron-300: oklch(87% 0.006 70);
+    --color-iron-400: oklch(82% 0.006 70);
+    --color-iron: oklch(70% 0.005 70);
+    --color-iron-600: oklch(58% 0.005 70);
+    --color-iron-700: oklch(45% 0.004 70);
+    --color-iron-800: oklch(32% 0.003 70);
+    --color-iron-900: oklch(22% 0.002 70);
+    --color-iron-950: oklch(13% 0.001 70);
 
-    --color-ash-50: oklch(97% 0 0);
-    --color-ash-100: oklch(93% 0 0);
-    --color-ash-200: oklch(87% 0 0);
-    --color-ash-300: oklch(80% 0 0);
-    --color-ash-400: oklch(75% 0 0);
-    --color-ash: oklch(70% 0 0);
-    --color-ash-600: oklch(58% 0 0);
-    --color-ash-700: oklch(46% 0 0);
-    --color-ash-800: oklch(28% 0 0);
-    --color-ash-900: oklch(22% 0 0);
-    --color-ash-950: oklch(18% 0 0);
-
-    --color-alabaster: oklch(97% 0 0);
-    --color-nude: oklch(98.6% 0.008 56.1);
-    --color-sand: oklch(84.8% 0.041 75.7);
+    --color-jade-50: oklch(96% 0.05 150);
+    --color-jade-100: oklch(93% 0.08 150);
+    --color-jade-200: oklch(88% 0.14 150);
+    --color-jade-300: oklch(83% 0.2 150);
+    --color-jade-400: oklch(80% 0.25 150);
+    --color-jade: oklch(87.2% 0.2518 148.1);
+    --color-jade-600: oklch(62% 0.2 150);
+    --color-jade-700: oklch(50% 0.16 150);
+    --color-jade-800: oklch(40% 0.12 150);
+    --color-jade-900: oklch(30% 0.08 150);
+    --color-jade-950: oklch(20% 0.05 150);
     /* #endregion */
 
     /* #region Layout */
     --gappers: calc(var(--spacing) * 10);
-    --breakpoint-3xl: 160rem;
     /* #endregion */
 
     /* #region Easings */
