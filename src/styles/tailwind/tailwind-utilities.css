@@ -5,9 +5,9 @@
 @utility text-stroke {
     color: transparent;
     -webkit-text-stroke: var(--stroke-width, 2px)
-        var(--stroke-color, var(--color-ash));
+        var(--stroke-color, var(--color-iron));
 }
 
 @utility hero {
-    @apply -mt-50 min-h-[calc(100dvh_-_var(--APP_HEADER_HEIGHT))] place-content-center;
+    @apply -mt-20 min-h-[calc(100dvh_-_var(--APP_HEADER_HEIGHT))] place-content-center;
 }

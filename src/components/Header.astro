@@ -1,16 +1,17 @@
 ---
+import Divider from "../components/Divider.astro";
 import CloneLink from "../components/CloneLink.astro";
 import LiquidAss from "../components/LiquidAss.astro";
 ---
 
 <header id="app-header">
-    <LiquidAss class="border-ash/10 bg-void/40 border-b p-4">
+    <LiquidAss class="bg-iron-950/50 p-4">
         <div class="container flex items-center justify-between gap-4">
             <!-- <div class="logo relative rotate-90">
                     <div class="text-5xl uppercase">M</div>
                     <div class="absolute top-0 left-[5px] text-5xl uppercase">A</div>
                 </div> -->
-            <img src="/CS_Ellipse_7.svg" alt="Logo" width="40" class="logo" />
+            <img src="/logo.svg" alt="Logo" width="40" class="logo" />
             <nav>
                 <ul class="flex gap-4">
                     <!-- <li><a href="mailto:hey@itsmil.es">hey@itsmil.es</a></li>
@@ -65,4 +66,5 @@ import LiquidAss from "../components/LiquidAss.astro";
             </nav>
         </div>
     </LiquidAss>
+    <Divider />
 </header>
