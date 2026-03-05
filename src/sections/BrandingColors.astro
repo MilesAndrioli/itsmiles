@@ -103,13 +103,7 @@ const colors = [
             swatch.dispatchEvent(
                 new MouseEvent("mouseover", { bubbles: true }),
             );
-
-            setTimeout(() => {
-                swatch.dataset.cursorText = "Copy";
-                swatch.dispatchEvent(
-                    new MouseEvent("mouseover", { bubbles: true }),
-                );
-            }, 1000);
+            swatch.dataset.cursorText = "Copy";
         });
     });
 </script>
