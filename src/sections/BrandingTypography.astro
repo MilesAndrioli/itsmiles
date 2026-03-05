@@ -38,7 +38,6 @@ const fonts = [
 ];
 
 const typeSizes = [
-    "text-7xl",
     "text-6xl",
     "text-5xl",
     "text-4xl",
@@ -47,14 +46,12 @@ const typeSizes = [
     "text-xl",
     "text-lg",
     "text-base",
-    "text-sm",
-    "text-xs",
 ];
 ---
 
 <!-- FONT SPECIMENS -->{
     fonts.map((font) => (
-        <section data-aos-group="fade-in-up">
+        <section data-aos-group="fade-in-up-blur-out">
             <div class="container grid gap-8">
                 <div class="grid gap-2" data-aos-child>
                     <p
@@ -76,7 +73,7 @@ const typeSizes = [
                         class:list={[
                             font.class,
                             font.defaultClasses,
-                            "text-lg break-all",
+                            "text-lg tracking-widest break-all",
                         ]}
                     >
                         ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,
@@ -94,7 +91,7 @@ const typeSizes = [
                                 class:list={[
                                     font.class,
                                     font.defaultClasses,
-                                    "text-2xl",
+                                    "line-clamp-1 text-3xl",
                                 ]}
                                 style={`font-weight: ${w}`}
                             >

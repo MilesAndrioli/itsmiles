@@ -12,9 +12,6 @@
     --font-serif: "PP Gatwick Glider";
     --font-display: "PP Monument Extended";
 
-    --text-xl: 1.125rem;
-    --text-4xl: 2.5rem;
-    --text-6xl: 3.5rem;
     /* #endregion */
 
     /* #region Colors */
@@ -26,8 +23,17 @@
     --color-void-300: oklch(18% 0 0);
     --color-void-200: oklch(21% 0 0);
 
-    --color-ash: oklch(70% 0 0);
+    --color-ash-50: oklch(97% 0 0);
+    --color-ash-100: oklch(93% 0 0);
+    --color-ash-200: oklch(87% 0 0);
     --color-ash-300: oklch(80% 0 0);
+    --color-ash-400: oklch(75% 0 0);
+    --color-ash: oklch(70% 0 0);
+    --color-ash-600: oklch(58% 0 0);
+    --color-ash-700: oklch(46% 0 0);
+    --color-ash-800: oklch(28% 0 0);
+    --color-ash-900: oklch(22% 0 0);
+    --color-ash-950: oklch(18% 0 0);
 
     --color-alabaster: oklch(97% 0 0);
     --color-nude: oklch(98.6% 0.008 56.1);

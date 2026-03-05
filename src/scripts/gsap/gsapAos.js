@@ -28,8 +28,12 @@ export default function initGsapAos() {
         const isAfter = "aosAfter" in dataset;
 
         return {
-            start: dataset.aosStart || (isAfter ? "center 8%" : "top bottom"),
-            end: dataset.aosEnd || (isAfter ? "bottom 8%" : "top center"),
+            start:
+                dataset.aosStart ||
+                (isAfter ? `center ${APP_HEADER_HEIGHT}` : "top bottom"),
+            end:
+                dataset.aosEnd ||
+                (isAfter ? `bottom ${APP_HEADER_HEIGHT}` : "top center"),
 
             duration: msToSec(dataset.aosDuration || 600),
             delay: msToSec(dataset.aosDelay || 0),

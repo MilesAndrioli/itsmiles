@@ -10,9 +10,6 @@
         content: "";
         flex: 1;
         height: 1px;
-
-        transform: scaleX(0%);
-        opacity: 0;
     }
 
     &::before {
@@ -39,18 +36,5 @@
 
     &.strike-around--right::before {
         display: none;
-    }
-
-    .aos-engaged &,
-    &.aos-engaged {
-        &::before,
-        &::after {
-            transform: unset;
-            opacity: 1;
-
-            transition:
-                transform var(--in-out--giga-slow) 280ms,
-                opacity var(--in-out--giga-slow) 280ms;
-        }
     }
 }
