@@ -1,4 +1,6 @@
 ---
+import Divider from "../components/Divider.astro";
+
 const pangram = "Si vis pacem, para bellum.";
 
 const weightLabels: Record<number, string> = {
@@ -51,8 +53,8 @@ const typeSizes = [
 
 <!-- FONT SPECIMENS -->{
     fonts.map((font) => (
-        <section data-aos-group="fade-in-up-blur-out">
-            <div class="container grid gap-8">
+        <section class="hero">
+            <div class="container grid gap-8" data-aos-group="fade-in-up">
                 <div class="grid gap-2" data-aos-child>
                     <p
                         class:list={[
@@ -63,10 +65,12 @@ const typeSizes = [
                     >
                         {font.name}
                     </p>
-                    <p class="text-ash/50 font-mono text-xs">
+                    <p class="text-iron-700 font-mono text-xs">
                         Role · {font.role}
                     </p>
                 </div>
+
+                <Divider data-aos-child="scale-x" />
 
                 <div data-aos-child class="grid gap-8 sm:grid-cols-2">
                     <p
@@ -81,10 +85,12 @@ const typeSizes = [
                     </p>
                 </div>
 
+                <Divider data-aos-child="scale-x" />
+
                 <div class="grid gap-8 md:grid-cols-2">
                     {font.weights.map((w) => (
                         <div class="grid gap-2" data-aos-child>
-                            <p class="text-ash/50 mb-0 font-mono text-xs">
+                            <p class="text-iron-700 mb-0 font-mono text-xs">
                                 {weightLabels[w]}
                             </p>
                             <p
