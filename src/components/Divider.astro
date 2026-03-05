@@ -1,0 +1,54 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"hr"> {
+    fade?: "both" | "start" | "end" | "none";
+    color?: string;
+}
+
+const {
+    fade = "both",
+    color = "var(--color-iron-850)",
+    class: className,
+    ...rest
+} = Astro.props;
+---
+
+<hr
+    class:list={[
+        "Divider",
+        {
+            FadeStart: fade === "start",
+            FadeEnd: fade === "end",
+            FadeNone: fade === "none",
+        },
+        className,
+    ]}
+    {...rest}
+/>
+
+<style define:vars={{ color }}>
+    .Divider {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            var(--color) 15%,
+            var(--color) 85%,
+            transparent
+        );
+    }
+
+    .FadeEnd {
+        background: linear-gradient(to right, var(--color) 85%, transparent);
+    }
+
+    .FadeStart {
+        background: linear-gradient(to left, var(--color) 85%, transparent);
+    }
+
+    .FadeNone {
+        background: var(--color);
+    }
+</style>

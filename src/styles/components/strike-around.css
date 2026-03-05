@@ -1,11 +1,11 @@
 .strike-around {
     display: flex;
     align-items: center;
-    gap: var(--gap, 0.5em);
+    gap: var(--gap, 0.25em);
 
     &::before,
     &::after {
-        --border-color: color-mix(in oklab, currentColor 30%, transparent);
+        --border-color: var(--color-iron-850);
 
         content: "";
         flex: 1;
@@ -15,19 +15,21 @@
     &::before {
         background: linear-gradient(
             to right,
-            var(--border-color) 70%,
+            transparent,
+            var(--border-color) 15%,
+            var(--border-color) 85%,
             transparent
         );
-        transform-origin: right;
     }
 
     &::after {
         background: linear-gradient(
             to left,
-            var(--border-color) 70%,
+            transparent,
+            var(--border-color) 15%,
+            var(--border-color) 85%,
             transparent
         );
-        transform-origin: left;
     }
 
     &.strike-around--left::after {
