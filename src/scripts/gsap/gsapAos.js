@@ -75,15 +75,15 @@ export default function initGsapAos() {
             scrub: settings.scrub,
             markers: settings.debug,
             id: settings.debugId,
-            toggleClass: { targets: elements, className: "aos-active" },
-            onEnter: () =>
-                elements.forEach((el) => el.classList.add("aos-engaged")),
-            onLeave: () =>
-                elements.forEach((el) => el.classList.add("aos-finished")),
-            onEnterBack: () =>
-                elements.forEach((el) => el.classList.remove("aos-finished")),
-            onLeaveBack: () =>
-                elements.forEach((el) => el.classList.remove("aos-engaged")),
+            // toggleClass: { targets: elements, className: "aos-active" },
+            // onEnter: () =>
+            //     elements.forEach((el) => el.classList.add("aos-engaged")),
+            // onLeave: () =>
+            //     elements.forEach((el) => el.classList.add("aos-finished")),
+            // onEnterBack: () =>
+            //     elements.forEach((el) => el.classList.remove("aos-finished")),
+            // onLeaveBack: () =>
+            //     elements.forEach((el) => el.classList.remove("aos-engaged")),
         };
     }
 
