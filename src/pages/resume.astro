@@ -1,12 +1,14 @@
 ---
 import Skeleton from "../layouts/Skeleton.astro";
 import resume from "../data/resume.yaml";
+import { contact } from "../data/contact";
 import Divider from "../components/Divider.astro";
 import ResumeSidebar from "../sections/ResumeSidebar.astro";
 import ResumeMain from "../sections/ResumeMain.astro";
 
-const { meta, summary, experience, skills, projects, languages, interests } =
+const { meta: baseMeta, summary, experience, skills, projects, languages, interests } =
     resume;
+const meta = { ...baseMeta, ...contact };
 ---
 
 <Skeleton
