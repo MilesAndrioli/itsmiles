@@ -13,7 +13,7 @@
         &.has-LUT {
             mix-blend-mode: soft-light;
             background-color: color-mix(in oklab, black 40%, transparent);
-            backdrop-filter: saturate(150%);
+            backdrop-filter: saturate(120%) hue-rotate(-4deg);
         }
 
         &.has-grid {
@@ -23,23 +23,15 @@
                 linear-gradient(
                     to bottom,
                     var(--border-color) 1px,
-                    transparent 0px
+                    transparent 0
                 ),
                 linear-gradient(
                     to right,
                     var(--border-color) 1px,
-                    transparent 0px
+                    transparent 0
                 );
 
-            /* background-position:
-                0 0,
-                -0.5px 0; */
-
-            background-size: 50vw 50vh;
-
-            /* @media (width >= 2560px) {
-                background-size: 25vw 50vh;
-            } */
+            background-size: 50vw 50dvh;
         }
     }
 </style>
