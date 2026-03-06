@@ -14,6 +14,7 @@ import Cursor from "../components/Cursor.astro";
 const {
     title,
     description,
+    emoji,
     class: className,
     header = true,
     footer = true,
@@ -22,7 +23,7 @@ const {
 
 <!doctype html>
 <html lang="en">
-    <Head title={title} description={description} />
+    <Head title={title} description={description} emoji={emoji} />
     <body class="bg-iron-950 text-iron antialiased">
         <Smoother>
             {header && <Header />}
