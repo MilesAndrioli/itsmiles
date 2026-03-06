@@ -11,12 +11,12 @@ import Loader from "../components/Loader.astro";
 import Cursor from "../components/Cursor.astro";
 // import SpeedInsights from "@vercel/speed-insights/astro";
 
-const { class: className } = Astro.props;
+const { class: className, title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-    <Head />
+    <Head title={title} description={description} />
     <body class="bg-iron-950 text-iron antialiased">
         <Smoother>
             <Header />
