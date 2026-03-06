@@ -6,8 +6,15 @@
     }
 }
 
-body::-webkit-scrollbar {
-    width: 0;
+body {
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    &::selection {
+        background-color: var(--color-jade-400);
+        color: var(--color-iron-950);
+    }
 }
 
 body {
@@ -24,16 +31,4 @@ p {
     &:not(:last-child) {
         @apply mb-[.5em];
     }
-}
-
-p a {
-    /* opacity: 80%; */
-    /* color: color-mix(in oklab, currentColor 80%, transparent); */
-    font-weight: bolder;
-    /* font-style: italic; */
-}
-
-mark {
-    background-color: transparent;
-    color: currentColor;
 }
