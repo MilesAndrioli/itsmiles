@@ -14,21 +14,17 @@ import { contact } from "../data/contact";
                 <nav>
                     <ul class="flex gap-3 font-mono text-xs">
                         <li>
-                            <a
+                            <CloneLink
                                 href={`mailto:${contact.email}`}
-                                class="swipe-link"
-                            >
-                                {contact.email}
-                            </a>
+                                text={`${contact.email}`}
+                            />
                         </li>
                         <li>
-                            <a
+                            <CloneLink
                                 href={contact.linkedin}
                                 target="_blank"
-                                class="swipe-link"
-                            >
-                                LinkedIn</a
-                            >
+                                text="LinkedIn"
+                            />
                         </li>
                         <li>
                             <CloneLink href="/branding/" text="Branding" />
