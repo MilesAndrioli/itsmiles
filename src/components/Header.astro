@@ -3,66 +3,42 @@ import Logo from "../components/Logo.astro";
 import Divider from "../components/Divider.astro";
 import CloneLink from "../components/CloneLink.astro";
 import LiquidAss from "../components/LiquidAss.astro";
+import { contact } from "../data/contact";
 ---
 
 <header id="app-header">
-    <LiquidAss class="bg-iron-950/50 p-4">
-        <div class="container flex items-center justify-between gap-4">
-            <!-- <div class="logo relative rotate-90">
-                    <div class="text-5xl uppercase">M</div>
-                    <div class="absolute top-0 left-[5px] text-5xl uppercase">A</div>
-                </div> -->
-            <Logo />
-            <nav>
-                <ul class="flex gap-4">
-                    <!-- <li><a href="mailto:hey@itsmil.es">hey@itsmil.es</a></li>
+    <LiquidAss class="bg-iron-950/50 py-3">
+        <div class="container">
+            <div class="flex items-center justify-between gap-3">
+                <Logo />
+                <nav>
+                    <ul class="flex gap-3 font-mono text-xs">
                         <li>
                             <a
-                                href="https://www.linkedin.com/in/MilesAndrioliBachini/"
-                                target="_blank"
-                                >LinkedIn</a
+                                href={`mailto:${contact.email}`}
+                                class="swipe-link"
                             >
+                                {contact.email}
+                            </a>
                         </li>
                         <li>
                             <a
-                                href="https://wa.me/34683347859?text=Hi%20there%20%F0%9F%91%8B,%20I'd%20like%20to%20know..."
+                                href={contact.linkedin}
                                 target="_blank"
-                                >WhatsApp</a
+                                class="swipe-link"
                             >
-                        </li> -->
-                    <li>
-                        <a href="#" class="under-link">under-link</a>
-                    </li>
-                    <li>
-                        <a href="#" class="cover-link">cover-link</a>
-                    </li>
-                    <li>
-                        <CloneLink />
-                    </li>
-                    <li>
-                        <a class="swipe-link">swipe-link</a>
-                    </li>
-                    <li>
-                        <a href="#" class="swipe-cover-link">swipe-cover-link</a
-                        >
-                    </li>
-                    <li>
-                        <a href="#" class="yoyo-link">yoyo-link</a>
-                    </li>
-                    <li>
-                        <a href="#" class="yoyo-cover-link">yoyo-cover-link</a>
-                    </li>
-                    <li>
-                        <a href="/" class="yoyo-cover-link">Home</a>
-                    </li>
-                    <li>
-                        <CloneLink href="/branding/" text="Branding" />
-                    </li>
-                    <li>
-                        <CloneLink href="/resume/" text="Resume" />
-                    </li>
-                </ul>
-            </nav>
+                                LinkedIn</a
+                            >
+                        </li>
+                        <li>
+                            <CloneLink href="/branding/" text="Branding" />
+                        </li>
+                        <li>
+                            <CloneLink href="/resume/" text="Resume" />
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </LiquidAss>
     <Divider />
