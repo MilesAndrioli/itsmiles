@@ -1,0 +1,53 @@
+---
+import Skeleton from "../layouts/Skeleton.astro";
+import resume from "../data/resume.yaml";
+import Divider from "../components/Divider.astro";
+import ResumeSidebar from "../sections/ResumeSidebar.astro";
+import ResumeMain from "../sections/ResumeMain.astro";
+
+const { meta, summary, experience, skills, projects, languages, interests } =
+    resume;
+---
+
+<Skeleton
+    title="Resume"
+    description="Miles Andrioli Bachini — Creative Front-end Developer"
+    emoji="📄"
+    class="ResumePage py-14"
+>
+    <section>
+        <div
+            data-aos-group="fade-in-blur-out"
+            data-aos-stagger-gap="100"
+            data-aos-duration="900"
+        >
+            <div class="container max-w-5xl">
+                <Divider />
+                <div class="flex">
+                    <Divider vertical />
+                    <div
+                        class="ResumeGrid bg-iron-950/50 relative z-75 grid flex-1 rounded-xl backdrop-blur-3xl lg:grid-cols-[1fr_auto_2fr]"
+                    >
+                        <ResumeSidebar
+                            meta={meta}
+                            skills={skills}
+                            languages={languages}
+                            interests={interests}
+                        />
+
+                        <Divider vertical data-aos-child="fade-in" />
+
+                        <ResumeMain
+                            meta={meta}
+                            summary={summary}
+                            experience={experience}
+                            projects={projects}
+                        />
+                    </div>
+                    <Divider vertical />
+                </div>
+                <Divider />
+            </div>
+        </div>
+    </section>
+</Skeleton>

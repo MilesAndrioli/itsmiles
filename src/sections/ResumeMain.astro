@@ -1,0 +1,134 @@
+---
+import Divider from "../components/Divider.astro";
+
+interface Props {
+    meta: any;
+    summary: string;
+    experience: any[];
+    projects: any[];
+}
+
+const { meta, summary, experience, projects } = Astro.props;
+
+function getDuration(start: string, end: string): string {
+    const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
+    const parse = (s: string) => {
+        const [mon, year] = s.split(" ");
+        return new Date(parseInt(year), months.indexOf(mon));
+    };
+    const s = parse(start);
+    const e = end.toLowerCase() === "present" ? new Date() : parse(end);
+    const years = Math.round(
+        (e.getTime() - s.getTime()) / (1000 * 60 * 60 * 24 * 365.25),
+    );
+    return `${years} year${years !== 1 ? "s" : ""}`;
+}
+---
+
+<div class="ResumeMain grid content-start gap-6 p-8">
+    <!-- Name & Title -->
+    <div class="grid gap-2" data-aos-child>
+        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
+            {meta.name}
+        </h1>
+        <p class="font-display font-light tracking-wider uppercase">
+            {meta.title}
+        </p>
+    </div>
+
+    <Divider data-aos-child="fade-in" />
+
+    <!-- Summary -->
+    <div class="ResumeSection" data-aos-child>
+        <h2
+            class="ResumeHeading font-display text-xs font-light tracking-widest uppercase"
+        >
+            Summary
+        </h2>
+        <p class="text-iron-300 leading-relaxed">
+            {summary}
+        </p>
+    </div>
+
+    <Divider data-aos-child="fade-in" />
+
+    <!-- Experience -->
+    <div class="ResumeSection" data-aos-child>
+        <h2
+            class="ResumeHeading font-display text-xs font-light tracking-widest uppercase"
+        >
+            Experience
+        </h2>
+        <div class="grid gap-6">
+            {
+                experience.map((job: any) => (
+                    <div class="ResumeJob">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                            <h3 class="text-iron-200 text-base font-bold">
+                                {job.role}
+                            </h3>
+                            <span class="text-iron-600 text-xs">
+                                {`${job.start} – ${job.end} (${getDuration(job.start, job.end)})`}
+                            </span>
+                        </div>
+                        <p class="text-iron-500 text-sm">
+                            {job.company} · {job.location}
+                        </p>
+                        <ul class="marker:text-iron-700 mt-2 grid list-disc gap-1 ps-4">
+                            {job.highlights.map((h: string) => (
+                                <li class="text-iron-400 text-sm">{h}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <Divider data-aos-child="fade-in" />
+
+    <!-- Projects -->
+    <div class="ResumeSection" data-aos-child>
+        <h2
+            class="ResumeHeading font-display text-xs font-light tracking-widest uppercase"
+        >
+            Projects
+        </h2>
+        <div class="grid gap-4">
+            {
+                projects.map((project: any) => (
+                    <div>
+                        <div class="flex items-baseline gap-2">
+                            <h3 class="text-iron-200 text-sm font-bold">
+                                {project.name}
+                            </h3>
+                            <a
+                                href={project.url}
+                                target="_blank"
+                                class="yoyo-link text-jade text-xs"
+                            >
+                                {project.url.replace("https://", "")}
+                            </a>
+                        </div>
+                        <p class="text-iron-400 text-sm">
+                            {project.description}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>

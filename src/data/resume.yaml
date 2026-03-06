@@ -1,0 +1,60 @@
+meta:
+    name: "Miles Andrioli Bachini"
+    title: "Creative Front-end Developer"
+    email: "hey@itsmil.es"
+    phone: "+34 683 347 859"
+    linkedin: "https://www.linkedin.com/in/MilesAndrioli/"
+
+summary: >-
+    Front-end developer focused on building performant, animated web experiences
+    with a strong eye for visual detail. Comfortable working across the stack
+    from component architecture to motion design and WebGL.
+
+experience:
+    - company: "Seb Creativos"
+      website: "https://sebcreativos.es"
+      role: "Full Stack Developer"
+      location: "Málaga, Spain"
+      start: "Aug 2018"
+      end: "Jul 2025"
+      highlights:
+          - "Developed a reusable component library used across 4 product teams"
+          - "Implemented scroll-driven animations and parallax systems"
+
+skills:
+    - category: "Languages"
+      items: ["JavaScript", "CSS", "HTML"]
+    - category: "Frameworks"
+      items: ["Astro", "React", "Vue", "Svelte"]
+    - category: "Tooling"
+      items: ["Vite", "Tailwind CSS", "GSAP", "Three.js", "Lenis", "Git"]
+    - category: "Design"
+      items: ["Figma", "Adobe XD"]
+
+projects:
+    - name: "Chenot"
+      url: "https://chenot.com"
+      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+    - name: "Alia"
+      url: "https://aliaarchitecture.com"
+      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+    - name: "Valdemar"
+      url: "https://vre.es"
+      description: "Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+    - name: "hasury"
+      url: "https://hasury.com"
+      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+    - name: "itsmiles"
+      url: "https://itsmil.es"
+      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+
+languages:
+    - name: "Spanish"
+      level: "Native"
+    - name: "English"
+      level: "Fluent"
+
+interests:
+    - "Motion design & creative coding"
+    - "Dark Souls lore"
+    - "Typography"

@@ -13,6 +13,7 @@
     @import "./components/links/swipe-link.css";
     @import "./components/links/yoyo-link.css";
     @import "./components/StrikeAround.css";
+    @import "./components/resume.css";
 }
 
 #three-canvas {
