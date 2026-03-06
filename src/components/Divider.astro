@@ -2,13 +2,15 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"hr"> {
-    fade?: "both" | "start" | "end" | "none";
+    fade?: "both" | "start" | "end";
     color?: string;
+    vertical?: boolean;
 }
 
 const {
     fade = "both",
     color = "var(--color-iron-850)",
+    vertical = false,
     class: className,
     ...rest
 } = Astro.props;
@@ -18,9 +20,9 @@ const {
     class:list={[
         "Divider",
         {
+            Vertical: vertical,
             FadeStart: fade === "start",
             FadeEnd: fade === "end",
-            FadeNone: fade === "none",
         },
         className,
     ]}
@@ -38,17 +40,46 @@ const {
             var(--color) 85%,
             transparent
         );
-    }
 
-    .FadeEnd {
-        background: linear-gradient(to right, var(--color) 85%, transparent);
-    }
+        &.FadeEnd {
+            background: linear-gradient(
+                to right,
+                var(--color) 85%,
+                transparent
+            );
+        }
 
-    .FadeStart {
-        background: linear-gradient(to left, var(--color) 85%, transparent);
-    }
+        &.FadeStart {
+            background: linear-gradient(to left, var(--color) 85%, transparent);
+        }
 
-    .FadeNone {
-        background: var(--color);
+        &.Vertical {
+            height: auto;
+            width: 1px;
+            align-self: stretch;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--color) 15%,
+                var(--color) 85%,
+                transparent
+            );
+
+            &.FadeEnd {
+                background: linear-gradient(
+                    to bottom,
+                    var(--color) 85%,
+                    transparent
+                );
+            }
+
+            &.FadeStart {
+                background: linear-gradient(
+                    to top,
+                    var(--color) 85%,
+                    transparent
+                );
+            }
+        }
     }
 </style>
