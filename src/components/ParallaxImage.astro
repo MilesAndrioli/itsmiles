@@ -6,7 +6,7 @@ interface Props {
     src: ImageMetadata;
     alt: string;
     width?: number;
-    intensity?: string;
+    intensity?: number;
     class?: string;
 }
 
@@ -14,8 +14,22 @@ const {
     src,
     alt,
     width = 2560,
-    intensity = "12",
+    intensity = 120,
     class: className,
     ...rest
 } = Astro.props;
 ---
+
+<Picture
+    src={src}
+    alt={alt}
+    formats={["avif", "webp"]}
+    width={width}
+    style={`height: ${intensity}%`}
+    class:list={["w-full object-cover", className]}
+    data-speed="auto"
+    pictureAttributes={{
+        class: "overflow-hidden",
+    }}
+    {...rest}
+/>
