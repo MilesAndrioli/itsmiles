@@ -57,11 +57,8 @@
         line-height: 1.2;
     }
 
-    .ResumeHeading {
-        margin-bottom: 4pt;
-    }
-
     .ResumeSection {
+        gap: 4pt;
         break-inside: avoid;
     }
 
