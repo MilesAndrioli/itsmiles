@@ -1,14 +1,15 @@
 ---
-import Skeleton from "../layouts/Skeleton.astro";
-import resume from "../data/resume.yaml";
-import { contact } from "../data/contact";
-import Divider from "../components/Divider.astro";
-import ResumeSidebar from "../sections/ResumeSidebar.astro";
-import ResumeMain from "../sections/ResumeMain.astro";
+import resume from "@/data/resume.yaml";
+import { contact } from "@/data/contact";
 
-const { meta: baseMeta, summary, experience, skills, projects, languages, interests } =
+import Skeleton from "@/layouts/Skeleton.astro";
+
+import ResumeSidebar from "@/sections/ResumeSidebar.astro";
+import ResumeMain from "@/sections/ResumeMain.astro";
+import Divider from "@/components/Divider.astro";
+
+const { meta, summary, experience, skills, projects, languages, setup } =
     resume;
-const meta = { ...baseMeta, ...contact };
 ---
 
 <Skeleton
@@ -17,39 +18,35 @@ const meta = { ...baseMeta, ...contact };
     emoji="📄"
     class="ResumePage py-14"
 >
-    <section>
-        <div
-            data-aos-group="fade-in-blur-out"
-            data-aos-stagger-gap="100"
-            data-aos-duration="900"
-        >
-            <div class="container max-w-5xl">
-                <Divider />
-                <div class="flex">
+    <div
+        data-aos-group="fade-in-blur-out"
+        data-aos-stagger-gap="100"
+        data-aos-duration="1200"
+    >
+        <div class="container max-w-5xl">
+            <Divider />
+            <div class="flex">
+                <Divider vertical />
+                <div class="ResumeGrid grid flex-1 lg:grid-cols-[1fr_auto_2fr]">
+                    <ResumeSidebar
+                        name={meta.name}
+                        contact={contact}
+                        skills={skills}
+                        languages={languages}
+                        setup={setup}
+                    />
                     <Divider vertical />
-                    <div
-                        class="ResumeGrid bg-iron-950/50 relative z-75 grid flex-1 rounded-xl backdrop-blur-3xl lg:grid-cols-[1fr_auto_2fr]"
-                    >
-                        <ResumeSidebar
-                            meta={meta}
-                            skills={skills}
-                            languages={languages}
-                            interests={interests}
-                        />
-
-                        <Divider vertical data-aos-child="fade-in" />
-
-                        <ResumeMain
-                            meta={meta}
-                            summary={summary}
-                            experience={experience}
-                            projects={projects}
-                        />
-                    </div>
-                    <Divider vertical />
+                    <ResumeMain
+                        name={meta.name}
+                        title={meta.title}
+                        summary={summary}
+                        experience={experience}
+                        projects={projects}
+                    />
                 </div>
-                <Divider />
+                <Divider vertical />
             </div>
+            <Divider />
         </div>
-    </section>
+    </div>
 </Skeleton>
