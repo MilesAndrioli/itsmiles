@@ -27,15 +27,16 @@ const { meta, summary, experience, skills, projects, languages, setup } =
             <Divider />
             <div class="flex">
                 <Divider vertical />
-                <div class="ResumeGrid grid flex-1 lg:grid-cols-[1fr_auto_2fr]">
+                <div class="ResumeGrid grid flex-1 md:grid-cols-[1fr_auto_2fr]">
                     <ResumeSidebar
                         name={meta.name}
+                        title={meta.title}
                         contact={contact}
                         skills={skills}
                         languages={languages}
                         setup={setup}
                     />
-                    <Divider vertical />
+                    <Divider vertical class="hidden md:block" />
                     <ResumeMain
                         name={meta.name}
                         title={meta.title}
