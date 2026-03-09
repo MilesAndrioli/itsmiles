@@ -1,60 +1,26 @@
 ---
-import Divider from "../components/Divider.astro";
+import Divider from "@/components/Divider.astro";
 
-interface Props {
-    meta: any;
-    summary: string;
-    experience: any[];
-    projects: any[];
-}
-
-const { meta, summary, experience, projects } = Astro.props;
-
-function getDuration(start: string, end: string): string {
-    const months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ];
-    const parse = (s: string) => {
-        const [mon, year] = s.split(" ");
-        return new Date(parseInt(year), months.indexOf(mon));
-    };
-    const s = parse(start);
-    const e = end.toLowerCase() === "present" ? new Date() : parse(end);
-    const years = Math.round(
-        (e.getTime() - s.getTime()) / (1000 * 60 * 60 * 24 * 365.25),
-    );
-    return `${years} year${years !== 1 ? "s" : ""}`;
-}
+const { name, title, summary, experience, projects } = Astro.props;
 ---
 
-<div class="ResumeMain grid content-start gap-6 p-8">
-    <!-- Name & Title -->
-    <div class="grid gap-2" data-aos-child>
+<div class="ResumeMain grid content-start gap-5 p-8">
+    <!-- Name & Title (desktop only) -->
+    <div class="hidden gap-2 md:grid" data-aos-child>
         <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
-            {meta.name}
+            {name}
         </h1>
         <p class="font-display font-light tracking-wider uppercase">
-            {meta.title}
+            {title}
         </p>
     </div>
 
-    <Divider data-aos-child="fade-in" />
+    <Divider fade="end" data-aos-child="fade-in" />
 
     <!-- Summary -->
-    <div class="ResumeSection" data-aos-child>
+    <div class="ResumeSection grid gap-3" data-aos-child>
         <h2
-            class="ResumeHeading font-display text-xs font-light tracking-widest uppercase"
+            class="ResumeHeading font-display mb-0 text-xs font-light tracking-widest uppercase"
         >
             Summary
         </h2>
@@ -63,32 +29,33 @@ function getDuration(start: string, end: string): string {
         </p>
     </div>
 
-    <Divider data-aos-child="fade-in" />
+    <Divider fade="end" data-aos-child="fade-in" />
 
     <!-- Experience -->
-    <div class="ResumeSection" data-aos-child>
+    <div class="ResumeSection grid gap-3" data-aos-child>
         <h2
-            class="ResumeHeading font-display text-xs font-light tracking-widest uppercase"
+            class="ResumeHeading font-display mb-0 text-xs font-light tracking-widest uppercase"
         >
             Experience
         </h2>
         <div class="grid gap-6">
             {
-                experience.map((job: any) => (
-                    <div class="ResumeJob">
+                experience.map((job) => (
+                    <div class="ResumeJob grid gap-2">
                         <div class="flex flex-wrap items-baseline justify-between gap-x-4">
                             <h3 class="text-iron-200 text-base font-bold">
                                 {job.role}
                             </h3>
                             <span class="text-iron-600 text-xs">
-                                {`${job.start} – ${job.end} (${getDuration(job.start, job.end)})`}
+                                {job.duration}
                             </span>
                         </div>
                         <p class="text-iron-500 text-sm">
-                            {job.company} · {job.location}
+                            <span class="text-iron-700"> • </span>
+                            {job.location}
                         </p>
-                        <ul class="marker:text-iron-700 mt-2 grid list-disc gap-1 ps-4">
-                            {job.highlights.map((h: string) => (
+                        <ul class="marker:text-iron-700 grid list-disc gap-1 ps-4">
+                            {job.highlights.map((h) => (
                                 <li class="text-iron-400 text-sm">{h}</li>
                             ))}
                         </ul>
@@ -98,19 +65,19 @@ function getDuration(start: string, end: string): string {
         </div>
     </div>
 
-    <Divider data-aos-child="fade-in" />
+    <Divider fade="end" data-aos-child="fade-in" />
 
     <!-- Projects -->
-    <div class="ResumeSection" data-aos-child>
+    <div class="ResumeSection grid gap-3" data-aos-child>
         <h2
-            class="ResumeHeading font-display text-xs font-light tracking-widest uppercase"
+            class="ResumeHeading font-display mb-0 text-xs font-light tracking-widest uppercase"
         >
             Projects
         </h2>
         <div class="grid gap-4">
             {
-                projects.map((project: any) => (
-                    <div>
+                projects.map((project) => (
+                    <div class="grid gap-1">
                         <div class="flex items-baseline gap-2">
                             <h3 class="text-iron-200 text-sm font-bold">
                                 {project.name}
@@ -126,6 +93,31 @@ function getDuration(start: string, end: string): string {
                         <p class="text-iron-400 text-sm">
                             {project.description}
                         </p>
+                        {project.stack && project.stack.length > 0 && (
+                            <p class="text-iron-600 text-xs">
+                                {project.stack.map((s, i) => (
+                                    <>
+                                        {i > 0 && (
+                                            <span class="text-iron-700">
+                                                {" "}
+                                                •{" "}
+                                            </span>
+                                        )}
+                                        {s}
+                                    </>
+                                ))}
+                            </p>
+                        )}
+                        {project.highlights &&
+                            project.highlights.length > 0 && (
+                                <ul class="marker:text-iron-700 grid list-disc gap-1 ps-4">
+                                    {project.highlights.map((h) => (
+                                        <li class="text-iron-400 text-sm">
+                                            {h}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                     </div>
                 ))
             }
