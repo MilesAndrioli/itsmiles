@@ -89,16 +89,7 @@ const { name, title, summary, experience, projects } = Astro.props;
                             </div>
                             {project.stack && project.stack.length > 0 && (
                                 <span class="text-iron-600 text-xs">
-                                    {project.stack.map((s, i) => (
-                                        <>
-                                            {i > 0 && (
-                                                <span class="text-iron-700">
-                                                    •
-                                                </span>
-                                            )}
-                                            {s}
-                                        </>
-                                    ))}
+                                    {project.stack.join(" · ")}
                                 </span>
                             )}
                         </div>
