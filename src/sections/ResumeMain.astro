@@ -10,16 +10,16 @@ const { name, title, summary, experience, projects } = Astro.props;
         <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
             {name}
         </h1>
-        <p class="subtitle">
+        <h2 class="subtitle">
             {title}
-        </p>
+        </h2>
     </div>
 
     <Divider fade="end" data-aos-child="fade-in-blur-out" />
 
     <!-- Summary -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h2 class="ResumeHeading subtitle mb-0 text-xs">Summary</h2>
+        <h3 class="ResumeHeading subtitle mb-0 text-xs">Summary</h3>
         <p class="text-iron-300">
             {summary}
         </p>
@@ -29,17 +29,17 @@ const { name, title, summary, experience, projects } = Astro.props;
 
     <!-- Experience -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h2 class="ResumeHeading subtitle mb-0 text-xs">Experience</h2>
+        <h3 class="ResumeHeading subtitle mb-0 text-xs">Experience</h3>
         <div class="grid gap-5">
             {
                 experience.map((job) => (
                     <div class="ResumeJob grid gap-3">
                         <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
                             <div class="flex items-baseline gap-2">
-                                <h3 class="text-iron-200 mb-0 text-sm font-bold">
+                                <p class="text-iron-200 mb-0 text-sm font-bold">
                                     {job.role}
                                     {job.role}
-                                </h3>
+                                </p>
                                 <a
                                     href={job.website}
                                     target="_blank"
