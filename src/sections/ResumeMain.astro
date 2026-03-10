@@ -65,56 +65,49 @@ const { name, title, summary, experience, projects } = Astro.props;
         </div>
     </div>
 
-    <Divider fade="end" data-aos-child="fade-in" />
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
 
     <!-- Projects -->
-    <div class="ResumeSection grid gap-3" data-aos-child>
-        <h2
-            class="ResumeHeading font-display mb-0 text-xs font-light tracking-widest uppercase"
-        >
-            Projects
-        </h2>
-        <div class="grid gap-4">
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-xs">Projects</h3>
+        <div class="grid gap-5">
             {
                 projects.map((project) => (
-                    <div class="grid gap-1">
-                        <div class="flex items-baseline gap-2">
-                            <h3 class="text-iron-200 text-sm font-bold">
-                                {project.name}
-                            </h3>
-                            <a
-                                href={project.url}
-                                target="_blank"
-                                class="yoyo-link text-jade text-xs"
-                            >
-                                {project.url.replace("https://", "")}
-                            </a>
+                    <div class="ResumeProject grid gap-3">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-iron-200 text-sm font-bold">
+                                    {project.name}
+                                </span>
+                                <a
+                                    href={project.url}
+                                    target="_blank"
+                                    class="yoyo-link text-jade text-xs"
+                                >
+                                    {project.url.replace("https://", "")}
+                                </a>
+                            </div>
+                            {project.stack && project.stack.length > 0 && (
+                                <span class="text-iron-600 text-xs">
+                                    {project.stack.map((s, i) => (
+                                        <>
+                                            {i > 0 && (
+                                                <span class="text-iron-700">
+                                                    •
+                                                </span>
+                                            )}
+                                            {s}
+                                        </>
+                                    ))}
+                                </span>
+                            )}
                         </div>
-                        <p class="text-iron-400 text-sm">
-                            {project.description}
-                        </p>
-                        {project.stack && project.stack.length > 0 && (
-                            <p class="text-iron-600 text-xs">
-                                {project.stack.map((s, i) => (
-                                    <>
-                                        {i > 0 && (
-                                            <span class="text-iron-700">
-                                                {" "}
-                                                •{" "}
-                                            </span>
-                                        )}
-                                        {s}
-                                    </>
-                                ))}
-                            </p>
-                        )}
+                        <p class="mb-0 text-sm">{project.description}</p>
                         {project.highlights &&
                             project.highlights.length > 0 && (
-                                <ul class="marker:text-iron-700 grid list-disc gap-1 ps-4">
+                                <ul class="marker:text-iron-700 text-iron-400 grid list-disc gap-1 ps-4 text-sm">
                                     {project.highlights.map((h) => (
-                                        <li class="text-iron-400 text-sm">
-                                            {h}
-                                        </li>
+                                        <li>{h}</li>
                                     ))}
                                 </ul>
                             )}
