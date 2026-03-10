@@ -38,14 +38,13 @@ const { name, title, summary, experience, projects } = Astro.props;
                             <div class="flex items-baseline gap-2">
                                 <span class="text-iron-200 text-sm font-bold">
                                     {job.role}
-                                    {job.role}
                                 </span>
                                 <a
                                     href={job.website}
                                     target="_blank"
                                     class="yoyo-link text-jade text-xs"
                                 >
-                                    {job.company}
+                                    {job.website.replace("https://", "")}
                                 </a>
                             </div>
                             <span class="text-iron-600 text-xs">
