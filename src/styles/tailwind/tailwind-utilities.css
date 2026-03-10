@@ -8,6 +8,10 @@
         var(--stroke-color, var(--color-iron));
 }
 
+@utility subtitle {
+    @apply font-display font-light tracking-wider uppercase;
+}
+
 @utility hero {
     @apply -mt-40 min-h-[calc(100dvh_-_var(--APP_HEADER_HEIGHT,0px))] place-content-center;
 }

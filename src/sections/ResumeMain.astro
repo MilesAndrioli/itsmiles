@@ -5,60 +5,61 @@ const { name, title, summary, experience, projects } = Astro.props;
 ---
 
 <div class="ResumeMain grid content-start gap-5 p-8">
-    <!-- Name & Title (desktop only) -->
-    <div class="hidden gap-2 md:grid" data-aos-child>
+    <!-- Name & Title (desktop) -->
+    <div class="hidden gap-1 md:grid" data-aos-child>
         <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
             {name}
         </h1>
-        <p class="font-display font-light tracking-wider uppercase">
+        <p class="subtitle">
             {title}
         </p>
     </div>
 
-    <Divider fade="end" data-aos-child="fade-in" />
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
 
     <!-- Summary -->
-    <div class="ResumeSection grid gap-3" data-aos-child>
-        <h2
-            class="ResumeHeading font-display mb-0 text-xs font-light tracking-widest uppercase"
-        >
-            Summary
-        </h2>
-        <p class="text-iron-300 leading-relaxed">
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h2 class="ResumeHeading subtitle mb-0 text-xs">Summary</h2>
+        <p class="text-iron-300">
             {summary}
         </p>
     </div>
 
-    <Divider fade="end" data-aos-child="fade-in" />
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
 
     <!-- Experience -->
-    <div class="ResumeSection grid gap-3" data-aos-child>
-        <h2
-            class="ResumeHeading font-display mb-0 text-xs font-light tracking-widest uppercase"
-        >
-            Experience
-        </h2>
-        <div class="grid gap-6">
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h2 class="ResumeHeading subtitle mb-0 text-xs">Experience</h2>
+        <div class="grid gap-5">
             {
                 experience.map((job) => (
-                    <div class="ResumeJob grid gap-2">
-                        <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-                            <h3 class="text-iron-200 text-base font-bold">
-                                {job.role}
-                            </h3>
+                    <div class="ResumeJob grid gap-3">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
+                            <div class="flex items-baseline gap-2">
+                                <h3 class="text-iron-200 mb-0 text-sm font-bold">
+                                    {job.role}
+                                    {job.role}
+                                </h3>
+                                <a
+                                    href={job.website}
+                                    target="_blank"
+                                    class="yoyo-link text-jade text-xs"
+                                >
+                                    {job.company}
+                                </a>
+                            </div>
                             <span class="text-iron-600 text-xs">
                                 {job.duration}
                             </span>
                         </div>
-                        <p class="text-iron-500 text-sm">
-                            <span class="text-iron-700"> • </span>
-                            {job.location}
-                        </p>
-                        <ul class="marker:text-iron-700 grid list-disc gap-1 ps-4">
-                            {job.highlights.map((h) => (
-                                <li class="text-iron-400 text-sm">{h}</li>
-                            ))}
-                        </ul>
+                        <p class="mb-0 text-sm">{job.description}</p>
+                        {job.highlights && job.highlights.length > 0 && (
+                            <ul class="marker:text-iron-700 text-iron-400 grid list-disc gap-1 ps-4 text-sm">
+                                {job.highlights.map((h) => (
+                                    <li>{h}</li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 ))
             }
