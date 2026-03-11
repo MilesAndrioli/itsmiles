@@ -11,10 +11,10 @@ experience:
     - role: "Full Stack Developer"
       website: "https://sebcreativos.es"
       duration: "Aug 2018 · Jul 2025 (7 years)"
-      description: "Shipped 50+ WordPress sites. Led end-to-end development, transforming static designs into fully functional platforms, through deployment and client handoff."
+      description: "Shipped over 50 WordPress sites. Handled the end-to-end development, turning static designs into fully functional platforms, from initial setup to deployment and client handoff."
       highlights:
-          - "Built a Webpack-powered WordPress starter theme that was adopted as the agency's default baseline"
-          - "Authored a data-attribute-driven GSAP utility to enable scroll animations universally across any WordPress page builder"
+          - "Authored a Webpack-powered WordPress starter theme that became the agency's default baseline"
+          - "Created a data-attribute-driven GSAP utility to easily add scroll animations across any WordPress page builder"
 
 skills:
     - category: "Stack"
@@ -33,19 +33,19 @@ skills:
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: "Rebuilt a luxury wellness site from a hard-coded theme to a visual editor, so the marketing team could update the site with ease."
+      description: "Rebuilt a luxury wellness site, moving from a hard-coded theme to a visual editor so the marketing team could update content with ease."
       stack: ["WordPress", "WooCommerce", "Elementor", "Webpack", "GSAP"]
       highlights:
-          - "Built a multi-step booking engine (WS Form) driving to a custom WooCommerce checkout"
-          - "Built a multi-level driller navigation integrated with WordPress menus"
-          - "Architected a relational data model using 5 connected Custom Post Types"
+          - "Built a multi-step booking engine connected to a custom WooCommerce checkout"
+          - "Designed a multi-level drill-down navigation integrated natively with WordPress menus"
+          - "Structured a relational data model using 5 connected Custom Post Types"
     - name: "Valdemar"
       url: "https://vre.es"
-      description: "Real estate portal on a custom WordPress theme built with Gutenberg blocks. Syncs thousands of properties from Resales Online CRM via API into a custom post type with full metadata, taxonomies, and media."
+      description: "Built a real estate portal using a custom WordPress theme and Gutenberg blocks. It automatically syncs thousands of properties from a CRM via API, complete with metadata, taxonomies, and media."
       stack: ["WordPress", "Gutenberg", "Webpack", "Bootstrap", "GSAP"]
       highlights:
-          - "Precise property search engine through taxonomies and interactive map"
-          - "Detailed property view with Swiper slider, location map, purchase and tax calculator, favorites, and print-as-PDF"
+          - "Created a precise property search engine using taxonomies and an interactive map"
+          - "Developed a detailed property view featuring a slider, location map, tax calculator, favorites, and PDF generation"
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture firm portfolio on a custom Hello Elementor fork with Webpack-compiled SCSS and JS. Built page by page in Elementor with scroll-driven GSAP animations."
