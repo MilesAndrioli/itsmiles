@@ -41,14 +41,14 @@ projects:
           - "Structured a relational data model using 5 connected Custom Post Types"
     - name: "Valdemar"
       url: "https://vre.es"
-      description: "Built a real estate portal using a custom WordPress theme and Gutenberg blocks. It automatically syncs thousands of properties from a CRM via API, complete with metadata, taxonomies, and media."
+      description: "Handcrafted a real estate portal from a bespoke design using Gutenberg and our custom Webpack starter theme. Automatically syncs thousands of properties from a CRM via API, complete with metadata and media."
       stack: ["WordPress", "Gutenberg", "Webpack", "Bootstrap", "GSAP"]
       highlights:
           - "Created a precise property search engine using taxonomies and an interactive map"
           - "Developed a detailed property view featuring a slider, location map, tax calculator, favorites, and PDF generation"
     - name: "Alia"
       url: "https://aliaarchitecture.com"
-      description: "Architecture firm portfolio on a custom Hello Elementor fork with Webpack-compiled SCSS and JS. Built page by page in Elementor with scroll-driven GSAP animations."
+      description: "Handcrafted an architecture firm portfolio from a bespoke design using Elementor and our custom Webpack starter theme. Brought the design to life with GSAP scroll-driven animations."
       stack: ["WordPress", "Elementor", "Webpack", "SCSS", "GSAP"]
 
 languages:
