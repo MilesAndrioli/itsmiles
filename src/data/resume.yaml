@@ -33,13 +33,12 @@ skills:
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: "Migrated a luxury wellness site from a hard-coded theme to a visual builder (Elementor), rebuilt block by block so the marketing team could update the full site with ease. Six-figure monthly revenue through WooCommerce."
+      description: "Rebuilt a luxury wellness site from a hard-coded theme to a visual editor, so the marketing team could update the site with ease."
       stack: ["WordPress", "WooCommerce", "Elementor", "Webpack", "GSAP"]
       highlights:
-          - "Multi-step booking engine with visual room and treatment selection, connected to a custom WooCommerce checkout"
-          - "Five interconnected CPTs, each with custom listing and detail templates"
-          - "Custom driller navigation, integrated with WordPress's native menu editor"
-          - "Complex multi-step forms built with WS Form"
+          - "Built a multi-step booking engine (WS Form) driving to a custom WooCommerce checkout"
+          - "Built a multi-level driller navigation integrated with WordPress menus"
+          - "Architected a relational data model using 5 connected Custom Post Types"
     - name: "Valdemar"
       url: "https://vre.es"
       description: "Real estate portal on a custom WordPress theme built with Gutenberg blocks. Syncs thousands of properties from Resales Online CRM via API into a custom post type with full metadata, taxonomies, and media."
