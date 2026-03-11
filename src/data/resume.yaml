@@ -8,50 +8,52 @@ summary: >-
     from component architecture to motion design and WebGL.
 
 experience:
-    - company: "Seb Creativos"
+    - role: "Full Stack Developer"
       website: "https://sebcreativos.es"
-      role: "Full Stack Developer"
-      location: "Málaga, Spain"
-      start: "Aug 2018"
-      end: "Jul 2025"
+      duration: "Aug 2018 · Jul 2025 (7 years)"
+      description: "Shipped 50+ WordPress sites. Led end-to-end development, transforming static designs into fully functional platforms, through deployment and client handoff."
       highlights:
-          - "Developed a reusable component library used across 4 product teams"
-          - "Implemented scroll-driven animations and parallax systems"
+          - "Built a Webpack-powered WordPress starter theme that was adopted as the agency's default baseline"
+          - "Authored a data-attribute-driven GSAP utility to enable scroll animations universally across any WordPress page builder"
 
 skills:
-    - category: "Languages"
-      items: ["JavaScript", "CSS", "HTML"]
-    - category: "Frameworks"
-      items: ["Astro", "React", "Vue", "Svelte"]
+    - category: "Stack"
+      items: ["Astro", "WordPress", "WooCommerce"]
+    - category: "Styling"
+      items: ["Tailwind CSS", "Bootstrap", "SCSS"]
+    - category: "Animation"
+      items: ["GSAP", "Lenis", "barba.js"]
     - category: "Tooling"
-      items: ["Vite", "Tailwind CSS", "GSAP", "Three.js", "Lenis", "Git"]
+      items: ["Vite", "Webpack", "Git"]
     - category: "Design"
       items: ["Figma", "Adobe XD"]
+    - category: "Setup"
+      items: ["Zed", "Claude Code"]
 
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
-    - name: "Alia"
-      url: "https://aliaarchitecture.com"
-      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+      description: "Migrated a luxury wellness site from a hard-coded theme to a visual builder (Elementor), rebuilt block by block so the marketing team could update the full site with ease. Six-figure monthly revenue through WooCommerce."
+      stack: ["WordPress", "WooCommerce", "Elementor", "Webpack", "GSAP"]
+      highlights:
+          - "Multi-step booking engine with visual room and treatment selection, connected to a custom WooCommerce checkout"
+          - "Five interconnected CPTs, each with custom listing and detail templates"
+          - "Custom driller navigation, integrated with WordPress's native menu editor"
+          - "Complex multi-step forms built with WS Form"
     - name: "Valdemar"
       url: "https://vre.es"
-      description: "Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
-    - name: "hasury"
-      url: "https://hasury.com"
-      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
-    - name: "itsmiles"
-      url: "https://itsmil.es"
-      description: " Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+      description: "Real estate portal on a custom WordPress theme built with Gutenberg blocks. Syncs thousands of properties from Resales Online CRM via API into a custom post type with full metadata, taxonomies, and media."
+      stack: ["WordPress", "Gutenberg", "Webpack", "Bootstrap", "GSAP"]
+      highlights:
+          - "Precise property search engine through taxonomies and interactive map"
+          - "Detailed property view with Swiper slider, location map, purchase and tax calculator, favorites, and print-as-PDF"
+    - name: "Alia"
+      url: "https://aliaarchitecture.com"
+      description: "Architecture firm portfolio on a custom Hello Elementor fork with Webpack-compiled SCSS and JS. Built page by page in Elementor with scroll-driven GSAP animations."
+      stack: ["WordPress", "Elementor", "Webpack", "SCSS", "GSAP"]
 
 languages:
     - name: "Spanish"
       level: "Native"
     - name: "English"
       level: "Fluent"
-
-interests:
-    - "Motion design & creative coding"
-    - "Dark Souls lore"
-    - "Typography"
