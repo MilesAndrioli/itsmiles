@@ -36,9 +36,9 @@ projects:
       description: "Luxury wellness brand, six-figure monthly revenue through WooCommerce. Rebuilt from a hard-coded theme to Elementor so marketing could own the full site."
       stack: ["WooCommerce", "Elementor", "GSAP"]
       highlights:
-          - "Multi-step booking engine with room and treatment selection, wired to a custom WooCommerce checkout."
+          - "Booking engine with room and treatment selection through a custom WooCommerce checkout."
           - "Five interconnected Custom Post Types with listing and detail templates."
-          - "Drill-down navigation integrated with WordPress's native menu editor."
+          - "Drill-down navigation built on WordPress's native menu editor."
     - name: "Valdemar"
       url: "https://vre.es"
       description: "Real estate portal on a custom theme. Syncs thousands of properties from a CRM via API."
