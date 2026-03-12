@@ -17,6 +17,8 @@ const { meta, summary, experience, skills, projects, languages, setup } =
     description="Miles Andrioli Bachini — Creative Front-end Developer"
     emoji="📄"
     class="ResumePage py-14"
+    header={false}
+    footer={false}
 >
     <div
         data-aos-group="fade-in-blur-out"
@@ -27,7 +29,9 @@ const { meta, summary, experience, skills, projects, languages, setup } =
             <Divider />
             <div class="flex">
                 <Divider vertical />
-                <div class="ResumeGrid grid flex-1 md:grid-cols-[1fr_auto_2fr]">
+                <div
+                    class="ResumeGrid bg-iron-950 z-75 grid flex-1 md:grid-cols-[1fr_auto_2fr]"
+                >
                     <ResumeSidebar
                         name={meta.name}
                         title={meta.title}
