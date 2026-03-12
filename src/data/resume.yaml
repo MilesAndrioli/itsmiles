@@ -11,16 +11,17 @@ experience:
     - role: "Full Stack Developer"
       website: "https://sebcreativos.es"
       duration: "Aug 2018 · Jul 2025 (7 years)"
-      description: "Shipped over 50 WordPress sites. Handled the end-to-end development, turning static designs into fully functional platforms, from initial setup to deployment and client handoff."
+      description: "Shipped 50+ production websites end to end, development, client feedback, and deployment."
       highlights:
-          - "Authored a Webpack-powered WordPress starter theme that became the agency's default baseline"
-          - "Created a data-attribute-driven GSAP utility to easily add scroll animations across any WordPress page builder"
+          - "Built the agency's default WordPress starter theme on Webpack, reused as the baseline across all projects"
+          - "Authored a data-attribute GSAP scroll animation system that works across page builders without per-page JS"
+          - "Ran each project solo: environment setup, development, feedback rounds, deployment, and CMS training"
 
 skills:
     - category: "Stack"
-      items: ["Astro", "WordPress", "WooCommerce"]
+      items: ["Astro", "WordPress"]
     - category: "Styling"
-      items: ["Tailwind CSS", "Bootstrap", "SCSS"]
+      items: ["Tailwind CSS", "Bootstrap"]
     - category: "Animation"
       items: ["GSAP", "Lenis", "barba.js"]
     - category: "Tooling"
@@ -29,26 +30,28 @@ skills:
       items: ["Figma", "Adobe XD"]
     - category: "Setup"
       items: ["Zed", "Claude Code"]
+    - category: "Learning"
+      items: ["Three.js", "Theatre.js", "Next.js"]
 
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: "Rebuilt a luxury wellness site, moving from a hard-coded theme to a visual editor so the marketing team could update content with ease."
+      description: "Luxury wellness brand with six-figure monthly revenue through WooCommerce. Rebuilt from a hard-coded theme to a custom Elementor theme so marketing could own the full site."
       stack: ["WordPress", "WooCommerce", "Elementor", "Webpack", "GSAP"]
       highlights:
-          - "Built a multi-step booking engine connected to a custom WooCommerce checkout"
-          - "Designed a multi-level drill-down navigation integrated natively with WordPress menus"
-          - "Structured a relational data model using 5 connected Custom Post Types"
+          - "Multi-step booking engine with room and treatment selection, wired to a custom WooCommerce checkout"
+          - "Five interconnected CPTs with listing and detail templates"
+          - "Drill-down navigation integrated with WordPress's native menu editor"
     - name: "Valdemar"
       url: "https://vre.es"
-      description: "Handcrafted a real estate portal from a bespoke design using Gutenberg and our custom Webpack starter theme. Automatically syncs thousands of properties from a CRM via API, complete with metadata and media."
+      description: "Real estate portal on a custom theme. Syncs thousands of properties from Resales Online CRM via API into WordPress."
       stack: ["WordPress", "Gutenberg", "Webpack", "Bootstrap", "GSAP"]
       highlights:
-          - "Created a precise property search engine using taxonomies and an interactive map"
-          - "Developed a detailed property view featuring a slider, location map, tax calculator, favorites, and PDF generation"
+          - "Property search across taxonomies and an interactive map"
+          - "Detail view with Swiper gallery, location map, purchase calculator, favorites, and print-as-PDF"
     - name: "Alia"
       url: "https://aliaarchitecture.com"
-      description: "Handcrafted an architecture firm portfolio from a bespoke design using Elementor and our custom Webpack starter theme. Brought the design to life with GSAP scroll-driven animations."
+      description: "Architecture firm portfolio on a custom theme. Built around GSAP scroll-driven animations."
       stack: ["WordPress", "Elementor", "Webpack", "SCSS", "GSAP"]
 
 languages:
