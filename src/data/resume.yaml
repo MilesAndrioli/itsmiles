@@ -1,9 +1,9 @@
 meta:
     name: "Miles Andrioli Bachini"
-    title: "Creative Front-end Developer"
+    title: "Front-end Developer"
 
 summary: >-
-    Smoothing the web with care and curiosity. Learning WebGL, shaders, Three.js, and Theatre.js. Based in Spain, open to remote or on-site worldwide.
+    I'm a front-end developer based in Spain, specializing in fluid, highly interactive web experiences. I owe much of my career to a deep curiosity for web animation and UI performance. Currently, I am expanding my stack into 3D web experiences, exploring WebGL, shaders, Three.js, and Theatre.js. Bilingual in Spanish and English, available for remote or on-site roles worldwide.
 
 experience:
     - role: "Full Stack Developer"
@@ -18,41 +18,33 @@ skills:
     - category: "Stack"
       items: ["Astro", "WordPress"]
     - category: "Styling"
-      items: ["Tailwind CSS", "Bootstrap"]
+      items: ["Tailwind CSS"]
     - category: "Animation"
       items: ["GSAP", "Lenis", "barba.js"]
     - category: "Tooling"
-      items: ["Vite", "Webpack", "Git"]
-    - category: "Design"
-      items: ["Figma", "Adobe XD"]
-    - category: "Learning"
-      items: ["Three.js", "Theatre.js", "Next.js"]
+      items: ["Vite", "Webpack"]
+    - category: "Languages"
+      items: ["Spanish (Native)", "English (Fluent)"]
 
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: "Luxury wellness brand, six-figure monthly revenue through WooCommerce. Rebuilt from a hard-coded theme to Elementor so marketing could own the full site."
+      description: "Re-built the digital presence for a luxury wellness brand doing six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder to give marketing full site ownership."
       stack: ["WooCommerce", "Elementor", "GSAP"]
       highlights:
-          - "Booking engine with room and treatment selection through a custom WooCommerce checkout."
-          - "Five interconnected Custom Post Types with listing and detail templates."
-          - "Drill-down navigation built on WordPress's native menu editor."
+          - "Built a custom booking engine for rooms and treatments through a custom WooCommerce checkout."
+          - "Architected five interconnected Custom Post Types with custom listing and detail templates."
+          - "Implemented drill-down navigation scaling natively on top of the WordPress menu editor."
     - name: "Valdemar"
       url: "https://vre.es"
-      description: "Real estate portal on a custom theme. Syncs thousands of properties from a CRM via API."
+      description: "Built a real estate portal on a custom theme, syncing thousands of properties from a CRM via API."
       stack: ["Bootstrap", "GSAP", "Lenis"]
       highlights:
     - name: "Rovimática"
       url: "https://www.rovimatica.com"
-      description: "Industrial automation and robotics firm on a custom theme. GSAP scroll-animated throughout."
+      description: "Built an automation and robotics firm on a custom theme. Heavily GSAP scroll animations throughout."
       stack: ["Tailwind CSS", "GSAP", "Lenis"]
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture firm portfolio on a custom theme. Built around GSAP scroll-driven animations."
       stack: ["Elementor", "GSAP", "Lenis"]
-
-languages:
-    - name: "Spanish"
-      level: "Native"
-    - name: "English"
-      level: "Fluent"
