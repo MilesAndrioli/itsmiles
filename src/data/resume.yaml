@@ -44,6 +44,10 @@ projects:
       description: "Real estate portal on a custom theme. Syncs thousands of properties from a CRM via API."
       stack: ["Bootstrap", "GSAP", "Lenis"]
       highlights:
+    - name: "Rovimática"
+      url: "https://www.rovimatica.com"
+      description: "Industrial automation and robotics firm on a custom theme. GSAP scroll-animated throughout."
+      stack: ["Tailwind CSS", "GSAP", "Lenis"]
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture firm portfolio on a custom theme. Built around GSAP scroll-driven animations."
