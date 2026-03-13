@@ -69,7 +69,7 @@ const { name, title, summary, experience, projects } = Astro.props;
             {
                 projects.map((project) => (
                     <div class="ResumeProject grid gap-3">
-                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
+                        <div class="grid gap-1">
                             <div class="flex items-baseline gap-2">
                                 <span class="text-iron-200 text-sm font-bold">
                                     {project.name}
