@@ -4,7 +4,7 @@ import Divider from "@/components/Divider.astro";
 import ParallaxImage from "@/components/ParallaxImage.astro";
 import userPhoto from "@/assets/images/Miles_0.jpeg";
 
-const { name, title, summary, contact, skills, languages, setup } = Astro.props;
+const { name, title, contact, skills } = Astro.props;
 ---
 
 <aside class="ResumeSidebar grid content-start gap-5 p-8 pb-0 md:pb-8">
@@ -20,22 +20,39 @@ const { name, title, summary, contact, skills, languages, setup } = Astro.props;
         />
     </div>
 
-    <!-- Name, Title & Summary (mobile) -->
-    <div class="grid gap-3 md:hidden" data-aos-child>
-        <div class="grid gap-1">
-            <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
-                {name}
-            </h1>
-            <h2 class="subtitle">
-                {title}
-            </h2>
-        </div>
-        <p class="text-iron-300">
-            {summary}
-        </p>
+    <!-- Name & Title (mobile) -->
+    <div class="grid gap-1 md:hidden" data-aos-child>
+        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
+            {name}
+        </h1>
+        <h2 class="subtitle">
+            {title}
+        </h2>
     </div>
 
-    <Divider fade="end" class="md:hidden" data-aos-child="fade-in-blur-out" />
+    <!-- Summary -->
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-xs">About</h3>
+        <div>
+            <p class="text-iron-400 text-sm">
+                Front-end developer with 7 years of experience based in Málaga,
+                Spain. Focused on fluid and highly interactive web experiences.
+            </p>
+            <p class="text-iron-400 text-sm">
+                Currently exploring 3D on the web with WebGL, shaders, Three.js,
+                and Theatre.js.
+            </p>
+            <p class="text-iron-400 mb-0 text-sm">
+                Bilingual in Spanish and English. <a
+                    href={contact.linkedin}
+                    target="_blank"
+                    class="text-jade yoyo-link">Open</a
+                > to remote or on-site roles worldwide.
+            </p>
+        </div>
+    </div>
+
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
 
     <!-- Contact -->
     <div class="ResumeSection grid gap-1" data-aos-child>
@@ -57,9 +74,7 @@ const { name, title, summary, contact, skills, languages, setup } = Astro.props;
                 <CloneLink
                     href={contact.linkedin}
                     target="_blank"
-                    text={contact.linkedin
-                        .replace("https://www.", "")
-                        .replace(/\/$/, "")}
+                    text={contact.linkedin.replace("https://", "")}
                 />
             </li>
         </ul>
@@ -84,22 +99,5 @@ const { name, title, summary, contact, skills, languages, setup } = Astro.props;
                 ))
             }
         </div>
-    </div>
-
-    <Divider fade="end" data-aos-child="fade-in-blur-out" />
-
-    <!-- Languages -->
-    <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Languages</h3>
-        <ul class="grid gap-1 text-sm">
-            {
-                languages.map((lang) => (
-                    <li>
-                        <span class="text-iron-300">{lang.name} · </span>
-                        <span class="text-iron-600">{lang.level}</span>
-                    </li>
-                ))
-            }
-        </ul>
     </div>
 </aside>
