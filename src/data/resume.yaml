@@ -42,10 +42,8 @@ projects:
     - name: "Valdemar"
       url: "https://vre.es"
       description: "Real estate portal on a custom theme. Syncs thousands of properties from a CRM via API."
-      stack: ["Gutenberg", "Bootstrap", "GSAP", "Lenis"]
+      stack: ["Bootstrap", "GSAP", "Lenis"]
       highlights:
-          - "Property search across taxonomies and map."
-          - "Detail view with Swiper gallery, location map, purchase calculator, favorites, and print-as-PDF."
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture firm portfolio on a custom theme. Built around GSAP scroll-driven animations."
