@@ -3,7 +3,10 @@ meta:
     title: "Front-end Developer"
 
 summary: >-
-    I'm a front-end developer based in Spain, specializing in fluid, highly interactive web experiences. I owe much of my career to a deep curiosity for web animation and UI performance. Currently, I am expanding my stack into 3D web experiences, exploring WebGL, shaders, Three.js, and Theatre.js. Bilingual in Spanish and English, available for remote or on-site roles worldwide.
+    Front-end developer based in Spain, focused on fluid and highly interactive web experiences.
+    My work centers on web animation, UI performance, and expressive interfaces.
+    Currently expanding into 3D on the web with WebGL, shaders, Three.js, and Theatre.js.
+    Bilingual in Spanish and English. Open to remote or on-site roles worldwide.
 
 experience:
     - role: "Full Stack Developer"
@@ -12,7 +15,7 @@ experience:
       description: "Shipped 50+ production websites end to end."
       highlights:
           - "Authored the agency's WordPress starter theme on Webpack. Reused across all projects."
-          - "Built a GSAP scroll animation system driven by data attributes. No per-page JS."
+          - "Built a GSAP scroll animation system driven by data-attributes. No per-page JS."
 
 skills:
     - category: "Stack"
@@ -29,12 +32,12 @@ skills:
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: "Re-built the digital presence for a luxury wellness brand doing six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder to give marketing full site ownership."
+      description: "Rebuilt the digital presence for a luxury wellness brand generating six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder, giving the marketing team full ownership of the site."
       stack: ["WooCommerce", "Elementor", "GSAP"]
       highlights:
-          - "Built a custom booking engine for rooms and treatments through a custom WooCommerce checkout."
+          - "Built a custom booking engine for rooms and treatments on top of WooCommerce checkout."
           - "Architected five interconnected Custom Post Types with custom listing and detail templates."
-          - "Implemented drill-down navigation scaling natively on top of the WordPress menu editor."
+          - "Implemented drill-down navigation scaling directly on top of the WordPress menu editor."
     - name: "Valdemar"
       url: "https://vre.es"
       description: "Built a real estate portal on a custom theme, syncing thousands of properties from a CRM via API."
