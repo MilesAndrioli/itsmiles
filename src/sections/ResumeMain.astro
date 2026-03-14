@@ -6,11 +6,11 @@ const { name, title, experience, projects } = Astro.props;
 
 <div class="ResumeMain grid content-start gap-5 p-8 pt-0 md:pt-8">
     <!-- Name & Title (desktop) -->
-    <div class="hidden gap-1 md:grid" data-aos-child>
-        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
+    <div class="hidden gap-1 md:grid">
+        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl" data-aos-child="split-chromatic">
             {name}
         </h1>
-        <h2 class="subtitle">
+        <h2 class="subtitle"data-aos-child="split-chromatic">
             {title}
         </h2>
     </div>

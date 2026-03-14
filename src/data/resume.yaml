@@ -2,52 +2,48 @@ meta:
     name: "Miles Andrioli Bachini"
     title: "Front-end Developer"
 
-summary: >-
-    Front-end developer based in Spain, focused on fluid and highly interactive web experiences.
-    My work centers on web animation, UI performance, and expressive interfaces.
-    Currently expanding into 3D on the web with WebGL, shaders, Three.js, and Theatre.js.
-    Bilingual in Spanish and English. Open to remote or on-site roles worldwide.
-
 experience:
     - role: "Full Stack Developer"
       website: "https://sebcreativos.es"
-      duration: "Aug 2018 · Jul 2025 (7 years)"
-      description: "Shipped 50+ production websites end to end."
+      duration: "Aug 2018 · Jul 2025"
+      description: "Shipped over 50 production websites end-to-end."
       highlights:
           - "Authored the agency's WordPress starter theme on Webpack. Reused across all projects."
           - "Built a GSAP scroll animation system driven by data-attributes. No per-page JS."
 
 skills:
-    - category: "Stack"
+    - category: "Core"
+      items: ["JavaScript", "CSS", "HTML"]
+    - category: "Frameworks"
       items: ["Astro", "WordPress"]
     - category: "Styling"
-      items: ["Tailwind CSS"]
+      items: ["Tailwind CSS", "Bootstrap"]
     - category: "Animation"
       items: ["GSAP", "Lenis", "barba.js"]
     - category: "Tooling"
       items: ["Vite", "Webpack"]
     - category: "Languages"
-      items: ["Spanish (Native)", "English (Fluent)"]
+      items: ["Spanish", "English"]
 
 projects:
     - name: "Chenot"
       url: "https://chenot.com"
-      description: "Rebuilt the digital presence for a luxury wellness brand generating six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder, giving the marketing team full ownership of the site."
+      description: "Luxury wellness brand generating six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder, giving the marketing team full ownership of the site."
       stack: ["WooCommerce", "Elementor", "GSAP"]
       highlights:
           - "Built a custom booking engine for rooms and treatments on top of WooCommerce checkout."
           - "Architected five interconnected Custom Post Types with custom listing and detail templates."
-          - "Implemented drill-down navigation scaling directly on top of the WordPress menu editor."
+          - "Implemented drill-down navigation on top of the WordPress menu editor."
     - name: "Valdemar"
       url: "https://vre.es"
-      description: "Built a real estate portal on a custom theme, syncing thousands of properties from a CRM via API."
+      description: "Real estate portal on a custom WordPress theme, syncing thousands of CRM properties into Custom Post Types via API."
       stack: ["Bootstrap", "GSAP", "Lenis"]
       highlights:
     - name: "Rovimática"
       url: "https://www.rovimatica.com"
-      description: "Built an automation and robotics firm on a custom theme. Heavily GSAP scroll animations throughout."
+      description: "Automation and robotics firm website on a custom WordPress theme, featuring extensive GSAP scroll animations."
       stack: ["Tailwind CSS", "GSAP", "Lenis"]
     - name: "Alia"
       url: "https://aliaarchitecture.com"
-      description: "Architecture firm portfolio on a custom theme. Built around GSAP scroll-driven animations."
+      description: "Architecture studio portfolio on a custom WordPress theme, driven by GSAP scroll animations."
       stack: ["Elementor", "GSAP", "Lenis"]
