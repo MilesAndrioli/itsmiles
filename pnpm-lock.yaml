@@ -32,15 +32,24 @@ importers:
       mouse-follower:
         specifier: ^1.1.2
         version: 1.1.2
+<<<<<<< HEAD
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
+=======
+      stats-gl:
+        specifier: ^4.1.0
+        version: 4.1.0(three@0.178.0)
+>>>>>>> worktree-shader-background
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
       three:
         specifier: ^0.178.0
         version: 0.178.0
+      tweakpane:
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@rollup/plugin-yaml':
         specifier: ^4.1.2
@@ -1553,6 +1562,25 @@ packages:
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
+<<<<<<< HEAD
+=======
+  stats-gl@4.1.0:
+    resolution: {integrity: sha512-A0aw+njfFtowIJ5tCbCxKBRR7oflVmGEjdXfMI7IAc/fDTdms4eIKSaLDWL222XCrfQdT49VE19JgKGDQmz0yw==}
+    peerDependencies:
+      three: '*'
+    peerDependenciesMeta:
+      three:
+        optional: true
+
+  string-width@4.2.3:
+    resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
+    engines: {node: '>=8'}
+
+  string-width@7.2.0:
+    resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
+    engines: {node: '>=18'}
+
+>>>>>>> worktree-shader-background
   stringify-entities@4.0.4:
     resolution: {integrity: sha512-IwfBptatlO+QCJUo19AqvrPNqlVMpW9YEL2LIVY+Rpv2qsjCGxaDLNRgeGsQWJhfItebuJhsGSLjaBbNSQ+ieg==}
 
@@ -1612,6 +1640,16 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
+<<<<<<< HEAD
+=======
+  tweakpane@4.0.5:
+    resolution: {integrity: sha512-rxEXdSI+ArlG1RyO6FghC4ZUX8JkEfz8F3v1JuteXSV0pEtHJzyo07fcDG+NsJfN5L39kSbCYbB9cBGHyuI/tQ==}
+
+  type-fest@4.41.0:
+    resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
+    engines: {node: '>=16'}
+
+>>>>>>> worktree-shader-background
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
@@ -3393,6 +3431,25 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
+<<<<<<< HEAD
+=======
+  stats-gl@4.1.0(three@0.178.0):
+    optionalDependencies:
+      three: 0.178.0
+
+  string-width@4.2.3:
+    dependencies:
+      emoji-regex: 8.0.0
+      is-fullwidth-code-point: 3.0.0
+      strip-ansi: 6.0.1
+
+  string-width@7.2.0:
+    dependencies:
+      emoji-regex: 10.6.0
+      get-east-asian-width: 1.5.0
+      strip-ansi: 7.2.0
+
+>>>>>>> worktree-shader-background
   stringify-entities@4.0.4:
     dependencies:
       character-entities-html4: 2.1.0
@@ -3442,8 +3499,16 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
+<<<<<<< HEAD
   typescript@5.9.3:
     optional: true
+=======
+  tweakpane@4.0.5: {}
+
+  type-fest@4.41.0: {}
+
+  typescript@5.9.3: {}
+>>>>>>> worktree-shader-background
 
   ufo@1.6.3: {}
 
