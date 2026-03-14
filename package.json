@@ -17,8 +17,10 @@
         "lodash.debounce": "^4.0.8",
         "lodash.throttle": "^4.1.1",
         "mouse-follower": "^1.1.2",
+        "stats-gl": "^4.1.0",
         "tailwindcss": "^4.2.1",
-        "three": "^0.178.0"
+        "three": "^0.178.0",
+        "tweakpane": "^4.0.5"
     },
     "devDependencies": {
         "@rollup/plugin-yaml": "^4.1.2",
