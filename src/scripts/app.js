@@ -31,6 +31,8 @@ import gsapReveal from "./gsap/gsapReveal";
 // --- Three.js ---
 // import ThreeExperience from "./three/ThreeExperience";
 // new ThreeExperience();
+import ProceduralVoid from "./three/ProceduralVoid";
+new ProceduralVoid();
 
 /* +-----------------------------------------+
 |                EVENTS AREA                 |

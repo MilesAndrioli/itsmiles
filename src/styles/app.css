@@ -24,7 +24,7 @@
     /* mix-blend-mode: screen; */
     /* mix-blend-mode: overlay; */
     /* mix-blend-mode: soft-light; */
-    mix-blend-mode: luminosity;
+    /* mix-blend-mode: luminosity; */
 
     /* border: 2px dotted red; */
 }
