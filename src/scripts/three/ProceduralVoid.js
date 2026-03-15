@@ -199,13 +199,6 @@ export default class ProceduralVoid {
             warpScale: 2.0,
 
             // ----------------------------------------------------------------
-            // PARALLAX DEPTH LAYERS
-            // ----------------------------------------------------------------
-            // Multiple evaluations of the domain warp at different time speeds
-            // create the illusion of depth — like fog layers drifting past
-            // each other at different distances from the viewer.
-
-            // ----------------------------------------------------------------
             // SCROLL REACTIVITY
             // ----------------------------------------------------------------
             // Lenis smooth scroll exposes a progress value (0..1) on
@@ -255,38 +248,6 @@ export default class ProceduralVoid {
             // the overall image as you scroll, as if light is slowly
             // revealing the texture. Negative values darken it.
             scrollColorShift: 0.0,
-
-            // Parallax shift: how much scroll intensifies the depth layers.
-            // Positive values make the parallax more visible as you scroll
-            // deeper — depth "emerges" the further you go. Only effective
-            // when parallax is enabled.
-            scrollParallaxShift: 0.0,
-
-            // ----------------------------------------------------------------
-            // PARALLAX DEPTH LAYERS
-            // ----------------------------------------------------------------
-
-            // Enabled: master toggle for the parallax depth effect.
-            // When off, only the base domain warp layer renders — saves
-            // two extra domainWarp() evaluations per pixel (significant
-            // GPU savings). Useful for comparing flat vs. layered looks,
-            // or for lower-end hardware.
-            parallaxEnabled: false,
-
-            // Intensity: overall blend strength of the parallax layers.
-            // At 0, only the base noise layer is visible — flat, no depth.
-            // At 0.5, the layers add subtle dimension.
-            // At 1.0, the layers contribute equally to the base — maximum
-            // depth separation.
-            parallaxIntensity: 0.5,
-
-            // Speed separation: how different the time speeds are between
-            // layers. Higher values mean layers drift apart faster,
-            // making the depth effect more pronounced.
-            // Low (0.5-1.0): layers move almost together — subtle shimmer.
-            // Mid (1.5-3.0): clear parallax, layers visibly independent.
-            // High (4.0+): fast separation, can feel restless.
-            parallaxSpeed: 2.0,
 
             // ----------------------------------------------------------------
             // MOUSE INTERACTION
@@ -439,19 +400,6 @@ export default class ProceduralVoid {
                 uScrollGainShift: { value: this.settings.scrollGainShift },
                 uScrollScaleShift: { value: this.settings.scrollScaleShift },
                 uScrollColorShift: { value: this.settings.scrollColorShift },
-                uScrollParallaxShift: {
-                    value: this.settings.scrollParallaxShift,
-                },
-
-                // --- Parallax depth uniforms ---
-                // GLSL has no native boolean uniform type, so we pass
-                // the toggle as a float: 1.0 = on, 0.0 = off. The shader
-                // uses a comparison (< 0.5) to branch. Because this is a
-                // uniform (same value for all fragments), the GPU handles
-                // this branch efficiently — all threads take the same path.
-                uParallaxEnabled: { value: 1.0 },
-                uParallaxIntensity: { value: this.settings.parallaxIntensity },
-                uParallaxSpeed: { value: this.settings.parallaxSpeed },
 
                 // --- Mouse interaction uniforms ---
                 uMouseEnabled: { value: 1.0 },
@@ -704,44 +652,6 @@ export default class ProceduralVoid {
             step: 0.01,
         });
 
-        // How much scroll intensifies depth layers. Positive = depth
-        // emerges as you scroll. Only works when parallax is enabled.
-        scroll.addBinding(this.settings, "scrollParallaxShift", {
-            label: "Parallax (depth shift)",
-            min: -1.0,
-            max: 1.0,
-            step: 0.01,
-        });
-
-        // ----------------------------------------------------------------
-        // PARALLAX DEPTH
-        // ----------------------------------------------------------------
-        const parallax = pane.addFolder({ title: "Depth (Parallax Layers)" });
-
-        // Master on/off toggle. When disabled, the shader skips the two
-        // extra domainWarp evaluations — a meaningful GPU saving.
-        parallax.addBinding(this.settings, "parallaxEnabled", {
-            label: "Enabled",
-        });
-
-        // Blend strength of the extra depth layers.
-        // 0 = flat (single layer). 1.0 = full depth separation.
-        parallax.addBinding(this.settings, "parallaxIntensity", {
-            label: "Intensity (layer blend)",
-            min: 0.0,
-            max: 1.0,
-            step: 0.01,
-        });
-
-        // How differently the layers drift in time.
-        // Low = subtle shimmer. High = clearly separated fog layers.
-        parallax.addBinding(this.settings, "parallaxSpeed", {
-            label: "Speed (layer separation)",
-            min: 0.0,
-            max: 5.0,
-            step: 0.1,
-        });
-
         // ----------------------------------------------------------------
         // MOUSE INTERACTION
         // ----------------------------------------------------------------
@@ -983,12 +893,6 @@ export default class ProceduralVoid {
         uniforms.uScrollGainShift.value = s.scrollGainShift;
         uniforms.uScrollScaleShift.value = s.scrollScaleShift;
         uniforms.uScrollColorShift.value = s.scrollColorShift;
-        uniforms.uScrollParallaxShift.value = s.scrollParallaxShift;
-
-        // --- Parallax depth ---
-        uniforms.uParallaxEnabled.value = s.parallaxEnabled ? 1.0 : 0.0;
-        uniforms.uParallaxIntensity.value = s.parallaxIntensity;
-        uniforms.uParallaxSpeed.value = s.parallaxSpeed;
 
         // --- Mouse ---
         // Lerp the smoothed position toward the raw input each frame.

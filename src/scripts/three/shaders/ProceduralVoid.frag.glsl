@@ -1,14 +1,13 @@
 // ============================================================================
-// BACKGROUND FRAGMENT SHADER — Domain-Warped Ridge Noise with Parallax Depth
+// BACKGROUND FRAGMENT SHADER — Domain-Warped Ridge Noise
 // ============================================================================
 //
 // This shader produces a dark, moody, procedural noise background by
-// combining four classic techniques from the world of procedural graphics:
+// combining three classic techniques from the world of procedural graphics:
 //
 //   1. FBM (Fractal Brownian Motion) — layered noise for natural detail
 //   2. Ridge Noise — sharp creases from abs() folding
 //   3. Domain Warping — feeding noise back as coordinates for organic flow
-//   4. Parallax Layers — multiple evaluations at different speeds for depth
 //
 // Each technique builds on the previous one. Together they produce organic,
 // landscape-like patterns that evoke depth and movement — all computed
@@ -52,13 +51,6 @@ uniform float uScrollWarpStrengthShift; // Changes domain warp intensity
 uniform float uScrollGainShift;        // Changes FBM gain (fine detail)
 uniform float uScrollScaleShift;       // Changes noise zoom level
 uniform float uScrollColorShift;       // Shifts palette toward highlight
-uniform float uScrollParallaxShift;    // Changes parallax layer intensity
-
-// Parallax depth parameters
-uniform float uParallaxEnabled;   // Toggle: 1.0 = on, 0.0 = off (saves GPU)
-uniform float uParallaxIntensity; // Blend strength of depth layers
-uniform float uParallaxSpeed;     // Time speed separation between layers
-
 // Mouse interaction parameters
 uniform float uMouseEnabled;           // Toggle: 1.0 = on, 0.0 = off
 uniform vec2 uMouse;                   // Smoothed cursor position in UV space (0..1)
@@ -257,10 +249,6 @@ float ridgeFbm(vec2 p) {
 //
 // Reference: https://iquilezles.org/articles/warp/
 //
-// The `time` parameter allows each parallax layer to evaluate the warp
-// at a different moment, creating the illusion of depth as layers drift
-// independently.
-
 float domainWarp(vec2 p, float time) {
     // --- Scroll-driven coordinate shift ---
     // uScroll (0..1) multiplied by uScrollWarpShift offsets the starting
@@ -309,89 +297,6 @@ float domainWarp(vec2 p, float time) {
     // This final layer smooths out the result slightly while preserving
     // the complex structure from the previous warps.
     return fbm(p + warpStr * r);
-}
-
-
-// ============================================================================
-// 5. PARALLAX DEPTH LAYERS
-// ============================================================================
-//
-// A single layer of domain-warped noise looks impressive but flat — like
-// a photograph. To create the illusion of depth (the "3D feel" you see on
-// cineshader.com), we evaluate the same noise pattern multiple times at
-// different time offsets.
-//
-// Each layer drifts at a slightly different speed. To the eye, this reads
-// as layers at different distances — just like how nearby trees seem to
-// move faster than distant mountains when you look out a car window.
-// This is the parallax effect, and it's remarkably effective even in 2D.
-//
-// Implementation:
-//   Layer 0 (base):   domainWarp(p, uTime)              — the "far" layer
-//   Layer 1 (mid):    domainWarp(p + offset, uTime * k)  — drifts differently
-//   Layer 2 (near):   domainWarp(p + offset, uTime * k2) — drifts fastest
-//
-// The layers are blended with weighted addition. The base layer is always
-// full strength; the parallax layers are scaled by uParallaxIntensity.
-// At intensity 0, only the base shows — no depth, but no extra GPU cost
-// either (the compiler may optimize away the dead code, but the branches
-// still run in practice since GPU shaders execute all paths).
-
-float computeNoise(vec2 p) {
-    // --- Base layer (far background) ---
-    // This is the primary noise pattern, always visible.
-    float base = domainWarp(p, uTime);
-
-    // --- Early exit when parallax is disabled ---
-    // Because uParallaxEnabled is a uniform (same for all pixels), this
-    // branch is "coherent" — every fragment takes the same path. GPUs
-    // handle coherent branches efficiently, unlike per-pixel branches
-    // where neighboring pixels diverge (those cause both paths to execute).
-    // So this toggle genuinely saves the cost of two domainWarp() calls.
-    if (uParallaxEnabled < 0.5) {
-        return base;
-    }
-
-    // --- Parallax layers (mid and near) ---
-    // Each layer uses a coordinate offset to avoid visual correlation
-    // with the base, and a time multiplier to create speed separation.
-    //
-    // The offsets (3.7, 7.1) and (6.3, 2.9) are arbitrary constants
-    // chosen to decorrelate the layers spatially — without them, all
-    // layers would show the same pattern just moving at different speeds,
-    // which looks like flickering rather than depth.
-    float mid = domainWarp(
-        p + vec2(3.7, 7.1),
-        uTime * (1.0 + uParallaxSpeed * 0.5)
-    );
-
-    float near = domainWarp(
-        p + vec2(6.3, 2.9),
-        uTime * (1.0 + uParallaxSpeed)
-    );
-
-    // --- Scroll-driven parallax intensity ---
-    // The effective parallax intensity combines the base value with a
-    // scroll-proportional shift. This lets depth "emerge" as the user
-    // scrolls deeper into the page — flat at top, layered at bottom.
-    // Clamped to 0..1 since intensity outside that range is meaningless.
-    float intensity = clamp(
-        uParallaxIntensity + uScroll * uScrollParallaxShift,
-        0.0, 1.0
-    );
-
-    // Blend: base at full strength, parallax layers weighted by intensity.
-    // The 0.3/0.2 weights give the mid layer more presence than the near
-    // layer, creating a natural depth falloff (closer = less area visible,
-    // like fog).
-    //
-    // We normalize by dividing by the total weight so the output range
-    // stays consistent regardless of intensity — otherwise cranking
-    // intensity would just make everything brighter.
-    float totalWeight = 1.0 + intensity * 0.5;
-    float combined = base + intensity * (0.3 * mid + 0.2 * near);
-
-    return combined / totalWeight;
 }
 
 
@@ -490,8 +395,8 @@ void main() {
         p += dir * mouseInfluence * uMouseWarpInfluence;
     }
 
-    // --- Compute the layered, warped noise ---
-    float f = computeNoise(p);
+    // --- Compute the warped noise ---
+    float f = domainWarp(p, uTime);
 
     // --- Color mapping ---
     // Map the single float noise value to a color using our three-tone palette.
