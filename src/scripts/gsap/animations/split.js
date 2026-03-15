@@ -135,4 +135,28 @@ export default {
             filter: "blur(0px)",
         },
     },
+    "split-left-chromatic": {
+        origin: {
+            opacity: 0,
+            x: "1em",
+            textShadow: `
+                rgb(0 0 255 / 60%) -0.4em 0.4em 4px,
+                rgb(0 255 255 / 60%) -0.2em 0.2em 4px,
+                rgb(255 255 0 / 60%) 0.2em -0.2em 4px,
+                rgb(255 0 0 / 60%) 0.4em -0.4em 4px
+            `,
+            filter: "blur(6px)",
+        },
+        destination: {
+            opacity: 1,
+            x: 0,
+            textShadow: `
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px
+            `,
+            filter: "blur(0px)",
+        },
+    },
 };
