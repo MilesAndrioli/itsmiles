@@ -27,9 +27,6 @@ import {
     Color,
 } from "three";
 
-import StatsGL from "stats-gl";
-import { Pane } from "tweakpane";
-
 import vertexShader from "./shaders/ProceduralVoid.vert.glsl?raw";
 import fragmentShader from "./shaders/ProceduralVoid.frag.glsl?raw";
 
@@ -63,8 +60,9 @@ export default class ProceduralVoid {
         this.scene.add(this.quad);
 
         // --- Debug tooling ---
-        this.stats = this._createStats();
-        this.pane = this._createPane();
+        if (import.meta.env.DEV) {
+            this._initDevTools();
+        }
 
         // --- Initialize ---
         this._onResize();
@@ -481,7 +479,16 @@ export default class ProceduralVoid {
     // DEBUG TOOLING
     // ========================================================================
 
-    _createStats() {
+    async _initDevTools() {
+        const [{ default: StatsGL }, { Pane }] = await Promise.all([
+            import("stats-gl"),
+            import("tweakpane"),
+        ]);
+        this.stats = this._createStats(StatsGL);
+        this.pane = this._createPane(Pane);
+    }
+
+    _createStats(StatsGL) {
         // stats-gl provides GPU-aware performance monitoring.
         // Unlike the basic stats.js used in ThreeExperience, stats-gl can
         // show GPU timings, draw calls, and triangle counts — critical for
@@ -498,7 +505,7 @@ export default class ProceduralVoid {
         return stats;
     }
 
-    _createPane() {
+    _createPane(Pane) {
         // Tweakpane is a modern alternative to dat.gui / lil-gui.
         // It binds directly to our settings object, so any change in
         // the GUI immediately updates the value we read in the render loop.
@@ -913,13 +920,13 @@ export default class ProceduralVoid {
     _startAnimationLoop() {
         // Using an arrow function preserves `this` context without .bind().
         const update = () => {
-            this.stats.begin();
+            this.stats?.begin();
 
             this._updateUniforms();
             this.renderer.render(this.scene, this.camera);
 
-            this.stats.end();
-            this.stats.update();
+            this.stats?.end();
+            this.stats?.update();
 
             requestAnimationFrame(update);
         };
