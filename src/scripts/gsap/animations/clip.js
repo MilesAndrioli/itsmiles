@@ -1,5 +1,5 @@
 export default {
-    "clip-bottom": {
+    "clip-up": {
         origin: {
             opacity: 0,
             clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
@@ -9,7 +9,7 @@ export default {
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         },
     },
-    "clip-top": {
+    "clip-down": {
         origin: {
             opacity: 0,
             clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
