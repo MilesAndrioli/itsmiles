@@ -3,12 +3,7 @@
 // ============================================================================
 //
 // This class renders a fullscreen shader quad behind all page content.
-// It follows the same conventions as ThreeExperience.js (renderer creation,
-// canvas placement, animation loop) but with a fundamentally different
-// rendering approach:
-//
-//   ThreeExperience: PerspectiveCamera + 3D geometry + vertex displacement
-//   ProceduralVoid: OrthographicCamera + flat quad + fragment shader does everything
+// OrthographicCamera + flat quad + fragment shader does everything
 //
 // The "fullscreen quad" technique is the standard way to run a fragment shader
 // across every pixel on screen. It's how Shadertoy, cineshader, and most
@@ -18,10 +13,6 @@
 // DEBUG TOOLING:
 // - stats-gl: GPU/CPU performance monitoring (draw calls, triangles, GPU time)
 // - Tweakpane: Interactive parameter panel with all uniforms exposed
-//
-// FUTURE MILESTONES:
-// - Milestone 4: Scroll reactivity via window.__LENIS__
-// - Milestone 5: Mouse interaction
 // ============================================================================
 
 import {
@@ -108,7 +99,7 @@ export default class ProceduralVoid {
             //
             // Sweet spot: 0.03–0.08 for a subtle background that doesn't
             // distract from content.
-            timeScale: 0.05,
+            timeScale: 0.08,
 
             // ----------------------------------------------------------------
             // COLOR PALETTE
@@ -124,16 +115,16 @@ export default class ProceduralVoid {
 
             // Base: the dominant color covering most of the background.
             // Keep this very dark — it's the "sky" between the noise features.
-            colorBase: { r: 0.02, g: 0.02, b: 0.025 },
+            colorBase: { r: 0.0, g: 0.0, b: 0.0 },
 
             // Mid: appears in the bulk of the noise ridges and warp creases.
             // Slightly brighter than base — this is where the texture lives.
-            colorMid: { r: 0.06, g: 0.055, b: 0.05 },
+            colorMid: { r: 0.0, g: 0.07, b: 0.14 },
 
             // Highlight: only visible at the sharpest ridge peaks.
             // The brightest tone — use sparingly. Even small increases
             // here dramatically change the perceived contrast.
-            colorHighlight: { r: 0.14, g: 0.13, b: 0.12 },
+            colorHighlight: { r: 0.15, g: 0.15, b: 0.15 },
 
             // ----------------------------------------------------------------
             // FBM (Fractal Brownian Motion) PARAMETERS
@@ -146,7 +137,7 @@ export default class ProceduralVoid {
             // Higher values (3-4) skip intermediate scales, making the jump
             // between detail levels more abrupt — a harsher, grittier look.
             // Lower values (1.5) pack octaves closer, giving a smoother blend.
-            fbmLacunarity: 2.0,
+            fbmLacunarity: 1.0,
 
             // Gain (persistence): the amplitude multiplier between octaves.
             // At 0.5, each octave contributes half the previous one's energy.
@@ -157,7 +148,7 @@ export default class ProceduralVoid {
             // Gain and lacunarity together define the noise's "character":
             //   High lacunarity + low gain  = smooth with occasional sharp detail
             //   Low lacunarity + high gain  = dense, busy, everywhere-detail
-            fbmGain: 0.5,
+            fbmGain: 0.62,
 
             // ----------------------------------------------------------------
             // RIDGE NOISE PARAMETERS
@@ -171,14 +162,14 @@ export default class ProceduralVoid {
             // of dark space between them — like veins or cracks.
             // Lower values (1-2) produce broader, hill-like features.
             // At exactly 1.0, it's a simple absolute-value fold.
-            ridgeSharpness: 2.0,
+            ridgeSharpness: 0.5,
 
             // Offset: shifts the threshold where the fold happens.
             // At 0.5 (midpoint of the noise range), ridges form at the
             // average noise level — evenly distributed.
             // Lower offset (0.2-0.3): fewer, more prominent ridges.
             // Higher offset (0.6-0.8): more frequent, thinner ridges.
-            ridgeOffset: 0.5,
+            ridgeOffset: 0.0,
 
             // ----------------------------------------------------------------
             // DOMAIN WARP PARAMETERS
@@ -195,7 +186,7 @@ export default class ProceduralVoid {
             // At 6-10, the pattern becomes deeply distorted — marble-like
             // swirls and alien geological formations.
             // Beyond 10, it can become chaotic and lose structure.
-            warpStrength: 4.0,
+            warpStrength: 5.0,
 
             // Scale: the overall zoom level of the noise coordinate space.
             // This sets how "close" you are to the noise pattern.
@@ -207,7 +198,7 @@ export default class ProceduralVoid {
             // Scale and warpStrength interact strongly:
             //   High scale + high warp = dense, complex, potentially chaotic
             //   Low scale + low warp = calm, minimal, contemplative
-            warpScale: 3.0,
+            warpScale: 2.0,
 
             // ----------------------------------------------------------------
             // PARALLAX DEPTH LAYERS
@@ -227,7 +218,7 @@ export default class ProceduralVoid {
             // This makes the noise pattern "drift" as you scroll, as if
             // you're panning through a landscape. Subtle values (0.5-2.0)
             // feel natural; high values (3+) make the shift obvious.
-            scrollWarpShift: 1.0,
+            scrollWarpShift: 0.5,
 
             // Ridge shift: how much scroll changes the ridge sharpness.
             // Positive values sharpen ridges as you scroll down, making
@@ -239,20 +230,20 @@ export default class ProceduralVoid {
             // uniform. This means scrolling "fast forwards" the noise
             // animation slightly, creating a connection between scroll
             // velocity and the background's movement.
-            scrollTimeShift: 0.5,
+            scrollTimeShift: 0.0,
 
             // Warp strength shift: how much scroll changes the domain warp
             // intensity. Positive values increase distortion as you scroll
             // down — the pattern becomes more alien and complex toward the
             // bottom. Negative values calm the pattern as you scroll.
             // At 0, warp strength stays constant regardless of scroll.
-            scrollWarpStrengthShift: 0.0,
+            scrollWarpStrengthShift: -1.0,
 
             // Gain shift: how much scroll changes FBM gain (fine detail).
             // Positive values reveal more high-frequency noise toward the
             // bottom of the page — the texture gets grittier, more detailed.
             // Negative values smooth it out as you scroll.
-            scrollGainShift: 0.0,
+            scrollGainShift: -0.1,
 
             // Scale shift: how much scroll changes the noise zoom level.
             // Positive values zoom in as you scroll (finer, tighter patterns).
@@ -282,7 +273,7 @@ export default class ProceduralVoid {
             // two extra domainWarp() evaluations per pixel (significant
             // GPU savings). Useful for comparing flat vs. layered looks,
             // or for lower-end hardware.
-            parallaxEnabled: true,
+            parallaxEnabled: false,
 
             // Intensity: overall blend strength of the parallax layers.
             // At 0, only the base noise layer is visible — flat, no depth.
@@ -315,7 +306,7 @@ export default class ProceduralVoid {
             // At 0.1, the effect is a tight spotlight around the cursor.
             // At 0.3-0.5, it's a broad, ambient influence.
             // At 1.0+, it affects most of the screen.
-            mouseRadius: 0.3,
+            mouseRadius: 1.0,
 
             // Warp influence: how much the mouse displaces the noise
             // coordinates within its radius. This creates a localized
@@ -323,13 +314,13 @@ export default class ProceduralVoid {
             // a magnet under iron filings.
             // Subtle values (0.5-1.5) feel like a gentle breeze.
             // High values (3+) feel like the cursor is drilling into the noise.
-            mouseWarpInfluence: 1.0,
+            mouseWarpInfluence: 0.0,
 
             // Brightness influence: how much the mouse brightens or
             // darkens the noise within its radius. Positive values create
             // a spotlight effect — the cursor reveals hidden detail.
             // Negative values create a shadow — the cursor darkens the area.
-            mouseBrightnessInfluence: 0.15,
+            mouseBrightnessInfluence: 0.0,
 
             // Easing: how quickly the shader's internal mouse position
             // catches up to the actual cursor. Lower values create a
@@ -337,13 +328,13 @@ export default class ProceduralVoid {
             // 0.05 = heavy lag (smooth, cinematic).
             // 0.2 = moderate lag (responsive but soft).
             // 1.0 = instant (no smoothing, raw input).
-            mouseEase: 0.08,
+            mouseEase: 0.04,
 
             // Ridge shift: how much the cursor changes ridge sharpness
             // within its radius. Positive = sharper ridges near cursor,
             // revealing intricate crease detail. Negative = smooths
             // ridges, creating a calming zone around the cursor.
-            mouseRidgeShift: 0.0,
+            mouseRidgeShift: -0.5,
 
             // Scale shift: how much the cursor changes the noise zoom
             // within its radius. Positive = zooms in near cursor (finer
@@ -360,7 +351,7 @@ export default class ProceduralVoid {
             // Gain shift: how much the cursor changes FBM detail level
             // within its radius. Positive = reveals fine-grained noise
             // near cursor. Negative = suppresses it for a smoother look.
-            mouseGainShift: 0.0,
+            mouseGainShift: 0.05,
         };
     }
 
@@ -523,7 +514,7 @@ export default class ProceduralVoid {
         document.body.appendChild(container);
 
         const pane = new Pane({
-            title: "Shader Background",
+            title: "Procedural Void",
             container,
         });
 
