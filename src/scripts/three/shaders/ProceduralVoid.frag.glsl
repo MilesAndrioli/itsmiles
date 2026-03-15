@@ -372,6 +372,7 @@ void main() {
     // corrected uv.x earlier — without this, the influence zone
     // would be an ellipse instead of a circle on non-square screens.
     float mouseInfluence = 0.0;
+    vec2 mouseDir = vec2(0.0);
 
     // --- Set per-pixel global modifiers ---
     // Start with base uniform + scroll contribution. Mouse adds on top.
@@ -379,18 +380,17 @@ void main() {
     gRidgeSharpness = uRidgeSharpness + uScroll * uScrollRidgeShift;
     gTimeOffset = 0.0;
 
-    // Apply mouse-driven scale shift to the coordinate space.
-    // This creates a localized zoom — the noise gets finer or coarser
-    // near the cursor, like a magnifying glass or a defocus lens.
     float effectiveScale = scale;
 
     if (uMouseEnabled > 0.5) {
         // Aspect-correct the mouse position to match our corrected UV space.
+        // Computed once here, reused by warp push and chromatic aberration.
         vec2 mouseUV = uMouse;
         mouseUV.x *= uResolution.x / uResolution.y;
 
         float dist = distance(uv, mouseUV);
         mouseInfluence = smoothstep(uMouseRadius, 0.0, dist);
+        mouseDir = dist > 0.001 ? normalize(uv - mouseUV) : vec2(0.0);
 
         // Modulate per-pixel globals with mouse influence.
         // Each modifier is scaled by mouseInfluence, so the effect
@@ -404,42 +404,26 @@ void main() {
 
     vec2 p = uv * max(effectiveScale, 0.1);
 
+    // Displace the noise coordinates based on mouse proximity.
+    // The displacement direction (mouseDir) points away from the cursor,
+    // creating a "push" effect — noise appears to flow around
+    // the cursor like water around a stone.
     if (uMouseEnabled > 0.5 && mouseInfluence > 0.0) {
-        // Displace the noise coordinates based on mouse proximity.
-        // The displacement direction points away from the cursor,
-        // creating a "push" effect — noise appears to flow around
-        // the cursor like water around a stone.
-        // When dist is very small we normalize to avoid division by zero.
-        vec2 mouseUV = uMouse;
-        mouseUV.x *= uResolution.x / uResolution.y;
-        float dist = distance(uv, mouseUV);
-        vec2 dir = dist > 0.001 ? normalize(uv - mouseUV) : vec2(0.0);
-        p += dir * mouseInfluence * uMouseWarpInfluence;
+        p += mouseDir * mouseInfluence * uMouseWarpInfluence;
     }
 
     // --- Compute the warped noise ---
     float f = domainWarp(p, uTime);
 
     // --- Color mapping (with optional chromatic aberration) ---
-    // Chromatic aberration simulates how a real lens fails to focus all
-    // wavelengths to the same point. Red, green, and blue refract
-    // differently, creating colored fringes at edges.
-    //
-    // We sample domainWarp at 3 slightly offset positions — one per
-    // RGB channel. The offset radiates outward from the cursor, scaled
-    // by mouseInfluence, so the effect is localized around the mouse.
-    //
-    // Cost: 2 extra domainWarp() calls when active. The per-pixel
-    // mouseInfluence check ensures pixels outside the radius skip
-    // the expensive extra samples entirely.
+    // Chromatic aberration samples domainWarp at 3 slightly offset positions
+    // (one per RGB channel). The offset radiates outward from the cursor
+    // using the pre-computed mouseDir, scaled by mouseInfluence.
+    // Cost: 2 extra domainWarp() calls when active.
     vec3 color;
 
     if (uMouseEnabled > 0.5 && uMouseChromaticStrength > 0.0 && mouseInfluence > 0.0) {
-        vec2 mouseUV = uMouse;
-        mouseUV.x *= uResolution.x / uResolution.y;
-        float dist = distance(uv, mouseUV);
-        vec2 dir = dist > 0.001 ? normalize(uv - mouseUV) : vec2(0.0);
-        vec2 caOffset = dir * mouseInfluence * uMouseChromaticStrength;
+        vec2 caOffset = mouseDir * mouseInfluence * uMouseChromaticStrength;
 
         float fR = domainWarp(p + caOffset, uTime);
         float fB = domainWarp(p - caOffset, uTime);

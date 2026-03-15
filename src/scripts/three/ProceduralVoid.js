@@ -414,7 +414,7 @@ export default class ProceduralVoid {
                 uScrollColorShift: { value: this.settings.scrollColorShift },
 
                 // --- Mouse interaction uniforms ---
-                uMouseEnabled: { value: 1.0 },
+                uMouseEnabled: { value: 0.0 },
                 uMouse: { value: new Vector2(0.5, 0.5) },
                 uMouseRadius: { value: this.settings.mouseRadius },
                 uMouseWarpInfluence: {
@@ -433,6 +433,8 @@ export default class ProceduralVoid {
             },
             vertexShader,
             fragmentShader,
+            depthWrite: false,
+            depthTest: false,
         });
 
         return new Mesh(geometry, material);
@@ -835,18 +837,26 @@ export default class ProceduralVoid {
     }
 
     _addEventListeners() {
-        window.addEventListener("resize", this._onResize.bind(this));
-
-        // Track mouse position in UV space (0..1).
-        // clientX/clientY are pixel coordinates from top-left.
-        // We normalize to (0,0) at bottom-left, (1,1) at top-right
-        // to match the shader's vUv coordinate system.
-        // The Y axis is flipped because screen Y goes downward
-        // but UV Y goes upward.
-        window.addEventListener("mousemove", (event) => {
+        this._boundResize = this._onResize.bind(this);
+        this._boundMouseMove = (event) => {
             this.mouseRaw.x = event.clientX / window.innerWidth;
             this.mouseRaw.y = 1.0 - event.clientY / window.innerHeight;
-        });
+        };
+
+        window.addEventListener("resize", this._boundResize);
+        window.addEventListener("mousemove", this._boundMouseMove);
+    }
+
+    dispose() {
+        this.renderer.dispose();
+        this.quad.geometry.dispose();
+        this.quad.material.dispose();
+        this.renderer.domElement.remove();
+        this.stats?.dom.remove();
+        this.pane?.dispose();
+        document.getElementById("tweakpane-container")?.remove();
+        window.removeEventListener("resize", this._boundResize);
+        window.removeEventListener("mousemove", this._boundMouseMove);
     }
 
     // ========================================================================
