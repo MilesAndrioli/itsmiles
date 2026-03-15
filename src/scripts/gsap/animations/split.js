@@ -43,7 +43,7 @@ export default {
             x: 0,
         },
     },
-    "split-clip-up": {
+    "split-up-clip": {
         origin: {
             opacity: 0,
             y: "1em",
@@ -58,16 +58,14 @@ export default {
     "split-blur": {
         origin: {
             opacity: 0,
-            letterSpacing: "0.25em",
             filter: "blur(6px)",
         },
         destination: {
             opacity: 1,
-            letterSpacing: "0em",
             filter: "blur(0px)",
         },
     },
-    "split-blur-up": {
+    "split-up-blur": {
         origin: {
             opacity: 0,
             y: "0.5em",
@@ -79,7 +77,7 @@ export default {
             filter: "blur(0px)",
         },
     },
-    "split-blur-left": {
+    "split-left-blur": {
         origin: {
             opacity: 0,
             x: "1em",
@@ -95,9 +93,9 @@ export default {
         origin: {
             opacity: 0,
             textShadow: `
-                rgb(0 0 255 / 60%) -0.4em 0.4em 4px, 
-                rgb(0 255 255 / 60%) -0.2em 0.2em 4px, 
-                rgb(255 255 0 / 60%) 0.2em -0.2em 4px, 
+                rgb(0 0 255 / 60%) -0.4em 0.4em 4px,
+                rgb(0 255 255 / 60%) -0.2em 0.2em 4px,
+                rgb(255 255 0 / 60%) 0.2em -0.2em 4px,
                 rgb(255 0 0 / 60%) 0.4em -0.4em 4px
             `,
             filter: "blur(6px)",
@@ -105,22 +103,22 @@ export default {
         destination: {
             opacity: 1,
             textShadow: `
-                transparent 0em 0em 0px, 
-                transparent 0em 0em 0px, 
-                transparent 0em 0em 0px, 
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px,
                 transparent 0em 0em 0px
             `,
             filter: "blur(0px)",
         },
     },
-    "split-chromatic-up": {
+    "split-up-chromatic": {
         origin: {
             opacity: 0,
-            y: "0.2em",
+            y: "0.5em",
             textShadow: `
-                rgb(0 0 255 / 60%) -0.4em 0.4em 4px, 
-                rgb(0 255 255 / 60%) -0.2em 0.2em 4px, 
-                rgb(255 255 0 / 60%) 0.2em -0.2em 4px, 
+                rgb(0 0 255 / 60%) -0.4em 0.4em 4px,
+                rgb(0 255 255 / 60%) -0.2em 0.2em 4px,
+                rgb(255 255 0 / 60%) 0.2em -0.2em 4px,
                 rgb(255 0 0 / 60%) 0.4em -0.4em 4px
             `,
             filter: "blur(6px)",
@@ -129,9 +127,9 @@ export default {
             opacity: 1,
             y: 0,
             textShadow: `
-                transparent 0em 0em 0px, 
-                transparent 0em 0em 0px, 
-                transparent 0em 0em 0px, 
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px,
+                transparent 0em 0em 0px,
                 transparent 0em 0em 0px
             `,
             filter: "blur(0px)",
