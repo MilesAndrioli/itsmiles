@@ -61,6 +61,7 @@ uniform float uMouseRidgeShift;        // Localized ridge sharpness change
 uniform float uMouseScaleShift;        // Localized noise zoom change
 uniform float uMouseTimeShift;         // Localized animation speed change
 uniform float uMouseGainShift;         // Localized FBM detail change
+uniform float uMouseChromaticStrength; // RGB channel separation (chromatic aberration)
 
 // --- VARYINGS (from Vertex Shader) ---
 varying vec2 vUv;
@@ -301,6 +302,27 @@ float domainWarp(vec2 p, float time) {
 
 
 // ============================================================================
+// COLOR MAPPING
+// ============================================================================
+//
+// Maps a single noise float to an RGB color using the three-stop palette.
+// Extracted into a function so chromatic aberration can map each channel
+// independently from a different noise sample.
+//
+// The pow() curves control brightness distribution:
+//   f * f (quadratic) — pushes mid-values darker, keeps the image moody
+//   pow(f, 3.0) (cubic) — highlights only at the sharpest peaks
+
+vec3 colorMap(float f) {
+    vec3 c = mix(uColorBase, uColorMid, clamp(f * f, 0.0, 1.0));
+    c = mix(c, uColorHighlight, clamp(pow(f, 3.0), 0.0, 1.0));
+    float colorBlend = clamp(uScroll * uScrollColorShift, -0.5, 0.5);
+    c = mix(c, uColorHighlight, colorBlend);
+    return c;
+}
+
+
+// ============================================================================
 // MAIN — Putting it all together
 // ============================================================================
 
@@ -398,32 +420,36 @@ void main() {
     // --- Compute the warped noise ---
     float f = domainWarp(p, uTime);
 
-    // --- Color mapping ---
-    // Map the single float noise value to a color using our three-tone palette.
-    // The mapping uses pow() curves to control the distribution:
-    //   - Most of the image stays near uColorBase (very dark)
-    //   - Mid-tones appear in the ridges and warp creases
-    //   - Highlights only appear at the sharpest peaks
+    // --- Color mapping (with optional chromatic aberration) ---
+    // Chromatic aberration simulates how a real lens fails to focus all
+    // wavelengths to the same point. Red, green, and blue refract
+    // differently, creating colored fringes at edges.
     //
-    // f * f (quadratic) pushes mid-values darker, keeping the overall
-    // image moody. pow(f, 3.0) (cubic) is even more aggressive, ensuring
-    // highlights only appear at the very brightest peaks.
+    // We sample domainWarp at 3 slightly offset positions — one per
+    // RGB channel. The offset radiates outward from the cursor, scaled
+    // by mouseInfluence, so the effect is localized around the mouse.
     //
-    // This keeps the overall brightness low while still having enough
-    // contrast to see the structure.
-    vec3 color = mix(uColorBase, uColorMid, clamp(f * f, 0.0, 1.0));
-    color = mix(color, uColorHighlight, clamp(pow(f, 3.0), 0.0, 1.0));
+    // Cost: 2 extra domainWarp() calls when active. The per-pixel
+    // mouseInfluence check ensures pixels outside the radius skip
+    // the expensive extra samples entirely.
+    vec3 color;
 
-    // --- Scroll-driven color shift ---
-    // Blend the final color toward the highlight as the user scrolls.
-    // This creates a gradual brightening or darkening effect across
-    // the page. The shift is applied as a mix factor on top of the
-    // existing palette mapping, so it respects the noise structure
-    // rather than uniformly tinting everything.
-    // Positive scrollColorShift = brighter toward bottom.
-    // Negative = darker toward bottom.
-    float colorBlend = clamp(uScroll * uScrollColorShift, -0.5, 0.5);
-    color = mix(color, uColorHighlight, colorBlend);
+    if (uMouseEnabled > 0.5 && uMouseChromaticStrength > 0.0 && mouseInfluence > 0.0) {
+        vec2 mouseUV = uMouse;
+        mouseUV.x *= uResolution.x / uResolution.y;
+        float dist = distance(uv, mouseUV);
+        vec2 dir = dist > 0.001 ? normalize(uv - mouseUV) : vec2(0.0);
+        vec2 caOffset = dir * mouseInfluence * uMouseChromaticStrength;
+
+        float fR = domainWarp(p + caOffset, uTime);
+        float fB = domainWarp(p - caOffset, uTime);
+
+        color.r = colorMap(fR).r;
+        color.g = colorMap(f).g;
+        color.b = colorMap(fB).b;
+    } else {
+        color = colorMap(f);
+    }
 
     // --- Mouse brightness influence ---
     // Apply a localized brightness shift around the cursor.

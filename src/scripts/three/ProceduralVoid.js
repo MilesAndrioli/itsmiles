@@ -97,7 +97,7 @@ export default class ProceduralVoid {
             //
             // Sweet spot: 0.03–0.08 for a subtle background that doesn't
             // distract from content.
-            timeScale: 0.08,
+            timeScale: 0.2,
 
             // ----------------------------------------------------------------
             // COLOR PALETTE
@@ -184,7 +184,7 @@ export default class ProceduralVoid {
             // At 6-10, the pattern becomes deeply distorted — marble-like
             // swirls and alien geological formations.
             // Beyond 10, it can become chaotic and lose structure.
-            warpStrength: 5.0,
+            warpStrength: 4.0,
 
             // Scale: the overall zoom level of the noise coordinate space.
             // This sets how "close" you are to the noise pattern.
@@ -196,7 +196,7 @@ export default class ProceduralVoid {
             // Scale and warpStrength interact strongly:
             //   High scale + high warp = dense, complex, potentially chaotic
             //   Low scale + low warp = calm, minimal, contemplative
-            warpScale: 2.0,
+            warpScale: 2.5,
 
             // ----------------------------------------------------------------
             // SCROLL REACTIVITY
@@ -204,6 +204,10 @@ export default class ProceduralVoid {
             // Lenis smooth scroll exposes a progress value (0..1) on
             // window.__LENIS__.progress. We feed this into the shader
             // to subtly shift noise parameters as the user scrolls.
+
+            // Enabled: master toggle for scroll reactivity.
+            // When off, uScroll stays at 0 so all shift values have no effect.
+            scrollEnabled: false,
 
             // Warp shift: how much scroll displaces the domain warp offset.
             // This makes the noise pattern "drift" as you scroll, as if
@@ -259,7 +263,7 @@ export default class ProceduralVoid {
             // Enabled: master toggle for mouse interaction.
             // When off, the mouse uniform still updates but the shader
             // ignores it — no GPU cost from the extra distance calculation.
-            mouseEnabled: true,
+            mouseEnabled: false,
 
             // Radius: size of the mouse influence zone in UV space.
             // At 0.1, the effect is a tight spotlight around the cursor.
@@ -311,6 +315,14 @@ export default class ProceduralVoid {
             // within its radius. Positive = reveals fine-grained noise
             // near cursor. Negative = suppresses it for a smoother look.
             mouseGainShift: 0.05,
+
+            // Chromatic aberration: splits RGB channels spatially near
+            // the cursor, simulating a lens that can't focus all wavelengths
+            // to the same point. Creates colored fringes at noise edges.
+            // At 0, disabled (no extra GPU cost). At 0.05-0.1, subtle
+            // prismatic fringing. At 0.15, dramatic color split.
+            // Cost: 2 extra domainWarp() evaluations when active.
+            mouseChromaticStrength: 0.0,
         };
     }
 
@@ -415,6 +427,9 @@ export default class ProceduralVoid {
                 uMouseScaleShift: { value: this.settings.mouseScaleShift },
                 uMouseTimeShift: { value: this.settings.mouseTimeShift },
                 uMouseGainShift: { value: this.settings.mouseGainShift },
+                uMouseChromaticStrength: {
+                    value: this.settings.mouseChromaticStrength,
+                },
             },
             vertexShader,
             fragmentShader,
@@ -581,12 +596,13 @@ export default class ProceduralVoid {
         });
 
         // ----------------------------------------------------------------
-        // PARALLAX DEPTH
-        // ----------------------------------------------------------------
-        // ----------------------------------------------------------------
         // SCROLL REACTIVITY
         // ----------------------------------------------------------------
         const scroll = pane.addFolder({ title: "Scroll (Lenis)" });
+
+        scroll.addBinding(this.settings, "scrollEnabled", {
+            label: "Enabled",
+        });
 
         // How much scrolling shifts the warp offset — creates a
         // panning effect through the noise landscape.
@@ -732,6 +748,16 @@ export default class ProceduralVoid {
             min: -0.3,
             max: 0.3,
             step: 0.01,
+        });
+
+        // RGB channel separation near cursor. Simulates lens chromatic
+        // aberration — noise edges get colored fringes. Costs 2 extra
+        // domainWarp() calls when active; 0 = disabled, no cost.
+        mouse.addBinding(this.settings, "mouseChromaticStrength", {
+            label: "Chromatic (RGB split)",
+            min: 0.0,
+            max: 0.15,
+            step: 0.001,
         });
 
         // ----------------------------------------------------------------
@@ -883,8 +909,10 @@ export default class ProceduralVoid {
         // Read Lenis scroll progress (0 at top, 1 at bottom).
         // window.__LENIS__ is set by gsapLenis.js during DOMContentLoaded.
         // Before Lenis initializes, progress defaults to 0.
-        if (window.__LENIS__) {
+        if (s.scrollEnabled && window.__LENIS__) {
             uniforms.uScroll.value = window.__LENIS__.progress;
+        } else {
+            uniforms.uScroll.value = 0.0;
         }
         uniforms.uScrollWarpShift.value = s.scrollWarpShift;
         uniforms.uScrollRidgeShift.value = s.scrollRidgeShift;
@@ -911,5 +939,6 @@ export default class ProceduralVoid {
         uniforms.uMouseScaleShift.value = s.mouseScaleShift;
         uniforms.uMouseTimeShift.value = s.mouseTimeShift;
         uniforms.uMouseGainShift.value = s.mouseGainShift;
+        uniforms.uMouseChromaticStrength.value = s.mouseChromaticStrength;
     }
 }
