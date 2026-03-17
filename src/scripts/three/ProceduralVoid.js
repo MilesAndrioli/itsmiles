@@ -124,7 +124,7 @@ export default class ProceduralVoid {
 
             // Mid: appears in the bulk of the noise ridges and warp creases.
             // Slightly brighter than base — this is where the texture lives.
-            colorMid: { r: 0.0, g: 0.07, b: 0.14 },
+            colorMid: { r: 0.01, g: 0.07, b: 0.13 },
 
             // Highlight: only visible at the sharpest ridge peaks.
             // The brightest tone — use sparingly. Even small increases
@@ -167,7 +167,7 @@ export default class ProceduralVoid {
             // of dark space between them — like veins or cracks.
             // Lower values (1-2) produce broader, hill-like features.
             // At exactly 1.0, it's a simple absolute-value fold.
-            ridgeSharpness: 0.5,
+            ridgeSharpness: 1.0,
 
             // Offset: shifts the threshold where the fold happens.
             // At 0.5 (midpoint of the noise range), ridges form at the
@@ -205,7 +205,7 @@ export default class ProceduralVoid {
             //   Low scale + low warp = calm, minimal, contemplative
             warpScale: 2.0,
 
-            driftAngle: 90,
+            driftAngle: 75,
 
             // ----------------------------------------------------------------
             // SCROLL REACTIVITY
@@ -285,7 +285,7 @@ export default class ProceduralVoid {
             // At 0.1, the effect is a tight spotlight around the cursor.
             // At 0.3-0.5, it's a broad, ambient influence.
             // At 1.0+, it affects most of the screen.
-            mouseRadius: 0.7,
+            mouseRadius: 0.54,
 
             // Warp influence: how much the mouse displaces the noise
             // coordinates within its radius. This creates a localized
