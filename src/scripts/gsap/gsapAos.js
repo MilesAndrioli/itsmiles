@@ -30,10 +30,10 @@ export default function initGsapAos() {
         return {
             start:
                 dataset.aosStart ||
-                (isAfter ? `center ${APP_HEADER_HEIGHT}` : "top bottom"),
+                (isAfter ? `top ${APP_HEADER_HEIGHT}` : "top bottom"),
             end:
                 dataset.aosEnd ||
-                (isAfter ? `bottom ${APP_HEADER_HEIGHT}` : "top center"),
+                (isAfter ? `bottom ${APP_HEADER_HEIGHT}` : "center center"),
 
             duration: msToSec(dataset.aosDuration || 600),
             delay: msToSec(dataset.aosDelay || 0),
