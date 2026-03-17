@@ -1,80 +1,25 @@
 @page {
     size: A4 portrait;
-    margin: 12mm 14mm;
+    margin: 8mm;
 }
 
 @media print {
-    html,
     body {
-        background: white !important;
+        height: auto !important;
         color: black !important;
-        font-size: 10pt;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
 
-    /* Disable Lenis scroll transforms */
-    #smooth-wrapper,
-    #smooth-content {
-        position: static !important;
-        transform: none !important;
-    }
-
-    /* Hide site chrome */
     #app-header,
     #app-footer,
-    #app-noise,
     #app-filter,
-    #app-loader,
+    #app-noise,
     .mf-cursor,
-    .PrintButton {
+    #app-loader,
+    canvas,
+    #tweakpane-container,
+    .ScrollProgressButton {
         display: none !important;
-    }
-
-    /* Grayscale everything */
-    * {
-        color: black !important;
-        border-color: #ccc !important;
-    }
-
-    a {
-        text-decoration: none !important;
-    }
-
-    /* Resume layout adjustments */
-    .ResumePage {
-        padding: 0 !important;
-    }
-
-    .ResumeGrid {
-        gap: 8pt !important;
-        font-size: 9pt;
-        line-height: 1.35;
-    }
-
-    .ResumeName {
-        font-size: 18pt;
-        line-height: 1.2;
-    }
-
-    .ResumeSection {
-        gap: 4pt;
-        break-inside: avoid;
-    }
-
-    .ResumeJob {
-        break-inside: avoid;
-    }
-
-    /* StrikeAround lines in print */
-    .StrikeAround::before,
-    .StrikeAround::after {
-        --border-color: #ccc;
-    }
-
-    /* Container: remove padding for print */
-    .container {
-        max-width: none !important;
-        padding: 0 !important;
     }
 }
