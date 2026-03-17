@@ -7,23 +7,25 @@ import userPhoto from "@/assets/images/Miles_1.jpeg";
 const { name, title, contact, skills } = Astro.props;
 ---
 
-<aside class="ResumeSidebar grid content-start gap-5 p-8 pb-0 md:pb-8">
+<aside
+    class="ResumeSidebar grid content-start gap-5 p-8 pb-0 md:pb-8 print:gap-[10pt] print:p-0"
+>
     <!-- Photo -->
     <a
         href={contact.linkedin}
         target="_blank"
-        class="border-iron-800 hidden overflow-hidden rounded-xl border md:block"
+        class="border-iron-800 overflow-hidden rounded-xl border print:border-transparent"
         data-aos-child
     >
         <ParallaxImage
             src={userPhoto}
             alt={name}
-            class="aspect-square filter-[grayscale(100%)_sepia(20%)_contrast(130%)_brightness(75%)]"
+            class="aspect-square filter-[grayscale(100%)_sepia(20%)_contrast(130%)_brightness(75%)] print:filter-[grayscale(100%)]"
         />
     </a>
 
     <!-- Name & Title (mobile) -->
-    <div class="grid gap-1 md:hidden" data-aos-child>
+    <div class="grid gap-1 md:hidden print:hidden" data-aos-child>
         <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
             {name}
         </h1>
@@ -34,25 +36,25 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Summary -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">About</h3>
+        <h3 class="ResumeHeading subtitle print:text-iron-700 mb-0 text-xs">
+            About
+        </h3>
         <div>
-            <p class="text-iron-400 text-sm">
+            <p class="text-iron-400 print:text-iron-800 text-sm">
                 Front-end developer with 7 years of experience based in Málaga,
                 Spain.
             </p>
-            <p class="text-iron-400 text-sm">
-                Focused on fluid and highly interactive web experiences.
-            </p>
-            <p class="text-iron-400 text-sm">
-                Currently exploring 3D on the web with WebGL, shaders, Three.js,
-                and Theatre.js.
-            </p>
-            <p class="text-iron-400 text-sm">
+            <p class="text-iron-400 print:text-iron-800 text-sm">
                 Bilingual in Spanish and English. <a
                     href={contact.linkedin}
                     target="_blank"
-                    class="text-jade yoyo-link">Open</a
+                    class="text-jade yoyo-link print:text-iron-800">Open</a
                 > to remote or on-site roles worldwide.
+            </p>
+            <p class="text-iron-400 text-sm md:hidden print:hidden">
+                Focused on fluid and highly interactive web experiences.
+                Currently exploring 3D on the web with WebGL, shaders, Three.js,
+                and Theatre.js.
             </p>
         </div>
     </div>
@@ -61,8 +63,10 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Contact -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Contact</h3>
-        <ul class="text-iron-300 grid gap-1.5 text-sm">
+        <h3 class="ResumeHeading subtitle print:text-iron-700 mb-0 text-xs">
+            Contact
+        </h3>
+        <ul class="text-iron-300 print:text-iron-800 grid gap-1.5 text-sm">
             <li>
                 <CloneLink
                     href={`mailto:${contact.email}`}
@@ -89,7 +93,9 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Skills -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Skills</h3>
+        <h3 class="ResumeHeading subtitle print:text-iron-700 mb-0 text-xs">
+            Skills
+        </h3>
         <div class="grid gap-3">
             {
                 skills.map((group) => (
@@ -97,7 +103,7 @@ const { name, title, contact, skills } = Astro.props;
                         <span class="text-iron-600 text-xs">
                             {group.category}
                         </span>
-                        <span class="text-iron-300 text-sm">
+                        <span class="text-iron-300 print:text-iron-800 text-sm">
                             {group.items.join(" · ")}
                         </span>
                     </div>

@@ -4,38 +4,50 @@ import Divider from "@/components/Divider.astro";
 const { name, title, experience, projects } = Astro.props;
 ---
 
-<div class="ResumeMain grid content-start gap-5 p-8 pt-0 md:pt-8">
+<div
+    class="ResumeMain grid content-start gap-5 p-8 pt-0 md:pt-8 print:gap-[10pt] print:p-0"
+>
     <!-- Name & Title (desktop) -->
-    <div class="hidden gap-1 md:grid">
+    <div class="hidden gap-1 md:grid print:grid">
         <h1
-            class="ResumeName text-iron-50 mb-0 font-serif text-4xl"
+            class="ResumeName text-iron-50 print:text-iron-950 mb-0 font-serif text-4xl print:text-3xl"
             data-aos-child="split-chromatic"
         >
             {name}
         </h1>
-        <h2 class="subtitle" data-aos-child="split-chromatic">
+        <h2
+            class="subtitle print:text-iron-700 mb-0"
+            data-aos-child="split-chromatic"
+        >
             {title}
         </h2>
+        <p class="text-iron-400 print:text-iron-800 text-sm">
+            Focused on fluid and highly interactive web experiences. Currently
+            exploring 3D on the web with WebGL, shaders, Three.js, and
+            Theatre.js.
+        </p>
     </div>
 
     <Divider fade="end" data-aos-child="fade-in-blur-out" />
 
     <!-- Experience -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Experience</h3>
+        <h3 class="ResumeHeading subtitle print:text-iron-700 mb-0 text-xs">
+            Experience
+        </h3>
         <div class="grid gap-5">
             {
                 experience.map((job) => (
                     <div class="ResumeJob grid gap-3">
                         <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
                             <div class="flex items-baseline gap-2">
-                                <span class="text-iron-200 text-sm font-bold">
+                                <span class="text-iron-200 print:text-iron-950 text-sm font-bold">
                                     {job.role}
                                 </span>
                                 <a
                                     href={job.website}
                                     target="_blank"
-                                    class="yoyo-link text-jade text-xs"
+                                    class="yoyo-link text-jade print:text-iron-800 text-xs"
                                 >
                                     {job.website.replace("https://", "")}
                                 </a>
@@ -46,7 +58,7 @@ const { name, title, experience, projects } = Astro.props;
                         </div>
                         <p class="mb-0 text-sm">{job.description}</p>
                         {job.highlights && job.highlights.length > 0 && (
-                            <ul class="marker:text-iron-700 text-iron-400 grid list-disc gap-1 ps-4 text-sm">
+                            <ul class="text-iron-400 print:text-iron-800 grid list-[circle] gap-1 ps-4 text-sm">
                                 {job.highlights.map((h) => (
                                     <li>{h}</li>
                                 ))}
@@ -62,20 +74,22 @@ const { name, title, experience, projects } = Astro.props;
 
     <!-- Projects -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Projects</h3>
+        <h3 class="ResumeHeading subtitle print:text-iron-700 mb-0 text-xs">
+            Projects
+        </h3>
         <div class="grid gap-5">
             {
                 projects.map((project) => (
                     <div class="ResumeProject grid gap-3">
-                        <div class="grid gap-1">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
                             <div class="flex items-baseline gap-2">
-                                <span class="text-iron-200 text-sm font-bold">
+                                <span class="text-iron-200 print:text-iron-950 text-sm font-bold">
                                     {project.name}
                                 </span>
                                 <a
                                     href={project.url}
                                     target="_blank"
-                                    class="yoyo-link text-jade text-xs"
+                                    class="yoyo-link text-jade print:text-iron-800 text-xs"
                                 >
                                     {project.url.replace("https://", "")}
                                 </a>
@@ -89,7 +103,7 @@ const { name, title, experience, projects } = Astro.props;
                         <p class="mb-0 text-sm">{project.description}</p>
                         {project.highlights &&
                             project.highlights.length > 0 && (
-                                <ul class="marker:text-iron-700 text-iron-400 grid list-disc gap-1 ps-4 text-sm">
+                                <ul class="text-iron-400 print:text-iron-800 grid list-[circle] gap-1 ps-4 text-sm">
                                     {project.highlights.map((h) => (
                                         <li>{h}</li>
                                     ))}

@@ -15,21 +15,20 @@ const { meta, experience, skills, projects } = resume;
     title="Resume"
     description="Miles Andrioli Bachini — Creative Front-end Developer"
     emoji="📄"
-    class="ResumePage py-14"
+    class="ResumePage py-16 print:py-0"
     header={false}
-    footer={false}
 >
     <div
         data-aos-group="fade-in-blur-out"
         data-aos-stagger-gap="100"
         data-aos-duration="1200"
     >
-        <div class="container max-w-5xl">
-            <Divider />
+        <div class="container max-w-5xl print:max-w-none print:p-0">
+            <Divider class="print:hidden" />
             <div class="flex">
-                <Divider vertical />
+                <Divider vertical class="print:hidden" />
                 <div
-                    class="ResumeGrid bg-iron-950/80 z-75 grid flex-1 gap-5 rounded-xl backdrop-blur-lg backdrop-saturate-200 md:grid-cols-[1fr_auto_2fr] md:gap-0"
+                    class="ResumeGrid bg-iron-950/80 z-75 grid flex-1 gap-5 rounded-xl backdrop-blur-lg backdrop-saturate-200 md:grid-cols-[1fr_auto_2fr] md:gap-0 print:grid-cols-[1fr_auto_2fr] print:gap-[20pt] print:bg-transparent"
                 >
                     <ResumeSidebar
                         name={meta.name}
@@ -37,7 +36,7 @@ const { meta, experience, skills, projects } = resume;
                         contact={contact}
                         skills={skills}
                     />
-                    <Divider vertical class="hidden md:block" />
+                    <Divider vertical class="hidden md:block print:block" />
                     <ResumeMain
                         name={meta.name}
                         title={meta.title}
@@ -45,9 +44,9 @@ const { meta, experience, skills, projects } = resume;
                         projects={projects}
                     />
                 </div>
-                <Divider vertical />
+                <Divider vertical class="print:hidden" />
             </div>
-            <Divider />
+            <Divider class="print:hidden" />
         </div>
     </div>
 </Skeleton>
