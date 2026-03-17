@@ -1,4 +1,6 @@
 ---
+import Divider from "../components/Divider.astro";
+
 const colors = [
     { label: "Iron 400", class: "bg-iron-400", value: "oklch(82% 0.006 70)" },
     {
@@ -39,7 +41,7 @@ const colors = [
 ];
 ---
 
-<section>
+<section class="hero">
     <div class="container">
         <div data-aos-group="fade-in-up">
             <div class="grid gap-6">
@@ -49,13 +51,13 @@ const colors = [
                     >
                         Colors
                     </p>
-                    <p
-                        class="text-iron-700 StrikeAround Right font-mono text-xs"
-                    >
+                    <p class="text-iron-700 font-mono text-xs">
                         <span class="text-jade-100">{colors.length}</span> active
                         tokens
                     </p>
                 </div>
+
+                <Divider data-aos-child="scale-x" />
 
                 <div
                     class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4"
