@@ -39,6 +39,7 @@ uniform float uRidgeOffset;    // Shifts the ridge threshold
 // Domain warp parameters
 uniform float uWarpStrength;   // How much the coordinates get displaced
 uniform float uWarpScale;      // Scale of the warp offset vectors
+uniform vec2 uDriftDirection;  // Direction of time-driven coordinate shift
 
 // Scroll reactivity parameters — all of these multiply uScroll (0..1) by
 // their respective shift value, so at scroll=0 (top of page) they have no
@@ -51,6 +52,9 @@ uniform float uScrollWarpStrengthShift; // Changes domain warp intensity
 uniform float uScrollGainShift;        // Changes FBM gain (fine detail)
 uniform float uScrollScaleShift;       // Changes noise zoom level
 uniform float uScrollColorShift;       // Shifts palette toward highlight
+uniform float uScrollVelocity;        // Smoothed Lenis scroll speed (signed)
+uniform float uScrollChromaticStrength; // RGB split driven by scroll velocity
+
 // Mouse interaction parameters
 uniform float uMouseEnabled;           // Toggle: 1.0 = on, 0.0 = off
 uniform vec2 uMouse;                   // Smoothed cursor position in UV space (0..1)
@@ -62,6 +66,7 @@ uniform float uMouseScaleShift;        // Localized noise zoom change
 uniform float uMouseTimeShift;         // Localized animation speed change
 uniform float uMouseGainShift;         // Localized FBM detail change
 uniform float uMouseChromaticStrength; // RGB channel separation (chromatic aberration)
+uniform float uMouseSpeed;            // Smoothed cursor movement speed (0 = still)
 
 // --- VARYINGS (from Vertex Shader) ---
 varying vec2 vUv;
@@ -80,9 +85,10 @@ varying vec2 vUv;
 // domainWarp → ridgeFbm → fbm, which would clutter every function
 // signature. Instead, main() sets these once and the noise functions
 // read them as if they were uniforms.
-float gGain;           // Effective FBM gain (base + scroll + mouse)
-float gRidgeSharpness; // Effective ridge sharpness (base + scroll + mouse)
-float gTimeOffset;     // Extra time offset from mouse proximity
+float gGain;              // Effective FBM gain (base + scroll + mouse)
+float gRidgeSharpness;    // Effective ridge sharpness (base + scroll + mouse)
+float gTimeOffset;        // Extra time offset from mouse proximity
+float gScrollColorBlend;  // Precomputed scroll color shift
 
 
 // ============================================================================
@@ -273,8 +279,8 @@ float domainWarp(vec2 p, float time) {
     // prevent the two components from being correlated. Time shifts at
     // slightly different speeds to break temporal symmetry.
     vec2 q = vec2(
-        fbm(p + vec2(0.0, 0.0) + t * 0.6),
-        fbm(p + vec2(5.2, 1.3) + t * 0.5)
+        fbm(p + vec2(0.0, 0.0) + uDriftDirection * t * 0.6),
+        fbm(p + vec2(5.2, 1.3) + uDriftDirection * t * 0.5)
     );
 
     // --- Effective warp strength ---
@@ -289,8 +295,8 @@ float domainWarp(vec2 p, float time) {
     // The ridge noise uses gRidgeSharpness (set by main() with scroll
     // + mouse modifiers already baked in).
     vec2 r = vec2(
-        ridgeFbm(p + warpStr * q + vec2(1.7, 9.2) + t * 0.3),
-        ridgeFbm(p + warpStr * q + vec2(8.3, 2.8) + t * 0.4)
+        ridgeFbm(p + warpStr * q + vec2(1.7, 9.2) + uDriftDirection * t * 0.3),
+        ridgeFbm(p + warpStr * q + vec2(8.3, 2.8) + uDriftDirection * t * 0.4)
     );
 
     // --- Final evaluation ---
@@ -316,8 +322,7 @@ float domainWarp(vec2 p, float time) {
 vec3 colorMap(float f) {
     vec3 c = mix(uColorBase, uColorMid, clamp(f * f, 0.0, 1.0));
     c = mix(c, uColorHighlight, clamp(pow(f, 3.0), 0.0, 1.0));
-    float colorBlend = clamp(uScroll * uScrollColorShift, -0.5, 0.5);
-    c = mix(c, uColorHighlight, colorBlend);
+    c = mix(c, uColorHighlight, gScrollColorBlend);
     return c;
 }
 
@@ -412,19 +417,39 @@ void main() {
         p += mouseDir * mouseInfluence * uMouseWarpInfluence;
     }
 
+    // Precompute scroll color blend once — colorMap() reads gScrollColorBlend
+    // instead of recomputing per call (saves 2 redundant clamp+mix during CA).
+    gScrollColorBlend = clamp(uScroll * uScrollColorShift, -0.5, 0.5);
+
     // --- Compute the warped noise ---
     float f = domainWarp(p, uTime);
 
     // --- Color mapping (with optional chromatic aberration) ---
-    // Chromatic aberration samples domainWarp at 3 slightly offset positions
-    // (one per RGB channel). The offset radiates outward from the cursor
-    // using the pre-computed mouseDir, scaled by mouseInfluence.
-    // Cost: 2 extra domainWarp() calls when active.
+    // Two CA sources combine into a single offset vector:
+    //   Mouse CA: radial from cursor, strength from proximity
+    //   Scroll CA: vertical, strength from scroll velocity
+    // When both are active, their offsets add — the prismatic effect
+    // shifts in the combined direction. When only one is active,
+    // the other contributes zero. Cost: 2 extra domainWarp() calls
+    // only when there's actual offset.
     vec3 color;
+    vec2 caOffset = vec2(0.0);
 
-    if (uMouseEnabled > 0.5 && uMouseChromaticStrength > 0.0 && mouseInfluence > 0.0) {
-        vec2 caOffset = mouseDir * mouseInfluence * uMouseChromaticStrength;
+    // Mouse contribution — radial from cursor, only while moving.
+    // uMouseSpeed is 0 when the cursor is still, so CA fades out
+    // naturally when movement stops (same behavior as scroll CA).
+    if (uMouseEnabled > 0.5 && uMouseChromaticStrength > 0.0 && mouseInfluence > 0.0 && uMouseSpeed > 0.0001) {
+        caOffset += mouseDir * mouseInfluence * uMouseChromaticStrength * uMouseSpeed;
+    }
 
+    // Scroll contribution — vertical split proportional to velocity.
+    // The sign of uScrollVelocity determines the split direction:
+    // scrolling down pushes red up / blue down, scrolling up reverses.
+    if (uScrollChromaticStrength > 0.0 && abs(uScrollVelocity) > 0.001) {
+        caOffset += vec2(0.0, uScrollVelocity * uScrollChromaticStrength);
+    }
+
+    if (dot(caOffset, caOffset) > 0.0) {
         float fR = domainWarp(p + caOffset, uTime);
         float fB = domainWarp(p - caOffset, uTime);
 

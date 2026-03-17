@@ -54,6 +54,13 @@ export default class ProceduralVoid {
         // matching the shader's vUv coordinates for easy distance math.
         this.mouseRaw = new Vector2(0.5, 0.5);
         this.mouseSmoothed = new Vector2(0.5, 0.5);
+        this.mousePrevRaw = new Vector2(0.5, 0.5);
+        this.mouseSpeedSmoothed = 0.0;
+
+        // --- Scroll velocity state ---
+        // Lenis velocity can be spiky. We smooth it with a lerp so the
+        // chromatic aberration fades in/out gracefully rather than flickering.
+        this.scrollVelocitySmoothed = 0.0;
 
         // --- The fullscreen quad ---
         this.quad = this._createQuad();
@@ -146,7 +153,7 @@ export default class ProceduralVoid {
             // Gain and lacunarity together define the noise's "character":
             //   High lacunarity + low gain  = smooth with occasional sharp detail
             //   Low lacunarity + high gain  = dense, busy, everywhere-detail
-            fbmGain: 0.62,
+            fbmGain: 0.56,
 
             // ----------------------------------------------------------------
             // RIDGE NOISE PARAMETERS
@@ -196,7 +203,9 @@ export default class ProceduralVoid {
             // Scale and warpStrength interact strongly:
             //   High scale + high warp = dense, complex, potentially chaotic
             //   Low scale + low warp = calm, minimal, contemplative
-            warpScale: 2.5,
+            warpScale: 2.0,
+
+            driftAngle: 90,
 
             // ----------------------------------------------------------------
             // SCROLL REACTIVITY
@@ -207,13 +216,13 @@ export default class ProceduralVoid {
 
             // Enabled: master toggle for scroll reactivity.
             // When off, uScroll stays at 0 so all shift values have no effect.
-            scrollEnabled: false,
+            scrollEnabled: true,
 
             // Warp shift: how much scroll displaces the domain warp offset.
             // This makes the noise pattern "drift" as you scroll, as if
             // you're panning through a landscape. Subtle values (0.5-2.0)
             // feel natural; high values (3+) make the shift obvious.
-            scrollWarpShift: 0.5,
+            scrollWarpShift: 0,
 
             // Ridge shift: how much scroll changes the ridge sharpness.
             // Positive values sharpen ridges as you scroll down, making
@@ -232,7 +241,7 @@ export default class ProceduralVoid {
             // down — the pattern becomes more alien and complex toward the
             // bottom. Negative values calm the pattern as you scroll.
             // At 0, warp strength stays constant regardless of scroll.
-            scrollWarpStrengthShift: -1.0,
+            scrollWarpStrengthShift: -0.5,
 
             // Gain shift: how much scroll changes FBM gain (fine detail).
             // Positive values reveal more high-frequency noise toward the
@@ -253,6 +262,13 @@ export default class ProceduralVoid {
             // revealing the texture. Negative values darken it.
             scrollColorShift: 0.0,
 
+            // Chromatic aberration driven by scroll velocity.
+            // Splits RGB channels vertically while scrolling — faster
+            // scroll = stronger split. Fades to zero when scroll stops.
+            // The direction follows scroll: down = red up / blue down.
+            // Cost: 2 extra domainWarp() calls while scrolling.
+            scrollChromaticStrength: 0.002,
+
             // ----------------------------------------------------------------
             // MOUSE INTERACTION
             // ----------------------------------------------------------------
@@ -263,13 +279,13 @@ export default class ProceduralVoid {
             // Enabled: master toggle for mouse interaction.
             // When off, the mouse uniform still updates but the shader
             // ignores it — no GPU cost from the extra distance calculation.
-            mouseEnabled: false,
+            mouseEnabled: true,
 
             // Radius: size of the mouse influence zone in UV space.
             // At 0.1, the effect is a tight spotlight around the cursor.
             // At 0.3-0.5, it's a broad, ambient influence.
             // At 1.0+, it affects most of the screen.
-            mouseRadius: 1.0,
+            mouseRadius: 0.7,
 
             // Warp influence: how much the mouse displaces the noise
             // coordinates within its radius. This creates a localized
@@ -297,7 +313,7 @@ export default class ProceduralVoid {
             // within its radius. Positive = sharper ridges near cursor,
             // revealing intricate crease detail. Negative = smooths
             // ridges, creating a calming zone around the cursor.
-            mouseRidgeShift: -0.5,
+            mouseRidgeShift: 0.5,
 
             // Scale shift: how much the cursor changes the noise zoom
             // within its radius. Positive = zooms in near cursor (finer
@@ -309,7 +325,7 @@ export default class ProceduralVoid {
             // noise animation within its radius. Positive = time flows
             // faster near cursor (local turbulence). Negative = time
             // slows or reverses (a pocket of stillness).
-            mouseTimeShift: 0.0,
+            mouseTimeShift: 0.2,
 
             // Gain shift: how much the cursor changes FBM detail level
             // within its radius. Positive = reveals fine-grained noise
@@ -322,7 +338,7 @@ export default class ProceduralVoid {
             // At 0, disabled (no extra GPU cost). At 0.05-0.1, subtle
             // prismatic fringing. At 0.15, dramatic color split.
             // Cost: 2 extra domainWarp() evaluations when active.
-            mouseChromaticStrength: 0.0,
+            mouseChromaticStrength: 0.04,
         };
     }
 
@@ -400,6 +416,7 @@ export default class ProceduralVoid {
                 uRidgeOffset: { value: this.settings.ridgeOffset },
                 uWarpStrength: { value: this.settings.warpStrength },
                 uWarpScale: { value: this.settings.warpScale },
+                uDriftDirection: { value: new Vector2(1.0, 1.0) },
 
                 // --- Scroll reactivity uniforms ---
                 uScroll: { value: 0.0 },
@@ -412,9 +429,13 @@ export default class ProceduralVoid {
                 uScrollGainShift: { value: this.settings.scrollGainShift },
                 uScrollScaleShift: { value: this.settings.scrollScaleShift },
                 uScrollColorShift: { value: this.settings.scrollColorShift },
+                uScrollVelocity: { value: 0.0 },
+                uScrollChromaticStrength: {
+                    value: this.settings.scrollChromaticStrength,
+                },
 
                 // --- Mouse interaction uniforms ---
-                uMouseEnabled: { value: 0.0 },
+                uMouseEnabled: { value: 1.0 },
                 uMouse: { value: new Vector2(0.5, 0.5) },
                 uMouseRadius: { value: this.settings.mouseRadius },
                 uMouseWarpInfluence: {
@@ -430,6 +451,7 @@ export default class ProceduralVoid {
                 uMouseChromaticStrength: {
                     value: this.settings.mouseChromaticStrength,
                 },
+                uMouseSpeed: { value: 0.0 },
             },
             vertexShader,
             fragmentShader,
@@ -597,6 +619,13 @@ export default class ProceduralVoid {
             step: 0.1,
         });
 
+        warp.addBinding(this.settings, "driftAngle", {
+            label: "Drift Angle (direction)",
+            min: 0,
+            max: 360,
+            step: 1,
+        });
+
         // ----------------------------------------------------------------
         // SCROLL REACTIVITY
         // ----------------------------------------------------------------
@@ -618,7 +647,7 @@ export default class ProceduralVoid {
         // How much scrolling changes ridge sharpness — the texture
         // gets progressively sharper or softer as you scroll down.
         scroll.addBinding(this.settings, "scrollRidgeShift", {
-            label: "Ridge Shift (sharpen)",
+            label: "Sharpness",
             min: -3.0,
             max: 3.0,
             step: 0.1,
@@ -627,7 +656,7 @@ export default class ProceduralVoid {
         // How much scrolling advances the time animation — ties
         // scroll velocity to noise movement.
         scroll.addBinding(this.settings, "scrollTimeShift", {
-            label: "Time Shift (scroll speed)",
+            label: "Time",
             min: 0.0,
             max: 3.0,
             step: 0.1,
@@ -636,7 +665,7 @@ export default class ProceduralVoid {
         // How much scroll changes the domain warp distortion intensity.
         // Positive = more chaotic toward bottom. Negative = calmer.
         scroll.addBinding(this.settings, "scrollWarpStrengthShift", {
-            label: "Warp Strength (distort)",
+            label: "Strength",
             min: -5.0,
             max: 5.0,
             step: 0.1,
@@ -645,7 +674,7 @@ export default class ProceduralVoid {
         // How much scroll changes FBM gain (fine detail level).
         // Positive = grittier toward bottom. Negative = smoother.
         scroll.addBinding(this.settings, "scrollGainShift", {
-            label: "Gain (detail shift)",
+            label: "Gain",
             min: -0.3,
             max: 0.3,
             step: 0.01,
@@ -654,7 +683,7 @@ export default class ProceduralVoid {
         // How much scroll changes the noise zoom level.
         // Positive = zooms in as you scroll. Negative = zooms out.
         scroll.addBinding(this.settings, "scrollScaleShift", {
-            label: "Scale (zoom shift)",
+            label: "Scale",
             min: -3.0,
             max: 3.0,
             step: 0.1,
@@ -664,10 +693,20 @@ export default class ProceduralVoid {
         // Positive = light emerges as you scroll deeper.
         // Negative = fades to darkness.
         scroll.addBinding(this.settings, "scrollColorShift", {
-            label: "Color (brightness shift)",
+            label: "Color",
             min: -1.0,
             max: 1.0,
             step: 0.01,
+        });
+
+        // Vertical RGB split driven by scroll speed. Faster scroll =
+        // stronger split. Fades when scroll stops. 0 = disabled.
+        // Cost: 2 extra domainWarp() calls while scrolling.
+        scroll.addBinding(this.settings, "scrollChromaticStrength", {
+            label: "Chromatic (RGB split)",
+            min: 0.0,
+            max: 0.05,
+            step: 0.001,
         });
 
         // ----------------------------------------------------------------
@@ -719,7 +758,7 @@ export default class ProceduralVoid {
         // How much the cursor sharpens or softens ridges in its zone.
         // Positive = intricate detail revealed. Negative = calming smooth.
         mouse.addBinding(this.settings, "mouseRidgeShift", {
-            label: "Ridge (sharpen near)",
+            label: "Sharpness",
             min: -4.0,
             max: 4.0,
             step: 0.1,
@@ -728,7 +767,7 @@ export default class ProceduralVoid {
         // How much the cursor zooms the noise in its zone.
         // Positive = lens effect (finer detail). Negative = defocus.
         mouse.addBinding(this.settings, "mouseScaleShift", {
-            label: "Scale (zoom near)",
+            label: "Scale",
             min: -3.0,
             max: 3.0,
             step: 0.1,
@@ -737,7 +776,7 @@ export default class ProceduralVoid {
         // How much the cursor speeds up or slows animation in its zone.
         // Positive = local turbulence. Negative = stillness pocket.
         mouse.addBinding(this.settings, "mouseTimeShift", {
-            label: "Time (speed near)",
+            label: "Time",
             min: -2.0,
             max: 2.0,
             step: 0.1,
@@ -746,7 +785,7 @@ export default class ProceduralVoid {
         // How much the cursor reveals or hides fine noise detail.
         // Positive = grittier near cursor. Negative = smoother.
         mouse.addBinding(this.settings, "mouseGainShift", {
-            label: "Gain (detail near)",
+            label: "Gain",
             min: -0.3,
             max: 0.3,
             step: 0.01,
@@ -848,6 +887,7 @@ export default class ProceduralVoid {
     }
 
     dispose() {
+        cancelAnimationFrame(this._rafId);
         this.renderer.dispose();
         this.quad.geometry.dispose();
         this.quad.material.dispose();
@@ -874,10 +914,10 @@ export default class ProceduralVoid {
             this.stats?.end();
             this.stats?.update();
 
-            requestAnimationFrame(update);
+            this._rafId = requestAnimationFrame(update);
         };
 
-        requestAnimationFrame(update);
+        this._rafId = requestAnimationFrame(update);
     }
 
     _updateUniforms() {
@@ -915,15 +955,27 @@ export default class ProceduralVoid {
         uniforms.uWarpStrength.value = s.warpStrength;
         uniforms.uWarpScale.value = s.warpScale;
 
+        const rad = s.driftAngle * (Math.PI / 180);
+        uniforms.uDriftDirection.value.set(
+            Math.cos(rad) * Math.SQRT2,
+            Math.sin(rad) * Math.SQRT2,
+        );
+
         // --- Scroll ---
         // Read Lenis scroll progress (0 at top, 1 at bottom).
         // window.__LENIS__ is set by gsapLenis.js during DOMContentLoaded.
         // Before Lenis initializes, progress defaults to 0.
         if (s.scrollEnabled && window.__LENIS__) {
             uniforms.uScroll.value = window.__LENIS__.progress;
+            const rawVelocity = window.__LENIS__.velocity;
+            this.scrollVelocitySmoothed +=
+                (rawVelocity - this.scrollVelocitySmoothed) * 0.1;
         } else {
             uniforms.uScroll.value = 0.0;
+            this.scrollVelocitySmoothed = 0.0;
         }
+
+        // Scroll shift uniforms (unconditional — they multiply by uScroll in the shader)
         uniforms.uScrollWarpShift.value = s.scrollWarpShift;
         uniforms.uScrollRidgeShift.value = s.scrollRidgeShift;
         uniforms.uScrollTimeShift.value = s.scrollTimeShift;
@@ -931,6 +983,8 @@ export default class ProceduralVoid {
         uniforms.uScrollGainShift.value = s.scrollGainShift;
         uniforms.uScrollScaleShift.value = s.scrollScaleShift;
         uniforms.uScrollColorShift.value = s.scrollColorShift;
+        uniforms.uScrollVelocity.value = this.scrollVelocitySmoothed;
+        uniforms.uScrollChromaticStrength.value = s.scrollChromaticStrength;
 
         // --- Mouse ---
         // Lerp the smoothed position toward the raw input each frame.
@@ -940,6 +994,18 @@ export default class ProceduralVoid {
         //   At 60fps, this takes ~40 frames (~0.7s) to reach 95% of target
         //   At 0.5, it takes ~5 frames (~0.08s) — much snappier
         this.mouseSmoothed.lerp(this.mouseRaw, s.mouseEase);
+
+        // Track mouse speed for movement-only CA.
+        // Raw speed is UV-space distance per frame (~0.001-0.01 for typical
+        // movement). We normalize to 0-1 by dividing by a reference speed
+        // so the CA strength slider works in a sensible range.
+        const rawSpeed = this.mouseRaw.distanceTo(this.mousePrevRaw);
+        const normalizedSpeed = Math.min(rawSpeed / 0.01, 1.0);
+        this.mouseSpeedSmoothed +=
+            (normalizedSpeed - this.mouseSpeedSmoothed) * 0.1;
+        this.mousePrevRaw.copy(this.mouseRaw);
+        uniforms.uMouseSpeed.value = this.mouseSpeedSmoothed;
+
         uniforms.uMouseEnabled.value = s.mouseEnabled ? 1.0 : 0.0;
         uniforms.uMouse.value.copy(this.mouseSmoothed);
         uniforms.uMouseRadius.value = s.mouseRadius;
