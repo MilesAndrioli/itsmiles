@@ -9,7 +9,9 @@ const { name, title, contact, skills } = Astro.props;
 
 <aside class="ResumeSidebar grid content-start gap-5 p-8 pb-0 md:pb-8">
     <!-- Photo -->
-    <div
+    <a
+        href={contact.linkedin}
+        target="_blank"
         class="border-iron-800 hidden overflow-hidden rounded-xl border md:block"
         data-aos-child
     >
@@ -18,7 +20,7 @@ const { name, title, contact, skills } = Astro.props;
             alt={name}
             class="aspect-square filter-[grayscale(100%)_sepia(20%)_contrast(130%)_brightness(75%)]"
         />
-    </div>
+    </a>
 
     <!-- Name & Title (mobile) -->
     <div class="grid gap-1 md:hidden" data-aos-child>
