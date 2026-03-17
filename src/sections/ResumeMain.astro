@@ -8,19 +8,13 @@ const { name, title, experience, projects } = Astro.props;
     class="ResumeMain grid content-start gap-5 p-8 pt-0 md:pt-8 print:gap-[10pt] print:p-0"
 >
     <!-- Name & Title (desktop) -->
-    <div class="hidden gap-1 md:grid print:grid">
+    <div class="hidden gap-1 md:grid print:grid" data-aos-child>
         <h1
             class="ResumeName text-iron-50 print:text-iron-950 mb-0 font-serif text-4xl print:text-3xl"
-            data-aos-child="split-chromatic"
         >
             {name}
         </h1>
-        <h2
-            class="subtitle print:text-iron-700 mb-0"
-            data-aos-child="split-chromatic"
-        >
-            {title}
-        </h2>
+        <h2 class="subtitle print:text-iron-700 mb-0">{title}</h2>
         <p class="text-iron-400 print:text-iron-800 text-sm">
             Focused on fluid and highly interactive web experiences. Currently
             exploring 3D on the web with WebGL, shaders, Three.js, and
