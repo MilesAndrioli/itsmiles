@@ -35,6 +35,18 @@ export default {
             filter: "blur(0px)",
         },
     },
+    "fade-in-left-blur-out": {
+        origin: {
+            opacity: 0,
+            xPercent: 12,
+            filter: "blur(8px)",
+        },
+        destination: {
+            opacity: 1,
+            xPercent: 0,
+            filter: "blur(0px)",
+        },
+    },
     "fade-in-grayscale-out": {
         origin: {
             opacity: 0,
