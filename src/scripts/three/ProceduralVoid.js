@@ -307,7 +307,7 @@ export default class ProceduralVoid {
             // 0.05 = heavy lag (smooth, cinematic).
             // 0.2 = moderate lag (responsive but soft).
             // 1.0 = instant (no smoothing, raw input).
-            mouseEase: 0.04,
+            mouseEase: 0.02,
 
             // Ridge shift: how much the cursor changes ridge sharpness
             // within its radius. Positive = sharper ridges near cursor,
