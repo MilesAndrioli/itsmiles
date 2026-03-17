@@ -9,8 +9,8 @@
     z-index: var(--cursor-layer);
     pointer-events: none;
 
-    mix-blend-mode: exclusion;
-    color: white;
+    mix-blend-mode: difference;
+    color: var(--color-iron-50);
 
     &::before {
         content: "";
@@ -35,7 +35,7 @@
     /* States Styling */
     &.-pointer {
         --dot-scale: 500%;
-        --dot-opacity: 20%;
+        /*--dot-opacity: 20%;*/
     }
 
     &.-hidden,
