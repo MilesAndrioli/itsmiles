@@ -1,41 +1,32 @@
 ---
-import Logo from "../components/Logo.astro";
-import Divider from "../components/Divider.astro";
-import CloneLink from "../components/CloneLink.astro";
-import LiquidAss from "../components/LiquidAss.astro";
-import { contact } from "../data/contact";
+import CloneLink from "@/components/CloneLink.astro";
+import { contact } from "@/data/contact";
 ---
 
-<header id="app-header">
-    <LiquidAss class="py-3">
-        <div class="container">
-            <div class="flex items-center justify-between gap-3">
-                <Logo />
-                <nav>
-                    <ul class="flex gap-3 font-mono text-xs">
-                        <li>
-                            <CloneLink
-                                href={`mailto:${contact.email}`}
-                                text={`${contact.email}`}
-                            />
-                        </li>
-                        <li>
-                            <CloneLink
-                                href={contact.linkedin}
-                                target="_blank"
-                                text="LinkedIn"
-                            />
-                        </li>
-                        <li>
-                            <CloneLink href="/branding/" text="Branding" />
-                        </li>
-                        <li>
-                            <CloneLink href="/resume/" text="Resume" />
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </LiquidAss>
-    <Divider />
+<header id="app-header" class="py-3 mix-blend-difference">
+    <div class="container flex justify-end">
+        <nav class="text-iron-50">
+            <ul class="flex gap-3 text-xs">
+                <li>
+                    <CloneLink
+                        href={`mailto:${contact.email}`}
+                        text={`${contact.email}`}
+                    />
+                </li>
+                <li>
+                    <CloneLink
+                        href={contact.linkedin}
+                        target="_blank"
+                        text="LinkedIn"
+                    />
+                </li>
+                <li>
+                    <CloneLink href="/branding/" text="Branding" />
+                </li>
+                <li>
+                    <CloneLink href="/resume/" text="Resume" />
+                </li>
+            </ul>
+        </nav>
+    </div>
 </header>
