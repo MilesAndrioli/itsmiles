@@ -7,6 +7,7 @@ import Skeleton from "@/layouts/Skeleton.astro";
 import ResumeSidebar from "@/sections/ResumeSidebar.astro";
 import ResumeMain from "@/sections/ResumeMain.astro";
 import Divider from "@/components/Divider.astro";
+import ScrollProgressButton from "@/components/ScrollProgressButton.astro";
 
 const { meta, experience, skills, projects } = resume;
 ---
@@ -49,4 +50,10 @@ const { meta, experience, skills, projects } = resume;
             <Divider class="print:hidden" />
         </div>
     </div>
+    <ScrollProgressButton
+        text="Print Resume"
+        aria-label="Print Resume"
+        icon="📄"
+        onclick="window.print()"
+    />
 </Skeleton>

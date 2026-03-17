@@ -1,0 +1,112 @@
+---
+const { text, icon, class: className, ...attrs } = Astro.props;
+const pathId = `ScrollProgressPath_${Math.random().toString(36).slice(2, 8)}`;
+
+const radius = 75;
+const charCount = text.length * 2 + 5; // "{text} · {text} ·"
+const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
+---
+
+<button
+    class:list={["ScrollProgressButton", className]}
+    type="button"
+    {...attrs}
+>
+    <div class="ScrollProgressButton__Bar" aria-hidden="true">
+        <span class="ScrollProgressButton__Icon">{icon}</span>
+    </div>
+    <svg
+        class="ScrollProgressButton__Text"
+        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <defs>
+            <path
+                id={pathId}
+                d="M 100,100 m -75,0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
+            ></path>
+        </defs>
+        <text font-size="18">
+            <textPath
+                href={`#${pathId}`}
+                textLength={textLength}
+                lengthAdjust="spacing"
+            >
+                {text} · {text} ·
+            </textPath>
+        </text>
+    </svg>
+</button>
+
+<style>
+    @reference "@/styles/tailwind/tailwind.css";
+
+    .ScrollProgressButton {
+        position: fixed;
+        z-index: 1;
+        bottom: var(--gappers);
+        right: var(--gappers);
+
+        width: 4rem;
+        height: 4rem;
+        padding: 0.375rem;
+
+        cursor: pointer;
+    }
+
+    .ScrollProgressButton__Bar {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+
+        @apply border-iron-800 border backdrop-blur-lg backdrop-saturate-200;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: scaleY(var(--SCROLL_PROGRESS, 0));
+            transform-origin: center top;
+            @apply bg-iron/20;
+        }
+    }
+
+    .ScrollProgressButton__Icon {
+        transform: rotate(calc(var(--SCROLL_PROGRESS, 0) * -1turn));
+    }
+
+    .ScrollProgressButton__Text {
+        position: absolute;
+        inset: 50%;
+        width: 140%;
+        height: 140%;
+
+        fill: currentColor;
+        @apply font-display;
+        text-transform: uppercase;
+
+        transform: translate(-50%, -50%)
+            rotate(calc(var(--SCROLL_PROGRESS, 0) * 1turn));
+    }
+
+    .ScrollProgressButton {
+        transition: scale var(--out--fast);
+
+        .ScrollProgressButton__Bar {
+            transition: border-color var(--out--fast);
+        }
+
+        &:hover {
+            scale: 95%;
+
+            .ScrollProgressButton__Bar {
+                border-color: var(--color-iron-600);
+            }
+        }
+    }
+</style>
