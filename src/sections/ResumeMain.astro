@@ -43,7 +43,12 @@ const { name, title, experience, projects } = Astro.props;
                                     target="_blank"
                                     class="yoyo-link text-jade print:text-iron-800 text-xs"
                                 >
-                                    {job.website.replace("https://", "")}
+                                    <span class="print:hidden">
+                                        {job.website.replace("https://", "")}
+                                    </span>
+                                    <span class="hidden print:inline">
+                                        {job.website}
+                                    </span>
                                 </a>
                             </div>
                             <span class="text-iron-600 text-xs">
@@ -85,7 +90,12 @@ const { name, title, experience, projects } = Astro.props;
                                     target="_blank"
                                     class="yoyo-link text-jade print:text-iron-800 text-xs"
                                 >
-                                    {project.url.replace("https://", "")}
+                                    <span class="print:hidden">
+                                        {project.url.replace("https://", "")}
+                                    </span>
+                                    <span class="hidden print:inline">
+                                        {project.url}
+                                    </span>
                                 </a>
                             </div>
                             {project.stack && project.stack.length > 0 && (
