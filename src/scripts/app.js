@@ -57,7 +57,7 @@ function runOnLoad() {
     gsapConfig();
     gsapAos();
     gsapReveal();
-    gsapScrollState();
+    // gsapScrollState();
 
     // 6
     getStickyElements();
