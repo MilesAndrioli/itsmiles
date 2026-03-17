@@ -1,5 +1,6 @@
 ---
-const { text, icon, class: className, ...attrs } = Astro.props;
+const { text, icon, href, class: className, ...attrs } = Astro.props;
+const Tag = href ? "a" : "button";
 const pathId = `ScrollProgressPath_${Math.random().toString(36).slice(2, 8)}`;
 
 const radius = 75;
@@ -7,9 +8,10 @@ const charCount = text.length * 2 + 5; // "{text} · {text} ·"
 const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
 ---
 
-<button
+<Tag
     class:list={["ScrollProgressButton", className]}
-    type="button"
+    {...href ? { href } : { type: "button" }}
+    data-cursor="-hidden"
     {...attrs}
 >
     <div class="ScrollProgressButton__Bar" aria-hidden="true">
@@ -37,7 +39,7 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
             </textPath>
         </text>
     </svg>
-</button>
+</Tag>
 
 <style>
     @reference "@/styles/tailwind/tailwind.css";
