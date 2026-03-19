@@ -9,29 +9,15 @@ import LiquidAss from "@/components/LiquidAss.astro";
 <footer id="app-footer">
     <Divider />
     <LiquidAss>
-        <div data-reveal-wrapper class="py-20">
+        <div data-reveal-wrapper class="py-10">
             <div data-reveal-target>
-                <div class="container flex flex-col gap-10">
+                <div class="container">
                     <div
-                        class="flex flex-col gap-5 md:flex-row md:items-start md:justify-between"
+                        class="flex flex-wrap items-center justify-between gap-4"
                     >
-                        <div class="flex flex-col gap-2">
-                            <CloneLink
-                                href={`mailto:${contact.email}`}
-                                text={contact.email}
-                            />
-                            <CloneLink
-                                href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                                text={contact.phone}
-                            />
-                        </div>
-
-                        <div class="flex flex-wrap gap-x-5 gap-y-2">
-                            <CloneLink
-                                href={contact.linkedin}
-                                target="_blank"
-                                text="LinkedIn"
-                            />
+                        <nav class="flex gap-2">
+                            <CloneLink href="/" text="Home" />
+                            <CloneLink href="/resume/" text="Resume" />
                             <CloneLink
                                 href={contact.github}
                                 target="_blank"
@@ -42,24 +28,11 @@ import LiquidAss from "@/components/LiquidAss.astro";
                                 target="_blank"
                                 text="CodePen"
                             />
-                        </div>
-                    </div>
+                        </nav>
 
-                    <p class="text-iron-500 mb-0 max-w-lg font-mono text-xs">
-                        Tempus leo eu aenean sed diam urna tempor. Pulvinar
-                        vivamus fringilla lacus nec metus bibendum egestas.
-                        Iaculis massa nisl malesuada lacinia integer nunc
-                        posuere.
-                    </p>
-
-                    <div
-                        class="flex flex-wrap items-center justify-between gap-4"
-                    >
-                        <p class="text-iron-500 font-mono text-xs">
-                            &copy; {new Date().getFullYear()} Miles Andrioli
-                        </p>
-                        <p class="text-iron-500 font-mono text-xs">
-                            Freehand Design, <strong>WIP</strong>
+                        <p class="font-mono text-xs">
+                            &copy; {new Date().getFullYear()} Miles Andrioli &mdash;
+                            Freehand Design
                         </p>
                     </div>
                 </div>
