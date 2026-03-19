@@ -1,8 +1,3 @@
-import { createLogger } from "../utilities/logger";
-
-const isDebugging = true;
-const log = createLogger(import.meta.url, isDebugging);
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -15,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
  * Initializes scroll-based animations on elements with data-aos attributes.
  */
 export default function initGsapAos() {
-    const namedTimelines = new Map();
     const msToSec = (ms) => parseFloat(ms) / 1000;
 
     /**
@@ -190,35 +184,6 @@ export default function initGsapAos() {
     }
 
     /**
-     * Sets up debug triggers that allow restarting animations on click.
-     * @param {Map<string, gsap.core.Timeline>} timelines - A map of named timelines.
-     */
-    function setupDebugTriggers(timelines) {
-        const triggerButtons = document.querySelectorAll("[data-aos-trigger]");
-
-        if (triggerButtons.length === 0) return;
-
-        log("Debugging triggers enabled.");
-
-        triggerButtons.forEach((button) => {
-            const targetName = button.dataset.aosTrigger;
-            const targetTimeline = timelines.get(targetName);
-
-            if (targetTimeline) {
-                button.addEventListener("click", () => {
-                    log(`Restarting animation: "${targetName}"`);
-                    targetTimeline.restart();
-                });
-                log(`Button linked to animation: "${targetName}"`);
-            } else {
-                log(
-                    `Warning: Button with target "${targetName}" found no matching animation. Did you add data-aos-name="${targetName}"?`,
-                );
-            }
-        });
-    }
-
-    /**
      * Main function to animate an element or a group of elements.
      * @param {HTMLElement} el - The DOM element to animate.
      */
@@ -243,10 +208,6 @@ export default function initGsapAos() {
                 settings,
             ),
         });
-
-        if (el.dataset.aosName) {
-            namedTimelines.set(el.dataset.aosName, timeline);
-        }
 
         elementsToAnimate.forEach((child, index) => {
             const animationName = getAnimationKey(child, groupAnimationName);
@@ -286,12 +247,17 @@ export default function initGsapAos() {
                 );
             }
         });
+
+        if (settings.debug) {
+            el.dataset.cursorText = "Replay Animation";
+            el.addEventListener("click", () => {
+                timeline.restart();
+            });
+        }
     }
 
     // Initialize animations for all relevant elements on the page.
     document
         .querySelectorAll("[data-aos], [data-aos-group]")
         .forEach(animateElement);
-
-    if (isDebugging) setupDebugTriggers(namedTimelines);
 }
