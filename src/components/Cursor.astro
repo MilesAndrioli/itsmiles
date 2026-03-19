@@ -2,7 +2,8 @@
     import MouseFollower from "mouse-follower";
     import { gsap } from "gsap";
 
-    MouseFollower.registerGSAP(gsap);
-
-    window.__CURSOR__ = new MouseFollower();
+    if (window.__MNK__) {
+        MouseFollower.registerGSAP(gsap);
+        window.__CURSOR__ = new MouseFollower();
+    }
 </script>
