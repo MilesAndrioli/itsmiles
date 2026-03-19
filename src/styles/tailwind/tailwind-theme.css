@@ -76,8 +76,8 @@
     --loader-layer: 100;
     --cursor-layer: 90;
     --noise-layer: 80;
-    --filter-layer: 70;
-    --floating-layer: 60;
+    --floating-layer: 70;
+    --filter-layer: 60;
     --header-layer: 50;
     /* #endregion */
 }
