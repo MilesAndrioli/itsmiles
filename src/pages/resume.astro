@@ -25,11 +25,11 @@ const { meta, experience, skills, projects } = resume;
         data-aos-duration="1200"
     >
         <div class="container max-w-4xl print:max-w-none print:p-0">
-            <Divider class="print:hidden" />
+            <Divider class="hidden md:block" />
             <div class="flex">
-                <Divider vertical class="print:hidden" />
+                <Divider vertical class="hidden md:block" />
                 <div
-                    class="ResumeGrid bg-iron-950/80 z-75 grid flex-1 gap-5 rounded-xl backdrop-blur-lg backdrop-saturate-200 md:grid-cols-[1fr_auto_2fr] md:gap-0 print:grid-cols-[1fr_auto_2fr] print:gap-[20pt] print:bg-transparent"
+                    class="ResumeGrid md:bg-iron-950/80 z-75 grid flex-1 gap-5 md:grid-cols-[1fr_auto_2fr] md:gap-0 md:rounded-xl md:backdrop-blur-lg md:backdrop-saturate-200 print:grid-cols-[1fr_auto_2fr]"
                 >
                     <ResumeSidebar
                         name={meta.name}
@@ -45,9 +45,9 @@ const { meta, experience, skills, projects } = resume;
                         projects={projects}
                     />
                 </div>
-                <Divider vertical class="print:hidden" />
+                <Divider vertical class="hidden md:block" />
             </div>
-            <Divider class="print:hidden" />
+            <Divider class="hidden md:block" />
         </div>
     </div>
 
