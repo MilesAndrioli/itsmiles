@@ -1,118 +1,62 @@
 ---
-import { Picture } from "astro:assets";
-
-import Skeleton from "../layouts/Skeleton.astro";
-
-import CloneLink from "../components/CloneLink.astro";
-import Video from "../components/Video.astro";
-
-import Image_1 from "../assets/images/Knight in Shadows.webp";
+import Skeleton from "@/layouts/Skeleton.astro";
+import ScrollProgressButton from "@/components/ScrollProgressButton.astro";
+import { contact } from "@/data/contact";
 ---
 
 <Skeleton
     title="Home"
-    description="This will be the Home page description."
-    class="grid gap-100 py-40"
+    description="Hey, it's Miles Andrioli, and this is my portfolio."
+    class="grid py-40"
 >
-    <section
-        class="hero"
-        data-aos-group="fade-in"
-        data-aos-delay="200"
-        data-aos-duration="900"
-        data-aos-stagger-gap="440"
-        data-aos-name="heroSection"
-    >
-        <div
-            class="container grid grid-cols-2 gap-20"
-            data-aos="fade-in"
-            data-aos-after
-            data-aos-scrub
-        >
+    <section class="hero">
+        <div class="container">
             <div
-                class="border-void-200 -scale-x-100 overflow-hidden rounded-2xl border"
+                data-aos-group="split-up-chromatic"
+                data-aos-duration="900"
+                data-aos-delay="100"
             >
-                <Picture
-                    src={Image_1}
-                    alt=""
-                    formats={["avif", "webp"]}
-                    height={1440}
-                    class="h-12/10 w-full object-cover"
-                    data-speed="auto"
-                    pictureAttributes={{
-                        class: "h-full block overflow-hidden",
-                        "data-aos-child": "elder-scroll",
-                    }}
-                />
-            </div>
-
-            <div>
-                <button
-                    data-aos-trigger="heroSection"
-                    data-cursor-text="heroSection"
-                    class="swipe-link"
-                >
-                    DEBUG
-                </button>
-
-                <div class="sticky--below-center sticky grid gap-6">
-                    <p
-                        class="mb-0 font-serif text-5xl"
-                        data-aos-child="split-chromatic-up"
-                    >
-                        Hey, it's Miles!
-                    </p>
-
-                    <h1
-                        class="mb-0 text-2xl"
-                        data-aos-child="split-chromatic-up"
-                    >
-                        Creative Front-end Developer crafting seamless
-                        experiences for the web with care, precision, and
-                        curiosity.
-                    </h1>
-
-                    <p class="text-ash-600" data-aos-child="split-chromatic-up">
-                        Based in Spain &mdash;
-                        <CloneLink
-                            text="open"
-                            href="https://www.linkedin.com/in/MilesAndrioliBachini/"
-                            target="_blank"
-                        /> to remote or on-site opportunities worldwide.
-                    </p>
+                <div data-aos="fade-in" data-aos-after data-aos-scrub>
+                    <div class="grid gap-3">
+                        <h1
+                            class="font-display text-iron-400 mb-0 text-7xl uppercase"
+                            data-aos-child
+                        >
+                            Hey, it's Miles!
+                        </h1>
+                        <h2 class="mb-0 text-2xl" data-aos-child>
+                            This is still a work in progress. In the meantime,
+                            check out my <a
+                                href="/resume/"
+                                class="swipe-link text-jade">resume</a
+                            >.
+                        </h2>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
-        <div class="container" data-aos="fade-in" data-aos-after data-aos-scrub>
+    <section class="min-h-dvh place-content-center overflow-hidden">
+        <div class="container">
             <p
-                class="font-display text-justify text-6xl uppercase"
-                data-aos="split-chromatic-up"
-                data-aos-split="words"
+                class="font-display text-iron-400 mb-0 text-justify text-6xl tracking-wider uppercase"
+                data-aos="split-left-chromatic"
                 data-aos-scrub
-                data-aos-split-gap="300"
-                data-aos-duration="2000"
-                data-aos-end="top 25%"
+                data-aos-split-gap="400"
+                data-aos-duration="4000"
             >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Cupiditate error voluptatem ducimus placeat sint perspiciatis
-                consequatur id, reprehenderit eius dolor repudiandae quos autem,
-                praesentium deleniti ab explicabo tempora quod obcaecati.
+                Focused on fluid and highly interactive web experiences.
             </p>
         </div>
     </section>
 
-    <section>
-        <div class="container" data-aos="fade-in" data-aos-after data-aos-scrub>
-            <div
-                class="grid grid-cols-3 gap-5"
-                data-aos-group="fade-in-blur-out"
-            >
-                <Video src="/tifa_lockhart.mp4" height="h-16/10" />
-                <Video src="/tifa_lockhart.mp4" height="h-14/10" />
-                <Video src="/tifa_lockhart.mp4" height="h-12/10" />
-            </div>
-        </div>
-    </section>
+    <ScrollProgressButton
+        text="Let's meet up!"
+        aria-label="Let's meet up!"
+        icon="🤝"
+        href={contact.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+    />
 </Skeleton>
