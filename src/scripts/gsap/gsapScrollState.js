@@ -53,12 +53,4 @@ export default function initGsapScrollState() {
             }
         },
     });
-
-    // --- Scroll Progress ---
-    // BECAREFUL: HUGE PERFORMANCE IMPACT, REVISIT
-    // if (window.__LENIS__) {
-    //     window.__LENIS__.on("scroll", ({ progress }) => {
-    //         root.style.setProperty("--SCROLL_PROGRESS", progress.toFixed(4));
-    //     });
-    // }
 }

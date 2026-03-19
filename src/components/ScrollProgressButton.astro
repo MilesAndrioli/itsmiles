@@ -15,6 +15,7 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
     {...attrs}
 >
     <div class="ScrollProgressButton__Bar" aria-hidden="true">
+        <span class="ScrollProgressButton__Fill"></span>
         <span class="ScrollProgressButton__Icon">{icon}</span>
     </div>
     <svg
@@ -67,19 +68,13 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
         border-radius: 50%;
 
         @apply border-iron-800 border backdrop-blur-lg backdrop-saturate-200;
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            transform: scaleY(var(--SCROLL_PROGRESS, 0));
-            transform-origin: center top;
-            @apply bg-iron/20;
-        }
     }
 
-    .ScrollProgressButton__Icon {
-        transform: rotate(calc(var(--SCROLL_PROGRESS, 0) * -1turn));
+    .ScrollProgressButton__Fill {
+        position: absolute;
+        inset: 0;
+        transform-origin: top;
+        @apply bg-iron/20;
     }
 
     .ScrollProgressButton__Text {
@@ -92,8 +87,7 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
         @apply font-display;
         text-transform: uppercase;
 
-        transform: translate(-50%, -50%)
-            rotate(calc(var(--SCROLL_PROGRESS, 0) * 1turn));
+        translate: -50% -50%;
     }
 
     .ScrollProgressButton {
@@ -112,3 +106,34 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
         }
     }
 </style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    function init() {
+        document.querySelectorAll(".ScrollProgressButton").forEach((button) => {
+            const fill = button.querySelector(".ScrollProgressButton__Fill");
+            const icon = button.querySelector(".ScrollProgressButton__Icon");
+            const text = button.querySelector(".ScrollProgressButton__Text");
+
+            const tl = gsap.timeline({ paused: true });
+
+            tl.fromTo(fill, { scaleY: 0 }, { scaleY: 1 }, 0);
+            tl.fromTo(icon, { rotation: 0 }, { rotation: -360 }, 0);
+            tl.fromTo(text, { rotation: 0 }, { rotation: 360 }, 0);
+
+            ScrollTrigger.create({
+                trigger: document.documentElement,
+                start: "top top",
+                end: "bottom bottom",
+                animation: tl,
+                scrub: true,
+            });
+        });
+    }
+
+    window.addEventListener("load", init, { once: true });
+</script>
