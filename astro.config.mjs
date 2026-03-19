@@ -8,10 +8,4 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss(), yaml()],
     },
-    redirects: {
-        "/": {
-            status: 302,
-            destination: "/resume",
-        },
-    },
 });
