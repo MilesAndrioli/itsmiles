@@ -1,37 +1,7 @@
 <div id="app-loader">
-    <!-- <span class="app-loader__back font-serif text-7xl font-semibold uppercase">
-        Loading...
-    </span>
-    <span class="app-loader__front font-serif text-7xl font-semibold uppercase">
-        Loading...
-    </span> -->
+    <span class="AppLoader__Back font-mono">Loading...</span>
+    <span class="AppLoader__Front font-mono">Loading...</span>
 </div>
-
-<script>
-    const root = document.documentElement;
-    root.classList.add("PAGE-IS--LOADING");
-
-    window.addEventListener(
-        "load",
-        () => {
-            root.classList.remove("PAGE-IS--LOADING");
-            root.classList.add("PAGE-HAS--LOADED");
-
-            const loader = document.getElementById("app-loader");
-
-            if (loader) {
-                loader.addEventListener(
-                    "transitionend",
-                    () => {
-                        loader.remove();
-                    },
-                    { once: true }
-                );
-            }
-        },
-        { once: true }
-    );
-</script>
 
 <style>
     #app-loader {
@@ -52,22 +22,22 @@
         transition: opacity var(--in-out--slow);
     }
 
-    html.PAGE-HAS--LOADED #app-loader {
+    html.Page--HasLoaded #app-loader {
         opacity: 0;
     }
 
     /* Loader Animation */
-    .app-loader__back,
-    .app-loader__front {
+    .AppLoader__Back,
+    .AppLoader__Front {
         --starting-opacity: 10%;
     }
 
-    .app-loader__back {
+    .AppLoader__Back {
         opacity: var(--starting-opacity);
         position: absolute;
     }
 
-    .app-loader__front {
+    .AppLoader__Front {
         animation: clipLeft2Right 1600ms infinite var(--ease-in-out);
     }
 

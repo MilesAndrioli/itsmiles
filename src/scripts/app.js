@@ -16,6 +16,7 @@ window.__TOUCH__ = !!ScrollTrigger.isTouch;
 
 // --- Utilities ---
 import getDimensions from "./utilities/getDimensions";
+import dismissLoader from "./utilities/dismissLoader";
 import getStickyElements from "./utilities/getStickyElements";
 import debounce from "lodash.debounce";
 import throttle from "lodash.throttle";
@@ -63,7 +64,7 @@ function runOnLoad() {
     getStickyElements();
 
     // 7
-    // initLoader();
+    dismissLoader();
 }
 window.addEventListener("load", runOnLoad, { once: true });
 
