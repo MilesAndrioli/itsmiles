@@ -15,6 +15,11 @@ import LiquidAss from "@/components/LiquidAss.astro";
                     <div
                         class="flex flex-wrap items-center justify-between gap-4"
                     >
+                        <p class="font-mono text-xs">
+                            &copy; {new Date().getFullYear()} Miles Andrioli &mdash;
+                            Freestyled and coded from scratch.
+                        </p>
+
                         <nav class="flex gap-2">
                             <CloneLink href="/" text="Home" />
                             <CloneLink href="/resume/" text="Resume" />
@@ -29,11 +34,6 @@ import LiquidAss from "@/components/LiquidAss.astro";
                                 text="CodePen"
                             />
                         </nav>
-
-                        <p class="font-mono text-xs">
-                            &copy; {new Date().getFullYear()} Miles Andrioli &mdash;
-                            Freehand Design
-                        </p>
                     </div>
                 </div>
             </div>
