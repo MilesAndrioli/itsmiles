@@ -1,8 +1,11 @@
 <script>
     import MouseFollower from "mouse-follower";
     import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    if (window.__MNK__) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (!ScrollTrigger.isTouch) {
         MouseFollower.registerGSAP(gsap);
         window.__CURSOR__ = new MouseFollower();
     }
