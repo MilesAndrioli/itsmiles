@@ -6,15 +6,23 @@ interface Props {
     class?: string;
 }
 
-const { timezone = "Europe/Madrid", willChange = false, separator = ":", class: className } = Astro.props;
+const {
+    timezone = "Europe/Madrid",
+    willChange = false,
+    separator = ":",
+    class: className,
+} = Astro.props;
 ---
 
 <div class:list={["TimezoneClock", className]} data-timezone={timezone}>
-    <number-flow data-unit="hour" data-will-change={willChange || undefined} />
+    <number-flow data-unit="hour" data-will-change={willChange || undefined}
+    ></number-flow>
     <span class="TimezoneClock__Separator">{separator}</span>
-    <number-flow data-unit="minute" data-will-change={willChange || undefined} />
+    <number-flow data-unit="minute" data-will-change={willChange || undefined}
+    ></number-flow>
     <span class="TimezoneClock__Separator">{separator}</span>
-    <number-flow data-unit="second" data-will-change={willChange || undefined} />
+    <number-flow data-unit="second" data-will-change={willChange || undefined}
+    ></number-flow>
 </div>
 
 <style>
@@ -64,7 +72,9 @@ const { timezone = "Europe/Madrid", willChange = false, separator = ":", class: 
             });
 
             function tick() {
-                for (const { type, value } of formatter.formatToParts(new Date())) {
+                for (const { type, value } of formatter.formatToParts(
+                    new Date(),
+                )) {
                     if (type in unitMap) unitMap[type].update(Number(value));
                 }
             }
