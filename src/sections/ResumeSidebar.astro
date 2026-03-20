@@ -7,9 +7,7 @@ import userPhoto from "@/assets/images/Miles_1.jpeg";
 const { name, title, contact, skills } = Astro.props;
 ---
 
-<aside
-    class="ResumeSidebar grid content-start gap-5 md:p-8 print:gap-[10pt] print:p-0"
->
+<aside class="ResumeSidebar grid content-start gap-5 md:p-8 print:p-8">
     <!-- Photo -->
     <a
         href={contact.linkedin}
@@ -44,7 +42,9 @@ const { name, title, contact, skills } = Astro.props;
                 Front-end developer with 7 years of experience based in Málaga,
                 Spain.
             </p>
-            <p class="text-iron-400 print:text-iron-800 text-sm md:mb-0">
+            <p
+                class="text-iron-400 print:text-iron-800 text-sm md:mb-0 print:mb-0"
+            >
                 Bilingual in Spanish and English. <a
                     href={contact.linkedin}
                     target="_blank"
