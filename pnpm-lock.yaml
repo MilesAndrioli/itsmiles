@@ -32,6 +32,9 @@ importers:
       mouse-follower:
         specifier: ^1.1.2
         version: 1.1.2
+      number-flow:
+        specifier: ^0.6.0
+        version: 0.6.0
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -942,6 +945,9 @@ packages:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
     engines: {node: '>=12'}
 
+  esm-env@1.2.2:
+    resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
+
   estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
@@ -1329,6 +1335,9 @@ packages:
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
+
+  number-flow@0.6.0:
+    resolution: {integrity: sha512-K8flNq2Wqus53vjp/btVo3qXFkagF8dIdYavreBfE7hlvFFG/b1HMGEH6nZL+mlrJ+4lbLP9OmPv3t2rmRkpSQ==}
 
   obug@2.1.1:
     resolution: {integrity: sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ==}
@@ -2574,6 +2583,8 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
+  esm-env@1.2.2: {}
+
   estree-walker@2.0.2: {}
 
   eventemitter3@5.0.4: {}
@@ -3137,6 +3148,10 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
+
+  number-flow@0.6.0:
+    dependencies:
+      esm-env: 1.2.2
 
   obug@2.1.1: {}
 
