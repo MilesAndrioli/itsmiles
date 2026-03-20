@@ -9,7 +9,7 @@ interface Props {
 const { timezone = "Europe/Madrid", willChange = false, separator = ":", class: className } = Astro.props;
 ---
 
-<div class:list={["TimezoneClock inline-flex items-center gap-2", className]} data-timezone={timezone}>
+<div class:list={["TimezoneClock", className]} data-timezone={timezone}>
     <number-flow data-unit="hour" data-will-change={willChange || undefined} />
     <span class="TimezoneClock__Separator">{separator}</span>
     <number-flow data-unit="minute" data-will-change={willChange || undefined} />
@@ -18,8 +18,12 @@ const { timezone = "Europe/Madrid", willChange = false, separator = ":", class: 
 </div>
 
 <style>
-    /* tabular-nums keeps digit widths consistent so the layout doesn't shift */
-    .TimezoneClock { font-variant-numeric: tabular-nums; }
+    .TimezoneClock {
+        /* tabular-nums keeps digit widths consistent so the layout doesn't shift */
+        font-variant-numeric: tabular-nums;
+        display: inline-flex;
+        align-items: baseline;
+    }
 </style>
 
 <script>
