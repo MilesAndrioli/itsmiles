@@ -36,7 +36,11 @@ const { meta, experience, skills, projects } = resume;
                         contact={contact}
                         skills={skills}
                     />
-                    <Divider vertical class="hidden md:block print:block" />
+                    <Divider
+                        vertical
+                        class="hidden md:block print:block"
+                        data-aos-child="fade-in-blur-out"
+                    />
                     <ResumeMain
                         name={meta.name}
                         title={meta.title}
