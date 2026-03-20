@@ -38,12 +38,12 @@ export default {
     "fade-in-left-blur-out": {
         origin: {
             opacity: 0,
-            xPercent: 12,
+            x: 16,
             filter: "blur(8px)",
         },
         destination: {
             opacity: 1,
-            xPercent: 0,
+            x: 0,
             filter: "blur(0px)",
         },
     },
