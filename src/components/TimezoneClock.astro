@@ -1,0 +1,106 @@
+---
+interface Props {
+    timezone?: string;
+    label?: string;
+    willChange?: boolean;
+    separator?: string;
+    class?: string;
+}
+
+const { timezone = "Europe/Madrid", label, willChange = false, separator = ":", class: className } = Astro.props;
+---
+
+<div class:list={["TimezoneClock", className]} data-timezone={timezone}>
+    {label && <span class="TimezoneClock__Label">{label}</span>}
+    <span class="TimezoneClock__Time">
+        <number-flow class="TimezoneClock__Digit" data-unit="hour" data-will-change={willChange || undefined}></number-flow>
+        <span class="TimezoneClock__Separator">{separator}</span>
+        <number-flow class="TimezoneClock__Digit" data-unit="minute" data-will-change={willChange || undefined}></number-flow>
+        <span class="TimezoneClock__Separator">{separator}</span>
+        <number-flow class="TimezoneClock__Digit" data-unit="second" data-will-change={willChange || undefined}></number-flow>
+    </span>
+</div>
+
+<style>
+    @reference "@/styles/tailwind/tailwind.css";
+
+    .TimezoneClock {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        @apply font-mono text-xs text-iron;
+    }
+
+    .TimezoneClock__Label {
+        @apply font-display text-iron-600;
+        text-transform: uppercase;
+        font-weight: 300;
+        letter-spacing: 0.05em;
+    }
+
+    .TimezoneClock__Time {
+        display: inline-flex;
+        align-items: baseline;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .TimezoneClock__Separator {
+        @apply text-iron-600;
+    }
+</style>
+
+<script>
+    import "number-flow";
+    import { continuous } from "number-flow";
+
+    const timing = {
+        duration: 600,
+        easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
+    };
+
+    function getTimeParts(timezone) {
+        const formatter = new Intl.DateTimeFormat("en-GB", {
+            timeZone: timezone,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+        });
+
+        const parts = formatter.formatToParts(new Date());
+        return {
+            hour: Number(parts.find((p) => p.type === "hour").value),
+            minute: Number(parts.find((p) => p.type === "minute").value),
+            second: Number(parts.find((p) => p.type === "second").value),
+        };
+    }
+
+    function init() {
+        document.querySelectorAll(".TimezoneClock").forEach((clock) => {
+            const timezone = clock.dataset.timezone;
+            const flows = clock.querySelectorAll("number-flow");
+
+            flows.forEach((flow) => {
+                flow.format = { minimumIntegerDigits: 2, useGrouping: false };
+                flow.plugins = [continuous];
+                flow.transformTiming = timing;
+                flow.spinTiming = timing;
+                flow.opacityTiming = { duration: 300, easing: "ease-out" };
+                flow.animated = true;
+            });
+
+            function tick() {
+                const time = getTimeParts(timezone);
+                flows.forEach((flow) => {
+                    const unit = flow.dataset.unit;
+                    flow.update(time[unit]);
+                });
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        });
+    }
+
+    window.addEventListener("load", init, { once: true });
+</script>

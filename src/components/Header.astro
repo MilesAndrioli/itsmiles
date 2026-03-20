@@ -1,32 +1,41 @@
 ---
 import CloneLink from "@/components/CloneLink.astro";
+import TimezoneClock from "@/components/TimezoneClock.astro";
 import { contact } from "@/data/contact";
 ---
 
 <header id="app-header" class="py-3 mix-blend-difference">
-    <div class="container flex justify-end">
-        <nav class="text-iron-50">
-            <ul class="flex gap-3 text-xs">
-                <li>
-                    <CloneLink
-                        href={`mailto:${contact.email}`}
-                        text={`${contact.email}`}
-                    />
-                </li>
-                <li>
-                    <CloneLink
-                        href={contact.linkedin}
-                        target="_blank"
-                        text="LinkedIn"
-                    />
-                </li>
-                <li>
-                    <CloneLink href="/resume/" text="Resume" />
-                </li>
-                <li>
-                    <CloneLink href="/" text="Home" />
-                </li>
-            </ul>
-        </nav>
+    <div class="container">
+        <div class="flex justify-between items-center gap-5">
+            <TimezoneClock
+                timezone="Europe/Madrid"
+                label="Spain"
+                willChange={true}
+                separator="."
+            />
+            <nav class="text-iron-50">
+                <ul class="flex gap-3 text-xs">
+                    <li>
+                        <CloneLink
+                            href={`mailto:${contact.email}`}
+                            text={`${contact.email}`}
+                        />
+                    </li>
+                    <li>
+                        <CloneLink
+                            href={contact.linkedin}
+                            target="_blank"
+                            text="LinkedIn"
+                        />
+                    </li>
+                    <li>
+                        <CloneLink href="/resume/" text="Resume" />
+                    </li>
+                    <li>
+                        <CloneLink href="/" text="Home" />
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </header>
