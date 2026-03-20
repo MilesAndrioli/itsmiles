@@ -1,52 +1,25 @@
 ---
 interface Props {
     timezone?: string;
-    label?: string;
     willChange?: boolean;
     separator?: string;
     class?: string;
 }
 
-const { timezone = "Europe/Madrid", label, willChange = false, separator = ":", class: className } = Astro.props;
+const { timezone = "Europe/Madrid", willChange = false, separator = ":", class: className } = Astro.props;
 ---
 
-<div class:list={["TimezoneClock", className]} data-timezone={timezone}>
-    {label && <span class="TimezoneClock__Label">{label}</span>}
-    <span class="TimezoneClock__Time">
-        <number-flow class="TimezoneClock__Digit" data-unit="hour" data-will-change={willChange || undefined}></number-flow>
-        <span class="TimezoneClock__Separator">{separator}</span>
-        <number-flow class="TimezoneClock__Digit" data-unit="minute" data-will-change={willChange || undefined}></number-flow>
-        <span class="TimezoneClock__Separator">{separator}</span>
-        <number-flow class="TimezoneClock__Digit" data-unit="second" data-will-change={willChange || undefined}></number-flow>
-    </span>
+<div class:list={["TimezoneClock inline-flex items-center gap-2", className]} data-timezone={timezone}>
+    <number-flow data-unit="hour" data-will-change={willChange || undefined} />
+    <span class="TimezoneClock__Separator">{separator}</span>
+    <number-flow data-unit="minute" data-will-change={willChange || undefined} />
+    <span class="TimezoneClock__Separator">{separator}</span>
+    <number-flow data-unit="second" data-will-change={willChange || undefined} />
 </div>
 
 <style>
-    @reference "@/styles/tailwind/tailwind.css";
-
-    .TimezoneClock {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5em;
-        @apply font-mono text-xs text-iron;
-    }
-
-    .TimezoneClock__Label {
-        @apply font-display text-iron-600;
-        text-transform: uppercase;
-        font-weight: 300;
-        letter-spacing: 0.05em;
-    }
-
-    .TimezoneClock__Time {
-        display: inline-flex;
-        align-items: baseline;
-        font-variant-numeric: tabular-nums;
-    }
-
-    .TimezoneClock__Separator {
-        @apply text-iron-600;
-    }
+    /* tabular-nums keeps digit widths consistent so the layout doesn't shift */
+    .TimezoneClock { font-variant-numeric: tabular-nums; }
 </style>
 
 <script>
@@ -58,43 +31,38 @@ const { timezone = "Europe/Madrid", label, willChange = false, separator = ":", 
         easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
     };
 
-    function getTimeParts(timezone) {
-        const formatter = new Intl.DateTimeFormat("en-GB", {
-            timeZone: timezone,
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false,
-        });
-
-        const parts = formatter.formatToParts(new Date());
-        return {
-            hour: Number(parts.find((p) => p.type === "hour").value),
-            minute: Number(parts.find((p) => p.type === "minute").value),
-            second: Number(parts.find((p) => p.type === "second").value),
-        };
-    }
-
     function init() {
         document.querySelectorAll(".TimezoneClock").forEach((clock) => {
             const timezone = clock.dataset.timezone;
-            const flows = clock.querySelectorAll("number-flow");
 
-            flows.forEach((flow) => {
+            // Build a unit -> element map so ticks skip querySelectorAll each second
+            const unitMap = {};
+            clock.querySelectorAll("number-flow").forEach((flow) => {
+                unitMap[flow.dataset.unit] = flow;
+
                 flow.format = { minimumIntegerDigits: 2, useGrouping: false };
+                // continuous makes digits always roll upward (e.g. 59 -> 00 goes
+                // forward, not backward through all digits)
                 flow.plugins = [continuous];
                 flow.transformTiming = timing;
                 flow.spinTiming = timing;
                 flow.opacityTiming = { duration: 300, easing: "ease-out" };
-                flow.animated = true;
+            });
+
+            // Intl.DateTimeFormat is expensive to construct — create once per clock.
+            // formatToParts returns each unit separately and handles DST automatically.
+            const formatter = new Intl.DateTimeFormat("en-GB", {
+                timeZone: timezone,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false,
             });
 
             function tick() {
-                const time = getTimeParts(timezone);
-                flows.forEach((flow) => {
-                    const unit = flow.dataset.unit;
-                    flow.update(time[unit]);
-                });
+                for (const { type, value } of formatter.formatToParts(new Date())) {
+                    if (type in unitMap) unitMap[type].update(Number(value));
+                }
             }
 
             tick();
