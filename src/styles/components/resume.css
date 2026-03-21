@@ -6,7 +6,7 @@
 @media print {
     body {
         height: auto !important;
-        color: black !important;
+        color: var(--color-iron-800) !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
