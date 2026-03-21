@@ -20,14 +20,15 @@ export default function initGsapAos() {
     function getSettings(el) {
         const dataset = el.dataset;
         const isAfter = "aosAfter" in dataset;
+        const headerOffset = window.APP_HEADER_HEIGHT || 0;
 
         return {
             start:
                 dataset.aosStart ||
-                (isAfter ? `top ${APP_HEADER_HEIGHT}` : "top bottom"),
+                (isAfter ? `top ${headerOffset}` : "top bottom"),
             end:
                 dataset.aosEnd ||
-                (isAfter ? `bottom ${APP_HEADER_HEIGHT}` : "center center"),
+                (isAfter ? `bottom ${headerOffset}` : "center center"),
 
             duration: msToSec(dataset.aosDuration || 600),
             delay: msToSec(dataset.aosDelay || 0),
