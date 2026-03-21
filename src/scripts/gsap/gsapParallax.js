@@ -10,7 +10,7 @@ export default function initGsapParallax() {
         effects: true,
     });
 
-    requestAnimationFrame(() => {
-        ScrollTrigger.refresh(true);
-    });
+    // requestAnimationFrame(() => {
+    //     ScrollTrigger.refresh(true);
+    // });
 }
