@@ -359,9 +359,13 @@ export default class ProceduralVoid {
             // slight optimization hint since it doesn't need to composite.
         });
 
-        // Reuse the same canvas ID as ThreeExperience so the existing CSS
-        // in app.css (#three-canvas) applies: position:fixed, inset:0, z:-1.
-        renderer.domElement.id = "three-canvas";
+        const canvas = renderer.domElement;
+        canvas.id = "three-canvas";
+        Object.assign(canvas.style, {
+            position: "fixed",
+            inset: "0",
+            zIndex: "-1",
+        });
 
         // Cap pixel ratio at 1.5. The noise pattern is low-frequency and
         // soft — rendering at full 2x or 3x retina resolution wastes GPU
