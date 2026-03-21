@@ -19,19 +19,15 @@ import getDimensions from "./utilities/getDimensions";
 import dismissLoader from "./utilities/dismissLoader";
 import getStickyElements from "./utilities/getStickyElements";
 import debounce from "lodash.debounce";
-import throttle from "lodash.throttle";
 
 // --- GSAP ---
 import gsapAos from "./gsap/gsapAos";
 import gsapConfig from "./gsap/gsapConfig";
 import gsapLenis from "./gsap/gsapLenis";
 import gsapParallax from "./gsap/gsapParallax";
-import gsapScrollState from "./gsap/gsapScrollState";
 import gsapReveal from "./gsap/gsapReveal";
 
 // --- Three.js ---
-// import ThreeExperience from "./three/ThreeExperience";
-// new ThreeExperience();
 import ProceduralVoid from "./three/ProceduralVoid";
 new ProceduralVoid();
 
@@ -41,29 +37,22 @@ new ProceduralVoid();
 
 // --- READY ---
 function runOnReady() {
-    // 1
     getDimensions("#app-header", "height");
 
-    // 3
     gsapLenis();
 }
 document.addEventListener("DOMContentLoaded", runOnReady, { once: true });
 
 // --- LOAD ---
 function runOnLoad() {
-    // 4
     gsapParallax();
 
-    // 5
     gsapConfig();
     gsapAos();
     gsapReveal();
-    // gsapScrollState();
 
-    // 6
     getStickyElements();
 
-    // 7
     dismissLoader();
 }
 window.addEventListener("load", runOnLoad, { once: true });
@@ -73,13 +62,3 @@ function runOnResize() {
     getDimensions("#app-header", "height");
 }
 window.addEventListener("resize", debounce(runOnResize, 250), { once: false });
-
-// --- SCROLL ---
-// function runOnScroll() {
-//     getDimensions("#app-header", "height");
-// }
-// window.addEventListener(
-//     "scroll",
-//     throttle(runOnScroll, 1000, { leading: true, trailing: true }),
-//     { once: false },
-// );
