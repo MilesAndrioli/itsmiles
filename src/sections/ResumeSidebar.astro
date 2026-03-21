@@ -1,5 +1,4 @@
 ---
-import CloneLink from "@/components/CloneLink.astro";
 import Divider from "@/components/Divider.astro";
 import ParallaxImage from "@/components/ParallaxImage.astro";
 import userPhoto from "@/assets/images/Miles_1.jpeg";
@@ -40,7 +39,9 @@ const { name, title, contact, skills } = Astro.props;
                 Front-end developer with 7 years of experience based in Málaga,
                 Spain.
             </p>
-            <p class="text-iron-400 print:text-iron-800 text-sm md:mb-0 print:mb-0">
+            <p
+                class="text-iron-400 print:text-iron-800 text-sm md:mb-0 print:mb-0"
+            >
                 Bilingual in Spanish and English. <a
                     href={contact.linkedin}
                     target="_blank"
@@ -62,23 +63,19 @@ const { name, title, contact, skills } = Astro.props;
         <h3 class="ResumeHeading subtitle mb-0 text-xs">Contact</h3>
         <ul class="text-iron-300 print:text-iron-800 grid gap-1 text-sm">
             <li>
-                <CloneLink
-                    href={`mailto:${contact.email}`}
-                    text={contact.email}
-                />
+                <a href={`mailto:${contact.email}`} class="swipe-link">
+                    {contact.email}
+                </a>
             </li>
             <li>
-                <CloneLink
-                    href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    text={contact.phone}
-                />
-            </li>
-            <li>
-                <CloneLink
-                    href={contact.linkedin}
-                    target="_blank"
-                    text={contact.linkedin.replace("https://", "")}
-                />
+                <a href={contact.linkedin} target="_blank" class="swipe-link">
+                    <span class="print:hidden">
+                        {contact.linkedin.replace("https://", "")}
+                    </span>
+                    <span class="hidden print:inline">
+                        {contact.linkedin}
+                    </span>
+                </a>
             </li>
         </ul>
     </div>
