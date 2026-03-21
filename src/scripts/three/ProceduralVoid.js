@@ -514,12 +514,13 @@ export default class ProceduralVoid {
         const pane = new Pane({
             title: "Procedural Void",
             container,
+            expanded: false,
         });
 
         // ----------------------------------------------------------------
         // GENERAL
         // ----------------------------------------------------------------
-        const general = pane.addFolder({ title: "General" });
+        const general = pane.addFolder({ title: "General", expanded: false });
 
         // How fast the noise drifts. Low values (0.03) = geological.
         // High values (0.3+) = smoke-like.
@@ -534,7 +535,7 @@ export default class ProceduralVoid {
         // COLORS
         // ----------------------------------------------------------------
         // Float-mode color pickers (0-1 range) matching GLSL vec3.
-        const colors = pane.addFolder({ title: "Colors" });
+        const colors = pane.addFolder({ title: "Colors", expanded: false });
 
         // Darkest tone — covers most of the screen.
         colors.addBinding(this.settings, "colorBase", {
@@ -557,7 +558,10 @@ export default class ProceduralVoid {
         // ----------------------------------------------------------------
         // FBM (Fractal Brownian Motion)
         // ----------------------------------------------------------------
-        const fbm = pane.addFolder({ title: "FBM (Noise Layering)" });
+        const fbm = pane.addFolder({
+            title: "FBM",
+            expanded: false,
+        });
 
         // Frequency jump between octaves. 2.0 = double each layer.
         // Higher = grittier jumps. Lower = smoother blending.
@@ -571,7 +575,7 @@ export default class ProceduralVoid {
         // How much each octave contributes. 0.5 = half the previous.
         // Higher = noisier. Lower = smoother, broad shapes only.
         fbm.addBinding(this.settings, "fbmGain", {
-            label: "Gain (detail weight)",
+            label: "Gain",
             min: 0.0,
             max: 1.0,
             step: 0.01,
@@ -580,7 +584,10 @@ export default class ProceduralVoid {
         // ----------------------------------------------------------------
         // RIDGE NOISE
         // ----------------------------------------------------------------
-        const ridge = pane.addFolder({ title: "Ridge (Crease Shape)" });
+        const ridge = pane.addFolder({
+            title: "Ridge",
+            expanded: false,
+        });
 
         // Exponent on the abs() fold. High = thin razor ridges.
         // Low = broad hills. 1.0 = raw fold.
@@ -603,7 +610,10 @@ export default class ProceduralVoid {
         // ----------------------------------------------------------------
         // DOMAIN WARP
         // ----------------------------------------------------------------
-        const warp = pane.addFolder({ title: "Domain Warp (Distortion)" });
+        const warp = pane.addFolder({
+            title: "Domain Warp",
+            expanded: false,
+        });
 
         // How far coordinates get displaced by noise feedback.
         // 0 = raw FBM. 4 = flowing organic. 8+ = alien marble.
@@ -633,7 +643,10 @@ export default class ProceduralVoid {
         // ----------------------------------------------------------------
         // SCROLL REACTIVITY
         // ----------------------------------------------------------------
-        const scroll = pane.addFolder({ title: "Scroll (Lenis)" });
+        const scroll = pane.addFolder({
+            title: "Scroll (Lenis)",
+            expanded: false,
+        });
 
         scroll.addBinding(this.settings, "scrollEnabled", {
             label: "Enabled",
@@ -716,7 +729,10 @@ export default class ProceduralVoid {
         // ----------------------------------------------------------------
         // MOUSE INTERACTION
         // ----------------------------------------------------------------
-        const mouse = pane.addFolder({ title: "Mouse (Cursor Influence)" });
+        const mouse = pane.addFolder({
+            title: "Mouse",
+            expanded: false,
+        });
 
         // Master toggle. When off, the shader ignores the mouse uniform.
         mouse.addBinding(this.settings, "mouseEnabled", {
