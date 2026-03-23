@@ -3,16 +3,16 @@
 +-----------------------------------------+ */
 
 // --- Utilities ---
+import debounce from "lodash.debounce";
 import getDimensions from "./utilities/getDimensions";
 import dismissLoader from "./utilities/dismissLoader";
 import getStickyElements from "./utilities/getStickyElements";
-import debounce from "lodash.debounce";
 
 // --- GSAP ---
-import gsapAos from "./gsap/gsapAos";
 import gsapConfig from "./gsap/gsapConfig";
 import gsapLenis from "./gsap/gsapLenis";
 import gsapParallax from "./gsap/gsapParallax";
+import gsapAos from "./gsap/gsapAos";
 import gsapReveal from "./gsap/gsapReveal";
 import gsapScrollProgressButton from "./gsap/gsapScrollProgressButton";
 
