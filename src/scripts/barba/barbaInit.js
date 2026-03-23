@@ -3,7 +3,7 @@ import barbaPrefetch from "@barba/prefetch";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import fadeTransition from "./animations/fade";
-// import slideTransition from "./animations/slide";
+// import coverTransition from "./animations/cover";
 
 export default function initBarba() {
     // Prefetch links as they enter the viewport (IntersectionObserver).
