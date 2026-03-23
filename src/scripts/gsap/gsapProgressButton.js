@@ -3,11 +3,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function gsapScrollProgressButton() {
-    document.querySelectorAll(".ScrollProgressButton").forEach((button) => {
-        const fill = button.querySelector(".ScrollProgressButton__Fill");
-        const icon = button.querySelector(".ScrollProgressButton__Icon");
-        const text = button.querySelector(".ScrollProgressButton__Text");
+export default function gsapProgressButton() {
+    document.querySelectorAll(".ProgressButton").forEach((button) => {
+        const fill = button.querySelector(".ProgressButton__Fill");
+        const icon = button.querySelector(".ProgressButton__Icon");
+        const text = button.querySelector(".ProgressButton__Text");
 
         const tl = gsap.timeline({
             paused: true,

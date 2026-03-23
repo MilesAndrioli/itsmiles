@@ -19,7 +19,7 @@
     #app-loader,
     canvas,
     #tweakpane-container,
-    .ScrollProgressButton {
+    .ProgressButton {
         display: none !important;
     }
 }

@@ -9,17 +9,17 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
 ---
 
 <Tag
-    class="ScrollProgressButton"
+    class="ProgressButton"
     {...href ? { href } : { type: "button" }}
     data-cursor="-hidden"
     {...attrs}
 >
-    <div class="ScrollProgressButton__Bar" aria-hidden="true">
-        <span class="ScrollProgressButton__Fill"></span>
-        <span class="ScrollProgressButton__Icon">{icon}</span>
+    <div class="ProgressButton__Bar" aria-hidden="true">
+        <span class="ProgressButton__Fill"></span>
+        <span class="ProgressButton__Icon">{icon}</span>
     </div>
     <svg
-        class="ScrollProgressButton__Text"
+        class="ProgressButton__Text"
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -45,7 +45,7 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
 <style>
     @reference "@/styles/tailwind/tailwind.css";
 
-    .ScrollProgressButton {
+    .ProgressButton {
         --size: 4rem;
 
         position: fixed;
@@ -60,7 +60,7 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
         cursor: pointer;
     }
 
-    .ScrollProgressButton__Bar {
+    .ProgressButton__Bar {
         position: relative;
         height: 100%;
         overflow: hidden;
@@ -72,14 +72,14 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
         @apply border-iron-800 border backdrop-blur-lg backdrop-saturate-200;
     }
 
-    .ScrollProgressButton__Fill {
+    .ProgressButton__Fill {
         position: absolute;
         inset: 0;
         transform-origin: top;
         @apply bg-iron/20;
     }
 
-    .ScrollProgressButton__Text {
+    .ProgressButton__Text {
         position: absolute;
         inset: 50%;
         width: 140%;
@@ -92,17 +92,17 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
         translate: -50% -50%;
     }
 
-    .ScrollProgressButton {
+    .ProgressButton {
         transition: scale var(--out--fast);
 
-        .ScrollProgressButton__Bar {
+        .ProgressButton__Bar {
             transition: border-color var(--out--fast);
         }
 
         &:hover {
             scale: 95% !important;
 
-            .ScrollProgressButton__Bar {
+            .ProgressButton__Bar {
                 border-color: var(--color-iron-600);
             }
         }

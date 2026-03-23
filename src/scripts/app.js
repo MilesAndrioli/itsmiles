@@ -14,7 +14,7 @@ import gsapLenis from "./gsap/gsapLenis";
 import gsapParallax from "./gsap/gsapParallax";
 import gsapAos from "./gsap/gsapAos";
 import gsapReveal from "./gsap/gsapReveal";
-import gsapScrollProgressButton from "./gsap/gsapScrollProgressButton";
+import gsapProgressButton from "./gsap/gsapProgressButton";
 
 // --- barba.js ---
 import barba from "@barba/core";
@@ -34,7 +34,7 @@ function initSetup() {
     gsapParallax();
     gsapAos();
     gsapReveal();
-    gsapScrollProgressButton();
+    gsapProgressButton();
     getStickyElements();
 }
 
