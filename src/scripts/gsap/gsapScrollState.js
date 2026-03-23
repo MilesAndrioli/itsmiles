@@ -14,7 +14,7 @@ export default function initGsapScrollState() {
         start: "top top",
         toggleClass: {
             targets: root,
-            className: "HAS-REACHED--STEP-1",
+            className: "HasReached--Step1",
         },
         markers: false,
     });
@@ -25,7 +25,7 @@ export default function initGsapScrollState() {
         start: `${innerHeight} top`,
         toggleClass: {
             targets: root,
-            className: "HAS-REACHED--STEP-2",
+            className: "HasReached--Step2",
         },
         markers: false,
     });
@@ -36,7 +36,7 @@ export default function initGsapScrollState() {
         start: "top bottom",
         toggleClass: {
             targets: root,
-            className: "HAS-REACHED--FOOTER",
+            className: "HasReached--Footer",
         },
         markers: false,
     });
@@ -47,8 +47,8 @@ export default function initGsapScrollState() {
     ScrollTrigger.create({
         onUpdate: (self) => {
             if (self.direction !== lastDirection) {
-                root.classList.toggle("SCROLLING--DOWN", self.direction === 1);
-                root.classList.toggle("SCROLLING--UP", self.direction === -1);
+                root.classList.toggle("Scrolling--Down", self.direction === 1);
+                root.classList.toggle("Scrolling--Up", self.direction === -1);
                 lastDirection = self.direction;
             }
         },

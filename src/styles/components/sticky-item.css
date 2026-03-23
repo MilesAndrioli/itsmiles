@@ -2,7 +2,7 @@
     top: var(--gappers);
     transition: top var(--header-transition);
 
-    .SCROLLING--UP.HAS-REACHED--STEP-2 & {
+    .Scrolling--Up.HasReached--Step2 & {
         top: calc(var(--gappers) + var(--APP_HEADER_HEIGHT));
     }
 }

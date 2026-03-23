@@ -17,27 +17,19 @@
         padding var(--header-transition),
         transform var(--header-transition);
 
-    /* .HAS-REACHED--STEP-1 & {
+    /* .HasReached--Step1 & {
         @apply !py-1;
     } */
 
-    .HAS-REACHED--STEP-2 & {
+    .HasReached--Step2 & {
         transform: var(--shift-out);
     }
 
-    .SCROLLING--UP.HAS-REACHED--STEP-2 & {
+    .Scrolling--Up.HasReached--Step2 & {
         transform: var(--shift-in);
     }
 
-    .HAS-REACHED--FOOTER & {
+    .HasReached--Footer & {
         transform: var(--shift-in);
-    }
-
-    .logo {
-        transition: transform var(--header-transition);
-
-        .HAS-REACHED--STEP-1 & {
-            transform: rotate3d(0, 1, 0, 180deg);
-        }
     }
 }
