@@ -1,35 +1,44 @@
 ---
 import Divider from "@/components/Divider.astro";
-import CloneLink from "@/components/CloneLink.astro";
 import { contact } from "@/data/contact";
 ---
 
-<footer id="app-footer">
+<footer id="app-footer" data-aos-group="fade-in">
     <Divider />
     <div data-reveal-wrapper class="py-10">
         <div data-reveal-target>
             <div class="container">
                 <div
-                    class="flex flex-wrap items-baseline justify-between gap-4"
+                    class="flex flex-wrap items-baseline justify-between gap-2"
                 >
-                    <p class="font-mono text-xs">
+                    <span class="text-xs" data-aos-child>
                         &copy; {new Date().getFullYear()} Miles Andrioli &mdash; Freestyled
                         and coded from scratch.
-                    </p>
+                    </span>
 
-                    <nav class="flex gap-2">
-                        <CloneLink href="/" text="Home" />
-                        <CloneLink href="/resume/" text="Resume" />
-                        <CloneLink
+                    <nav class="flex gap-2 text-xs">
+                        <a href="/" class="swipe-link" data-aos-child>Home</a>
+                        <a href="/resume/" class="swipe-link" data-aos-child
+                            >Resume</a
+                        >
+                        <a
+                            href={contact.linkedin}
+                            target="_blank"
+                            class="swipe-link"
+                            data-aos-child>LinkedIn</a
+                        >
+                        <a
                             href={contact.github}
                             target="_blank"
-                            text="GitHub"
-                        />
-                        <CloneLink
+                            class="swipe-link"
+                            data-aos-child>GitHub</a
+                        >
+                        <a
                             href={contact.codepen}
                             target="_blank"
-                            text="CodePen"
-                        />
+                            class="swipe-link"
+                            data-aos-child>CodePen</a
+                        >
                     </nav>
                 </div>
             </div>
