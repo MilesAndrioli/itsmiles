@@ -1,58 +1,17 @@
-<div id="app-loader">
-    <span class="AppLoader__Back font-mono">Loading...</span>
-    <span class="AppLoader__Front font-mono">Loading...</span>
-</div>
+<div id="app-loader"></div>
 
 <style>
     #app-loader {
         position: fixed;
+        inset: 0;
         z-index: var(--loader-layer);
-        top: 0;
-        left: 0;
-
-        height: 100%;
-        width: 100%;
-        padding: 5rem;
-        background-color: light-dark(white, black);
-
-        display: flex;
-        align-items: end;
-        justify-content: end;
-
-        transition: opacity var(--in-out--slow);
+        background-color: var(--color-iron-950);
+        transition: var(--in-out--super-slow);
     }
 
     html.Page--HasLoaded #app-loader {
         opacity: 0;
-    }
-
-    /* Loader Animation */
-    .AppLoader__Back,
-    .AppLoader__Front {
-        --starting-opacity: 10%;
-    }
-
-    .AppLoader__Back {
-        opacity: var(--starting-opacity);
-        position: absolute;
-    }
-
-    .AppLoader__Front {
-        animation: clipLeft2Right 1600ms infinite var(--ease-in-out);
-    }
-
-    @keyframes clipLeft2Right {
-        0% {
-            opacity: var(--starting-opacity);
-            clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
-        }
-        50% {
-            opacity: 100%;
-            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-        }
-        100% {
-            opacity: var(--starting-opacity);
-            clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-        }
+        visibility: hidden;
+        pointer-events: none;
     }
 </style>
