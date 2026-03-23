@@ -1,16 +1,4 @@
 /* +-----------------------------------------+
-|                GLOBALS AREA                |
-+-----------------------------------------+ */
-
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-window.__MNK__ = !ScrollTrigger.isTouch;
-window.__TOUCH__ = !!ScrollTrigger.isTouch;
-
-/* +-----------------------------------------+
 |                IMPORTS AREA                |
 +-----------------------------------------+ */
 
