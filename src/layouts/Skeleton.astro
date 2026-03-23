@@ -23,10 +23,10 @@ const {
 <!doctype html>
 <html lang="en">
     <Head title={title} description={description} emoji={emoji} />
-    <body class="bg-iron-950 text-iron antialiased">
+    <body class="bg-iron-950 text-iron antialiased" data-barba="wrapper">
         <Smoother>
             {header && <Header />}
-            <main id="app-main" class:list={[className]}>
+            <main id="app-main" class:list={[className]} data-barba="container">
                 <slot />
             </main>
             {footer && <Footer />}
