@@ -104,7 +104,8 @@ export default class ProceduralVoid {
             //
             // Sweet spot: 0.03–0.08 for a subtle background that doesn't
             // distract from content.
-            timeScale: 0.2,
+            timeScale: 0.14,
+            // timeScale: 0.2,
 
             // ----------------------------------------------------------------
             // COLOR PALETTE
@@ -142,7 +143,8 @@ export default class ProceduralVoid {
             // Higher values (3-4) skip intermediate scales, making the jump
             // between detail levels more abrupt — a harsher, grittier look.
             // Lower values (1.5) pack octaves closer, giving a smoother blend.
-            fbmLacunarity: 1.0,
+            fbmLacunarity: 1.5,
+            // fbmLacunarity: 1.0,
 
             // Gain (persistence): the amplitude multiplier between octaves.
             // At 0.5, each octave contributes half the previous one's energy.
@@ -325,7 +327,8 @@ export default class ProceduralVoid {
             // noise animation within its radius. Positive = time flows
             // faster near cursor (local turbulence). Negative = time
             // slows or reverses (a pocket of stillness).
-            mouseTimeShift: 0.2,
+            mouseTimeShift: 0.0,
+            // mouseTimeShift: 0.2,
 
             // Gain shift: how much the cursor changes FBM detail level
             // within its radius. Positive = reveals fine-grained noise
