@@ -1,5 +1,6 @@
 import barba from "@barba/core";
 import barbaPrefetch from "@barba/prefetch";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import fadeTransition from "./animations/fade";
 // import slideTransition from "./animations/slide";
@@ -13,4 +14,14 @@ export default function initBarba() {
         preventRunning: true,
         transitions: [fadeTransition("fade"), fadeTransition("self")],
     });
+}
+
+export function teardown() {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+}
+
+export function resetScroll() {
+    if (window.__LENIS__) {
+        window.__LENIS__.scrollTo(0, { immediate: true });
+    }
 }
