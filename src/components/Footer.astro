@@ -2,41 +2,37 @@
 import Divider from "@/components/Divider.astro";
 import CloneLink from "@/components/CloneLink.astro";
 import { contact } from "@/data/contact";
-
-import LiquidAss from "@/components/LiquidAss.astro";
 ---
 
 <footer id="app-footer">
     <Divider />
-    <LiquidAss>
-        <div data-reveal-wrapper class="py-10">
-            <div data-reveal-target>
-                <div class="container">
-                    <div
-                        class="flex flex-wrap items-baseline justify-between gap-4"
-                    >
-                        <p class="font-mono text-xs">
-                            &copy; {new Date().getFullYear()} Miles Andrioli &mdash;
-                            Freestyled and coded from scratch.
-                        </p>
+    <div data-reveal-wrapper class="py-10">
+        <div data-reveal-target>
+            <div class="container">
+                <div
+                    class="flex flex-wrap items-baseline justify-between gap-4"
+                >
+                    <p class="font-mono text-xs">
+                        &copy; {new Date().getFullYear()} Miles Andrioli &mdash; Freestyled
+                        and coded from scratch.
+                    </p>
 
-                        <nav class="flex gap-2">
-                            <CloneLink href="/" text="Home" />
-                            <CloneLink href="/resume/" text="Resume" />
-                            <CloneLink
-                                href={contact.github}
-                                target="_blank"
-                                text="GitHub"
-                            />
-                            <CloneLink
-                                href={contact.codepen}
-                                target="_blank"
-                                text="CodePen"
-                            />
-                        </nav>
-                    </div>
+                    <nav class="flex gap-2">
+                        <CloneLink href="/" text="Home" />
+                        <CloneLink href="/resume/" text="Resume" />
+                        <CloneLink
+                            href={contact.github}
+                            target="_blank"
+                            text="GitHub"
+                        />
+                        <CloneLink
+                            href={contact.codepen}
+                            target="_blank"
+                            text="CodePen"
+                        />
+                    </nav>
                 </div>
             </div>
         </div>
-    </LiquidAss>
+    </div>
 </footer>
