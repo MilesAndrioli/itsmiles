@@ -18,11 +18,12 @@ import gsapProgressButton from "./gsap/gsapProgressButton";
 
 // --- barba.js ---
 import barba from "@barba/core";
-import initBarba, { teardown, resetScroll } from "./barba/barbaInit";
-
-// --- Three.js ---
-import ProceduralVoid from "./three/ProceduralVoid/ProceduralVoid";
-new ProceduralVoid();
+import barbaConfig from "./barba/barbaConfig";
+import {
+    syncProceduralVoid,
+    teardown,
+    resetScroll,
+} from "./barba/barbaLifecycle";
 
 /* +-----------------------------------------+
 |                SETUP AREA                  |
@@ -44,8 +45,9 @@ function initSetup() {
 
 // --- READY ---
 function runOnReady() {
+    syncProceduralVoid();
     gsapLenis();
-    initBarba();
+    barbaConfig();
 }
 document.addEventListener("DOMContentLoaded", runOnReady, { once: true });
 
@@ -68,7 +70,8 @@ barba.hooks.afterLeave(() => {
     teardown();
 });
 
-barba.hooks.enter(() => {
+barba.hooks.enter((data) => {
+    syncProceduralVoid(data.next.container);
     resetScroll();
     initSetup();
 });
