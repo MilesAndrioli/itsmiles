@@ -21,7 +21,43 @@ import vertexShader from "./ProceduralVoid.vert.glsl?raw";
 import fragmentShader from "./ProceduralVoid.frag.glsl?raw";
 import presets from "./presets/index.js";
 
+const SOFTWARE_RENDERERS = [
+    "swiftshader",
+    "llvmpipe",
+    "microsoft basic render driver",
+    "software",
+];
+
 export default class ProceduralVoid {
+    static canRun() {
+        if (new URLSearchParams(window.location.search).has("forceShader"))
+            return true;
+
+        const canvas = document.createElement("canvas");
+        const gl = canvas.getContext("webgl");
+
+        if (!gl) return false;
+
+        let capable = true;
+        const ext = gl.getExtension("WEBGL_debug_renderer_info");
+
+        if (ext) {
+            const renderer = gl
+                .getParameter(ext.UNMASKED_RENDERER_WEBGL)
+                .toLowerCase();
+
+            if (SOFTWARE_RENDERERS.some((name) => renderer.includes(name))) {
+                console.warn(
+                    `[ProceduralVoid] Shader disabled — software renderer: "${renderer}"`,
+                );
+                capable = false;
+            }
+        }
+
+        gl.getExtension("WEBGL_lose_context")?.loseContext();
+        return capable;
+    }
+
     constructor(preset) {
         this.settings = {};
         this.applyPreset(preset);
