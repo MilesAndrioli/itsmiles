@@ -41,7 +41,9 @@ export default class ProceduralVoid {
         this.quad = this._createQuad();
         this.scene.add(this.quad);
 
-        if (import.meta.env.DEV) this._initDevTools();
+        this._devToolsActive = false;
+        if (new URLSearchParams(window.location.search).has("devtools"))
+            this._toggleDevTools();
 
         this._onResize();
         this._addEventListeners();
@@ -175,13 +177,24 @@ export default class ProceduralVoid {
     // DEV TOOLING
     // ========================================================================
 
-    async _initDevTools() {
+    async _toggleDevTools() {
+        if (this._devToolsActive) {
+            this.stats?.dom.remove();
+            this.stats = null;
+            this.pane?.dispose();
+            this.pane = null;
+            document.getElementById("tweakpane-container")?.remove();
+            this._devToolsActive = false;
+            return;
+        }
+
         const [{ default: StatsGL }, { Pane }] = await Promise.all([
             import("stats-gl"),
             import("tweakpane"),
         ]);
         this.stats = this._createStats(StatsGL);
         this.pane = this._createPane(Pane);
+        this._devToolsActive = true;
     }
 
     _createStats(StatsGL) {
@@ -195,7 +208,7 @@ export default class ProceduralVoid {
         const container = document.createElement("div");
         container.id = "tweakpane-container";
         container.style.cssText =
-            "position:fixed;top:8px;right:8px;z-index:1000";
+            "position:fixed;bottom:8px;left:8px;z-index:1000";
         document.body.appendChild(container);
 
         const pane = new Pane({
@@ -450,8 +463,13 @@ export default class ProceduralVoid {
             this.mouseRaw.y = 1.0 - event.clientY / window.innerHeight;
         };
 
+        this._boundKeyDown = (event) => {
+            if (event.shiftKey && event.code === "KeyD") this._toggleDevTools();
+        };
+
         window.addEventListener("resize", this._boundResize);
         window.addEventListener("mousemove", this._boundMouseMove);
+        window.addEventListener("keydown", this._boundKeyDown);
     }
 
     // ========================================================================
@@ -490,6 +508,7 @@ export default class ProceduralVoid {
         document.getElementById("tweakpane-container")?.remove();
         window.removeEventListener("resize", this._boundResize);
         window.removeEventListener("mousemove", this._boundMouseMove);
+        window.removeEventListener("keydown", this._boundKeyDown);
     }
 
     // ========================================================================
