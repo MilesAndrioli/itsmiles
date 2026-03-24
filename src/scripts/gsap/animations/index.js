@@ -1,9 +1,8 @@
-const gsapAnimations = {};
-
 const modules = import.meta.glob("./!(index).js", { eager: true });
 
-Object.values(modules).forEach((module) => {
-    Object.assign(gsapAnimations, module.default);
-});
+const animations = {};
+for (const module of Object.values(modules)) {
+    Object.assign(animations, module.default);
+}
 
-export default gsapAnimations;
+export default animations;
