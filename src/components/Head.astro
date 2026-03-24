@@ -1,6 +1,5 @@
 ---
-import Favicon from "./Favicon.astro";
-const { title, description, emoji } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <head>
@@ -11,6 +10,6 @@ const { title, description, emoji } = Astro.props;
     />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <Favicon emoji={emoji} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
 </head>
