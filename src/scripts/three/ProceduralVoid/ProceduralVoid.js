@@ -27,8 +27,8 @@ import {
     Color,
 } from "three";
 
-import vertexShader from "./shaders/ProceduralVoid.vert.glsl?raw";
-import fragmentShader from "./shaders/ProceduralVoid.frag.glsl?raw";
+import vertexShader from "./ProceduralVoid.vert.glsl?raw";
+import fragmentShader from "./ProceduralVoid.frag.glsl?raw";
 
 export default class ProceduralVoid {
     constructor() {

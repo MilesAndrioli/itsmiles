@@ -21,7 +21,7 @@ import barba from "@barba/core";
 import initBarba, { teardown, resetScroll } from "./barba/barbaInit";
 
 // --- Three.js ---
-import ProceduralVoid from "./three/ProceduralVoid";
+import ProceduralVoid from "./three/ProceduralVoid/ProceduralVoid";
 new ProceduralVoid();
 
 /* +-----------------------------------------+
