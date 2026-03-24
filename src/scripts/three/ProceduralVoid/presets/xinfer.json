@@ -1,0 +1,44 @@
+{
+    "timeScale": 0.14,
+    "colorBase": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+    },
+    "colorMid": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+    },
+    "colorHighlight": {
+        "r": 0.2549019607843137,
+        "g": 0.00392156862745098,
+        "b": 0.5411764705882353
+    },
+    "fbmLacunarity": 1.5,
+    "fbmGain": 0.56,
+    "ridgeSharpness": 1,
+    "ridgeOffset": 0,
+    "warpStrength": 4,
+    "warpScale": 2,
+    "driftAngle": 75,
+    "scrollEnabled": false,
+    "scrollWarpShift": 0,
+    "scrollRidgeShift": 1,
+    "scrollTimeShift": 0,
+    "scrollWarpStrengthShift": -0.5,
+    "scrollGainShift": -0.1,
+    "scrollScaleShift": 0,
+    "scrollColorShift": 0,
+    "scrollChromaticStrength": 0.002,
+    "mouseEnabled": true,
+    "mouseRadius": 0.54,
+    "mouseWarpInfluence": 0,
+    "mouseBrightnessInfluence": 0,
+    "mouseEase": 0.02,
+    "mouseRidgeShift": 0.5,
+    "mouseScaleShift": 0,
+    "mouseTimeShift": 0,
+    "mouseGainShift": 0.05,
+    "mouseChromaticStrength": 0.04
+}
