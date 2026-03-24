@@ -1,6 +1,6 @@
 @page {
     size: A4 portrait;
-    margin: 0 !important;
+    margin: 0;
 }
 
 @media print {
@@ -9,6 +9,12 @@
         color: var(--color-iron-800) !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
+    }
+
+    /* Safari */
+    body,
+    .ResumeGrid {
+        background-color: transparent;
     }
 
     #app-header,
