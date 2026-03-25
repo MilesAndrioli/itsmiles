@@ -12,16 +12,16 @@ experience:
           - "Built a GSAP scroll animation system driven by data-attributes. No per-page JS."
 
 skills:
-    - category: "Core"
-      items: ["JavaScript", "CSS", "HTML"]
-    - category: "Platforms"
-      items: ["Astro", "WordPress"]
     - category: "Motion"
       items: ["GSAP", "Three.js", "Lenis", "barba.js"]
     - category: "Styling"
       items: ["Tailwind CSS", "Bootstrap"]
+    - category: "Platforms"
+      items: ["Astro", "WordPress"]
     - category: "Tooling"
       items: ["Git", "GitHub", "Vite", "Webpack"]
+    - category: "Core"
+      items: ["JavaScript", "CSS", "HTML"]
     - category: "Languages"
       items: ["Spanish", "English"]
 
