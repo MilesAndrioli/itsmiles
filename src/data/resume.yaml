@@ -16,10 +16,10 @@ skills:
       items: ["JavaScript", "CSS", "HTML"]
     - category: "Platforms"
       items: ["Astro", "WordPress"]
-    - category: "Styling"
-      items: ["Tailwind CSS", "Bootstrap"]
     - category: "Motion"
       items: ["GSAP", "Three.js", "Lenis", "barba.js"]
+    - category: "Styling"
+      items: ["Tailwind CSS", "Bootstrap"]
     - category: "Tooling"
       items: ["Git", "GitHub", "Vite", "Webpack"]
     - category: "Languages"
