@@ -37,7 +37,7 @@ projects:
     - name: "Valdemar"
       url: "https://vre.es"
       description: "Real estate portal on a custom WordPress theme, syncing thousands of CRM properties into Custom Post Types via API."
-      stack: ["Bootstrap", "GSAP", "Lenis"]
+      stack: ["WordPress", "GSAP", "Lenis"]
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture studio portfolio on a custom WordPress theme, driven by GSAP scroll animations."
