@@ -39,10 +39,6 @@ projects:
       description: "Real estate portal on a custom WordPress theme, syncing thousands of CRM properties into Custom Post Types via API."
       stack: ["Bootstrap", "GSAP", "Lenis"]
       highlights:
-    - name: "Rovimática"
-      url: "https://www.rovimatica.com"
-      description: "Automation and robotics firm website on a custom WordPress theme, featuring extensive GSAP scroll animations."
-      stack: ["Tailwind CSS", "GSAP", "Lenis"]
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture studio portfolio on a custom WordPress theme, driven by GSAP scroll animations."
