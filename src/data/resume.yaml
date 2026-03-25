@@ -19,7 +19,7 @@ skills:
     - category: "Platforms"
       items: ["Astro", "WordPress"]
     - category: "Tooling"
-      items: ["Git", "GitHub", "Vite", "Webpack"]
+      items: ["Git", "Vite", "Webpack"]
     - category: "Core"
       items: ["JavaScript", "CSS", "HTML"]
     - category: "Languages"
