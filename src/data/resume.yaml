@@ -27,7 +27,7 @@ skills:
 
 projects:
     - name: "Chenot"
-      url: "https://chenot.com"
+      url: "https://www.chenot.com"
       description: "Luxury wellness brand generating six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder, giving the marketing team full ownership of the site."
       stack: ["WooCommerce", "Elementor", "GSAP"]
       highlights:
