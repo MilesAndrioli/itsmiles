@@ -55,6 +55,6 @@ const { meta, experience, skills, projects } = resume;
         text="Print Resume"
         aria-label="Print Resume"
         icon="📄"
-        onclick="window.print()"
+        onclick="const t = document.title; document.title = 'Miles-Andrioli_Resume'; window.print(); document.title = t;"
     />
 </Skeleton>
