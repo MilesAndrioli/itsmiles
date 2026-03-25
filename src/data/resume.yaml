@@ -14,14 +14,12 @@ experience:
 skills:
     - category: "Core"
       items: ["JavaScript", "CSS", "HTML"]
-    - category: "Frameworks & CMS"
+    - category: "Platforms"
       items: ["Astro", "WordPress"]
     - category: "Styling"
       items: ["Tailwind CSS", "Bootstrap"]
     - category: "Motion"
-      items: ["GSAP", "Lenis", "barba.js"]
-    - category: "3D"
-      items: ["Three.js"]
+      items: ["GSAP", "Three.js", "Lenis", "barba.js"]
     - category: "Tooling"
       items: ["Git", "GitHub", "Vite", "Webpack"]
     - category: "Languages"
