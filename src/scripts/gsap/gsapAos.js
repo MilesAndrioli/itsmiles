@@ -30,7 +30,7 @@ export default function initGsapAos() {
                 dataset.aosEnd ||
                 (isAfter ? `bottom ${headerOffset}` : "center center"),
 
-            duration: msToSec(dataset.aosDuration || 600),
+            duration: msToSec(dataset.aosDuration || 900),
             delay: msToSec(dataset.aosDelay || 0),
             ease: dataset.aosEase,
 
