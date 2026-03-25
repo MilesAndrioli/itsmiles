@@ -19,7 +19,7 @@ skills:
     - category: "Styling"
       items: ["Tailwind CSS", "Bootstrap"]
     - category: "Animation"
-      items: ["GSAP", "Lenis", "barba.js"]
+      items: ["GSAP", "barba.js"]
     - category: "Tooling"
       items: ["Vite", "Webpack"]
     - category: "Languages"
@@ -29,7 +29,7 @@ projects:
     - name: "Chenot"
       url: "https://www.chenot.com"
       description: "Luxury wellness brand generating six-figure monthly revenue. Migrated from a hard-coded theme to a visual builder, giving the marketing team full ownership of the site."
-      stack: ["WooCommerce", "Elementor", "GSAP"]
+      stack: ["Elementor", "GSAP"]
       highlights:
           - "Built a custom booking engine for rooms and treatments on top of WooCommerce checkout."
           - "Architected five interconnected Custom Post Types with custom listing and detail templates."
@@ -37,8 +37,8 @@ projects:
     - name: "Valdemar"
       url: "https://vre.es"
       description: "Real estate portal on a custom WordPress theme, syncing thousands of CRM properties into Custom Post Types via API."
-      stack: ["WordPress", "GSAP", "Lenis"]
+      stack: ["Gutenberg", "GSAP"]
     - name: "Alia"
       url: "https://aliaarchitecture.com"
       description: "Architecture studio portfolio on a custom WordPress theme, driven by GSAP scroll animations."
-      stack: ["Elementor", "GSAP", "Lenis"]
+      stack: ["Elementor", "GSAP"]
