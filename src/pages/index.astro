@@ -4,7 +4,8 @@ import ProceduralVoid from "@/components/ProceduralVoid.astro";
 import ProgressButton from "@/components/ProgressButton.astro";
 import ParallaxImage from "@/components/ParallaxImage.astro";
 import { contact } from "@/data/contact";
-import image_1 from "@/assets/images/Knight in Shadows.webp";
+// import image_1 from "@/assets/images/Knight in Shadows.webp";
+import image_2 from "@/assets/images/Purgatum (8).png";
 ---
 
 <Skeleton
@@ -47,14 +48,12 @@ import image_1 from "@/assets/images/Knight in Shadows.webp";
             >
                 <div data-aos="fade-in" data-aos-after data-aos-scrub>
                     <div class="grid gap-20 md:grid-cols-2">
-                        <div
-                            class="hidden overflow-hidden rounded-xl md:block"
-                            data-aos-child
-                        >
+                        <div class="overflow-hidden rounded-xl" data-aos-child>
                             <ParallaxImage
-                                src={image_1}
+                                src={image_2}
                                 alt=""
                                 intensity={130}
+                                class="filter-[grayscale(1)_contrast(140%)]"
                             />
                         </div>
 
