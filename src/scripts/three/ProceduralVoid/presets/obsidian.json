@@ -22,7 +22,7 @@
     "warpStrength": 4,
     "warpScale": 2,
     "driftAngle": 75,
-    "scrollEnabled": true,
+    "scrollEnabled": false,
     "scrollWarpShift": 0.4,
     "scrollRidgeShift": 1,
     "scrollTimeShift": 0,
