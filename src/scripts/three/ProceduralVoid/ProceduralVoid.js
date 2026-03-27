@@ -116,6 +116,7 @@ export default class ProceduralVoid {
             scrollEnabled: true,
             scrollWarpShift: 0,
             scrollRidgeShift: 1.0,
+            scrollRidgeOffsetShift: 0.0,
             scrollTimeShift: 0.0,
             scrollWarpStrengthShift: -0.5,
             scrollGainShift: -0.1,
@@ -134,6 +135,17 @@ export default class ProceduralVoid {
             mouseTimeShift: 0.0,
             mouseGainShift: 0.05,
             mouseChromaticStrength: 0.04,
+
+            // Deformations
+            vortexStrength: 0.0,
+
+            rippleAmplitude: 0.0,
+            rippleFreq: 8.0,
+            scrollRippleShift: 0.0,
+            mouseRippleAmplitude: 0.0,
+
+            mouseRevealStrength: 0.0,
+            mouseRevealFalloff: 1.0,
         };
     }
 
@@ -180,6 +192,7 @@ export default class ProceduralVoid {
                 uScroll: { value: 0 },
                 uScrollWarpShift: { value: 0 },
                 uScrollRidgeShift: { value: 0 },
+                uScrollRidgeOffsetShift: { value: 0 },
                 uScrollTimeShift: { value: 0 },
                 uScrollWarpStrengthShift: { value: 0 },
                 uScrollGainShift: { value: 0 },
@@ -199,6 +212,16 @@ export default class ProceduralVoid {
                 uMouseGainShift: { value: 0 },
                 uMouseChromaticStrength: { value: 0 },
                 uMouseSpeed: { value: 0 },
+
+                uVortexStrength: { value: 0 },
+
+                uRippleAmplitude: { value: 0 },
+                uRippleFreq: { value: 0 },
+                uScrollRippleShift: { value: 0 },
+                uMouseRippleAmplitude: { value: 0 },
+
+                uMouseRevealStrength: { value: 0 },
+                uMouseRevealFalloff: { value: 0 },
             },
             vertexShader,
             fragmentShader,
@@ -261,18 +284,27 @@ export default class ProceduralVoid {
             max: 0.5,
             step: 0.001,
         });
-
-        // --- Colors ---
-        const colors = pane.addFolder({ title: "Colors", expanded: false });
-        colors.addBinding(this.settings, "colorBase", {
+        general.addBinding(this.settings, "warpScale", {
+            label: "Scale (zoom level)",
+            min: 0.5,
+            max: 10.0,
+            step: 0.1,
+        });
+        general.addBinding(this.settings, "driftAngle", {
+            label: "Drift Angle (direction)",
+            min: 0,
+            max: 360,
+            step: 1,
+        });
+        general.addBinding(this.settings, "colorBase", {
             label: "Base (darkest)",
             color: { type: "float" },
         });
-        colors.addBinding(this.settings, "colorMid", {
+        general.addBinding(this.settings, "colorMid", {
             label: "Mid (ridges)",
             color: { type: "float" },
         });
-        colors.addBinding(this.settings, "colorHighlight", {
+        general.addBinding(this.settings, "colorHighlight", {
             label: "Highlight (peaks)",
             color: { type: "float" },
         });
@@ -300,12 +332,6 @@ export default class ProceduralVoid {
             max: 8.0,
             step: 0.1,
         });
-        ridge.addBinding(this.settings, "ridgeOffset", {
-            label: "Offset (fold threshold)",
-            min: 0.0,
-            max: 1.0,
-            step: 0.01,
-        });
 
         // --- Domain Warp ---
         const warp = pane.addFolder({ title: "Domain Warp", expanded: false });
@@ -315,24 +341,33 @@ export default class ProceduralVoid {
             max: 10.0,
             step: 0.1,
         });
-        warp.addBinding(this.settings, "warpScale", {
-            label: "Scale (zoom level)",
-            min: 0.5,
+
+        // --- Vortex ---
+        const vortex = pane.addFolder({ title: "Vortex", expanded: false });
+        vortex.addBinding(this.settings, "vortexStrength", {
+            label: "Strength (swirl)",
+            min: -10.0,
             max: 10.0,
             step: 0.1,
         });
-        warp.addBinding(this.settings, "driftAngle", {
-            label: "Drift Angle (direction)",
-            min: 0,
-            max: 360,
-            step: 1,
+
+        // --- Ripple ---
+        const ripple = pane.addFolder({ title: "Ripple", expanded: false });
+        ripple.addBinding(this.settings, "rippleAmplitude", {
+            label: "Amplitude",
+            min: 0.0,
+            max: 2.0,
+            step: 0.01,
+        });
+        ripple.addBinding(this.settings, "rippleFreq", {
+            label: "Frequency",
+            min: 1.0,
+            max: 30.0,
+            step: 0.1,
         });
 
         // --- Scroll ---
-        const scroll = pane.addFolder({
-            title: "Scroll",
-            expanded: false,
-        });
+        const scroll = pane.addFolder({ title: "Scroll", expanded: false });
         scroll.addBinding(this.settings, "scrollEnabled", { label: "Enabled" });
         scroll.addBinding(this.settings, "scrollWarpShift", {
             label: "Warp Shift (pan amount)",
@@ -346,6 +381,12 @@ export default class ProceduralVoid {
             max: 3.0,
             step: 0.1,
         });
+        scroll.addBinding(this.settings, "scrollRidgeOffsetShift", {
+            label: "Ridge Offset",
+            min: -0.5,
+            max: 0.5,
+            step: 0.01,
+        });
         scroll.addBinding(this.settings, "scrollTimeShift", {
             label: "Time",
             min: 0.0,
@@ -353,7 +394,7 @@ export default class ProceduralVoid {
             step: 0.1,
         });
         scroll.addBinding(this.settings, "scrollWarpStrengthShift", {
-            label: "Strength",
+            label: "Warp Strength",
             min: -5.0,
             max: 5.0,
             step: 0.1,
@@ -381,6 +422,12 @@ export default class ProceduralVoid {
             min: 0.0,
             max: 0.05,
             step: 0.001,
+        });
+        scroll.addBinding(this.settings, "scrollRippleShift", {
+            label: "Ripple",
+            min: -1.0,
+            max: 1.0,
+            step: 0.01,
         });
 
         // --- Mouse ---
@@ -440,9 +487,38 @@ export default class ProceduralVoid {
             max: 0.15,
             step: 0.001,
         });
+        mouse.addBinding(this.settings, "mouseRippleAmplitude", {
+            label: "Ripple",
+            min: 0.0,
+            max: 1.5,
+            step: 0.01,
+        });
+        mouse.addBinding(this.settings, "mouseRevealStrength", {
+            label: "Reveal Strength",
+            min: 0.0,
+            max: 1.0,
+            step: 0.01,
+        });
+        mouse.addBinding(this.settings, "mouseRevealFalloff", {
+            label: "Reveal Falloff (edge)",
+            min: 0.5,
+            max: 5.0,
+            step: 0.1,
+        });
 
-        // --- Presets ---
-        const presetActions = pane.addFolder({ title: "Presets" });
+        // --- Preset Manager ---
+        const presetActions = pane.addFolder({ title: "Preset Manager" });
+
+        const presetOpts = { "(defaults)": "" };
+        for (const name of Object.keys(presets)) {
+            presetOpts[name] = name;
+        }
+        presetActions.addBinding(this, "_currentPreset", {
+            label: "Preset",
+            options: presetOpts,
+        }).on("change", (ev) => {
+            this.applyPreset(ev.value || undefined);
+        });
 
         presetActions.addButton({ title: "Save" }).on("click", () => {
             const state = pane.exportState();
@@ -520,6 +596,7 @@ export default class ProceduralVoid {
             if (values) Object.assign(defaults, values);
         }
         Object.assign(this.settings, defaults);
+        this._currentPreset = typeof preset === "string" ? preset : "";
         this.pane?.refresh();
     }
 
@@ -611,6 +688,7 @@ export default class ProceduralVoid {
 
         u.uScrollWarpShift.value = s.scrollWarpShift;
         u.uScrollRidgeShift.value = s.scrollRidgeShift;
+        u.uScrollRidgeOffsetShift.value = s.scrollRidgeOffsetShift;
         u.uScrollTimeShift.value = s.scrollTimeShift;
         u.uScrollWarpStrengthShift.value = s.scrollWarpStrengthShift;
         u.uScrollGainShift.value = s.scrollGainShift;
@@ -638,5 +716,16 @@ export default class ProceduralVoid {
         u.uMouseTimeShift.value = s.mouseTimeShift;
         u.uMouseGainShift.value = s.mouseGainShift;
         u.uMouseChromaticStrength.value = s.mouseChromaticStrength;
+
+        // Deformations
+        u.uVortexStrength.value = s.vortexStrength;
+
+        u.uRippleAmplitude.value = s.rippleAmplitude;
+        u.uRippleFreq.value = s.rippleFreq;
+        u.uScrollRippleShift.value = s.scrollRippleShift;
+        u.uMouseRippleAmplitude.value = s.mouseRippleAmplitude;
+
+        u.uMouseRevealStrength.value = s.mouseRevealStrength;
+        u.uMouseRevealFalloff.value = s.mouseRevealFalloff;
     }
 }

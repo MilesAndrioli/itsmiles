@@ -68,6 +68,18 @@ uniform float uMouseGainShift;         // Localized FBM detail change
 uniform float uMouseChromaticStrength; // RGB channel separation (chromatic aberration)
 uniform float uMouseSpeed;            // Smoothed cursor movement speed (0 = still)
 
+// Deformation parameters
+uniform float uScrollRidgeOffsetShift; // Scroll-driven ridge offset change
+uniform float uVortexStrength;        // Static swirl intensity
+
+uniform float uRippleAmplitude;       // Global ripple displacement
+uniform float uRippleFreq;            // Ripple ring density
+uniform float uScrollRippleShift;     // Scroll-driven ripple change
+uniform float uMouseRippleAmplitude;  // Mouse-centered ripple displacement
+
+uniform float uMouseRevealStrength;   // 0 = always visible, 1 = hidden until mouse reveals
+uniform float uMouseRevealFalloff;    // Reveal edge sharpness (1 = linear, >1 = tighter)
+
 // --- VARYINGS (from Vertex Shader) ---
 varying vec2 vUv;
 
@@ -88,6 +100,7 @@ varying vec2 vUv;
 float gGain;              // Effective FBM gain (base + scroll + mouse)
 float gRidgeSharpness;    // Effective ridge sharpness (base + scroll + mouse)
 float gTimeOffset;        // Extra time offset from mouse proximity
+float gRidgeOffset;       // Effective ridge offset (base + scroll)
 float gScrollColorBlend;  // Precomputed scroll color shift
 
 
@@ -222,7 +235,7 @@ float ridgeFbm(vec2 p) {
         // uRidgeSharpness with scroll and mouse modifiers.
         // gGain is also set by main() for the same reason.
         float n = noise(p);
-        n = pow(1.0 - abs(n - uRidgeOffset), gRidgeSharpness);
+        n = pow(1.0 - abs(n - gRidgeOffset), gRidgeSharpness);
         value += amplitude * n;
 
         p *= uFbmLacunarity;
@@ -379,20 +392,20 @@ void main() {
     float mouseInfluence = 0.0;
     vec2 mouseDir = vec2(0.0);
 
+    // Aspect-correct the mouse position to match our corrected UV space.
+    vec2 mouseUV = uMouse;
+    mouseUV.x *= uResolution.x / uResolution.y;
+
     // --- Set per-pixel global modifiers ---
     // Start with base uniform + scroll contribution. Mouse adds on top.
     gGain = clamp(uFbmGain + uScroll * uScrollGainShift, 0.0, 1.0);
     gRidgeSharpness = uRidgeSharpness + uScroll * uScrollRidgeShift;
+    gRidgeOffset = uRidgeOffset + uScroll * uScrollRidgeOffsetShift;
     gTimeOffset = 0.0;
 
     float effectiveScale = scale;
 
     if (uMouseEnabled > 0.5) {
-        // Aspect-correct the mouse position to match our corrected UV space.
-        // Computed once here, reused by warp push and chromatic aberration.
-        vec2 mouseUV = uMouse;
-        mouseUV.x *= uResolution.x / uResolution.y;
-
         float dist = distance(uv, mouseUV);
         mouseInfluence = smoothstep(uMouseRadius, 0.0, dist);
         mouseDir = dist > 0.001 ? normalize(uv - mouseUV) : vec2(0.0);
@@ -409,11 +422,39 @@ void main() {
 
     vec2 p = uv * max(effectiveScale, 0.1);
 
-    // Displace the noise coordinates based on mouse proximity.
-    // The displacement direction (mouseDir) points away from the cursor,
-    // creating a "push" effect — noise appears to flow around
-    // the cursor like water around a stone.
+    // --- Coordinate center (screen center in scaled UV space) ---
+    vec2 coordCenter = vec2(0.5 * uResolution.x / uResolution.y, 0.5) * max(effectiveScale, 0.1);
+
+    // --- Vortex / Swirl (distance-dependent rotation) ---
+    float vortexStr = uVortexStrength;
+    if (abs(vortexStr) > 0.001) {
+        vec2 vd = p - coordCenter;
+        float vr = length(vd);
+        float va = atan(vd.y, vd.x) + vortexStr / (vr + 0.5);
+        p = coordCenter + vr * vec2(cos(va), sin(va));
+    }
+
+    // --- Ripple / Wave displacement ---
+    float rippleAmp = uRippleAmplitude + uScroll * uScrollRippleShift;
+    if (abs(rippleAmp) > 0.001) {
+        vec2 rc = p - coordCenter;
+        float rd = length(rc);
+        p += normalize(rc + 0.0001) * sin(rd * uRippleFreq - uTime * 4.0) * rippleAmp;
+    }
+
+    // --- Mouse-localized deformations ---
     if (uMouseEnabled > 0.5 && mouseInfluence > 0.0) {
+        vec2 scaledMouseUV = mouseUV * max(effectiveScale, 0.1);
+
+        // Mouse ripple (concentric waves from cursor)
+        if (uMouseRippleAmplitude > 0.001) {
+            vec2 mrc = p - scaledMouseUV;
+            float mrd = length(mrc);
+            p += normalize(mrc + 0.0001) * sin(mrd * uRippleFreq - uTime * 6.0)
+                 * uMouseRippleAmplitude * mouseInfluence;
+        }
+
+        // Mouse warp push (existing behavior)
         p += mouseDir * mouseInfluence * uMouseWarpInfluence;
     }
 
@@ -468,6 +509,8 @@ void main() {
     // The mouseInfluence falloff (from smoothstep) keeps this natural.
     if (uMouseEnabled > 0.5) {
         color += mouseInfluence * uMouseBrightnessInfluence;
+        float reveal = pow(mouseInfluence, uMouseRevealFalloff);
+        color *= mix(1.0, reveal, uMouseRevealStrength);
     }
 
     gl_FragColor = vec4(color, 1.0);
