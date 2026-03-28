@@ -1,5 +1,7 @@
 @utility container {
-    @apply mx-auto max-w-6xl px-5;
+    @apply mx-auto px-(--padders);
+
+    max-width: calc(2560px / 2 + var(--padders) * 2);
 }
 
 @utility text-stroke {
