@@ -23,7 +23,7 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Name & Title (mobile) -->
     <div class="grid gap-1 md:hidden print:hidden" data-aos-child>
-        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-4xl">
+        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-5xl">
             {name}
         </h1>
         <h2 class="subtitle">
@@ -33,14 +33,14 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Summary -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">About</h3>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">About</h3>
         <div>
-            <p class="text-iron-400 print:text-iron-800 text-sm">
+            <p class="text-iron-400 print:text-iron-800">
                 Front-end Developer with 7 years of experience based in Málaga,
                 Spain.
             </p>
             <p
-                class="text-iron-400 print:text-iron-800 text-sm md:mb-0 print:mb-0"
+                class="text-iron-400 print:text-iron-800 md:mb-0 print:mb-0"
             >
                 Bilingual in Spanish and English. <a
                     href={contact.linkedin}
@@ -48,7 +48,7 @@ const { name, title, contact, skills } = Astro.props;
                     class="text-jade print:text-iron-800 swipe-link">Open</a
                 > to remote or on-site roles worldwide.
             </p>
-            <p class="text-iron-400 text-sm md:hidden print:hidden">
+            <p class="text-iron-400 md:hidden print:hidden">
                 Focused on fluid and highly interactive web experiences.
                 Currently exploring 3D on the web with WebGL, shaders, Three.js,
                 and Theatre.js.
@@ -60,8 +60,8 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Contact -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Contact</h3>
-        <ul class="text-iron-300 print:text-iron-800 grid gap-1 text-sm">
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">Contact</h3>
+        <ul class="text-iron-300 print:text-iron-800 grid gap-1">
             <li>
                 <a href={`mailto:${contact.email}`} class="swipe-link">
                     {contact.email}
@@ -84,15 +84,15 @@ const { name, title, contact, skills } = Astro.props;
 
     <!-- Skills -->
     <div class="ResumeSection grid gap-1" data-aos-child>
-        <h3 class="ResumeHeading subtitle mb-0 text-xs">Skills</h3>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">Skills</h3>
         <div class="grid gap-3">
             {
                 skills.map((group) => (
                     <div class="grid">
-                        <span class="text-iron-600 text-xs">
+                        <span class="text-iron-600 text-sm">
                             {group.category}
                         </span>
-                        <span class="text-iron-300 print:text-iron-800 text-sm">
+                        <span class="text-iron-300 print:text-iron-800">
                             {group.items.join(" · ")}
                         </span>
                     </div>
