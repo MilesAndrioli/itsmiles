@@ -8,7 +8,7 @@
 }
 
 .sticky--above-center {
-    top: calc(50vh - var(--height) - var(--gappers));
+    top: calc(50vh - var(--height) - (var(--gappers) / 2));
 }
 
 .sticky--center {
@@ -16,9 +16,9 @@
 }
 
 .sticky--below-center {
-    top: calc(50vh + var(--gappers));
+    top: calc(50vh + (var(--gappers) / 2));
 }
 
 .sticky--bottom {
-    top: calc(100vh - var(--height) - var(--gappers));
+    top: calc(100vh - var(--height) - (var(--gappers) / 2));
 }
