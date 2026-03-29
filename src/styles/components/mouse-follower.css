@@ -25,21 +25,20 @@
         /*border-radius: 50%;*/
 
         scale: var(--dot-scale);
-        rotate: var(--dot-rotate);
         opacity: var(--dot-opacity);
 
         transition:
             scale var(--cmp-trans),
-            opacity var(--cmp-trans),
-            rotate var(--cmp-trans);
+            opacity var(--cmp-trans);
     }
 
     /* States Styling */
-    &.-pointer {
-        --dot-scale: 300% 100%;
-        --dot-rotate: 90deg;
-    }
+    /*&.-pointer {
+    --dot-scale: 500%;
+    --dot-opacity: 20%;
+    }*/
 
+    &.-pointer,
     &.-hidden,
     &.-text {
         --dot-scale: 0%;
