@@ -12,7 +12,7 @@
         height: 1px;
         width: 100%;
 
-        background-color: currentColor;
+        background-color: color-mix(currentColor, transparent);
 
         transition: transform var(--out--fast);
     }
