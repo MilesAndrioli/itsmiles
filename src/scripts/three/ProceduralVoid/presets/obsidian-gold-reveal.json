@@ -33,7 +33,7 @@
     "scrollColorShift": -0.1,
     "scrollChromaticStrength": 0.001,
     "mouseEnabled": true,
-    "mouseRadius": 0.72,
+    "mouseRadius": 0.66,
     "mouseWarpInfluence": 0,
     "mouseBrightnessInfluence": 0,
     "mouseEase": 0.02,
