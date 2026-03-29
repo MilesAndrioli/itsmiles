@@ -7,6 +7,7 @@ import debounce from "lodash.debounce";
 import getDimensions from "./utilities/getDimensions";
 import dismissLoader from "./utilities/dismissLoader";
 import getStickyElements from "./utilities/getStickyElements";
+import shuffleHover from "./utilities/shuffleHover";
 
 // --- GSAP ---
 import gsapConfig from "./gsap/gsapConfig";
@@ -36,6 +37,7 @@ function initSetup() {
     gsapAos();
     gsapReveal();
     gsapProgressButton();
+    shuffleHover();
     getStickyElements();
 }
 
