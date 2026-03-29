@@ -32,11 +32,8 @@
                     transparent 0
                 );
 
-            background-size: 50vw 50dvh;
-
-            @media (width >= 2560px) {
-                background-size: 25vw 50dvh;
-            }
+            background-size: calc(var(--contained) / 2) 50dvh;
+            background-position: 50vw top;
         }
     }
 </style>
