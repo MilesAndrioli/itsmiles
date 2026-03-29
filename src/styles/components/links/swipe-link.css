@@ -11,7 +11,7 @@
         height: 1px;
         width: 100%;
 
-        background-color: currentColor;
+        background-color: color-mix(currentColor, transparent);
 
         transform: scaleX(0%);
         transform-origin: right;

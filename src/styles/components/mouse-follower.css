@@ -22,7 +22,7 @@
         width: var(--dot-size);
 
         background-color: currentColor;
-        border-radius: 50%;
+        /*border-radius: 50%;*/
 
         scale: var(--dot-scale);
         opacity: var(--dot-opacity);
@@ -33,11 +33,12 @@
     }
 
     /* States Styling */
-    &.-pointer {
-        --dot-scale: 500%;
-        /*--dot-opacity: 20%;*/
-    }
+    /*&.-pointer {
+    --dot-scale: 500%;
+    --dot-opacity: 20%;
+    }*/
 
+    &.-pointer,
     &.-hidden,
     &.-text {
         --dot-scale: 0%;

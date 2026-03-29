@@ -1,7 +1,5 @@
 ---
-import CloneLink from "@/components/CloneLink.astro";
 import TimezoneClock from "@/components/TimezoneClock.astro";
-// import { contact } from "@/data/contact";
 ---
 
 <header id="app-header" class="py-3 mix-blend-difference">
@@ -15,12 +13,10 @@ import TimezoneClock from "@/components/TimezoneClock.astro";
             />
             <nav class="text-iron-50">
                 <ul class="flex gap-3 text-sm">
-                    <li>
-                        <CloneLink href="/" text="Home" />
-                    </li>
-                    <li>
-                        <CloneLink href="/resume/" text="Resume" />
-                    </li>
+                    <a href="/" class="swipe-link" data-hover-shuffle>Home</a>
+                    <a href="/resume/" class="swipe-link" data-hover-shuffle
+                        >Resume</a
+                    >
                 </ul>
             </nav>
         </div>
