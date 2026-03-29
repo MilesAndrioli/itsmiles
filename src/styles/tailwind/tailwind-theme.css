@@ -46,7 +46,7 @@
     /* #region Layout */
     --gappers: calc(var(--spacing) * 10);
     --padders: calc(var(--spacing) * 5);
-    --max-width-5xl: 62rem;
+    --max-width-5xl: 60rem;
     /* #endregion */
 
     /* #region Easings */
