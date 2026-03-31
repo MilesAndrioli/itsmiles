@@ -80,7 +80,7 @@ export default {
     "split-left-blur": {
         origin: {
             opacity: 0,
-            x: "1em",
+            x: "24",
             filter: "blur(6px)",
         },
         destination: {
