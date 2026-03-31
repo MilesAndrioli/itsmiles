@@ -15,7 +15,7 @@ import { contact } from "@/data/contact";
     <section class="-mt-40 min-h-dvh content-center">
         <div class="contained">
             <div
-                data-aos-group="split-left-blur"
+                data-aos-group="split-up-blur"
                 data-aos-duration="1200"
                 data-aos-stagger-gap="220"
                 data-aos-delay="100"
@@ -24,7 +24,7 @@ import { contact } from "@/data/contact";
                     <div class="grid gap-20 lg:grid-cols-12">
                         <h1
                             class="text-iron-300 col-span-full m-0 font-serif text-7xl"
-                            data-aos-child
+                            data-aos-child="split-left-blur"
                         >
                             Hey, it's Miles.
                         </h1>
@@ -53,17 +53,34 @@ import { contact } from "@/data/contact";
         </div>
     </section>
 
+    <section class="min-h-dvh place-content-center overflow-hidden">
+        <div class="contained">
+            <p
+                class="font-display text-iron-400 mb-0 text-justify text-7xl tracking-wider uppercase"
+                data-aos="split-left-chromatic"
+                data-aos-scrub
+                data-aos-split-gap="400"
+                data-aos-duration="4000"
+            >
+                Focused on fluid and highly interactive web experiences.
+                Currently exploring 3D on the web with WebGL, GLSL, Three.js,
+                and Theatre.js.
+            </p>
+        </div>
+    </section>
+
     <!-- REVISIT -->
-    <section class="min-h-[50dvh] content-center">
+    <section class="min-h-dvh content-center">
         <div class="contained">
             <div
-                data-aos-group="split-left-blur"
+                data-aos-group="split-up-blur"
                 data-aos-duration="1200"
                 data-aos-stagger-gap="220"
+                data-aos-scrub
             >
                 <div data-aos="fade-in" data-aos-after data-aos-scrub>
                     <div class="grid gap-5 lg:grid-cols-12">
-                        <div class="lg:col-span-2">
+                        <div class="lg:col-span-3">
                             <span
                                 class="subtitle text-iron-600 sticky--below-center text-sm lg:sticky"
                                 data-aos-child
@@ -71,12 +88,12 @@ import { contact } from "@/data/contact";
                                 Stack
                             </span>
                         </div>
-                        <div class="grid gap-16 lg:col-span-10">
+                        <div class="grid gap-16 lg:col-span-9">
                             <h2
-                                class="text-iron-300 mb-0 text-7xl tracking-tight uppercase"
+                                class="text-iron-300 mb-0 text-7xl tracking-tighter uppercase"
                                 data-aos-child
                             >
-                                Smoothing the Web
+                                Smoothing the WWW
                             </h2>
                             <div class="grid sm:grid-cols-2 sm:gap-16">
                                 <p
@@ -104,22 +121,6 @@ import { contact } from "@/data/contact";
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="min-h-dvh place-content-center overflow-hidden">
-        <div class="contained">
-            <p
-                class="font-display text-iron-400 mb-0 text-justify text-7xl tracking-wider uppercase"
-                data-aos="split-left-chromatic"
-                data-aos-scrub
-                data-aos-split-gap="400"
-                data-aos-duration="4000"
-            >
-                Focused on fluid and highly interactive web experiences.
-                Currently exploring 3D on the web with WebGL, GLSL, Three.js,
-                and Theatre.js.
-            </p>
         </div>
     </section>
 
