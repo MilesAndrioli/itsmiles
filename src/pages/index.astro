@@ -2,10 +2,7 @@
 import Skeleton from "@/layouts/Skeleton.astro";
 import ProceduralVoid from "@/components/ProceduralVoid.astro";
 import ProgressButton from "@/components/ProgressButton.astro";
-import ParallaxImage from "@/components/ParallaxImage.astro";
 import { contact } from "@/data/contact";
-// import image_1 from "@/assets/images/Knight in Shadows.webp";
-import image_2 from "@/assets/images/Purgatum_8.png";
 ---
 
 <Skeleton
@@ -14,78 +11,41 @@ import image_2 from "@/assets/images/Purgatum_8.png";
     class="grid py-40"
 >
     <ProceduralVoid preset="obsidian-gold-reveal" />
-    <section class="hero-fixed -mt-40">
-        <div class="contained">
-            <div data-aos-group="split-up-chromatic" data-aos-delay="100">
-                <div data-aos="fade-in" data-aos-after data-aos-scrub>
-                    <div class="grid place-content-center gap-3">
-                        <h1
-                            class="text-iron-300 mb-0 font-serif text-8xl"
-                            data-aos-child
-                        >
-                            Hey, it's Miles!
-                        </h1>
-                        <h2 class="mb-0 text-xl" data-aos-child>
-                            This is still a work in progress. In the meantime,
-                            check out my <a
-                                href="/resume/"
-                                class="swipe-link text-jade"
-                                data-hover-shuffle>resume</a
-                            >.
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- DOUBLE CHECK THIS SECTION -->
-    <section>
+    <section class="-mt-40 min-h-dvh content-center">
         <div class="contained">
             <div
-                data-aos-group="fade-in"
+                data-aos-group="split-left-blur"
                 data-aos-duration="1200"
-                data-aos-stagger-gap="220"
+                data-aos-stagger-gap="280"
+                data-aos-delay="100"
             >
                 <div data-aos="fade-in" data-aos-after data-aos-scrub>
-                    <div class="grid gap-(--gappers) md:grid-cols-2">
-                        <div class="overflow-hidden rounded-xl" data-aos-child>
-                            <ParallaxImage
-                                src={image_2}
-                                alt=""
-                                intensity={130}
-                                class="filter-[grayscale(1)_contrast(140%)]"
-                            />
-                        </div>
+                    <div class="grid gap-20 lg:grid-cols-12">
+                        <h1
+                            class="text-iron-300 col-span-full m-0 font-serif text-7xl lg:order-last"
+                            data-aos-child
+                        >
+                            Hey, it's Miles.
+                        </h1>
 
-                        <div>
-                            <div class="sticky--below-center sticky grid gap-6">
-                                <p
-                                    class="text-iron-200 mb-0 font-serif text-5xl"
-                                    data-aos-child="split-up-chromatic"
+                        <div class="col-span-full lg:col-start-7">
+                            <h2 class="text-iron-400 text-xl" data-aos-child>
+                                Focused on fluid and highly interactive web
+                                experiences. Currently exploring 3D on the web
+                                with WebGL, GLSL, Three.js, and Theatre.js.
+                            </h2>
+                            <p class="text-lg" data-aos-child>
+                                This is still a work in progress. In the
+                                meantime, check out my
+                                <a
+                                    href="/resume/"
+                                    class="swipe-link text-jade"
+                                    data-hover-shuffle
                                 >
-                                    Hey, it's Miles!
-                                </p>
-
-                                <h1
-                                    class="mb-0 text-2xl"
-                                    data-aos-child="split-up-chromatic"
-                                >
-                                    Front-end Developer with 7 years of
-                                    experience based in Málaga, Spain.
-                                </h1>
-
-                                <p
-                                    class="mb-0"
-                                    data-aos-child="split-up-chromatic"
-                                >
-                                    Bilingual in Spanish and English. <a
-                                        href={contact.linkedin}
-                                        target="_blank"
-                                        class="text-jade swipe-link">Open</a
-                                    > to remote or on-site roles worldwide.
-                                </p>
-                            </div>
+                                    resume
+                                </a>.
+                            </p>
                         </div>
                     </div>
                 </div>
