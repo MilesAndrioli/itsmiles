@@ -45,7 +45,7 @@
 
     /* #region Layout */
     --contained: 1440px;
-    --gappers: calc(var(--spacing) * 20);
+    --gappers: calc(var(--spacing) * 10);
     --padders: calc(var(--spacing) * 5);
     --max-width-5xl: 60rem;
     /* #endregion */
