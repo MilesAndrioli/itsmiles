@@ -19,3 +19,7 @@
 @utility hero-fixed {
     @apply min-h-dvh place-content-center;
 }
+
+@utility mbgodway {
+    @apply mt-(--APP_HEADER_HEIGHT) pt-(--padders);
+}
