@@ -4,10 +4,7 @@
     #app-filter {
         position: fixed;
         z-index: var(--filter-layer);
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
+        inset: 0;
         pointer-events: none;
 
         &.has-LUT {
@@ -32,9 +29,16 @@
                     transparent 0
                 );
 
-            /*background-size: calc(var(--contained) / 2 - var(--padders)) 50dvh;*/
-            background-size: calc(var(--contained) / 2) 50dvh;
+            /*--tile-width: calc(var(--contained) / 2 - var(--padders));*/
+            --tile-width: calc(var(--contained) / 2);
+
+            background-size: var(--tile-width) 50dvh;
             background-position: 50vw top;
+
+            mask-image: linear-gradient(black, black);
+            mask-size: calc(var(--contained) + 2px) 100%;
+            mask-position: center;
+            mask-repeat: no-repeat;
         }
     }
 </style>
