@@ -12,14 +12,10 @@
     @apply font-display font-light tracking-wider uppercase;
 }
 
-@utility hero-sticky {
-    @apply min-h-[calc(100dvh_-_var(--APP_HEADER_HEIGHT,0px))] place-content-center;
+@utility heroS {
+    @apply min-h-[calc(100dvh_-_var(--APP_HEADER_HEIGHT)_*_2)] content-center max-sm:pt-(--padders);
 }
 
-@utility hero-fixed {
-    @apply min-h-dvh place-content-center;
-}
-
-@utility mbgodway {
-    @apply mt-(--APP_HEADER_HEIGHT) pt-(--padders);
+@utility heroF {
+    @apply min-h-dvh content-center max-sm:mt-(--APP_HEADER_HEIGHT) max-sm:pt-(--padders);
 }
