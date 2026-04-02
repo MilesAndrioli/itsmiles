@@ -2,6 +2,7 @@
 import Skeleton from "@/layouts/Skeleton.astro";
 import ProceduralVoid from "@/components/ProceduralVoid.astro";
 import ProgressButton from "@/components/ProgressButton.astro";
+import AsciiVideo from "@/components/AsciiVideo.astro";
 import { contact } from "@/data/contact";
 ---
 
@@ -20,14 +21,26 @@ import { contact } from "@/data/contact";
                 data-aos-stagger-gap="220"
                 data-aos-delay="100"
             >
-                <div data-aos="fade-in-blur-out" data-aos-after data-aos-scrub>
-                    <div class="grid gap-20 lg:grid-cols-12">
+                <div data-aos="DeleteLater" data-aos-after data-aos-scrub>
+                    <div class="grid gap-10 lg:grid-cols-12 lg:gap-20">
                         <h1
-                            class="text-iron-300 col-span-full m-0 font-serif text-8xl"
+                            class="text-iron-300 col-span-full m-0 font-serif text-6xl lg:text-8xl"
                             data-aos-child="split-left-blur"
                         >
                             Hey, it's Miles.
                         </h1>
+
+                        <div
+                            class="lg:col-span-4 lg:col-start-3 lg:h-0"
+                            data-aos-child="fade-in-blur-out"
+                        >
+                            <AsciiVideo
+                                src="/test123ee.mp4"
+                                mediaClass="aspect-4/5 w-full object-cover object-top"
+                                data-ascii-width="80"
+                                data-ascii-color="#cc2828"
+                            />
+                        </div>
 
                         <div class="col-span-full lg:col-start-7">
                             <h2 class="text-iron-400 text-xl" data-aos-child>
@@ -40,7 +53,7 @@ import { contact } from "@/data/contact";
                                 meantime, check out my
                                 <a
                                     href="/resume/"
-                                    class="swipe-link text-jade"
+                                    class="swipe-link text-red-500"
                                     data-hover-shuffle
                                 >
                                     resume
@@ -53,21 +66,121 @@ import { contact } from "@/data/contact";
         </div>
     </section>
 
-    <section class="min-h-dvh place-content-center overflow-hidden">
+    <!-- REVISIT !!! -->
+    <!-- <section class="min-h-dvh content-center">
         <div class="contained">
-            <p
-                class="font-display text-iron-400 mb-0 text-justify text-7xl tracking-wider uppercase"
-                data-aos="split-left-chromatic"
-                data-aos-scrub
-                data-aos-split-gap="400"
-                data-aos-duration="4000"
+            <div
+                data-aos-group="split-up-blur"
+                data-aos-duration="1200"
+                data-aos-stagger-gap="220"
             >
-                Focused on fluid and highly interactive web experiences.
-                Currently exploring 3D on the web with WebGL, GLSL, Three.js,
-                and Theatre.js.
-            </p>
+                <div data-aos="fade-in-blur-out" data-aos-after data-aos-scrub>
+                    <div class="grid gap-10 md:grid-cols-12">
+                        <div class="md:col-span-5">
+                            <div class="sticky--center sticky grid gap-10">
+                                <p
+                                    class="text-iron-400 text-justify text-xl md:mb-0"
+                                    data-aos-child
+                                >
+                                    GSAP, Lenis & barba.js, consectetur
+                                    adipiscing elit. Sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris.
+                                </p>
+
+                                <p
+                                    class="mb-0 text-justify text-xl"
+                                    data-aos-child
+                                >
+                                    Duis aute irure dolor in reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat
+                                    nulla pariatur. Excepteur sint occaecat
+                                    cupidatat non proident, sunt in culpa qui
+                                    officia deserunt.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="overflow-hidden rounded-xl md:col-span-5 md:col-start-6"
+                            data-aos-child="fade-in"
+                        >
+                            <ParallaxImage
+                                src={image}
+                                alt=""
+                                intensity={130}
+                                class="aspect-4/5 filter-[grayscale(1)_contrast(140%)]"
+                            />
+                        </div>
+
+                        <span
+                            class="subtitle rotate-180 justify-self-start [writing-mode:vertical-lr] md:col-span-2"
+                            >Bellum
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </section> -->
+
+    <!-- REVISIT !!! -->
+    <!-- <section class="min-h-dvh content-center">
+        <div class="contained">
+            <div
+                data-aos-group="split-up-blur"
+                data-aos-duration="1200"
+                data-aos-stagger-gap="220"
+            >
+                <div data-aos="fade-in-blur-out" data-aos-after data-aos-scrub>
+                    <div class="grid gap-10 md:grid-cols-12">
+                        <span
+                            class="subtitle rotate-180 [writing-mode:vertical-lr] md:col-span-2"
+                            >Bellum</span
+                        >
+
+                        <div
+                            class="overflow-hidden rounded-xl md:col-span-5 md:col-start-3"
+                            data-aos-child="fade-in"
+                        >
+                            <ParallaxImage
+                                src={image}
+                                alt=""
+                                intensity={130}
+                                class="aspect-3/4 filter-[grayscale(1)_contrast(140%)]"
+                            />
+                        </div>
+
+                        <div class="md:col-span-5 md:col-start-8">
+                            <div class="sticky--center sticky grid gap-10">
+                                <p
+                                    class="text-iron-400 text-justify text-xl md:mb-0"
+                                    data-aos-child
+                                >
+                                    GSAP, Lenis & barba.js, consectetur
+                                    adipiscing elit. Sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris.
+                                </p>
+
+                                <p
+                                    class="mb-0 text-justify text-xl"
+                                    data-aos-child
+                                >
+                                    Duis aute irure dolor in reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat
+                                    nulla pariatur. Excepteur sint occaecat
+                                    cupidatat non proident, sunt in culpa qui
+                                    officia deserunt.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
 
     <section class="min-h-dvh content-center">
         <div class="contained">
@@ -77,7 +190,7 @@ import { contact } from "@/data/contact";
                 data-aos-stagger-gap="220"
                 data-aos-scrub
             >
-                <div data-aos="fade-in" data-aos-after data-aos-scrub>
+                <div data-aos="fade-in-blur-out" data-aos-after data-aos-scrub>
                     <div class="grid gap-5 lg:grid-cols-12">
                         <div class="lg:col-span-3">
                             <span
@@ -122,6 +235,22 @@ import { contact } from "@/data/contact";
             </div>
         </div>
     </section>
+
+    <!-- <section class="min-h-dvh place-content-center">
+        <div class="contained">
+            <p
+                class="font-display text-iron-400 mb-0 text-justify text-7xl tracking-wider uppercase"
+                data-aos="split-left-chromatic"
+                data-aos-scrub
+                data-aos-split-gap="400"
+                data-aos-duration="4000"
+            >
+                Focused on fluid and highly interactive web experiences.
+                Currently exploring 3D on the web with WebGL, GLSL, Three.js,
+                and Theatre.js.
+            </p>
+        </div>
+    </section> -->
 
     <ProgressButton
         text="Let's connect!"
