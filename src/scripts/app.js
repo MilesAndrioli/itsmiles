@@ -22,6 +22,7 @@ import barba from "@barba/core";
 import barbaConfig from "./barba/barbaConfig";
 import {
     syncProceduralVoid,
+    syncAsciiRenderer,
     teardown,
     resetScroll,
 } from "./barba/barbaLifecycle";
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", runOnReady, { once: true });
 function runOnLoad() {
     gsapConfig();
     initSetup();
+    syncAsciiRenderer();
     dismissLoader();
 }
 window.addEventListener("load", runOnLoad, { once: true });
@@ -74,6 +76,7 @@ barba.hooks.afterLeave(() => {
 
 barba.hooks.enter((data) => {
     syncProceduralVoid(data.next.container);
+    syncAsciiRenderer(data.next.container);
     resetScroll();
     initSetup();
 });

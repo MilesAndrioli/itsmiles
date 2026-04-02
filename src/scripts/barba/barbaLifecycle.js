@@ -1,8 +1,11 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProceduralVoid from "../three/ProceduralVoid/ProceduralVoid";
+import AsciiRenderer from "../ascii/AsciiRenderer.js";
 
 let proceduralVoid = null;
 let gpuBlocked = false;
+
+let asciiRenderer = null;
 
 // Syncs the WebGL shader with the current page.
 // `container` defaults to `document` on initial load; during Barba transitions
@@ -31,6 +34,14 @@ export function syncProceduralVoid(container = document) {
     } else if (proceduralVoid) {
         proceduralVoid.pause();
     }
+}
+
+export function syncAsciiRenderer(scope = document) {
+    if (!asciiRenderer) {
+        if (!scope.querySelector("[data-ascii]")) return;
+        asciiRenderer = new AsciiRenderer();
+    }
+    asciiRenderer.discover(scope);
 }
 
 export function teardown() {
