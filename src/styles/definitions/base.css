@@ -12,7 +12,7 @@ body {
     }
 
     &::selection {
-        background-color: var(--color-jade-400);
+        background-color: var(--color-ruby);
         color: var(--color-iron-950);
     }
 }
