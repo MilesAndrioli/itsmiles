@@ -11,9 +11,9 @@
         "b": 0
     },
     "colorHighlight": {
-        "r": 0.29,
-        "g": 0.25,
-        "b": 0.21
+        "r": 0.21,
+        "g": 0.18,
+        "b": 0.15
     },
     "fbmLacunarity": 1.5,
     "fbmGain": 0.56,
