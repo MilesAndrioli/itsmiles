@@ -32,17 +32,8 @@
     --color-iron-900: oklch(22% 0.002 70);
     --color-iron-950: oklch(13% 0.001 70);
 
-    --color-jade-50: oklch(96% 0.05 150);
-    --color-jade-100: oklch(93% 0.08 150);
-    --color-jade-200: oklch(88% 0.14 150);
-    --color-jade-300: oklch(83% 0.2 150);
-    --color-jade-400: oklch(80% 0.25 150);
     --color-jade: oklch(87.2% 0.2518 148.1);
-    --color-jade-600: oklch(62% 0.2 150);
-    --color-jade-700: oklch(50% 0.16 150);
-    --color-jade-800: oklch(40% 0.12 150);
-    --color-jade-900: oklch(30% 0.08 150);
-    --color-jade-950: oklch(20% 0.05 150);
+    --color-ruby: oklch(0.5495 0.1993 26.86);
     /* #endregion */
 
     /* #region Layout */
