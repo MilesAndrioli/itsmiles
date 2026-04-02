@@ -5,13 +5,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function initGsapScrollState() {
     const root = document.documentElement;
-    const main = document.getElementById("app-main");
     const footer = document.getElementById("app-footer");
 
     // --- Milestone 1 ---
     ScrollTrigger.create({
-        trigger: main,
-        start: "top top",
+        trigger: root,
+        start: () => `${window.APP_HEADER_HEIGHT} top`,
         toggleClass: {
             targets: root,
             className: "HasReached--Step1",

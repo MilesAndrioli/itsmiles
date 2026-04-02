@@ -16,6 +16,7 @@ import gsapParallax from "./gsap/gsapParallax";
 import gsapAos from "./gsap/gsapAos";
 import gsapReveal from "./gsap/gsapReveal";
 import gsapProgressButton from "./gsap/gsapProgressButton";
+import initGsapScrollState from "./gsap/gsapScrollState";
 
 // --- barba.js ---
 import barba from "@barba/core";
@@ -35,6 +36,7 @@ function initSetup() {
     getDimensions("#app-header", "height");
 
     gsapParallax();
+    initGsapScrollState();
     gsapAos();
     gsapReveal();
     gsapProgressButton();
