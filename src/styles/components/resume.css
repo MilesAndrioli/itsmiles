@@ -23,7 +23,8 @@
     #app-noise,
     .mf-cursor,
     #app-loader,
-    .ProgressButton {
+    .ProgressButton,
+    canvas {
         display: none !important;
     }
 }
