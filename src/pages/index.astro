@@ -1,6 +1,6 @@
 ---
 import Skeleton from "@/layouts/Skeleton.astro";
-import ProceduralVoid from "@/components/ProceduralVoid.astro";
+// import ProceduralVoid from "@/components/ProceduralVoid.astro";
 import ProgressButton from "@/components/ProgressButton.astro";
 import AsciiVideo from "@/components/AsciiVideo.astro";
 import { contact } from "@/data/contact";
@@ -11,7 +11,7 @@ import { contact } from "@/data/contact";
     description="Hey, it's Miles Andrioli, and this is my portfolio."
     class="grid py-40"
 >
-    <ProceduralVoid preset="obsidian-gold-reveal" />
+    <!-- <ProceduralVoid preset="obsidian-gold-reveal" /> -->
 
     <section class="-mt-40 min-h-dvh content-center">
         <div class="contained">
@@ -34,8 +34,9 @@ import { contact } from "@/data/contact";
                         data-aos-child="fade-in-blur-out"
                     >
                         <AsciiVideo
-                            src="/test123ee.mp4"
-                            mediaClass="aspect-4/5 w-full object-cover object-top"
+                            src="/test123e.mp4"
+                            class="overflow-hidden rounded-4xl"
+                            mediaClass="aspect-4/5 w-full object-cover object-center"
                             data-ascii-width="80"
                             data-ascii-color="#cc2828"
                         />
