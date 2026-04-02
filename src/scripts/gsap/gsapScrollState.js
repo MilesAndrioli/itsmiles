@@ -18,17 +18,6 @@ export default function initGsapScrollState() {
         markers: false,
     });
 
-    // --- Milestone 2 ---
-    ScrollTrigger.create({
-        trigger: root,
-        start: `${innerHeight} top`,
-        toggleClass: {
-            targets: root,
-            className: "HasReached--Step2",
-        },
-        markers: false,
-    });
-
     // --- Milestone Footer ---
     ScrollTrigger.create({
         trigger: footer,
