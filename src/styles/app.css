@@ -15,4 +15,5 @@
     @import "./components/StrikeAround.css";
     @import "./components/resume.css";
     @import "./components/Ascii.css";
+    @import "./components/AudioToggle.css";
 }

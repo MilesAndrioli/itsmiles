@@ -11,14 +11,27 @@ import TimezoneClock from "@/components/TimezoneClock.astro";
                 separator="."
                 class="text-iron-300 gap-1 font-mono text-sm"
             />
-            <nav class="text-iron-50">
-                <ul class="flex gap-3 text-sm">
-                    <a href="/" class="swipe-link" data-hover-shuffle>Home</a>
-                    <a href="/resume/" class="swipe-link" data-hover-shuffle
-                        >Resume</a
-                    >
-                </ul>
-            </nav>
+            <div class="flex items-baseline gap-3">
+                <button
+                    id="audio-toggle"
+                    class="AudioToggle"
+                    type="button"
+                    aria-label="Toggle ambient sound"
+                >
+                    <canvas id="audio-waveform" class="AudioToggle__Canvas"
+                    ></canvas>
+                </button>
+                <nav class="text-iron-50">
+                    <ul class="flex gap-3 text-sm">
+                        <a href="/" class="swipe-link" data-hover-shuffle
+                            >Home</a
+                        >
+                        <a href="/resume/" class="swipe-link" data-hover-shuffle
+                            >Resume</a
+                        >
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </header>

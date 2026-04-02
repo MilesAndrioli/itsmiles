@@ -1,0 +1,8 @@
+.AudioToggle {
+    cursor: pointer;
+}
+
+.AudioToggle__Canvas {
+    width: 22px;
+    height: 14px;
+}

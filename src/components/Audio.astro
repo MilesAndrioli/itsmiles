@@ -1,0 +1,57 @@
+<audio
+    id="audio-ambient"
+    src="/Outsider-No-More_PT-Adamczyk.mp3"
+    loop
+    preload="auto"></audio>
+
+<script>
+    import AudioController from "../scripts/audio/audioController.js";
+    import AudioWaveform from "../scripts/audio/audioWaveform.js";
+
+    const audioEl = document.getElementById("audio-ambient");
+    const canvasEl = document.getElementById("audio-waveform");
+    const toggleEl = document.getElementById("audio-toggle");
+
+    const waveform = new AudioWaveform(canvasEl);
+    const controller = new AudioController(audioEl, waveform);
+    window.__AUDIO__ = controller;
+
+    const wasMuted = AudioController.wasMuted();
+
+    toggleEl.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        if (!controller.isActivated) {
+            controller.activate();
+            if (wasMuted) controller.mute();
+            dismissPrompt();
+            return;
+        }
+
+        controller.toggle();
+    });
+
+    // First-click activation (only if not previously muted)
+    if (!wasMuted) {
+        // Set cursor prompt on desktop
+        if (window.__CURSOR__) {
+            window.__CURSOR__.setText("Click to enable sound");
+        }
+
+        document.addEventListener("click", function onFirstClick() {
+            document.removeEventListener("click", onFirstClick);
+
+            if (!controller.isActivated) {
+                controller.activate();
+            }
+
+            dismissPrompt();
+        });
+    }
+
+    function dismissPrompt() {
+        if (window.__CURSOR__) {
+            window.__CURSOR__.removeText();
+        }
+    }
+</script>
