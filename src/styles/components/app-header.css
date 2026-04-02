@@ -17,19 +17,15 @@
         padding var(--header-transition),
         transform var(--header-transition);
 
-    /* .HasReached--Step1 & {
-        @apply !py-1;
-    } */
-
-    .HasReached--Step2 & {
+    .HasReached--Step1 & {
         transform: var(--shift-out);
     }
 
-    .Scrolling--Up.HasReached--Step2 & {
+    .Scrolling--Up.HasReached--Step1 & {
         transform: var(--shift-in);
     }
 
-    .HasReached--Footer & {
+    /*.HasReached--Footer & {
         transform: var(--shift-in);
-    }
+    }*/
 }
