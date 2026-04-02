@@ -23,8 +23,6 @@
     #app-noise,
     .mf-cursor,
     #app-loader,
-    canvas,
-    #tweakpane-container,
     .ProgressButton {
         display: none !important;
     }
