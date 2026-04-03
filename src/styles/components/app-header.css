@@ -13,9 +13,7 @@
     --shift-out: translateY(calc(var(--APP_HEADER_HEIGHT) * -1));
     --shift-in: unset;
 
-    transition:
-        padding var(--header-transition),
-        transform var(--header-transition);
+    transition: transform var(--header-transition);
 
     .HasReached--Step1 & {
         transform: var(--shift-out);
