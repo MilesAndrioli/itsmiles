@@ -9,7 +9,7 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
             data-aos-duration="1200"
             data-aos-stagger-gap="220"
         >
-            <div class="grid gap-10 md:grid-cols-12">
+            <div class="grid gap-5 lg:grid-cols-12 lg:gap-10">
                 <div class="md:col-span-3">
                     <span
                         class="sticky--bottom subtitle sticky text-6xl"
@@ -20,11 +20,14 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
                     </span>
                 </div>
 
-                <div class="md:col-span-5" data-aos-child="fade-in-blur-out">
+                <div
+                    class="order-first md:col-span-5 lg:order-0"
+                    data-aos-child="fade-in-blur-out"
+                >
                     <AsciiVideo
                         src="/tifa.mp4"
                         class="overflow-hidden rounded-4xl"
-                        mediaClass="aspect-10/16 w-full object-cover"
+                        mediaClass="aspect-4/5 lg:aspect-10/16 w-full object-cover"
                         data-ascii-width="80"
                         data-ascii-color="var(--color-ruby)"
                         data-ascii-contrast="45"
@@ -33,9 +36,9 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
                 </div>
 
                 <div class="md:col-span-4">
-                    <div class="sticky--center sticky grid gap-10">
+                    <div class="sticky--center sticky grid gap-5 lg:gap-10">
                         <p
-                            class="text-iron-400 mb-0 text-justify text-xl"
+                            class="text-iron-400 mb-0 text-justify lg:text-xl"
                             data-aos-child
                         >
                             GSAP, Lenis & barba.js, consectetur adipiscing elit.
@@ -44,7 +47,7 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
                             exercitation ullamco laboris.
                         </p>
 
-                        <p class="mb-0 text-justify text-xl" data-aos-child>
+                        <p class="mb-0 text-justify lg:text-xl" data-aos-child>
                             Duis aute irure dolor in reprehenderit in voluptate
                             velit esse cillum dolore eu fugiat nulla pariatur.
                             Excepteur sint occaecat cupidatat non proident, sunt
