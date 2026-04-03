@@ -1,5 +1,5 @@
 ---
-const { text, icon, href, ...attrs } = Astro.props;
+const { text, icon, href, class: className, ...attrs } = Astro.props;
 const Tag = href ? "a" : "button";
 const pathId = `ScrollProgressPath_${Math.random().toString(36).slice(2, 8)}`;
 
@@ -9,9 +9,8 @@ const textLength = (2 * Math.PI * radius * (charCount - 1)) / charCount;
 ---
 
 <Tag
-    class="ProgressButton"
+    class:list={["ProgressButton", className]}
     {...href ? { href } : { type: "button" }}
-    data-cursor="-hidden"
     {...attrs}
 >
     <div class="ProgressButton__Bar" aria-hidden="true">
