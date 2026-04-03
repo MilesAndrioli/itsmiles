@@ -2,8 +2,10 @@
 import Skeleton from "@/layouts/Skeleton.astro";
 // import ProceduralVoid from "@/components/ProceduralVoid.astro";
 import ProgressButton from "@/components/ProgressButton.astro";
-import Introduction from "@/sections/Introduction.astro";
 import { contact } from "@/data/contact";
+
+import Introduction from "@/sections/Introduction.astro";
+import Rename from "@/sections/Rename.astro";
 ---
 
 <Skeleton
@@ -183,6 +185,8 @@ import { contact } from "@/data/contact";
             </div>
         </div>
     </section>
+
+    <Rename />
 
     <!-- <section class="min-h-dvh place-content-center">
         <div class="contained">
