@@ -26,7 +26,7 @@ const { name, title, contact, skills } = Astro.props;
     <a
         href={contact.linkedin}
         target="_blank"
-        class="border-iron-900 overflow-hidden rounded-xl border print:hidden"
+        class="border-iron-900 overflow-hidden rounded-xl md:border print:hidden"
         data-aos-child
     >
         <AsciiVideo
@@ -35,7 +35,6 @@ const { name, title, contact, skills } = Astro.props;
             data-ascii-width="80"
             data-ascii-lh="1"
             data-ascii-charset="minimal"
-            data-ascii-color="var(--color-jade)"
         />
     </a>
 
