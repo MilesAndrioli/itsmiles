@@ -55,7 +55,7 @@ const { name, title, experience, projects } = Astro.props;
                                 {job.duration}
                             </span>
                         </div>
-                        <p class="mb-0 text-justify">{job.description}</p>
+                        <p class="mb-0 md:text-justify">{job.description}</p>
                         {job.highlights && job.highlights.length > 0 && (
                             <ul class="text-iron-400 print:text-iron-800 grid list-[circle] gap-1 ps-4">
                                 {job.highlights.map((h) => (
@@ -102,7 +102,9 @@ const { name, title, experience, projects } = Astro.props;
                                 </span>
                             )}
                         </div>
-                        <p class="mb-0 text-justify">{project.description}</p>
+                        <p class="mb-0 md:text-justify">
+                            {project.description}
+                        </p>
                         {project.highlights &&
                             project.highlights.length > 0 && (
                                 <ul class="text-iron-400 print:text-iron-800 grid list-[circle] gap-1 ps-4">
