@@ -23,7 +23,7 @@
         transform: var(--shift-in);
     }
 
-    /*.HasReached--Footer & {
+    .HasReached--Footer & {
         transform: var(--shift-in);
-    }*/
+    }
 }
