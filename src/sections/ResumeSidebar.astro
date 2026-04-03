@@ -11,13 +11,30 @@ const { name, title, contact, skills } = Astro.props;
     <a
         href={contact.linkedin}
         target="_blank"
-        class="border-iron-900 overflow-hidden rounded-xl border print:border-transparent"
+        class="border-iron-900 overflow-hidden rounded-xl border md:hidden print:border-transparent"
         data-aos-child
     >
         <ParallaxImage
             src={userPhoto}
             alt={name}
             class="aspect-square filter-[grayscale(100%)_sepia(20%)_contrast(130%)_brightness(75%)] print:filter-[grayscale(100%)]"
+        />
+    </a> -->
+
+    <!-- ASCII -->
+    <a
+        href={contact.linkedin}
+        target="_blank"
+        class="border-iron-900 overflow-hidden rounded-xl border print:hidden"
+        data-aos-child
+    >
+        <AsciiVideo
+            src="/Choom.mp4"
+            mediaClass="aspect-square w-full object-cover"
+            data-ascii-width="80"
+            data-ascii-lh="1"
+            data-ascii-charset="minimal"
+            data-ascii-color="var(--color-jade)"
         />
     </a>
 
