@@ -1,26 +1,25 @@
 ---
 import Divider from "@/components/Divider.astro";
-import ParallaxImage from "@/components/ParallaxImage.astro";
-import userPhoto from "@/assets/images/Miles_1.jpeg";
+import { Picture } from "astro:assets";
+import yhitsme from "@/assets/images/Miles_1.jpeg";
 import AsciiVideo from "@/components/AsciiVideo.astro";
 
 const { name, title, contact, skills } = Astro.props;
 ---
 
 <aside class="ResumeSidebar grid content-start gap-5 md:p-8 print:p-6">
-    <!-- Photo -->
-    <a
-        href={contact.linkedin}
-        target="_blank"
-        class="border-iron-900 hidden overflow-hidden rounded-xl border print:inline print:border-transparent"
-        data-aos-child
-    >
-        <ParallaxImage
-            src={userPhoto}
-            alt={name}
-            class="aspect-square filter-[grayscale(100%)_sepia(20%)_contrast(130%)_brightness(75%)] print:filter-[grayscale(100%)]"
-        />
-    </a>
+    <!-- Portrait -->
+    <Picture
+        src={yhitsme}
+        alt={name}
+        width={1280}
+        formats={["avif", "webp"]}
+        class="aspect-square object-cover object-[center_35%] filter-[grayscale(100%)]"
+        pictureAttributes={{
+            class: "overflow-hidden rounded-xl hidden print:block",
+        }}
+        loading="eager"
+    />
 
     <!-- ASCII -->
     <a
