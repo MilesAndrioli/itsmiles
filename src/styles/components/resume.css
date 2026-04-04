@@ -11,10 +11,9 @@
         -webkit-print-color-adjust: exact;
     }
 
-    /* Safari */
-    body,
-    .ResumeGrid {
-        background-color: transparent;
+    .Divider {
+        mix-blend-mode: normal !important;
+        --color: #ccc !important;
     }
 
     #app-header,
