@@ -39,6 +39,7 @@ export default class AudioController {
         this.gain.connect(this.ctx.destination);
 
         this.gain.gain.value = 0;
+        localStorage.removeItem(STORAGE_KEY);
         this._fadeIn();
     }
 

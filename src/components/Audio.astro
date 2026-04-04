@@ -23,7 +23,6 @@
 
         if (!controller.isActivated) {
             controller.activate();
-            if (wasMuted) controller.mute();
             dismissPrompt();
             return;
         }
