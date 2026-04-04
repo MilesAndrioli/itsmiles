@@ -10,10 +10,12 @@ export default class AudioController {
         this.gain = null;
         this.activated = false;
         this.muted = false;
-        this._hiddenByTab = false;
+        this._suspended = false;
 
-        this._onVisibilityChange = this._onVisibilityChange.bind(this);
-        document.addEventListener("visibilitychange", this._onVisibilityChange);
+        this._checkPlayback = this._checkPlayback.bind(this);
+        document.addEventListener("visibilitychange", this._checkPlayback);
+        window.addEventListener("blur", this._checkPlayback);
+        window.addEventListener("focus", this._checkPlayback);
     }
 
     get isActivated() {
@@ -74,14 +76,16 @@ export default class AudioController {
         this._fadeTo(0, () => this.audioEl.pause());
     }
 
-    _onVisibilityChange() {
+    _checkPlayback() {
         if (!this.activated || this.muted) return;
 
-        if (document.hidden) {
-            this._hiddenByTab = true;
+        const shouldPlay = !document.hidden && document.hasFocus();
+
+        if (!shouldPlay && !this._suspended) {
+            this._suspended = true;
             this._fadeOut();
-        } else if (this._hiddenByTab) {
-            this._hiddenByTab = false;
+        } else if (shouldPlay && this._suspended) {
+            this._suspended = false;
             this._fadeIn();
         }
     }
