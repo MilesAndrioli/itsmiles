@@ -10,6 +10,10 @@ export default class AudioController {
         this.gain = null;
         this.activated = false;
         this.muted = false;
+        this._hiddenByTab = false;
+
+        this._onVisibilityChange = this._onVisibilityChange.bind(this);
+        document.addEventListener("visibilitychange", this._onVisibilityChange);
     }
 
     get isActivated() {
@@ -35,11 +39,7 @@ export default class AudioController {
         this.gain.connect(this.ctx.destination);
 
         this.gain.gain.value = 0;
-        this.ctx.resume();
-        this.audioEl.play();
-
-        this._fadeTo(VOLUME);
-        this.waveform.setPlaying(true);
+        this._fadeIn();
     }
 
     toggle() {
@@ -51,22 +51,38 @@ export default class AudioController {
         if (this.muted) return;
         this.muted = true;
         localStorage.setItem(STORAGE_KEY, "true");
-        this.waveform.setPlaying(false);
-
-        this._fadeTo(0, () => {
-            this.audioEl.pause();
-        });
+        this._fadeOut();
     }
 
     unmute() {
         if (!this.muted) return;
         this.muted = false;
         localStorage.removeItem(STORAGE_KEY);
+        this._fadeIn();
+    }
 
+    _fadeIn() {
         this.ctx.resume();
         this.audioEl.play();
         this._fadeTo(VOLUME);
         this.waveform.setPlaying(true);
+    }
+
+    _fadeOut() {
+        this.waveform.setPlaying(false);
+        this._fadeTo(0, () => this.audioEl.pause());
+    }
+
+    _onVisibilityChange() {
+        if (!this.activated || this.muted) return;
+
+        if (document.hidden) {
+            this._hiddenByTab = true;
+            this._fadeOut();
+        } else if (this._hiddenByTab) {
+            this._hiddenByTab = false;
+            this._fadeIn();
+        }
     }
 
     _fadeTo(target, onComplete) {
