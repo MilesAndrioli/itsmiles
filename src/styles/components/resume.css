@@ -16,6 +16,31 @@
         --color: #ccc !important;
     }
 
+    /* TARGET SAFARI */
+    @supports (-webkit-hyphens: none) and (not (overflow-anchor: none)) {
+        body,
+        .ResumeGrid {
+            background-color: white !important;
+        }
+
+        .ResumeSidebar,
+        .ResumeMain {
+            padding: 0 !important;
+        }
+
+        .ResumeGrid {
+            @apply gap-6!;
+        }
+
+        .Divider.hidden:not(.print\:block) {
+            display: none !important;
+        }
+
+        .ResumeQr path {
+            stroke: black !important;
+        }
+    }
+
     #app-header,
     #app-footer,
     #app-filter,
