@@ -36,7 +36,7 @@
                      At speed 3, an 8-char word resolves in ~400ms.           */
 
 const PRESETS = {
-    default: { shuffleSpeed: 5, shuffleCount: 8, resolveSpeed: 4 },
+    default: { shuffleSpeed: 4, shuffleCount: 2, resolveSpeed: 7 },
     glitch: { shuffleSpeed: 2, shuffleCount: 10, resolveSpeed: 1 },
 };
 
@@ -94,7 +94,8 @@ function startShuffle(el) {
                 return;
             }
             el.textContent =
-                original.slice(0, locked) + shuffle(chars.slice(locked)).join("");
+                original.slice(0, locked) +
+                shuffle(chars.slice(locked)).join("");
         }
 
         el._shuffleRaf = requestAnimationFrame(tick);
@@ -109,7 +110,8 @@ export default function shuffleHover() {
         bound.add(el);
 
         el._shuffleOriginal = el.textContent.trim();
-        el._shuffleConfig = PRESETS[el.dataset.hoverShuffle || "default"] || PRESETS.default;
+        el._shuffleConfig =
+            PRESETS[el.dataset.hoverShuffle || "default"] || PRESETS.default;
         el.addEventListener("mouseenter", (e) => startShuffle(e.currentTarget));
         el.addEventListener("mouseleave", (e) => stop(e.currentTarget));
     });
