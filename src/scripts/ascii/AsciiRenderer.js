@@ -72,8 +72,8 @@ export default class AsciiRenderer {
 
     _defineSettings() {
         return {
-            asciiWidth: 90,
-            lineHeight: 0.9,
+            asciiWidth: 80,
+            lineHeight: 1,
             contrast: 160,
             invert: true,
             charSetPreset: "detailed",
