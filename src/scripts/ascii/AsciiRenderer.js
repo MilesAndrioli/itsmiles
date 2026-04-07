@@ -72,8 +72,8 @@ export default class AsciiRenderer {
 
     _defineSettings() {
         return {
-            asciiWidth: 80,
-            lineHeight: 1,
+            asciiWidth: 90,
+            lineHeight: 0.9,
             contrast: 160,
             invert: true,
             charSetPreset: "detailed",
@@ -82,7 +82,7 @@ export default class AsciiRenderer {
             ditherMethod: "floyd-steinberg",
             targetFps: 24,
             colorMode: "mono",
-            monoColor: "#c8c8c8",
+            monoColor: "var(--color-ruby)",
             asciiOpacity: 1.0,
             mediaOpacity: 0,
         };

@@ -7,3 +7,17 @@
     inset: 0;
     pointer-events: none;
 }
+
+.Ascii__Media,
+.Ascii__Pre {
+    transition: opacity var(--out--slow);
+}
+
+.Ascii__Container:hover {
+    .Ascii__Media {
+        opacity: 45% !important;
+    }
+    .Ascii__Pre {
+        opacity: 60% !important;
+    }
+}

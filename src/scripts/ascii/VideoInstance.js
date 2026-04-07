@@ -25,9 +25,9 @@ export default class VideoInstance {
         this._onPlay = () => this._startLoop();
         this._onPause = () => this._stopLoop();
 
-        // this._onClickMedia = () => {
-        //     this.media.paused ? this.media.play() : this.media.pause();
-        // };
+        this._onClickMedia = () => {
+            this.media.paused ? this.media.play() : this.media.pause();
+        };
 
         this.media.addEventListener("play", this._onPlay);
         this.media.addEventListener("pause", this._onPause);
