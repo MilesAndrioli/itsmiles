@@ -48,6 +48,7 @@ export default function initGsapAos() {
             splitGap: msToSec(dataset.aosSplitGap), // If undefined, amount will be used for stagger
             splitFrom: dataset.aosSplitFrom, // "start", "center", "end", "random"
             splitType: dataset.aosSplit || "words", // "chars", "words", "lines"
+            splitMask: "aosSplitMask" in dataset,
         };
     }
 
@@ -120,7 +121,13 @@ export default function initGsapAos() {
                 ? "words"
                 : childEl.dataset.aosSplit || settings.splitType;
 
-        const split = new SplitText(childEl, { type: splitType });
+        const useMask = "aosSplitMask" in childEl.dataset || settings.splitMask;
+
+        const split = new SplitText(childEl, {
+            type: splitType,
+            mask: useMask ? splitType : undefined,
+        });
+
         const splitTargets = split[splitType];
 
         gsap.set(splitTargets, originProps);
