@@ -7,6 +7,14 @@
     width: 100%;
     z-index: var(--header-layer);
     top: 0;
+
+    &::after {
+        content: "";
+        position: absolute;
+        height: 75%;
+        width: 100%;
+        /*background-color: red;*/
+    }
 }
 
 #app-header {
@@ -19,11 +27,15 @@
         transform: var(--shift-out);
     }
 
-    .Scrolling--Up.HasReached--Step1 & {
+    /*.Scrolling--Up.HasReached--Step1 & {
         transform: var(--shift-in);
-    }
+    }*/
 
-    .HasReached--Footer & {
+    /*.HasReached--Footer & {
+        transform: var(--shift-in);
+    }*/
+
+    &:hover {
         transform: var(--shift-in);
     }
 }
