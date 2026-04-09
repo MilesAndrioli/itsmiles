@@ -1,10 +1,11 @@
 ---
 import TimezoneClock from "@/components/TimezoneClock.astro";
+import Divider from "@/components/Divider.astro";
 ---
 
-<header id="app-header" class="pt-3 mix-blend-difference">
+<header id="app-header">
     <div class="contained">
-        <div class="flex items-baseline justify-between gap-5">
+        <div class="flex items-baseline justify-between gap-5 py-3">
             <TimezoneClock
                 timezone="Europe/Madrid"
                 willChange={true}
@@ -34,4 +35,5 @@ import TimezoneClock from "@/components/TimezoneClock.astro";
             </div>
         </div>
     </div>
+    <Divider class="contained" color="var(--color-iron-900)" />
 </header>
