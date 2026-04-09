@@ -36,8 +36,8 @@ const {
         background: linear-gradient(
             to right,
             transparent,
-            var(--color) 15%,
-            var(--color) 85%,
+            var(--color) 10%,
+            var(--color) 90%,
             transparent
         );
         mix-blend-mode: color-dodge;
@@ -45,13 +45,13 @@ const {
         &.FadeEnd {
             background: linear-gradient(
                 to right,
-                var(--color) 85%,
+                var(--color) 90%,
                 transparent
             );
         }
 
         &.FadeStart {
-            background: linear-gradient(to left, var(--color) 85%, transparent);
+            background: linear-gradient(to left, var(--color) 90%, transparent);
         }
 
         &.Vertical {
@@ -61,15 +61,15 @@ const {
             background: linear-gradient(
                 to bottom,
                 transparent,
-                var(--color) 15%,
-                var(--color) 85%,
+                var(--color) 10%,
+                var(--color) 90%,
                 transparent
             );
 
             &.FadeEnd {
                 background: linear-gradient(
                     to bottom,
-                    var(--color) 85%,
+                    var(--color) 90%,
                     transparent
                 );
             }
@@ -77,7 +77,7 @@ const {
             &.FadeStart {
                 background: linear-gradient(
                     to top,
-                    var(--color) 85%,
+                    var(--color) 90%,
                     transparent
                 );
             }
