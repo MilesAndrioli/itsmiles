@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 const { title, description } = Astro.props;
 ---
 
@@ -12,4 +13,9 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <title>{title}</title>
+
+    <Font cssVariable="--font-montreal" />
+    <Font cssVariable="--font-gatwick" />
+    <Font cssVariable="--font-monument" />
+    <Font cssVariable="--font-lisa" />
 </head>

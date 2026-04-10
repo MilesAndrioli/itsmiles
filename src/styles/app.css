@@ -2,7 +2,6 @@
 
 @layer base {
     @import "./definitions/base.css";
-    @import "./definitions/fonts.css";
 }
 
 @layer components {
