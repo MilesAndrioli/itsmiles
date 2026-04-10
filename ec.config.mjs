@@ -7,6 +7,8 @@ export default defineEcConfig({
         codeFontFamily: "var(--font-mono)",
         frames: {
             frameBoxShadowCssValue: "none",
+            tooltipSuccessBackground: "var(--color-iron-950)",
+            tooltipSuccessForeground: "var(--color-iron-400)",
         },
     },
     defaultProps: {
