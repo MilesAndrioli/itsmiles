@@ -1,0 +1,14 @@
+@utility cover-link {
+    background: linear-gradient(
+        color-mix(in oklab, currentColor 33.333%, transparent)
+    );
+    background-size: 0% 50%;
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+
+    transition: background-size var(--out--fast);
+
+    &:hover {
+        background-size: 100% 50%;
+    }
+}

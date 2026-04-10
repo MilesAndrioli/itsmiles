@@ -1,8 +1,36 @@
 ---
-import "../styles/components/links/clone-link.css";
-const { href = "#", target, text = "clone-link" } = Astro.props;
+const { href = "#", target, text = "Clone Link" } = Astro.props;
 ---
 
 <a href={href} target={target} class="clone-link" data-clone-link={text}>
     <span>{text}</span>
 </a>
+
+<style>
+    .clone-link {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+
+        > span,
+        &::after {
+            transition: transform var(--out--fast);
+        }
+
+        &::after {
+            content: attr(data-clone-link);
+            position: absolute;
+            transform: translateY(-100%);
+        }
+
+        &:hover {
+            > span {
+                transform: translateY(100%);
+            }
+
+            &::after {
+                transform: translateY(0%);
+            }
+        }
+    }
+</style>

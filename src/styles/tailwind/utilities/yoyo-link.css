@@ -1,7 +1,5 @@
-.yoyo-link,
-.yoyo-cover-link {
+@utility yoyo-link {
     position: relative;
-    white-space: nowrap; /* EXPERIMENTAL */
 
     &::before,
     &::after {
@@ -41,13 +39,5 @@
             transform: scaleX(100%);
             transform-origin: left;
         }
-    }
-}
-
-.yoyo-cover-link {
-    &::before,
-    &::after {
-        height: 100%;
-        mix-blend-mode: difference;
     }
 }

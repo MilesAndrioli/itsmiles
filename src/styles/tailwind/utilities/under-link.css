@@ -1,0 +1,12 @@
+@utility under-link {
+    background: linear-gradient(currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+
+    transition: background-size var(--out--fast);
+
+    &:hover {
+        background-size: 100% 1px;
+    }
+}

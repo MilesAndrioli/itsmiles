@@ -1,3 +1,8 @@
+@import "./utilities/yoyo-link.css";
+@import "./utilities/swipe-link.css";
+@import "./utilities/under-link.css";
+@import "./utilities/cover-link.css";
+
 @utility contained {
     @apply mx-auto max-w-(--contained) px-(--padders);
 }

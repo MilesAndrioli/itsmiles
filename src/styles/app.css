@@ -9,9 +9,6 @@
     @import "./components/app-header.css";
     @import "./components/mouse-follower.css";
     @import "./components/sticky-item.css";
-    @import "./components/links/bg-link.css";
-    @import "./components/links/swipe-link.css";
-    @import "./components/links/yoyo-link.css";
     @import "./components/StrikeAround.css";
     @import "./components/resume.css";
     @import "./components/Ascii.css";
