@@ -1,0 +1,114 @@
+---
+import Divider from "@/components/Divider.astro";
+import { Picture } from "astro:assets";
+import yhitsme from "@/assets/images/Miles_1.jpeg";
+import AsciiVideo from "@/components/AsciiVideo.astro";
+
+const { name, title, contact, skills } = Astro.props;
+---
+
+<aside class="ResumeSidebar grid content-start gap-5 md:p-8 print:p-6">
+    <!-- Portrait -->
+    <Picture
+        src={yhitsme}
+        alt={name}
+        width={1280}
+        formats={["avif", "webp"]}
+        class="aspect-square object-cover object-[center_35%] filter-[grayscale(100%)]"
+        pictureAttributes={{
+            class: "overflow-hidden rounded-xl hidden print:block",
+        }}
+        loading="eager"
+    />
+
+    <!-- ASCII -->
+    <a
+        href={contact.linkedin}
+        target="_blank"
+        class="border-iron-900 overflow-hidden rounded-xl md:border print:hidden"
+        data-aos-child
+    >
+        <AsciiVideo
+            src="/ChoomLoop.mp4"
+            mediaClass="aspect-square w-full object-cover"
+            data-ascii-width="75"
+            data-ascii-charset="minimal"
+            data-ascii-color="var(--color-iron-400)"
+        />
+    </a>
+
+    <!-- Name & Title (mobile) -->
+    <div class="grid gap-1 md:hidden print:hidden" data-aos-child>
+        <h1 class="ResumeName text-iron-50 mb-0 font-serif text-5xl/tight">
+            {name}
+        </h1>
+        <h2 class="subtitle">
+            {title}
+        </h2>
+    </div>
+
+    <!-- Summary -->
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">About</h3>
+        <div>
+            <p class="text-iron-400 print:text-iron-800">
+                Front-end Developer with 7 years of experience based in Málaga,
+                Spain.
+            </p>
+            <p class="text-iron-400 print:text-iron-800 md:mb-0 print:mb-0">
+                Bilingual in Spanish and English. Open to remote or on-site
+                roles worldwide.
+            </p>
+            <p class="text-iron-400 md:hidden print:hidden">
+                Focused on fluid and interactive web experiences. Currently
+                exploring 3D on the web with WebGL, shaders, Three.js, and
+                Theatre.js.
+            </p>
+        </div>
+    </div>
+
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
+
+    <!-- Contact -->
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">Contact</h3>
+        <ul class="text-iron-300 print:text-iron-800 grid gap-1">
+            <li>
+                <a href={`mailto:${contact.email}`} class="swipe-link">
+                    {contact.email}
+                </a>
+            </li>
+            <li>
+                <a href={contact.linkedin} target="_blank" class="swipe-link">
+                    <span class="print:hidden">
+                        {contact.linkedin.replace("https://", "")}
+                    </span>
+                    <span class="hidden print:inline">
+                        {contact.linkedin}
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
+
+    <!-- Skills -->
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">Skills</h3>
+        <div class="grid gap-3">
+            {
+                skills.map((group) => (
+                    <div class="grid">
+                        <span class="text-iron-600 text-sm">
+                            {group.category}
+                        </span>
+                        <span class="text-iron-300 print:text-iron-800">
+                            {group.items.join(" · ")}
+                        </span>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</aside>

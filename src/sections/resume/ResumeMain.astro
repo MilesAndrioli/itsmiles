@@ -1,0 +1,121 @@
+---
+import Divider from "@/components/Divider.astro";
+import ResumeQR from "@/sections/resume/ResumeQR.astro";
+
+const { name, title, experience, projects } = Astro.props;
+---
+
+<div class="ResumeMain grid content-start gap-5 md:p-8 print:p-6">
+    <!-- Name & Title (desktop) -->
+    <div class="hidden gap-3 md:flex print:flex" data-aos-child>
+        <div class="grid gap-1">
+            <h1
+                class="ResumeName text-iron-100 print:text-iron-950 mb-0 font-serif text-4xl"
+            >
+                {name}
+            </h1>
+            <h2 class="subtitle mb-0">{title}</h2>
+            <p class="text-iron-400 print:text-iron-800">
+                Focused on fluid and interactive web experiences. Currently
+                exploring 3D on the web with WebGL, shaders, Three.js, and
+                Theatre.js.
+            </p>
+        </div>
+        <ResumeQR />
+    </div>
+
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
+
+    <!-- Experience -->
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">Experience</h3>
+        <div class="grid gap-5">
+            {
+                experience.map((job) => (
+                    <div class="ResumeJob grid gap-3">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-iron-200 print:text-iron-950 font-bold">
+                                    {job.role}
+                                </span>
+                                <a
+                                    href={job.website}
+                                    target="_blank"
+                                    class="yoyo-link text-jade print:text-iron-800 text-sm"
+                                >
+                                    <span class="print:hidden">
+                                        {job.website.replace("https://", "")}
+                                    </span>
+                                    <span class="hidden print:inline">
+                                        {job.website}
+                                    </span>
+                                </a>
+                            </div>
+                            <span class="text-iron-600 text-sm">
+                                {job.duration}
+                            </span>
+                        </div>
+                        <p class="mb-0 md:text-justify">{job.description}</p>
+                        {job.highlights && job.highlights.length > 0 && (
+                            <ul class="text-iron-400 print:text-iron-800 grid list-[circle] gap-1 ps-4">
+                                {job.highlights.map((h) => (
+                                    <li>{h}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <Divider fade="end" data-aos-child="fade-in-blur-out" />
+
+    <!-- Projects -->
+    <div class="ResumeSection grid gap-1" data-aos-child>
+        <h3 class="ResumeHeading subtitle mb-0 text-sm">Projects</h3>
+        <div class="grid gap-5">
+            {
+                projects.map((project) => (
+                    <div class="ResumeProject grid gap-2">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-iron-200 print:text-iron-950 font-bold">
+                                    {project.name}
+                                </span>
+                                <a
+                                    href={project.url}
+                                    target="_blank"
+                                    class="yoyo-link text-jade print:text-iron-800 text-sm"
+                                >
+                                    <span class="print:hidden">
+                                        {project.url.replace("https://", "")}
+                                    </span>
+                                    <span class="hidden print:inline">
+                                        {project.url}
+                                    </span>
+                                </a>
+                            </div>
+                            {project.stack && project.stack.length > 0 && (
+                                <span class="text-iron-600 text-sm">
+                                    {project.stack.join(" · ")}
+                                </span>
+                            )}
+                        </div>
+                        <p class="mb-0 md:text-justify">
+                            {project.description}
+                        </p>
+                        {project.highlights &&
+                            project.highlights.length > 0 && (
+                                <ul class="text-iron-400 print:text-iron-800 grid list-[circle] gap-1 ps-4">
+                                    {project.highlights.map((h) => (
+                                        <li>{h}</li>
+                                    ))}
+                                </ul>
+                            )}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>
