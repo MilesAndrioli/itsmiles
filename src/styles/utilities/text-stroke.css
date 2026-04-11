@@ -1,0 +1,5 @@
+@utility text-stroke {
+    color: transparent;
+    -webkit-text-stroke: var(--stroke-width, 1px)
+        var(--stroke-color, var(--color-iron));
+}
