@@ -1,6 +1,4 @@
 body {
-    text-wrap-style: pretty;
-
     &::-webkit-scrollbar {
         width: 0;
     }
