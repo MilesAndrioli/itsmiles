@@ -1,43 +1,12 @@
 ---
-import Divider from "../components/Divider.astro";
+import Divider from "@/components/Divider.astro";
 
 const colors = [
     { label: "Iron 400", class: "bg-iron-400", value: "oklch(82% 0.006 70)" },
-    {
-        label: "Iron",
-        class: "bg-iron",
-        value: "oklch(70% 0.005 70)",
-    },
-    {
-        label: "Iron 600",
-        class: "bg-iron-600",
-        value: "oklch(58% 0.005 70)",
-    },
-    {
-        label: "Iron 700",
-        class: "bg-iron-700",
-        value: "oklch(45% 0.004 70)",
-    },
-    {
-        label: "Iron 850",
-        class: "bg-iron-850",
-        value: "oklch(27% 0.0025 70)",
-    },
-    {
-        label: "Iron 950",
-        class: "bg-iron-950",
-        value: "oklch(13% 0.001 70)",
-    },
-    {
-        label: "Jade 100",
-        class: "bg-jade-100",
-        value: "oklch(93% 0.08 150)",
-    },
-    {
-        label: "Jade 300",
-        class: "bg-jade-300",
-        value: "oklch(83% 0.2 150)",
-    },
+    { label: "Iron", class: "bg-iron", value: "oklch(70% 0.005 70)" },
+    { label: "Iron 950", class: "bg-iron-950", value: "oklch(13% 0.001 70)" },
+    { label: "Jade", class: "bg-jade", value: "oklch(87.2% 0.2518 148.1)" },
+    { label: "Ruby", class: "bg-ruby", value: "oklch(0.6 0.22 26.93)" },
 ];
 ---
 
@@ -52,15 +21,14 @@ const colors = [
                         Colors
                     </p>
                     <p class="text-iron-700 font-mono text-xs">
-                        <span class="text-jade-100">{colors.length}</span> active
-                        tokens
+                        <span class="text-jade">{colors.length}</span> active tokens
                     </p>
                 </div>
 
                 <Divider data-aos-child="scale-x" />
 
                 <div
-                    class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4"
+                    class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6"
                 >
                     {
                         colors.map((color) => (
@@ -73,7 +41,7 @@ const colors = [
                                 <div
                                     class:list={[
                                         color.class,
-                                        "border-iron-850 aspect-video rounded-xl border",
+                                        "border-iron-850 aspect-4/3 rounded-xl border",
                                     ]}
                                 />
                                 <div>
