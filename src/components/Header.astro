@@ -4,36 +4,32 @@ import Divider from "@/components/Divider.astro";
 ---
 
 <header id="app-header">
-    <div class="contained">
-        <div class="flex items-baseline justify-between gap-5 py-3">
-            <TimezoneClock
-                timezone="Europe/Madrid"
-                willChange={true}
-                separator="."
-                class="text-iron-300 gap-1 font-mono text-xs"
-            />
-            <div class="flex items-baseline gap-3">
-                <button
-                    id="audio-toggle"
-                    class="AudioToggle"
-                    type="button"
-                    aria-label="Toggle ambient sound"
-                >
-                    <canvas id="audio-waveform" class="AudioToggle__Canvas"
-                    ></canvas>
-                </button>
-                <nav class="text-iron-50">
-                    <ul class="flex gap-3 text-sm">
-                        <a href="/" class="swipe-link" data-hover-shuffle
-                            >Home</a
-                        >
-                        <a href="/resume/" class="swipe-link" data-hover-shuffle
-                            >Resume</a
-                        >
-                    </ul>
-                </nav>
-            </div>
+    <div class="flex items-baseline justify-between gap-5 py-3">
+        <TimezoneClock
+            timezone="Europe/Madrid"
+            willChange={true}
+            separator="."
+            class="text-iron-300 gap-1 font-mono text-xs"
+        />
+        <div class="flex items-baseline gap-3">
+            <button
+                id="audio-toggle"
+                class="AudioToggle"
+                type="button"
+                aria-label="Toggle ambient sound"
+            >
+                <canvas id="audio-waveform" class="AudioToggle__Canvas"
+                ></canvas>
+            </button>
+            <nav class="text-iron-50">
+                <ul class="flex gap-3 text-sm">
+                    <a href="/" class="swipe-link" data-hover-shuffle>Home</a>
+                    <a href="/resume/" class="swipe-link" data-hover-shuffle
+                        >Resume</a
+                    >
+                </ul>
+            </nav>
         </div>
     </div>
-    <Divider class="contained" color="var(--color-iron-900)" />
+    <Divider color="var(--color-iron-800)" start="5%" end="95%" />
 </header>
