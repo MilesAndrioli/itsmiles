@@ -1,4 +1,4 @@
-const modules = import.meta.glob("./!(index).js", { eager: true });
+const modules = import.meta.glob("./!(_*).js", { eager: true });
 
 const animations = {};
 for (const module of Object.values(modules)) {

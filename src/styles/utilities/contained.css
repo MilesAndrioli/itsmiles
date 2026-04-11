@@ -1,0 +1,5 @@
+@utility contained {
+    max-width: var(--contained);
+    margin-inline: auto;
+    padding-inline: var(--padders);
+}

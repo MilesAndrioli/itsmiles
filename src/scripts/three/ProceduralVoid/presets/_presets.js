@@ -1,4 +1,4 @@
-const modules = import.meta.glob("./*.json", { eager: true });
+const modules = import.meta.glob("./!(_*).json", { eager: true });
 
 const presets = {};
 for (const [path, module] of Object.entries(modules)) {

@@ -1,0 +1,6 @@
+@utility hero {
+    min-height: 100dvh;
+    align-content: center;
+    margin-top: calc(var(--APP_HEADER_HEIGHT) * -1);
+    padding-block: calc(var(--APP_HEADER_HEIGHT) + var(--padders));
+}

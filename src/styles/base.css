@@ -1,0 +1,23 @@
+body {
+    text-wrap-style: pretty;
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    &::selection {
+        background-color: var(--color-iron-900);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    &:not(:last-child) {
+        @apply mb-[.5em];
+    }
+}

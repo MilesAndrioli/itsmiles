@@ -1,15 +1,5 @@
-@import "./tailwind/tailwind.css";
-
-@layer base {
-    @import "./definitions/base.css";
-}
-
-@layer components {
-    @import "./components/app-header.css";
-    @import "./components/mouse-follower.css";
-    @import "./components/sticky-item.css";
-    @import "./components/StrikeAround.css";
-    @import "./components/resume.css";
-    @import "./components/Ascii.css";
-    @import "./components/AudioToggle.css";
-}
+@import "tailwindcss";
+@import "./theme.css";
+@import "./base.css" layer(base);
+@import "./components/_components.css" layer(components);
+@import "./utilities/_utilities.css";

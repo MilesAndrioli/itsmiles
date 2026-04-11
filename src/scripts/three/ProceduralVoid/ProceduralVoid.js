@@ -19,7 +19,7 @@ import {
 
 import vertexShader from "./ProceduralVoid.vert.glsl?raw";
 import fragmentShader from "./ProceduralVoid.frag.glsl?raw";
-import presets from "./presets/index.js";
+import presets from "./presets/_presets";
 
 const SOFTWARE_RENDERERS = [
     "swiftshader",
@@ -513,12 +513,14 @@ export default class ProceduralVoid {
         for (const name of Object.keys(presets)) {
             presetOpts[name] = name;
         }
-        presetActions.addBinding(this, "_currentPreset", {
-            label: "Preset",
-            options: presetOpts,
-        }).on("change", (ev) => {
-            this.applyPreset(ev.value || undefined);
-        });
+        presetActions
+            .addBinding(this, "_currentPreset", {
+                label: "Preset",
+                options: presetOpts,
+            })
+            .on("change", (ev) => {
+                this.applyPreset(ev.value || undefined);
+            });
 
         presetActions.addButton({ title: "Save" }).on("click", () => {
             const state = pane.exportState();

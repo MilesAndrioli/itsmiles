@@ -3,8 +3,7 @@
 }
 
 #app-header {
-    position: fixed;
-    width: 100%;
+    position: sticky;
     z-index: var(--header-layer);
     top: 0;
 

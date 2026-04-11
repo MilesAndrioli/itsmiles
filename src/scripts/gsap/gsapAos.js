@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
-import gsapAnimations from "./animations/index";
+import animations from "./animations/_animations";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -201,7 +201,7 @@ export default function initGsapAos() {
         const groupAnimationName = el.dataset.aosGroup;
 
         // Skip if the element doesn't have a defined animation (unless it's a group)
-        if (!isGroup && !gsapAnimations[el.dataset.aos]) return;
+        if (!isGroup && !animations[el.dataset.aos]) return;
 
         const elementsToAnimate = isGroup
             ? el.querySelectorAll("[data-aos-child]").length
@@ -219,13 +219,13 @@ export default function initGsapAos() {
 
         elementsToAnimate.forEach((child, index) => {
             const animationName = getAnimationKey(child, groupAnimationName);
-            if (!gsapAnimations[animationName]) return;
+            if (!animations[animationName]) return;
 
             // Apply will-change: transform; to avoid visual jitter
             // @see https://number-flow.barvian.me/vanilla#attributes
             gsap.set(child, { willChange: "transform" });
 
-            const animationConfig = gsapAnimations[animationName];
+            const animationConfig = animations[animationName];
             const playInReverse = child.dataset.aosAfter !== undefined;
 
             const originProps = playInReverse
