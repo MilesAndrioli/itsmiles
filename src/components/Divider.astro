@@ -3,12 +3,16 @@ import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"hr"> {
     fade?: "both" | "start" | "end";
+    start?: string;
+    end?: string;
     color?: string;
     vertical?: boolean;
 }
 
 const {
     fade = "both",
+    start = "10%",
+    end = "90%",
     color = "var(--color-iron)",
     vertical = false,
     class: className,
@@ -29,29 +33,25 @@ const {
     {...rest}
 />
 
-<style define:vars={{ color }}>
+<style define:vars={{ start, end, color }}>
     .Divider {
         border: 0;
         height: 1px;
         background: linear-gradient(
             to right,
             transparent,
-            var(--color) 10%,
-            var(--color) 90%,
+            var(--color) var(--start),
+            var(--color) var(--end),
             transparent
         );
         mix-blend-mode: color-dodge;
 
         &.FadeEnd {
-            background: linear-gradient(
-                to right,
-                var(--color) 90%,
-                transparent
-            );
+            background: linear-gradient(to right, var(--color) var(--end), transparent);
         }
 
         &.FadeStart {
-            background: linear-gradient(to left, var(--color) 90%, transparent);
+            background: linear-gradient(to right, transparent, var(--color) var(--start));
         }
 
         &.Vertical {
@@ -61,24 +61,24 @@ const {
             background: linear-gradient(
                 to bottom,
                 transparent,
-                var(--color) 10%,
-                var(--color) 90%,
+                var(--color) var(--start),
+                var(--color) var(--end),
                 transparent
             );
 
             &.FadeEnd {
                 background: linear-gradient(
                     to bottom,
-                    var(--color) 90%,
+                    var(--color) var(--end),
                     transparent
                 );
             }
 
             &.FadeStart {
                 background: linear-gradient(
-                    to top,
-                    var(--color) 90%,
-                    transparent
+                    to bottom,
+                    transparent,
+                    var(--color) var(--start)
                 );
             }
         }
