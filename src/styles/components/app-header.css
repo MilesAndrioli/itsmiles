@@ -36,7 +36,7 @@
     }
 
     .Scrolling--Up.HasReached--Step1 &,
-   &:hover {
+    .HasReached--Step1 &:hover {
         transform: var(--shift-in);
         background-color: var(--bg-in);
     }
