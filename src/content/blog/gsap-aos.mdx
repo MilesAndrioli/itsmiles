@@ -1,0 +1,45 @@
+---
+title: "GSAP with data-attributes"
+description: "One small script, a handful of data-* attributes, and every reveal animation on the site."
+pubDate: 2026-04-14
+tags: ["GSAP", "Animations"]
+---
+
+import Divider from "@/components/Divider.astro";
+
+Inspired by the first animation library I ever used, [AOS](https://michalsnik.github.io/aos/) by michalsnik, I wanted to bring that same HTML-first simplicity to the powerhouse that is GSAP. 
+
+The result is **gsapAos**. One small script that parses data-attributes and handles all the [ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/) and timeline logic automatically.
+
+## The core concept
+
+Under the hood, the library relies on a simple dictionary of animations. To create a new animation, you don't write timeline logic, you just define an `origin` (where it starts) and a `destination` (where it ends). Same concept as [gsap.fromTo](https://gsap.com/docs/v3/GSAP/gsap.fromTo()/).
+
+This is an example of how the animations dictionary looks like:
+
+```javascript frame="terminal" title=fade.js {4-5, 8-9}
+export default {
+    "fade-up": {
+        origin: {
+            opacity: 0,
+            y: 20,
+        },
+        destination: {
+            opacity: 1,
+            y: 0,
+        },
+    },
+    "fade-up-blur": {
+            // ...
+        },
+    },
+};
+```
+
+Once your dictionary is set up, you never have to write JS for a basic reveal animation again. You just apply HTML attributes.
+
+<Divider />
+
+## The simplest case
+
+Apply `data-aos` to an element, specify an animation from the dictionary as its value, and it will trigger as soon as it enters the viewport.
