@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+
+import Skeleton from "@/components/layouts/Skeleton.astro";
+import FormattedDate from "@/components/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Skeleton title="Blog" description="Notes, experiments, and writing.">
+    <section class="hero">
+        <div class="contained">
+            <div class="grid gap-10">
+                <header>
+                    <h1>Blog</h1>
+                </header>
+                <ul class="grid gap-2">
+                    {
+                        posts.map((post) => (
+                            <li>
+                                <a href={`/blog/${post.id}/`}>
+                                    <div class="flex justify-between gap-5">
+                                        <div class="flex gap-5">
+                                            <FormattedDate
+                                                date={post.data.pubDate}
+                                            />
+                                            <h2>{post.data.title}</h2>
+                                        </div>
+                                        <p>{post.data.description}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+</Skeleton>
