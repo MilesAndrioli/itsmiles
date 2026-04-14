@@ -5,7 +5,7 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
 <section class="pb-(--padders)">
     <div class="contained">
         <div
-            data-aos-group="split-up-blur"
+            data-aos-group="fade-in-blur-out"
             data-aos-duration="1200"
             data-aos-stagger-gap="220"
         >
@@ -13,9 +13,7 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
                 <div class="md:col-span-2">
                     <span
                         class="Sticky--Bottom subtitle sticky text-6xl md:[writing-mode:sideways-lr]"
-                        data-aos-child="split-blur"
-                        data-aos-split="chars"
-                        data-aos-split-from="end"
+                        data-aos-child
                     >
                         ASCII
                     </span>
@@ -23,7 +21,7 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
 
                 <div
                     class="order-first md:order-0 md:col-span-5"
-                    data-aos-child="fade-in-blur-out"
+                    data-aos-child
                 >
                     <AsciiVideo
                         src="/PearlLoop.mp4"
@@ -36,8 +34,8 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
                 <div class="md:col-span-4 md:col-start-9">
                     <div class="Sticky--Center sticky grid gap-5 lg:gap-10">
                         <p
-                            class="text-iron-400 mb-0 text-justify lg:text-xl"
-                            data-aos-child
+                            class="text-iron-400 mb-0 lg:text-xl"
+                            data-aos-child="split-up-blur"
                         >
                             GSAP, Lenis & barba.js, consectetur adipiscing elit.
                             Sed do eiusmod tempor incididunt ut labore et dolore
@@ -45,7 +43,10 @@ import AsciiVideo from "@/components/AsciiVideo.astro";
                             exercitation ullamco laboris.
                         </p>
 
-                        <p class="mb-0 text-justify lg:text-xl" data-aos-child>
+                        <p
+                            class="mb-0 lg:text-xl"
+                            data-aos-child="split-up-blur"
+                        >
                             Duis aute irure dolor in reprehenderit in voluptate
                             velit esse cillum dolore eu fugiat nulla pariatur.
                             Excepteur sint occaecat cupidatat non proident, sunt
