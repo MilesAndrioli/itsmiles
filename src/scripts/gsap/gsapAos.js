@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
  */
 export default function initGsapAos() {
     const msToSec = (ms) => parseFloat(ms) / 1000;
+    const cleanAttr = (v) => (v === "true" ? "" : v);
 
     /**
      * Retrieves animation settings for an element from its data attributes.
@@ -38,7 +39,7 @@ export default function initGsapAos() {
             scrub: "aosScrub" in dataset,
 
             debug: "aosDebug" in dataset,
-            debugId: dataset.aosDebug,
+            debugId: cleanAttr(dataset.aosDebug),
 
             staggerGap: msToSec(dataset.aosStaggerGap || 140),
 
@@ -91,7 +92,7 @@ export default function initGsapAos() {
      */
     function getAnimationKey(childEl, groupAnimationName) {
         return (
-            childEl.dataset.aosChild ||
+            cleanAttr(childEl.dataset.aosChild) ||
             groupAnimationName ||
             childEl.dataset.aos
         );
