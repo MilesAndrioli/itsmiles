@@ -65,3 +65,36 @@ Apply `data-aos` to an element, specify an animation from the dictionary as its 
 </div>
 
 > **Note:** Scroll to or click on any demo to replay it. That's the `data-aos-debug` attribute at work, we'll cover that later.
+
+<Divider />
+
+## Groups and staggering
+
+Animating a single element is rare. A row of cards or a heading-and-subheading pair is much more common, `data-aos-group` is built exactly for this.
+
+When applied to a parent, its children will animate in sequence, inheriting the group's animation key and staggering automatically.
+
+```html {3}
+<div
+    class="grid"
+    data-aos-group="fade-up-blur"
+>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+</div>
+```
+
+<div class="spotlight">
+    <div 
+        class="grid grid-cols-2 md:grid-cols-4 gap-5" 
+        data-aos-group="fade-up-blur" 
+        data-aos-debug
+    >
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+</div>
