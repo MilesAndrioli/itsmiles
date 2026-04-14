@@ -124,6 +124,9 @@ export default function initGsapAos() {
 
         const useMask = "aosSplitMask" in childEl.dataset || settings.splitMask;
 
+        // @see https://number-flow.barvian.me/vanilla#attributes
+        gsap.set(childEl, { willChange: "transform" });
+
         const split = new SplitText(childEl, {
             type: splitType,
             mask: useMask ? splitType : undefined,
@@ -221,10 +224,6 @@ export default function initGsapAos() {
         elementsToAnimate.forEach((child, index) => {
             const animationName = getAnimationKey(child, groupAnimationName);
             if (!animations[animationName]) return;
-
-            // Apply will-change: transform; to avoid visual jitter
-            // @see https://number-flow.barvian.me/vanilla#attributes
-            gsap.set(child, { willChange: "transform" });
 
             const animationConfig = animations[animationName];
             const playInReverse = child.dataset.aosAfter !== undefined;
