@@ -1,15 +1,15 @@
 export default {
     "scale-in": {
-        origin: { scale: 0.75 },
+        origin: { scale: 0.85 },
         destination: { scale: 1 },
     },
     "scale-out": {
-        origin: { scale: 1.25 },
+        origin: { scale: 1.15 },
         destination: { scale: 1 },
     },
-    "scale-in-fade-in": {
+    "scale-in-fade": {
         origin: {
-            scale: 0.75,
+            scale: 0.85,
             opacity: 0,
         },
         destination: {
@@ -17,9 +17,9 @@ export default {
             opacity: 1,
         },
     },
-    "scale-out-fade-in": {
+    "scale-out-fade": {
         origin: {
-            scale: 1.25,
+            scale: 1.15,
             opacity: 0,
         },
         destination: {
@@ -27,9 +27,9 @@ export default {
             opacity: 1,
         },
     },
-    "scale-out-gray-out": {
+    "scale-out-gray": {
         origin: {
-            scale: 1.25,
+            scale: 1.15,
             filter: "grayscale(1)",
         },
         destination: {

@@ -57,7 +57,7 @@ export default {
             filter: "grayscale(0%)",
         },
     },
-    "fade-up-grayscale": {
+    "fade-up-gray": {
         origin: {
             opacity: 0,
             y: 20,
