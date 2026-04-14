@@ -21,14 +21,17 @@ const { meta, experience, skills, projects } = resume;
 >
     <ProceduralVoid preset="obsidian-gold-reveal" />
 
-    <div data-aos-group="fade-in-left-blur-out" data-aos-stagger-gap="40">
+    <div
+        data-aos-group="fade-left-blur"
+        data-aos-stagger-gap="40"
+        data-aos-delay="200"
+    >
         <div class="contained max-w-4xl print:max-w-none print:p-0">
             <Divider class="hidden md:block" />
             <div class="flex">
                 <Divider vertical class="hidden md:block" />
                 <div
                     class="ResumeGrid md:bg-iron-950 z-65 grid flex-1 gap-5 md:grid-cols-[1fr_auto_2fr] md:gap-0 md:rounded-xl print:grid-cols-[1fr_auto_2fr] print:gap-0"
-                    data-aos-child
                 >
                     <ResumeSidebar
                         name={meta.name}
@@ -36,11 +39,7 @@ const { meta, experience, skills, projects } = resume;
                         contact={contact}
                         skills={skills}
                     />
-                    <Divider
-                        vertical
-                        class="hidden md:block print:block"
-                        data-aos-child="fade-in-blur-out"
-                    />
+                    <Divider vertical class="hidden md:block print:block" />
                     <ResumeMain
                         name={meta.name}
                         title={meta.title}
