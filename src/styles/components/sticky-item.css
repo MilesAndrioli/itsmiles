@@ -1,4 +1,4 @@
-.sticky--top {
+.Sticky--Top {
     top: 0;
     transition: top var(--header-transition);
 
@@ -7,7 +7,7 @@
     }
 }
 
-.sticky--gappers {
+.Sticky--Gappers {
     top: var(--gappers);
     transition: top var(--header-transition);
 
@@ -16,18 +16,18 @@
     }
 }
 
-.sticky--above-center {
+.Sticky--AboveCenter {
     top: calc(50vh - var(--height) - (var(--gappers) / 2));
 }
 
-.sticky--center {
+.Sticky--Center {
     top: calc(50vh - (var(--height) / 2));
 }
 
-.sticky--below-center {
+.Sticky--BelowCenter {
     top: calc(50vh + (var(--gappers) / 2));
 }
 
-.sticky--bottom {
+.Sticky--Bottom {
     top: calc(100vh - var(--height) - (var(--gappers) / 2));
 }
