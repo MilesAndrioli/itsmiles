@@ -1,0 +1,7 @@
+@utility spotlight {
+    @apply border-iron-850 rounded-lg border-2 border-dashed p-5;
+}
+
+@utility square {
+    @apply bg-iron-800 rounded-lg aspect-square
+}
