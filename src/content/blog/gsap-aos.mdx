@@ -107,7 +107,29 @@ When using `data-aos-group`, the library operates on one of two paths:
 
 2. **Explicit targeting.** If your layout is more complex—say you need to animate deeply nested elements or override specific animations—you can explicitly mark elements using the `data-aos-child` attribute.
 
-
+```html 'fade-up-blur' 'split-'
+<div
+    class="grid"
+    data-aos-group="fade-up-blur"
+>
+    <!-- Inherits the group animation fade-up-blur -->
+    <div class="rectangle" data-aos-child>
+        <!-- Forces a specific animation within the group timeline -->
+        <p data-aos-child="split-up-chromatic">Si vis pacem...</p>
+    </div>
+    
+    <div class="rectangle" data-aos-child>
+        <p data-aos-child="split-left">Si vis pacem...</p>
+    </div>
+    
+    <!-- Ignored from the explicit group timeline -->
+    <div class="rectangle opacity-25"></div>
+    
+    <div class="rectangle" data-aos-child>
+        <p data-aos-child="split-up">Si vis pacem...</p>
+    </div>
+</div>
+```
 
 <div class="spotlight mb-5">
     <div 
