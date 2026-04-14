@@ -10,6 +10,10 @@ export default defineEcConfig({
             tooltipSuccessBackground: "var(--color-iron-950)",
             tooltipSuccessForeground: "var(--color-iron-400)",
         },
+        textMarkers: {
+            markBackground: "var(--color-iron-850)",
+            markBorderColor: "var(--color-iron-700)",
+        },
     },
     defaultProps: {
         wrap: true,
