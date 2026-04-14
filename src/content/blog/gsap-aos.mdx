@@ -106,3 +106,13 @@ When using `data-aos-group`, the library operates on one of two paths:
 1. **Automatic direct children.** If you only define the group (like in the previous example), the script automatically targets all direct children. This is perfect for simple grids or lists.
 
 2. **Explicit targeting.** If your layout is more complex—say you need to animate deeply nested elements or override specific animations—you can explicitly mark elements using the `data-aos-child` attribute.
+
+Notice what happens in this timeline sequence:
+
+1. The first rectangle enters via the group default `fade-up-blur`.
+2. Its nested paragraph triggers immediately after, explicitly using `split-up-chromatic`.
+3. The second rectangle enters `fade-up-blur`, followed by its own paragraph `split-left`.
+4. **The third rectangle is completely skipped** because it lacks the `data-aos-child` attribute.
+5. The fourth rectangle and its masked text wrap up the timeline.
+
+This two-path system gives you the best of both worlds: absolute zero-config simplicity when you want it, and granular control over nested timelines when you need it.
