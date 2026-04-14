@@ -258,10 +258,10 @@ export default function initGsapAos() {
         });
 
         if (settings.debug) {
-            el.dataset.cursorText = "Replay Animation";
-            el.addEventListener("click", () => {
-                timeline.restart();
-            });
+            const label =
+                settings.debugId || el.dataset.aos || el.dataset.aosGroup;
+            if (label) el.dataset.cursorText = `Replay ${label}`;
+            el.addEventListener("click", () => timeline.restart());
         }
     }
 
