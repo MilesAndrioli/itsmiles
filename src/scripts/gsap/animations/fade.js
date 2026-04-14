@@ -1,19 +1,19 @@
 export default {
-    "fade-in": {
+    fade: {
         origin: { opacity: 0 },
         destination: { opacity: 1 },
     },
-    "fade-in-up": {
+    "fade-up": {
         origin: {
             opacity: 0,
-            yPercent: 7.5,
+            y: 20,
         },
         destination: {
             opacity: 1,
-            yPercent: 0,
+            y: 0,
         },
     },
-    "fade-in-blur-out": {
+    "fade-blur": {
         origin: {
             opacity: 0,
             filter: "blur(8px)",
@@ -23,22 +23,22 @@ export default {
             filter: "blur(0px)",
         },
     },
-    "fade-in-up-blur-out": {
+    "fade-up-blur": {
         origin: {
             opacity: 0,
-            yPercent: 7.5,
+            y: 20,
             filter: "blur(8px)",
         },
         destination: {
             opacity: 1,
-            yPercent: 0,
+            y: 0,
             filter: "blur(0px)",
         },
     },
-    "fade-in-left-blur-out": {
+    "fade-left-blur": {
         origin: {
             opacity: 0,
-            x: 16,
+            x: 20,
             filter: "blur(8px)",
         },
         destination: {
@@ -47,7 +47,7 @@ export default {
             filter: "blur(0px)",
         },
     },
-    "fade-in-grayscale-out": {
+    "fade-grayscale": {
         origin: {
             opacity: 0,
             filter: "grayscale(100%)",
@@ -57,19 +57,19 @@ export default {
             filter: "grayscale(0%)",
         },
     },
-    "fade-in-up-grayscale-out": {
+    "fade-up-grayscale": {
         origin: {
             opacity: 0,
-            yPercent: 7.5,
+            y: 20,
             filter: "grayscale(100%)",
         },
         destination: {
             opacity: 1,
-            yPercent: 0,
+            y: 0,
             filter: "grayscale(0%)",
         },
     },
-    "fade-in-sepia-out": {
+    "fade-sepia": {
         origin: {
             opacity: 0,
             filter: "sepia(100%)",
@@ -79,15 +79,15 @@ export default {
             filter: "sepia(0%)",
         },
     },
-    "fade-in-up-sepia-out": {
+    "fade-up-sepia": {
         origin: {
             opacity: 0,
-            yPercent: 7.5,
+            y: 20,
             filter: "sepia(100%)",
         },
         destination: {
             opacity: 1,
-            yPercent: 0,
+            y: 0,
             filter: "sepia(0%)",
         },
     },
