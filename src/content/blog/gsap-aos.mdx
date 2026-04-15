@@ -155,10 +155,9 @@ When using `data-aos-group`, the library operates on one of two paths:
 
 Notice what happens in this timeline sequence:
 
-1. The first rectangle enters via the group default `fade-up-blur`.
-2. Its nested paragraph triggers immediately after, explicitly using `split-up-chromatic`.
-3. The second rectangle enters `fade-up-blur`, followed by its own paragraph `split-left`.
-4. **The third rectangle is completely skipped** because it lacks the `data-aos-child` attribute.
-5. The fourth rectangle and its masked text wrap up the timeline.
+1. The first rectangle and its paragraph both inherit the group's default `fade-up-blur`.
+2. The second rectangle does the same, but its paragraph overrides the animation with `split-up-chromatic`.
+3. The third rectangle is skipped entirely because it lacks the `data-aos-child` attribute.
+4. The fourth rectangle fades in, and its paragraph wraps up the timeline explicitly using a masked `split-up`.
 
 This two-path system gives you the best of both worlds: absolute zero-config simplicity when you want it, and granular control over nested timelines when you need it.
