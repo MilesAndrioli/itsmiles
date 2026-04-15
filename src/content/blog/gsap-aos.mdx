@@ -112,14 +112,14 @@ When using `data-aos-group`, the library operates on one of two paths:
     class="grid"
     data-aos-group="fade-up-blur"
 >
-    <!-- Inherits the group animation fade-up-blur -->
+    <!-- Both inherit the default group animation fade-up-blur -->
     <div class="rectangle" data-aos-child>
-        <!-- Forces a specific animation within the group timeline -->
-        <p data-aos-child="split-up-chromatic">Si vis pacem...</p>
+        <p data-aos-child>Si vis pacem...</p>
     </div>
     
     <div class="rectangle" data-aos-child>
-        <p data-aos-child="split-left">Si vis pacem...</p>
+        <!-- Forces a specific animation within the group timeline -->
+        <p data-aos-child="split-up-chromatic">Si vis pacem...</p>
     </div>
     
     <!-- Ignored from the explicit group timeline -->
@@ -140,10 +140,10 @@ When using `data-aos-group`, the library operates on one of two paths:
         data-aos-debug
     >
         <div class="bg-iron-800 rounded-lg p-5" data-aos-child>
-            <p class="text-lg" data-aos-child="split-up-chromatic">Si vis pacem, para bellum. Vivamus fringilla dictum porta luctus dignissim tortor conubia semper.</p>
+            <p class="text-lg" data-aos-child>Si vis pacem, para bellum. Vivamus fringilla dictum porta luctus dignissim tortor conubia semper.</p>
         </div>
         <div class="bg-iron-800 rounded-lg p-5" data-aos-child>
-            <p class="text-lg" data-aos-child="split-left">Si vis pacem, para bellum. Vivamus fringilla dictum porta luctus dignissim tortor conubia semper.</p>
+            <p class="text-lg" data-aos-child="split-up-chromatic">Si vis pacem, para bellum. Vivamus fringilla dictum porta luctus dignissim tortor conubia semper.</p>
         </div>
         <div class="bg-iron-800 rounded-lg opacity-25"></div>
         <div class="bg-iron-800 rounded-lg p-5" data-aos-child>
