@@ -3,7 +3,8 @@
 }
 
 #app-header {
-    position: sticky;
+    position: fixed;
+    width: 100%;
     z-index: var(--header-layer);
     top: 0;
 
@@ -29,7 +30,9 @@
     --shift-in: unset;
     --bg-in: color-mix(in oklab, var(--color-iron-950) 60%, transparent);
 
-    transition: transform var(--header-transition), background-color  var(--header-transition);
+    transition:
+        transform var(--header-transition),
+        background-color var(--header-transition);
 
     .HasReached--Step1 & {
         transform: var(--shift-out);
