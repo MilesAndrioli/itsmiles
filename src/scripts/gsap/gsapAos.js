@@ -159,6 +159,9 @@ export default function initGsapAos() {
                 delay: settings.delay,
                 ease: settings.ease,
                 stagger: staggerOptions,
+                onComplete: settings.once
+                    ? () => split.revert()
+                    : undefined,
             },
             indexInTimeline * settings.staggerGap,
         );
