@@ -19,3 +19,12 @@ p {
         @apply mb-[.5em];
     }
 }
+
+[data-barba="wrapper"] {
+    background-color: black;
+}
+
+[data-barba="container"] {
+    background-color: var(--color-iron-950);
+    color: var(--color-iron);
+}
