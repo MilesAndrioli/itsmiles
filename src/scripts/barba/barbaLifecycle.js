@@ -49,7 +49,7 @@ export function teardown() {
 }
 
 export function resetScroll() {
-    if (window.__LENIS__) {
-        window.__LENIS__.scrollTo(0, { immediate: true });
+    if (window.LENIS) {
+        window.LENIS.scrollTo(0, { immediate: true });
     }
 }
