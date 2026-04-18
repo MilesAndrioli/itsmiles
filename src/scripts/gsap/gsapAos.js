@@ -4,8 +4,6 @@ import { SplitText } from "gsap/SplitText";
 
 import animations from "./animations/_animations";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
-
 /**
  * Initializes scroll-based animations on elements with data-aos attributes.
  */
