@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function initGsapLenis() {
+export default function lenisConfig() {
     window.LENIS = new Lenis({
         lerp: 0.09, // 0.1
         wheelMultiplier: 0.9, // 1
