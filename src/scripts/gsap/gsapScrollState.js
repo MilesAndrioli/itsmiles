@@ -1,9 +1,6 @@
-import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function initGsapScrollState() {
+export default function gsapScrollState() {
     const root = document.documentElement;
     const footer = document.getElementById("app-footer");
 
