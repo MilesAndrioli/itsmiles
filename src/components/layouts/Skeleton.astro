@@ -11,13 +11,7 @@ import Noise from "@/components/Noise.astro";
 import Loader from "@/components/Loader.astro";
 import Cursor from "@/components/Cursor.astro";
 
-const {
-    title,
-    description,
-    class: className,
-    header = true,
-    footer = true,
-} = Astro.props;
+const { title, description, class: className } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,11 +19,11 @@ const {
     <Head title={title} description={description} />
     <body class="bg-iron-950 text-iron antialiased" data-barba="wrapper">
         <Smoother>
-            {header && <Header />}
+            <Header />
             <main id="app-main" class:list={[className]} data-barba="container">
                 <slot />
             </main>
-            {footer && <Footer />}
+            <Footer />
         </Smoother>
         <Filter />
         <Noise />
