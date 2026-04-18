@@ -4,10 +4,10 @@
 
 #app-header {
     position: fixed;
-    width: 100%;
     z-index: var(--header-layer);
     top: 0;
-
+    
+    inset-inline: 0;
     max-width: calc(var(--contained) - 2px);
     margin-inline: auto;
     padding-inline: var(--padders);
