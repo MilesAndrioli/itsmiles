@@ -679,10 +679,10 @@ export default class ProceduralVoid {
         );
 
         // Scroll — Lenis progress (0..1) + smoothed velocity
-        if (s.scrollEnabled && window.__LENIS__) {
-            u.uScroll.value = window.__LENIS__.progress;
+        if (s.scrollEnabled && window.LENIS) {
+            u.uScroll.value = window.LENIS.progress;
             this.scrollVelocitySmoothed +=
-                (window.__LENIS__.velocity - this.scrollVelocitySmoothed) * 0.1;
+                (window.LENIS.velocity - this.scrollVelocitySmoothed) * 0.1;
         } else {
             u.uScroll.value = 0.0;
             this.scrollVelocitySmoothed = 0.0;
