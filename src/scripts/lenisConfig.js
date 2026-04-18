@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function lenisConfig() {
     window.LENIS = new Lenis({
         lerp: 0.09, // 0.1
-        wheelMultiplier: 0.9, // 1
+        wheelMultiplier: 1.1, // 1
     });
 
     window.LENIS.on("scroll", ScrollTrigger.update);
