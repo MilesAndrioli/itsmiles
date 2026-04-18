@@ -6,7 +6,6 @@
 @media print {
     body {
         height: auto !important;
-        color: var(--color-iron-800) !important;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
@@ -14,6 +13,11 @@
     .Divider {
         mix-blend-mode: normal !important;
         --color: #ccc !important;
+    }
+
+    [data-barba="container"] {
+        background-color: white !important;
+        color: var(--color-iron-800) !important;
     }
 
     /* TARGET SAFARI */
