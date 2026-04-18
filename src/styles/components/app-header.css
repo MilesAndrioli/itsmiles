@@ -43,8 +43,4 @@
         transform: var(--shift-in);
         background-color: var(--bg-in);
     }
-
-    /*.HasReached--Footer & {
-        transform: var(--shift-in);
-    }*/
 }
