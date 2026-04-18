@@ -38,6 +38,9 @@ export default function initGsapAos() {
             debug: "aosDebug" in dataset,
             debugId: cleanAttr(dataset.aosDebug),
 
+            replay: "aosReplay" in dataset,
+            replayId: cleanAttr(dataset.aosReplay),
+
             staggerGap: msToSec(dataset.aosStaggerGap || 140),
 
             splitDuration: msToSec(
@@ -256,9 +259,9 @@ export default function initGsapAos() {
             }
         });
 
-        if (settings.debug) {
+        if (settings.replay) {
             const label =
-                settings.debugId || el.dataset.aos || el.dataset.aosGroup;
+                settings.replayId || el.dataset.aos || el.dataset.aosGroup;
             if (label) el.dataset.cursorText = `Replay ${label}`;
             el.addEventListener("click", () => timeline.restart());
         }
