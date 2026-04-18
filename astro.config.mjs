@@ -9,6 +9,7 @@ import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
+    site: "https://itsmil.es",
     vite: {
         plugins: [tailwindcss(), yaml()],
     },
