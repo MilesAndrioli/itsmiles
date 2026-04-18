@@ -1,8 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function gsapProgressButton() {
     document.querySelectorAll(".ProgressButton").forEach((button) => {
         const fill = button.querySelector(".ProgressButton__Fill");
