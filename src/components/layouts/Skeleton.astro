@@ -20,10 +20,12 @@ const { title, description, class: className } = Astro.props;
     <body class="bg-iron-950 text-iron antialiased" data-barba="wrapper">
         <Smoother>
             <Header />
-            <main id="app-main" class:list={[className]} data-barba="container">
-                <slot />
-            </main>
-            <Footer />
+            <div data-barba="container">
+                <main id="app-main" class:list={[className]}>
+                    <slot />
+                </main>
+                <Footer />
+            </div>
         </Smoother>
         <Filter />
         <Noise />
