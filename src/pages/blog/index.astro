@@ -10,16 +10,18 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <Skeleton title="Blog" description="Notes, experiments, and writing.">
-    <section class="hero">
+    <section class="hero" data-aos-group="fade-up-blur" data-aos-delay="450">
         <div class="contained">
             <div class="grid gap-10">
                 <header>
-                    <h1>Blog</h1>
+                    <h1 data-aos-child data-aos-will-change="transform">
+                        Blog
+                    </h1>
                 </header>
                 <ul class="grid gap-2">
                     {
                         posts.map((post) => (
-                            <li>
+                            <li data-aos-child data-aos-will-change="transform">
                                 <a href={`/blog/${post.id}/`}>
                                     <div class="flex justify-between gap-5">
                                         <div class="flex gap-5">
