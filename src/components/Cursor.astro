@@ -3,10 +3,8 @@
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    gsap.registerPlugin(ScrollTrigger);
-
     if (!ScrollTrigger.isTouch) {
         MouseFollower.registerGSAP(gsap);
-        window.__CURSOR__ = new MouseFollower();
+        window.CURSOR = new MouseFollower();
     }
 </script>
