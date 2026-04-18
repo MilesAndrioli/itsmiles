@@ -35,10 +35,34 @@ export default {
             filter: "blur(0px)",
         },
     },
+    "fade-down-blur": {
+        origin: {
+            opacity: 0,
+            y: -20,
+            filter: "blur(8px)",
+        },
+        destination: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+        },
+    },
     "fade-left-blur": {
         origin: {
             opacity: 0,
             x: 20,
+            filter: "blur(8px)",
+        },
+        destination: {
+            opacity: 1,
+            x: 0,
+            filter: "blur(0px)",
+        },
+    },
+    "fade-right-blur": {
+        origin: {
+            opacity: 0,
+            x: -20,
             filter: "blur(8px)",
         },
         destination: {
